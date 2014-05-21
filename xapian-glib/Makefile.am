@@ -23,6 +23,7 @@ source_h_public = \
 	xapian-enquire.h \
 	xapian-enums.h \
 	xapian-query.h \
+	xapian-stem.h \
 	xapian-writable-database.h \
 	$(NULL)
 
@@ -40,6 +41,7 @@ source_c_public = \
 	xapian-enums.cc \
 	xapian-error.cc \
 	xapian-query.cc \
+	xapian-stem.cc \
 	xapian-writable-database.cc \
 	$(NULL)
 
