@@ -25,13 +25,13 @@
 
 G_BEGIN_DECLS
 
-#define XAPIAN_ENQUIRE(obj)            	(G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_ENQUIRE, XapianEnquire))
-#define XAPIAN_IS_ENQUIRE(obj)         	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_ENQUIRE))
-#define XAPIAN_ENQUIRE_CLASS(klass)    	(G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_ENQUIRE, XapianEnquireClass))
-#define XAPIAN_IS_ENQUIRE_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_ENQUIRE))
-#define XAPIAN_ENQUIRE_GET_CLASS(obj)  	(G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_ENQUIRE, XapianEnquireClass))
+#define XAPIAN_ENQUIRE(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_ENQUIRE, XapianEnquire))
+#define XAPIAN_IS_ENQUIRE(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_ENQUIRE))
+#define XAPIAN_ENQUIRE_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_ENQUIRE, XapianEnquireClass))
+#define XAPIAN_IS_ENQUIRE_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_ENQUIRE))
+#define XAPIAN_ENQUIRE_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_ENQUIRE, XapianEnquireClass))
 
-typedef struct _XapianEnquireClass     XapianEnquireClass;
+typedef struct _XapianEnquireClass      XapianEnquireClass;
 
 struct _XapianEnquire
 {
@@ -47,8 +47,15 @@ XAPIAN_GLIB_AVAILABLE_IN_ALL
 GType xapian_enquire_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_ALL
-XapianEnquire *	xapian_enquire_new	(XapianDatabase *database,
-					 GError	       **error);
+XapianEnquire * xapian_enquire_new              (XapianDatabase *database,
+                                                 GError               **error);
+
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+void            xapian_enquire_set_query        (XapianEnquire *enquire,
+                                                 XapianQuery   *query,
+                                                 unsigned int   qlen);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+XapianQuery *   xapian_enquire_get_query        (XapianEnquire *enquire);
 
 G_END_DECLS
 

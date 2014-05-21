@@ -20,6 +20,7 @@
 
 #include "xapian-database-private.h"
 #include "xapian-error-private.h"
+#include "xapian-query-private.h"
 
 #define XAPIAN_ENQUIRE_GET_PRIVATE(obj) \
   ((XapianEnquirePrivate *) xapian_enquire_get_instance_private ((XapianEnquire *) (obj)))
@@ -28,6 +29,8 @@ typedef struct {
   Xapian::Enquire mEnquire;
 
   XapianDatabase *database;
+
+  XapianQuery *query;
 } XapianEnquirePrivate;
 
 enum {
@@ -141,6 +144,7 @@ xapian_enquire_dispose (GObject *gobject)
   XapianEnquirePrivate *priv = XAPIAN_ENQUIRE_GET_PRIVATE (gobject);
 
   g_clear_object (&priv->database);
+  g_clear_object (&priv->query);
 
   G_OBJECT_CLASS (xapian_enquire_parent_class)->dispose (gobject);
 }
@@ -181,4 +185,41 @@ xapian_enquire_new (XapianDatabase *db,
                                            NULL, error,
                                            "database", db,
                                            NULL);
+}
+
+void
+xapian_enquire_set_query (XapianEnquire *enquire,
+			  XapianQuery   *query,
+			  unsigned int   qlen)
+{
+  g_return_if_fail (XAPIAN_IS_ENQUIRE (enquire));
+  g_return_if_fail (XAPIAN_IS_QUERY (query));
+
+  XapianEnquirePrivate *priv = XAPIAN_ENQUIRE_GET_PRIVATE (enquire);
+
+  if (priv->query == query)
+    return;
+
+  g_clear_object (&priv->query);
+  priv->query = (XapianQuery *) g_object_ref (query);
+
+  priv->mEnquire.set_query (*xapian_query_get_internal (query), qlen);
+}
+
+/**
+ * xapian_enquire_get_query:
+ * @enquire: ...
+ *
+ * ...
+ *
+ * Returns: (transfer none): ...
+ */
+XapianQuery *
+xapian_enquire_get_query (XapianEnquire *enquire)
+{
+  g_return_val_if_fail (XAPIAN_IS_ENQUIRE (enquire), NULL);
+
+  XapianEnquirePrivate *priv = XAPIAN_ENQUIRE_GET_PRIVATE (enquire);
+
+  return priv->query;
 }
