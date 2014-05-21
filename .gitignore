@@ -25,6 +25,8 @@ config.status
 configure
 libtool
 stamp-h1
+xapian-glib-lcov.info
+xapian-glib-lcov/
 xapian-glib/xapian-glib-1.0.pc
 xapian-glib/xapian-glib.pc
 xapian-glib/Xapian-1.0.gir
