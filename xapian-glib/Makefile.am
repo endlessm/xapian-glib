@@ -20,6 +20,7 @@ SUBDIRS = . tests
 source_h_public = \
 	xapian-database.h \
 	xapian-document.h \
+	xapian-enquire.h \
 	xapian-enums.h \
 	xapian-writable-database.h \
 	$(NULL)
@@ -33,6 +34,7 @@ source_h_private = \
 source_c_public = \
 	xapian-database.cc \
 	xapian-document.cc \
+	xapian-enquire.cc \
 	xapian-enums.cc \
 	xapian-error.cc \
 	xapian-writable-database.cc \

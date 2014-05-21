@@ -25,6 +25,7 @@
 
 #include "xapian-database.h"
 #include "xapian-document.h"
+#include "xapian-enquire.h"
 #include "xapian-enums.h"
 #include "xapian-writable-database.h"
 
