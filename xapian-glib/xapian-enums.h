@@ -67,6 +67,31 @@ GType xapian_error_type_get_type (void);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 GQuark xapian_error_type_quark (void);
 
+#define XAPIAN_TYPE_QUERY_OP            (xapian_query_op_get_type ())
+
+typedef enum {
+  XAPIAN_QUERY_OP_AND,
+  XAPIAN_QUERY_OP_OR,
+  XAPIAN_QUERY_OP_AND_NOT,
+  XAPIAN_QUERY_OP_XOR,
+  XAPIAN_QUERY_OP_AND_MAYBE,
+  XAPIAN_QUERY_OP_FILTER,
+  XAPIAN_QUERY_OP_NEAR,
+  XAPIAN_QUERY_OP_PHRASE,
+  XAPIAN_QUERY_OP_VALUE_RANGE,
+  XAPIAN_QUERY_OP_SCALE_WEIGHT,
+  XAPIAN_QUERY_OP_ELITE_SET,
+  XAPIAN_QUERY_OP_VALUE_GE,
+  XAPIAN_QUERY_OP_VALUE_LE,
+  XAPIAN_QUERY_OP_SYNONYM,
+
+  /*< private >*/
+  XAPIAN_QUERY_OP_LAST
+} XapianQueryOp;
+
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+GType xapian_query_op_get_type (void);
+
 G_END_DECLS
 
 #endif /* __XAPIAN_ENUMS_H__ */

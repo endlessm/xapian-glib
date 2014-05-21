@@ -14,22 +14,13 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __XAPIAN_GLIB_H__
-#define __XAPIAN_GLIB_H__
+#ifndef __XAPIAN_GLIB_QUERY_PRIVATE_H__
+#define __XAPIAN_GLIB_QUERY_PRIVATE_H__
 
-#define XAPIAN_GLIB_H_INSIDE
-
-#include "xapian-glib-types.h"
-#include "xapian-glib-version.h"
-#include "xapian-glib-macros.h"
-
-#include "xapian-database.h"
-#include "xapian-document.h"
-#include "xapian-enquire.h"
-#include "xapian-enums.h"
+#include <xapian.h>
 #include "xapian-query.h"
-#include "xapian-writable-database.h"
 
-#undef XAPIAN_GLIB_H_INSIDE
+Xapian::Query * xapian_query_get_internal       (XapianQuery *self);
+XapianQuery *   xapian_query_new_from_query     (Xapian::Query &aQuery);
 
-#endif /* __XAPIAN_GLIB_H__ */
+#endif /* __XAPIAN_GLIB_QUERY_PRIVATE_H__ */

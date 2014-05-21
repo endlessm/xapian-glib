@@ -27,6 +27,7 @@ G_BEGIN_DECLS
 #define XAPIAN_TYPE_WRITABLE_DATABASE   (xapian_writable_database_get_type ())
 #define XAPIAN_TYPE_DOCUMENT            (xapian_document_get_type ())
 #define XAPIAN_TYPE_ENQUIRE             (xapian_enquire_get_type ())
+#define XAPIAN_TYPE_QUERY               (xapian_query_get_type ())
 
 typedef struct _XapianDatabase          XapianDatabase;
 typedef struct _XapianWritableDatabase  XapianWritableDatabase;
@@ -34,6 +35,7 @@ typedef struct _XapianWritableDatabase  XapianWritableDatabase;
 typedef struct _XapianDocument          XapianDocument;
 
 typedef struct _XapianEnquire           XapianEnquire;
+typedef struct _XapianQuery             XapianQuery;
 
 G_END_DECLS
 
