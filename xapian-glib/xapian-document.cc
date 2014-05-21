@@ -135,7 +135,7 @@ xapian_document_set_data (XapianDocument *document,
 }
 
 unsigned int
-xapian_document_values_count (XapianDocument *document)
+xapian_document_get_values_count (XapianDocument *document)
 {
   g_return_val_if_fail (XAPIAN_IS_DOCUMENT (document), 0);
 
@@ -166,4 +166,79 @@ xapian_document_get_description (XapianDocument *document)
   std::string desc = xapian_document_get_internal (document)->get_description ();
 
   return g_strdup (desc.c_str ());
+}
+
+void
+xapian_document_add_posting (XapianDocument *document,
+                             const char     *tname,
+                             unsigned int    term_pos,
+                             unsigned int    wdf_increment)
+{
+  g_return_if_fail (XAPIAN_IS_DOCUMENT (document));
+  g_return_if_fail (tname != NULL);
+
+  std::string term (tname, strlen (tname));
+  xapian_document_get_internal (document)->add_posting (term, term_pos, wdf_increment);
+}
+
+void
+xapian_document_add_term (XapianDocument *document,
+                          const char     *tname,
+                          unsigned int    wdf_increment)
+{
+  g_return_if_fail (XAPIAN_IS_DOCUMENT (document));
+  g_return_if_fail (tname != NULL);
+
+  std::string term (tname, strlen (tname));
+  xapian_document_get_internal (document)->add_term (term, wdf_increment);
+}
+
+void
+xapian_document_add_boolean_term (XapianDocument *document,
+                                  const char     *tname)
+{
+  g_return_if_fail (XAPIAN_IS_DOCUMENT (document));
+  g_return_if_fail (tname != NULL);
+
+  xapian_document_add_term (document, tname, 0);
+}
+
+void
+xapian_document_remove_posting (XapianDocument *document,
+                                const char     *tname,
+                                unsigned int    term_pos,
+                                unsigned int    wdf_decrement)
+{
+  g_return_if_fail (XAPIAN_IS_DOCUMENT (document));
+  g_return_if_fail (tname != NULL);
+
+  std::string term (tname, strlen (tname));
+  xapian_document_get_internal (document)->remove_posting (term, term_pos, wdf_decrement);
+}
+
+void
+xapian_document_remove_term (XapianDocument *document,
+                             const char     *tname)
+{
+  g_return_if_fail (XAPIAN_IS_DOCUMENT (document));
+  g_return_if_fail (tname != NULL);
+
+  std::string term (tname, strlen (tname));
+  xapian_document_get_internal (document)->remove_term (term);
+}
+
+void
+xapian_document_clear_terms (XapianDocument *document)
+{
+  g_return_if_fail (XAPIAN_IS_DOCUMENT (document));
+
+  xapian_document_get_internal (document)->clear_terms ();
+}
+
+unsigned int
+xapian_document_get_termlist_count (XapianDocument *document)
+{
+  g_return_val_if_fail (XAPIAN_IS_DOCUMENT (document), 0);
+
+  return xapian_document_get_internal (document)->termlist_count ();
 }
