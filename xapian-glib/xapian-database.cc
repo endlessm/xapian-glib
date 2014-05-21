@@ -25,6 +25,9 @@
 #include "xapian-document-private.h"
 #include "xapian-error-private.h"
 
+#define XAPIAN_DATABASE_GET_PRIVATE(obj) \
+  ((XapianDatabasePrivate *) xapian_database_get_instance_private ((XapianDatabase *) (obj)))
+
 typedef struct _XapianDatabasePrivate   XapianDatabasePrivate;
 
 struct _XapianDatabasePrivate
@@ -32,6 +35,8 @@ struct _XapianDatabasePrivate
   char *path;
 
   Xapian::Database mDB;
+
+  GHashTable *databases;
 
   guint is_writable : 1;
 };
@@ -56,9 +61,7 @@ G_DEFINE_TYPE_WITH_CODE (XapianDatabase, xapian_database, G_TYPE_OBJECT,
 Xapian::Database *
 xapian_database_get_internal (XapianDatabase *self)
 {
-  XapianDatabasePrivate *priv;
-
-  priv = (XapianDatabasePrivate *) xapian_database_get_instance_private (self);
+  XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
 
   return &(priv->mDB);
 }
@@ -67,9 +70,7 @@ void
 xapian_database_set_internal (XapianDatabase *self,
                               Xapian::Database &aDB)
 {
-  XapianDatabasePrivate *priv;
-
-  priv = (XapianDatabasePrivate *) xapian_database_get_instance_private (self);
+  XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
 
   priv->mDB = aDB;
 }
@@ -78,9 +79,7 @@ void
 xapian_database_set_is_writable (XapianDatabase *self,
 				 gboolean        is_writable)
 {
-  XapianDatabasePrivate *priv;
-
-  priv = (XapianDatabasePrivate *) xapian_database_get_instance_private (self);
+  XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
 
   priv->is_writable = !!is_writable;
 }
@@ -88,9 +87,7 @@ xapian_database_set_is_writable (XapianDatabase *self,
 gboolean
 xapian_database_get_is_writable (XapianDatabase *self)
 {
-  XapianDatabasePrivate *priv;
-
-  priv = (XapianDatabasePrivate *) xapian_database_get_instance_private (self);
+  XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
 
   return priv->is_writable;
 }
@@ -98,9 +95,7 @@ xapian_database_get_is_writable (XapianDatabase *self)
 const char *
 xapian_database_get_path (XapianDatabase *self)
 {
-  XapianDatabasePrivate *priv;
-
-  priv = (XapianDatabasePrivate *) xapian_database_get_instance_private (self);
+  XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
 
   return priv->path;
 }
@@ -110,9 +105,7 @@ xapian_database_init_internal (GInitable *self,
                                GCancellable *cancellable,
                                GError **error)
 {
-  XapianDatabasePrivate *priv;
-
-  priv = (XapianDatabasePrivate *) xapian_database_get_instance_private (XAPIAN_DATABASE (self));
+  XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
 
   try
     {
@@ -147,12 +140,14 @@ initable_iface_init (GInitableIface *iface)
 static void
 xapian_database_finalize (GObject *self)
 {
-  XapianDatabasePrivate *priv;
+  XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
 
-  priv = (XapianDatabasePrivate *) xapian_database_get_instance_private (XAPIAN_DATABASE (self));
   priv->mDB.close();
 
   g_free (priv->path);
+
+  if (priv->databases != NULL)
+    g_hash_table_unref (priv->databases);
 
   G_OBJECT_CLASS (xapian_database_parent_class)->finalize (self);
 }
@@ -163,8 +158,7 @@ xapian_database_set_property (GObject *gobject,
                               const GValue *value,
                               GParamSpec *pspec)
 {
-  XapianDatabase *self = XAPIAN_DATABASE (gobject);
-  XapianDatabasePrivate *priv = (XapianDatabasePrivate *) xapian_database_get_instance_private (self);
+  XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (gobject);
 
   switch (prop_id)
     {
@@ -184,8 +178,7 @@ xapian_database_get_property (GObject *gobject,
                               GValue *value,
                               GParamSpec *pspec)
 {
-  XapianDatabase *self = XAPIAN_DATABASE (gobject);
-  XapianDatabasePrivate *priv = (XapianDatabasePrivate *) xapian_database_get_instance_private (self);
+  XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (gobject);
 
   switch (prop_id)
     {
@@ -373,4 +366,26 @@ xapian_database_get_document (XapianDatabase  *db,
 
       return NULL;
     }
+}
+
+void
+xapian_database_add_database (XapianDatabase *db,
+                              XapianDatabase *new_db)
+{
+  g_return_if_fail (XAPIAN_IS_DATABASE (db));
+  g_return_if_fail (XAPIAN_IS_DATABASE (new_db));
+
+  XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (db);
+  if (priv->databases == NULL)
+    priv->databases = g_hash_table_new_full (NULL, NULL, g_object_unref, NULL);
+
+  Xapian::Database *real_db = xapian_database_get_internal (db);
+
+  real_db->add_database (*xapian_database_get_internal (new_db));
+
+  /* we tie the lifetime of the child database to the parent's because
+   * the transfer rules of Xapian::Database::add_database() are a bit
+   * unclear
+   */
+  g_hash_table_add (priv->databases, g_object_ref (new_db));
 }

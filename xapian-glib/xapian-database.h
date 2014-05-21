@@ -71,6 +71,10 @@ XapianDocument *        xapian_database_get_document    (XapianDatabase *db,
                                                          unsigned int    docid,
                                                          GError        **error);
 
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+void                    xapian_database_add_database    (XapianDatabase *db,
+                                                         XapianDatabase *new_db);
+
 G_END_DECLS
 
 #endif /* __XAPIAN_GLIB_DATABASE_H__ */
