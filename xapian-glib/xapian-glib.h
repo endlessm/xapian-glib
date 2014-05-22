@@ -28,6 +28,7 @@
 #include "xapian-enquire.h"
 #include "xapian-enums.h"
 #include "xapian-query.h"
+#include "xapian-query-parser.h"
 #include "xapian-stem.h"
 #include "xapian-writable-database.h"
 
