@@ -19,7 +19,7 @@
 #include <string.h>
 #include <xapian.h>
 
-#include "xapian-stem.h"
+#include "xapian-stem-private.h"
 
 #include "xapian-error-private.h"
 
@@ -47,6 +47,14 @@ static void initable_iface_init (GInitableIface *iface);
 G_DEFINE_TYPE_WITH_CODE (XapianStem, xapian_stem, G_TYPE_OBJECT,
                          G_ADD_PRIVATE (XapianStem)
                          G_IMPLEMENT_INTERFACE (G_TYPE_INITABLE, initable_iface_init))
+
+Xapian::Stem *
+xapian_stem_get_internal (XapianStem *stem)
+{
+  XapianStemPrivate *priv = XAPIAN_STEM_GET_PRIVATE (stem);
+
+  return &priv->mStem;
+}
 
 static gboolean
 xapian_stem_init_internal (GInitable *initable,

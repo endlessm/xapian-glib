@@ -32,6 +32,7 @@ source_h_private = \
 	xapian-document-private.h \
 	xapian-error-private.h \
 	xapian-query-private.h \
+	xapian-stem-private.h \
 	$(NULL)
 
 source_c_public = \
