@@ -25,13 +25,20 @@
 
 G_BEGIN_DECLS
 
-#define XAPIAN_STEM(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_STEM, XapianStem))
-#define XAPIAN_IS_STEM(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_STEM))
-#define XAPIAN_STEM_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_STEM, XapianStemClass))
-#define XAPIAN_IS_STEM_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_STEM))
-#define XAPIAN_STEM_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_STEM, XapianStemClass))
+#define XAPIAN_STEM(obj)                (G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_STEM, XapianStem))
+#define XAPIAN_IS_STEM(obj)             (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_STEM))
+#define XAPIAN_STEM_CLASS(klass)        (G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_STEM, XapianStemClass))
+#define XAPIAN_IS_STEM_CLASS(klass)     (G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_STEM))
+#define XAPIAN_STEM_GET_CLASS(obj)      (G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_STEM, XapianStemClass))
 
-typedef struct _XapianStemClass     XapianStemClass;
+/**
+ * XAPIAN_STEM_LANGUAGE_NONE:
+ *
+ * Predefined language for no stemming.
+ */
+#define XAPIAN_STEM_LANGUAGE_NONE       "none"
+
+typedef struct _XapianStemClass         XapianStemClass;
 
 struct _XapianStem
 {
@@ -51,6 +58,9 @@ XapianStem *    xapian_stem_new                         (void);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 XapianStem *    xapian_stem_new_for_language            (const char *language,
                                                          GError    **error);
+
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+char *          xapian_stem_get_description             (XapianStem *stem);
 
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 char **         xapian_stem_get_available_languages     (void);

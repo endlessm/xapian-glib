@@ -183,6 +183,26 @@ xapian_stem_new_for_language (const char *language,
 }
 
 /**
+ * xapian_stem_get_description:
+ * @stem: ...
+ *
+ * ...
+ *
+ * Returns: (transfer full): ...
+ */
+char *
+xapian_stem_get_description (XapianStem *stem)
+{
+  g_return_val_if_fail (XAPIAN_IS_STEM (stem), NULL);
+
+  XapianStemPrivate *priv = XAPIAN_STEM_GET_PRIVATE (stem);
+
+  std::string desc = priv->mStem.get_description ();
+
+  return g_strdup (desc.c_str ());
+}
+
+/**
  * xapian_stem_get_available_languages:
  *
  * ...
