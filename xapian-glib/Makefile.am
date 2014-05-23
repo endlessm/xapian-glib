@@ -26,6 +26,7 @@ source_h_public = \
 	xapian-query.h \
 	xapian-query-parser.h \
 	xapian-stem.h \
+	xapian-utils.h \
 	xapian-writable-database.h \
 	$(NULL)
 
@@ -48,6 +49,7 @@ source_c_public = \
 	xapian-query.cc \
 	xapian-query-parser.cc \
 	xapian-stem.cc \
+	xapian-utils.cc \
 	xapian-writable-database.cc \
 	$(NULL)
 

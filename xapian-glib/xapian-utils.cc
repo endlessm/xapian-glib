@@ -14,26 +14,32 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __XAPIAN_GLIB_H__
-#define __XAPIAN_GLIB_H__
+#include "config.h"
 
-#define XAPIAN_GLIB_H_INSIDE
+#include <xapian.h>
 
-#include "xapian-glib-types.h"
-#include "xapian-glib-version.h"
-#include "xapian-glib-macros.h"
-
-#include "xapian-database.h"
-#include "xapian-document.h"
-#include "xapian-enquire.h"
-#include "xapian-enums.h"
-#include "xapian-mset.h"
-#include "xapian-query.h"
-#include "xapian-query-parser.h"
-#include "xapian-stem.h"
 #include "xapian-utils.h"
-#include "xapian-writable-database.h"
 
-#undef XAPIAN_GLIB_H_INSIDE
+const char *
+xapian_glib_version_string (void)
+{
+  return Xapian::version_string ();
+}
 
-#endif /* __XAPIAN_GLIB_H__ */
+int
+xapian_glib_major_version (void)
+{
+  return Xapian::major_version ();
+}
+
+int
+xapian_glib_minor_version (void)
+{
+  return Xapian::minor_version ();
+}
+
+int
+xapian_glib_revision (void)
+{
+  return Xapian::revision ();
+}
