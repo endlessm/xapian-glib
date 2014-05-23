@@ -72,7 +72,9 @@ XAPIAN_GLIB_AVAILABLE_IN_ALL
 GType xapian_mset_iterator_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_ALL
-void                    xapian_mset_iterator_init               (XapianMSetIterator *iter,
+XapianMSetIterator *    xapian_mset_iterator_alloc              (void);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+XapianMSetIterator *    xapian_mset_iterator_init               (XapianMSetIterator *iter,
                                                                  XapianMSet         *mset);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 void                    xapian_mset_iterator_clear              (XapianMSetIterator *iter);

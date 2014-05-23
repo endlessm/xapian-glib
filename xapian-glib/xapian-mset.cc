@@ -214,7 +214,29 @@ typedef struct {
   IteratorData *data;
 } RealMSetIterator;
 
-void
+/**
+ * xapian_mset_iterator_alloc: (constructor)
+ *
+ * ...
+ *
+ * Returns: (transfer full): ...
+ */
+XapianMSetIterator *
+xapian_mset_iterator_alloc (void)
+{
+  return g_new0 (XapianMSetIterator, 1);
+}
+
+/**
+ * xapian_mset_iterator:
+ * @iter: ...
+ * @mset: ...
+ *
+ * ...
+ *
+ * Returns: (transfer none): ...
+ */
+XapianMSetIterator *
 xapian_mset_iterator_init (XapianMSetIterator *iter,
                            XapianMSet         *mset)
 {
