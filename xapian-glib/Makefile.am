@@ -22,6 +22,7 @@ source_h_public = \
 	xapian-document.h \
 	xapian-enquire.h \
 	xapian-enums.h \
+	xapian-mset.h \
 	xapian-query.h \
 	xapian-query-parser.h \
 	xapian-stem.h \
@@ -32,6 +33,7 @@ source_h_private = \
 	xapian-database-private.h \
 	xapian-document-private.h \
 	xapian-error-private.h \
+	xapian-mset-private.h \
 	xapian-query-private.h \
 	xapian-stem-private.h \
 	$(NULL)
@@ -42,6 +44,7 @@ source_c_public = \
 	xapian-enquire.cc \
 	xapian-enums.cc \
 	xapian-error.cc \
+	xapian-mset.cc \
 	xapian-query.cc \
 	xapian-query-parser.cc \
 	xapian-stem.cc \
