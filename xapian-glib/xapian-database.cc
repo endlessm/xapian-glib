@@ -226,7 +226,7 @@ xapian_database_new (GError **error)
 }
 
 XapianDatabase *
-xapian_database_new_from_path (const char  *path,
+xapian_database_new_with_path (const char  *path,
                                GError     **error)
 {
   g_return_val_if_fail (path != NULL, NULL);
