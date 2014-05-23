@@ -158,6 +158,9 @@ xapian_query_parser_class_init (XapianQueryParserClass *klass)
 static void
 xapian_query_parser_init (XapianQueryParser *self)
 {
+  XapianQueryParserPrivate *priv = XAPIAN_QUERY_PARSER_GET_PRIVATE (self);
+
+  priv->mQueryParser = Xapian::QueryParser ();
 }
 
 XapianQueryParser *
