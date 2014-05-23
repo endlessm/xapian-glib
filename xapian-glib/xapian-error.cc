@@ -78,9 +78,20 @@ xapian_error_to_gerror (const Xapian::Error  &src,
 
   /* unknown error in the bindings */
   if (error_type == XAPIAN_ERROR_TYPE_LAST)
-    return;
+    {
+      g_critical ("Unknown error type %d.\n", error_type);
+      return;
+    }
 
-  const std::string src_msg = src.get_context();
+  const std::string src_msg = src.get_msg();
 
-  g_set_error_literal (dest, XAPIAN_ERROR_TYPE, error_type, src_msg.c_str ());
+  if (src.get_error_string () != NULL)
+    {
+      g_set_error (dest, XAPIAN_ERROR_TYPE, error_type,
+                   "%s (error: %s)",
+                   src_msg.c_str (),
+                   src.get_error_string ());
+    }
+  else
+    g_set_error_literal (dest, XAPIAN_ERROR_TYPE, error_type, src_msg.c_str ());
 }
