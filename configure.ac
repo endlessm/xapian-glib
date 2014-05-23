@@ -255,6 +255,8 @@ AC_CONFIG_FILES([
         xapian-glib/xapian-glib-version.h
 
         xapian-glib/tests/Makefile
+
+        examples/Makefile
 ])
 
 AC_OUTPUT

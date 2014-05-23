@@ -1,6 +1,6 @@
 ACLOCAL_AMFLAGS = -I build/autotools
 
-SUBDIRS = xapian-glib
+SUBDIRS = xapian-glib examples
 
 EXTRA_DIST = \
 	build/autotools/tap-driver.sh \
