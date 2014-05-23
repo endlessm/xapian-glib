@@ -75,3 +75,15 @@ xapian_query_is_empty (XapianQuery *query)
 
   return xapian_query_get_internal (query)->empty () ? TRUE : FALSE;
 }
+
+char *
+xapian_query_get_description (XapianQuery *query)
+{
+  g_return_val_if_fail (XAPIAN_IS_QUERY (query), NULL);
+
+  XapianQueryPrivate *priv = XAPIAN_QUERY_GET_PRIVATE (query);
+
+  std::string desc = priv->mQuery.get_description ();
+
+  return g_strdup (desc.c_str ());
+}
