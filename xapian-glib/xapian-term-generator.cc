@@ -16,6 +16,7 @@
 
 #include "config.h"
 
+#include <string.h>
 #include <xapian.h>
 
 #include "xapian-term-generator.h"
@@ -33,18 +34,21 @@
 typedef struct {
   Xapian::TermGenerator mGenerator;
 
-  XapianStem *stemmer;
   XapianWritableDatabase *database;
-  XapianDocument *document;
 
-  XapianStemStrategy strategy;
+  XapianStem *stemmer;
+  XapianStemStrategy stemming_strategy;
+
+  XapianDocument *document;
 } XapianTermGeneratorPrivate;
 
 enum {
   PROP_0,
 
   PROP_STEMMER,
+  PROP_STEMMING_STRATEGY,
   PROP_DATABASE,
+  PROP_DOCUMENT,
 
   LAST_PROP
 };
@@ -71,6 +75,29 @@ xapian_term_generator_set_property (GObject *gobject,
                                     const GValue *value,
                                     GParamSpec *pspec)
 {
+  XapianTermGenerator *self = XAPIAN_TERM_GENERATOR (gobject);
+
+  switch (prop_id)
+    {
+    case PROP_STEMMER:
+      xapian_term_generator_set_stemmer (self, (XapianStem *) g_value_get_object (value));
+      break;
+
+    case PROP_STEMMING_STRATEGY:
+      xapian_term_generator_set_stemming_strategy (self, (XapianStemStrategy) g_value_get_enum (value));
+      break;
+
+    case PROP_DATABASE:
+      xapian_term_generator_set_database (self, (XapianWritableDatabase *) g_value_get_object (value));
+      break;
+
+    case PROP_DOCUMENT:
+      xapian_term_generator_set_document (self, (XapianDocument *) g_value_get_object (value));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, prop_id, pspec);
+    }
 }
 
 static void
@@ -79,6 +106,29 @@ xapian_term_generator_get_property (GObject *gobject,
                                     GValue *value,
                                     GParamSpec *pspec)
 {
+  XapianTermGeneratorPrivate *priv = XAPIAN_TERM_GENERATOR_GET_PRIVATE (gobject);
+
+  switch (prop_id)
+    {
+    case PROP_STEMMER:
+      g_value_set_object (value, priv->stemmer);
+      break;
+
+    case PROP_STEMMING_STRATEGY:
+      g_value_set_enum (value, priv->stemming_strategy);
+      break;
+
+    case PROP_DATABASE:
+      g_value_set_object (value, priv->database);
+      break;
+
+    case PROP_DOCUMENT:
+      g_value_set_object (value, priv->document);
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, prop_id, pspec);
+    }
 }
 
 static void
@@ -93,11 +143,26 @@ xapian_term_generator_class_init (XapianTermGeneratorClass *klass)
                          XAPIAN_TYPE_STEM,
                          (GParamFlags) (G_PARAM_READWRITE |
                                         G_PARAM_STATIC_STRINGS));
+  obj_props[PROP_STEMMING_STRATEGY] =
+    g_param_spec_enum ("stemming-strategy",
+                       "Stemming Strategy",
+                       "The stemming strategy to use with the stemmer",
+                       XAPIAN_TYPE_STEM_STRATEGY,
+                       XAPIAN_STEM_STRATEGY_STEM_NONE,
+                       (GParamFlags) (G_PARAM_READWRITE |
+                                      G_PARAM_STATIC_STRINGS));
   obj_props[PROP_DATABASE] =
     g_param_spec_object ("database",
                          "Database",
                          "The database used store the indexed data",
                          XAPIAN_TYPE_WRITABLE_DATABASE,
+                         (GParamFlags) (G_PARAM_READWRITE |
+                                        G_PARAM_STATIC_STRINGS));
+  obj_props[PROP_DOCUMENT] =
+    g_param_spec_object ("document",
+                         "Document",
+                         "The current document",
+                         XAPIAN_TYPE_DOCUMENT,
                          (GParamFlags) (G_PARAM_READWRITE |
                                         G_PARAM_STATIC_STRINGS));
 
@@ -111,10 +176,148 @@ xapian_term_generator_class_init (XapianTermGeneratorClass *klass)
 static void
 xapian_term_generator_init (XapianTermGenerator *self)
 {
+  XapianTermGeneratorPrivate *priv = XAPIAN_TERM_GENERATOR_GET_PRIVATE (self);
+
+  priv->mGenerator = Xapian::TermGenerator ();
 }
 
 XapianTermGenerator *
 xapian_term_generator_new (void)
 {
   return (XapianTermGenerator *) g_object_new (XAPIAN_TYPE_TERM_GENERATOR, NULL);
+}
+
+void
+xapian_term_generator_set_stemmer (XapianTermGenerator *generator,
+                                   XapianStem          *stemmer)
+{
+  g_return_if_fail (XAPIAN_IS_TERM_GENERATOR (generator));
+  g_return_if_fail (XAPIAN_IS_STEM (stemmer));
+
+  XapianTermGeneratorPrivate *priv = XAPIAN_TERM_GENERATOR_GET_PRIVATE (generator);
+
+  if (priv->stemmer == stemmer)
+    return;
+
+  g_clear_object (&priv->stemmer);
+  priv->stemmer = (XapianStem *) g_object_ref (stemmer);
+
+  priv->mGenerator.set_stemmer(*xapian_stem_get_internal (stemmer));
+
+  g_object_notify_by_pspec (G_OBJECT (generator), obj_props[PROP_STEMMER]);
+}
+
+void
+xapian_term_generator_set_stemming_strategy (XapianTermGenerator *generator,
+                                             XapianStemStrategy   strategy)
+{
+  g_return_if_fail (XAPIAN_IS_TERM_GENERATOR (generator));
+
+  XapianTermGeneratorPrivate *priv = XAPIAN_TERM_GENERATOR_GET_PRIVATE (generator);
+
+  if (priv->stemming_strategy == strategy)
+    return;
+
+  priv->stemming_strategy = strategy;
+
+  Xapian::TermGenerator::stem_strategy stem_strategy;
+
+#ifdef XAPIAN_GLIB_ENABLE_DEBUG
+  switch (priv->stemming_strategy)
+    {
+    case XAPIAN_STEM_STRATEGY_STEM_NONE:
+      stem_strategy = Xapian::TermGenerator::STEM_NONE;
+      break;
+
+    case XAPIAN_STEM_STRATEGY_STEM_SOME:
+      stem_strategy = Xapian::TermGenerator::STEM_SOME;
+      break;
+
+    case XAPIAN_STEM_STRATEGY_STEM_ALL:
+      stem_strategy = Xapian::TermGenerator::STEM_ALL;
+      break;
+
+    case XAPIAN_STEM_STRATEGY_STEM_ALL_Z:
+      stem_strategy = Xapian::TermGenerator::STEM_ALL_Z;
+      break;
+
+    default:
+      g_assert_not_reached ();
+    }
+#else
+  stem_strategy = (Xapian::TermGenerator::stem_strategy) priv->stemming_strategy;
+#endif
+
+  priv->mGenerator.set_stemming_strategy (stem_strategy);
+
+  g_object_notify_by_pspec (G_OBJECT (generator), obj_props[PROP_STEMMING_STRATEGY]);
+}
+
+void
+xapian_term_generator_set_database (XapianTermGenerator    *generator,
+                                    XapianWritableDatabase *database)
+{
+  g_return_if_fail (XAPIAN_IS_TERM_GENERATOR (generator));
+  g_return_if_fail (XAPIAN_IS_WRITABLE_DATABASE (database));
+
+  XapianTermGeneratorPrivate *priv = XAPIAN_TERM_GENERATOR_GET_PRIVATE (generator);
+
+  if (priv->database == database)
+    return;
+
+  g_clear_object (&priv->database);
+  priv->database = (XapianWritableDatabase *) g_object_ref (database);
+
+  Xapian::Database *db = xapian_database_get_internal (XAPIAN_DATABASE (database));
+  Xapian::WritableDatabase *wdb = dynamic_cast<Xapian::WritableDatabase *> (db);
+
+  priv->mGenerator.set_database (*wdb);
+
+  g_object_notify_by_pspec (G_OBJECT (generator), obj_props[PROP_DATABASE]);
+}
+void
+xapian_term_generator_set_document (XapianTermGenerator *generator,
+                                    XapianDocument      *document)
+{
+  g_return_if_fail (XAPIAN_IS_TERM_GENERATOR (generator));
+  g_return_if_fail (XAPIAN_IS_DOCUMENT (document));
+
+  XapianTermGeneratorPrivate *priv = XAPIAN_TERM_GENERATOR_GET_PRIVATE (generator);
+
+  if (priv->document == document)
+    return;
+
+  g_clear_object (&priv->document);
+  priv->document = (XapianDocument *) g_object_ref (document);
+
+  priv->mGenerator.set_document (*xapian_document_get_internal (document));
+
+  g_object_notify_by_pspec (G_OBJECT (generator), obj_props[PROP_DOCUMENT]);
+}
+
+void
+xapian_term_generator_index_text (XapianTermGenerator *generator,
+                                  const char          *data)
+{
+  g_return_if_fail (XAPIAN_IS_TERM_GENERATOR (generator));
+  g_return_if_fail (data != NULL);
+
+  xapian_term_generator_index_text_full (generator, data, 1, NULL);
+}
+
+void
+xapian_term_generator_index_text_full (XapianTermGenerator *generator,
+                                       const char          *data,
+                                       unsigned int         wdf_inc,
+                                       const char          *prefix)
+{
+  g_return_if_fail (XAPIAN_IS_TERM_GENERATOR (generator));
+  g_return_if_fail (data != NULL);
+
+  std::string data_s (data, strlen (data));
+  std::string prefix_s (prefix, strlen (prefix));
+
+  XapianTermGeneratorPrivate *priv = XAPIAN_TERM_GENERATOR_GET_PRIVATE (generator);
+
+  priv->mGenerator.index_text (data_s, wdf_inc, prefix_s);
 }

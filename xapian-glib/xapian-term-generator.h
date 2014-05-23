@@ -46,6 +46,29 @@ struct _XapianTermGeneratorClass
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 GType xapian_term_generator_get_type (void);
 
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+XapianTermGenerator *   xapian_term_generator_new       (void);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+void                    xapian_term_generator_set_database              (XapianTermGenerator    *generator,
+                                                                         XapianWritableDatabase *database);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+void                    xapian_term_generator_set_stemmer               (XapianTermGenerator    *generator,
+                                                                         XapianStem             *stemmer);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+void                    xapian_term_generator_set_stemming_strategy     (XapianTermGenerator    *generator,
+                                                                         XapianStemStrategy      strategy);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+void                    xapian_term_generator_set_document              (XapianTermGenerator    *generator,
+                                                                         XapianDocument         *document);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+void                    xapian_term_generator_index_text                (XapianTermGenerator    *generator,
+                                                                         const char             *data);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+void                    xapian_term_generator_index_text_full           (XapianTermGenerator    *generator,
+                                                                         const char             *data,
+                                                                         unsigned int            wdf_inc,
+                                                                         const char             *prefix);
+
 G_END_DECLS
 
 #endif /* __XAPIAN_GLIB_TERM_GENERATOR_H__ */
