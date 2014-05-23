@@ -16,10 +16,15 @@ main (int argc, char *argv[])
   GError *error = NULL;
   GOptionContext *context;
   const char *db_path;
-  const char *query;
   XapianDatabase *db;
   XapianEnquire *enquire;
+  XapianQueryParser *qp;
+  XapianStem *stemmer;
+  XapianQuery *query;
+  XapianMSet *matches;
+  XapianMSetIterator iter = XAPIAN_MSET_ITERATOR_INIT;
   GString *query_str;
+  char *desc;
   int i;
 
   g_set_prgname ("simplesearch");
@@ -80,7 +85,9 @@ main (int argc, char *argv[])
                   db_path,
                   error->message);
       g_error_free (error);
+
       g_object_unref (db);
+
       return EXIT_FAILURE;
     }
 
@@ -90,8 +97,100 @@ main (int argc, char *argv[])
 
   g_print ("Querying database at '%s': %s\n", db_path, query_str->str);
 
+  stemmer = xapian_stem_new_for_language ("english", &error);
+  if (error != NULL)
+    {
+      g_printerr ("Unable to retrieve stemmer for english: %s\n",
+                  error->message);
+
+      g_error_free (error);
+      g_string_free (query_str, TRUE);
+
+      g_object_unref (db);
+
+      return EXIT_FAILURE;
+    }
+
+  qp = xapian_query_parser_new ();
+  xapian_query_parser_set_stemmer (qp, stemmer);
+  xapian_query_parser_set_stemming_strategy (qp, XAPIAN_STEM_STRATEGY_STEM_SOME);
+  xapian_query_parser_set_database (qp, db);
+
+  query = xapian_query_parser_parse_query (qp, query_str->str, &error);
+  if (error != NULL)
+    {
+      g_printerr ("Unable to parse query '%s': %s\n",
+                  query_str->str,
+                  error->message);
+
+      g_error_free (error);
+      g_string_free (query_str, TRUE);
+
+      g_object_unref (qp);
+      g_object_unref (stemmer);
+      g_object_unref (enquire);
+      g_object_unref (db);
+
+      return EXIT_FAILURE;
+    }
+
+  desc = xapian_query_get_description (query);
+  g_print ("Parsed query id: '%s'\n", desc);
+  g_free (desc);
+
+  xapian_enquire_set_query (enquire, query, 0);
+
+  matches = xapian_enquire_get_mset (enquire, 0, 10, &error);
+  if (error != NULL)
+    {
+      g_printerr ("Unable to retrieve matches: %s\n", error->message);
+
+      g_error_free (error);
+      g_string_free (query_str, TRUE);
+
+      g_object_unref (qp);
+      g_object_unref (stemmer);
+      g_object_unref (enquire);
+      g_object_unref (db);
+
+      return EXIT_FAILURE;
+    }
+
+  g_print ("%d results found.\n", xapian_mset_get_matches_estimated (matches));
+  g_print ("Matches 1-%d:\n\n", xapian_mset_get_size (matches));
+
+  xapian_mset_iterator_init (&iter, matches);
+
+  while (xapian_mset_iterator_next (&iter))
+    {
+      XapianDocument *doc = xapian_mset_iterator_get_document (&iter, &error);
+      char *data;
+
+      if (error != NULL)
+        {
+          g_printerr ("Unable to retrieve document: %s\n", error->message);
+          g_error_free (error);
+          continue;
+        }
+
+      data = xapian_document_get_data (doc);
+
+      g_print ("%d: %.3f docid=%u [%s]\n",
+               xapian_mset_iterator_get_rank (&iter) + 1,
+               xapian_mset_iterator_get_weight (&iter),
+               xapian_mset_iterator_get_docid (&iter),
+               data);
+
+      g_free (data);
+    }
+
+  xapian_mset_iterator_clear (&iter);
+
   g_string_free (query_str, TRUE);
 
+  g_object_unref (query);
+  g_object_unref (qp);
+  g_object_unref (stemmer);
   g_object_unref (enquire);
   g_object_unref (db);
 
