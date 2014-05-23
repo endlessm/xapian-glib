@@ -90,6 +90,8 @@ gboolean                xapian_mset_iterator_is_end             (XapianMSetItera
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 unsigned int            xapian_mset_iterator_get_rank           (XapianMSetIterator *iter);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
+double                  xapian_mset_iterator_get_weight         (XapianMSetIterator *iter);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
 int                     xapian_mset_iterator_get_percent        (XapianMSetIterator *iter);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 unsigned int            xapian_mset_iterator_get_docid          (XapianMSetIterator *iter);

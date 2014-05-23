@@ -390,6 +390,16 @@ xapian_mset_iterator_get_rank (XapianMSetIterator *iter)
   return real_iter->data->mCurrent.get_rank ();
 }
 
+double
+xapian_mset_iterator_get_weight (XapianMSetIterator *iter)
+{
+  xapian_glib_return_val_if_iter_invalid (iter, 0);
+
+  RealMSetIterator *real_iter = (RealMSetIterator *) iter;
+
+  return real_iter->data->mCurrent.get_weight ();
+}
+
 int
 xapian_mset_iterator_get_percent (XapianMSetIterator *iter)
 {
