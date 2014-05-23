@@ -57,6 +57,12 @@ void            xapian_enquire_set_query        (XapianEnquire *enquire,
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 XapianQuery *   xapian_enquire_get_query        (XapianEnquire *enquire);
 
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+XapianMSet *    xapian_enquire_get_mset         (XapianEnquire *enquire,
+                                                 unsigned int   first,
+                                                 unsigned int   max_items,
+                                                 GError       **error);
+
 G_END_DECLS
 
 #endif /* __XAPIAN_GLIB_ENQUIRE_H__ */

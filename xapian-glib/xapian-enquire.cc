@@ -20,6 +20,7 @@
 
 #include "xapian-database-private.h"
 #include "xapian-error-private.h"
+#include "xapian-mset-private.h"
 #include "xapian-query-private.h"
 
 #define XAPIAN_ENQUIRE_GET_PRIVATE(obj) \
@@ -222,4 +223,41 @@ xapian_enquire_get_query (XapianEnquire *enquire)
   XapianEnquirePrivate *priv = XAPIAN_ENQUIRE_GET_PRIVATE (enquire);
 
   return priv->query;
+}
+
+/**
+ * xapian_enquire_get_mset:
+ * @enquire: ..
+ * @first: ...
+ * @max_items: ...
+ *
+ * ...
+ *
+ * Returns: (transfer full): ...
+ */
+XapianMSet *
+xapian_enquire_get_mset (XapianEnquire *enquire,
+                         unsigned int   first,
+                         unsigned int   max_items,
+                         GError       **error)
+{
+  g_return_val_if_fail (XAPIAN_IS_ENQUIRE (enquire), NULL);
+
+  XapianEnquirePrivate *priv = XAPIAN_ENQUIRE_GET_PRIVATE (enquire);
+
+  try
+    {
+      Xapian::MSet mset = priv->mEnquire.get_mset (first, max_items);
+
+      return xapian_mset_new (mset);
+    }
+  catch (const Xapian::Error &err)
+    {
+      GError *internal_error = NULL;
+
+      xapian_error_to_gerror (err, &internal_error);
+      g_propagate_error (error, internal_error);
+
+      return NULL;
+    }
 }
