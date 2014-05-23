@@ -31,6 +31,7 @@
 #include "xapian-query.h"
 #include "xapian-query-parser.h"
 #include "xapian-stem.h"
+#include "xapian-term-generator.h"
 #include "xapian-utils.h"
 #include "xapian-writable-database.h"
 
