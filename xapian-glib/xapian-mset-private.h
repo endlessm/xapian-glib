@@ -20,6 +20,6 @@
 #include <xapian.h>
 #include "xapian-mset.h"
 
-XapianMSet *    xapian_mset_new         (Xapian::MSet &mset);
+XapianMSet *    xapian_mset_new         (const Xapian::MSet &aMSet);
 
 #endif /* __XAPIAN_GLIB_MSET_PRIVATE_H__ */

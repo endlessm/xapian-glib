@@ -52,12 +52,12 @@ xapian_query_init (XapianQuery *self)
 }
 
 XapianQuery *
-xapian_query_new_from_query (Xapian::Query &aQuery)
+xapian_query_new_from_query (const Xapian::Query &aQuery)
 {
   XapianQuery *res = (XapianQuery *) g_object_new (XAPIAN_TYPE_QUERY, NULL);
 
   XapianQueryPrivate *priv = XAPIAN_QUERY_GET_PRIVATE (res);
-  priv->mQuery = aQuery;
+  priv->mQuery = Xapian::Query (aQuery);
 
   return res;
 }

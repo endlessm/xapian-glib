@@ -53,6 +53,9 @@ XAPIAN_GLIB_AVAILABLE_IN_ALL
 gboolean        xapian_query_is_empty           (XapianQuery *query);
 
 XAPIAN_GLIB_AVAILABLE_IN_ALL
+unsigned int    xapian_query_get_length         (XapianQuery *query);
+
+XAPIAN_GLIB_AVAILABLE_IN_ALL
 char *          xapian_query_get_description    (XapianQuery *query);
 
 G_END_DECLS

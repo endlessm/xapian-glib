@@ -34,11 +34,11 @@ struct _XapianMSet
 G_DEFINE_BOXED_TYPE (XapianMSet, xapian_mset, xapian_mset_ref, xapian_mset_unref)
 
 XapianMSet *
-xapian_mset_new (Xapian::MSet &mset)
+xapian_mset_new (const Xapian::MSet &aMSet)
 {
   XapianMSet *res = g_new0 (XapianMSet, 1);
 
-  res->mSet = mset;
+  res->mSet = Xapian::MSet (aMSet);
   res->ref_count = 1;
 
   return res;
@@ -249,8 +249,8 @@ xapian_mset_iterator_init (XapianMSetIterator *iter,
 
   real_iter->data->mset = xapian_mset_ref (mset);
 
-  real_iter->data->mBegin = mset->mSet.begin ();
-  real_iter->data->mEnd = mset->mSet.end ();
+  real_iter->data->mBegin = Xapian::MSetIterator (mset->mSet.begin ());
+  real_iter->data->mEnd = Xapian::MSetIterator (mset->mSet.end ());
 
   /* we initialize it to the beginning iterator slot so that the
    * getters can access the first document in the MSet without

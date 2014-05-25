@@ -51,12 +51,12 @@ xapian_document_new (void)
 }
 
 XapianDocument *
-xapian_document_new_from_document (Xapian::Document aDoc)
+xapian_document_new_from_document (const Xapian::Document &aDoc)
 {
   XapianDocument *res = (XapianDocument *) g_object_new (XAPIAN_TYPE_DOCUMENT, NULL);
   XapianDocumentPrivate *priv = XAPIAN_DOCUMENT_GET_PRIVATE (res);
 
-  priv->mDocument = aDoc;
+  priv->mDocument = Xapian::Document (aDoc);
 }
 
 Xapian::Document *

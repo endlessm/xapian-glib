@@ -21,7 +21,7 @@
 
 #include "xapian-document.h"
 
-XapianDocument *        xapian_document_new_from_document       (Xapian::Document aDoc);
+XapianDocument *        xapian_document_new_from_document       (const Xapian::Document &aDoc);
 
 Xapian::Document *      xapian_document_get_internal            (XapianDocument *doc);
 

@@ -68,11 +68,11 @@ xapian_database_get_internal (XapianDatabase *self)
 
 void
 xapian_database_set_internal (XapianDatabase *self,
-                              Xapian::Database &aDB)
+                              const Xapian::Database &aDB)
 {
   XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
 
-  priv->mDB = aDB;
+  priv->mDB = Xapian::Database (aDB);
 }
 
 void

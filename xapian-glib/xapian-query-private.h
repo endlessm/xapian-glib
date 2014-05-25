@@ -21,6 +21,6 @@
 #include "xapian-query.h"
 
 Xapian::Query * xapian_query_get_internal       (XapianQuery *self);
-XapianQuery *   xapian_query_new_from_query     (Xapian::Query &aQuery);
+XapianQuery *   xapian_query_new_from_query     (const Xapian::Query &aQuery);
 
 #endif /* __XAPIAN_GLIB_QUERY_PRIVATE_H__ */
