@@ -87,3 +87,13 @@ xapian_query_get_description (XapianQuery *query)
 
   return g_strdup (desc.c_str ());
 }
+
+unsigned int
+xapian_query_get_length (XapianQuery *query)
+{
+  g_return_val_if_fail (XAPIAN_IS_QUERY (query), 0);
+
+  XapianQueryPrivate *priv = XAPIAN_QUERY_GET_PRIVATE (query);
+
+  return priv->mQuery.get_length ();
+}
