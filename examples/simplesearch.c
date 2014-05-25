@@ -195,6 +195,7 @@ main (int argc, char *argv[])
 
   g_string_free (query_str, TRUE);
 
+  g_object_unref (matches);
   g_object_unref (query);
   g_object_unref (qp);
   g_object_unref (stemmer);
