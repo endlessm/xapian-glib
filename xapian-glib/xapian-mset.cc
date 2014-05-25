@@ -242,6 +242,9 @@ xapian_mset_iterator_init (XapianMSetIterator *iter,
 {
   RealMSetIterator *real_iter = (RealMSetIterator *) iter;
 
+  g_return_val_if_fail (iter != NULL, NULL);
+  g_return_val_if_fail (mset != NULL, NULL);
+
   if (real_iter->data != NULL)
     g_free (real_iter->data);
 
@@ -252,13 +255,9 @@ xapian_mset_iterator_init (XapianMSetIterator *iter,
   real_iter->data->mBegin = Xapian::MSetIterator (mset->mSet.begin ());
   real_iter->data->mEnd = Xapian::MSetIterator (mset->mSet.end ());
 
-  /* we initialize it to the beginning iterator slot so that the
-   * getters can access the first document in the MSet without
-   * necessarily advancing the iterator
-   */
-  real_iter->data->mCurrent = mset->mSet.begin ();
-
   real_iter->data->mCurrentInitialized = false;
+
+  return iter;
 }
 
 static void
@@ -293,8 +292,22 @@ xapian_mset_iterator_copy (XapianMSetIterator *iter)
       RealMSetIterator *real_iter = (RealMSetIterator *) iter;
       RealMSetIterator *copy = g_new0 (RealMSetIterator, 1);
 
-      copy->data = (IteratorData *) g_memdup (real_iter->data, sizeof (IteratorData));
-      copy->data->document = (XapianDocument *) g_object_ref (real_iter->data->document);
+      if (real_iter->data != NULL)
+        {
+          copy->data = g_new0 (IteratorData, 1);
+
+          if (real_iter->data->mset != NULL)
+            {
+              copy->data->mset = xapian_mset_ref (real_iter->data->mset);
+              copy->data->mBegin = Xapian::MSetIterator (copy->data->mset->mSet.begin ());
+              copy->data->mEnd = Xapian::MSetIterator (copy->data->mset->mSet.end ());
+            }
+
+          if (real_iter->data->document != NULL)
+            copy->data->document = (XapianDocument *) g_object_ref (real_iter->data->document);
+
+          copy->data->mCurrentInitialized = false;
+        }
 
       return (XapianMSetIterator *) copy;
     }
@@ -309,7 +322,7 @@ xapian_mset_iterator_free (XapianMSetIterator *iter)
     {
       RealMSetIterator *real_iter = (RealMSetIterator *) iter;
 
-      g_free (real_iter->data);
+      iterator_data_free (real_iter->data);
       g_free (real_iter);
     }
 }
