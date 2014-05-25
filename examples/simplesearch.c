@@ -78,24 +78,14 @@ main (int argc, char *argv[])
       return EXIT_FAILURE;
     }
 
-  enquire = xapian_enquire_new (db, &error);
-  if (error != NULL)
+  query_str = g_string_new (NULL);
+  for (i = 2; i < argc; i++)
     {
-      g_printerr ("Unable to open database at '%s' for enquire: %s\n",
-                  db_path,
-                  error->message);
-      g_error_free (error);
-
-      g_object_unref (db);
-
-      return EXIT_FAILURE;
+      g_string_append_c (query_str, ' ');
+      g_string_append (query_str, argv[i]);
     }
 
-  query_str = g_string_new (NULL);
-  for (i = argc + 2; i < argc; i++)
-    g_string_append (query_str, argv[i]);
-
-  g_print ("Querying database at '%s': %s\n", db_path, query_str->str);
+  g_print ("Querying database at '%s' with '%s'\n", db_path, query_str->str);
 
   stemmer = xapian_stem_new_for_language ("english", &error);
   if (error != NULL)
@@ -128,17 +118,34 @@ main (int argc, char *argv[])
 
       g_object_unref (qp);
       g_object_unref (stemmer);
-      g_object_unref (enquire);
       g_object_unref (db);
 
       return EXIT_FAILURE;
     }
 
   desc = xapian_query_get_description (query);
-  g_print ("Parsed query id: '%s'\n", desc);
+  g_print ("Parsed query: '%s'\n", desc);
   g_free (desc);
 
-  xapian_enquire_set_query (enquire, query, 0);
+  enquire = xapian_enquire_new (db, &error);
+  g_assert (enquire != NULL);
+  if (error != NULL)
+    {
+      g_printerr ("Unable to open database at '%s' for enquire: %s\n",
+                  db_path,
+                  error->message);
+
+      g_error_free (error);
+      g_string_free (query_str, TRUE);
+
+      g_object_unref (qp);
+      g_object_unref (stemmer);
+      g_object_unref (db);
+
+      return EXIT_FAILURE;
+    }
+
+  xapian_enquire_set_query (enquire, query, xapian_query_get_length (query));
 
   matches = xapian_enquire_get_mset (enquire, 0, 10, &error);
   if (error != NULL)
