@@ -232,6 +232,20 @@ typedef struct {
   IteratorData *data;
 } RealMSetIterator;
 
+static void
+iterator_data_free (gpointer data_)
+{
+  if (G_LIKELY (data_ != NULL))
+    {
+      IteratorData *data = (IteratorData *) data_;
+
+      g_clear_object (&data->mset);
+      g_clear_object (&data->document);
+
+      g_free (data);
+    }
+}
+
 /**
  * xapian_mset_iterator_alloc: (constructor)
  *
@@ -261,10 +275,10 @@ xapian_mset_iterator_init (XapianMSetIterator *iter,
   RealMSetIterator *real_iter = (RealMSetIterator *) iter;
 
   g_return_val_if_fail (iter != NULL, NULL);
-  g_return_val_if_fail (mset != NULL, NULL);
+  g_return_val_if_fail (XAPIAN_IS_MSET (mset), NULL);
 
   if (real_iter->data != NULL)
-    g_free (real_iter->data);
+    iterator_data_free (real_iter->data);
 
   real_iter->data = g_new0 (IteratorData, 1);
 
@@ -278,24 +292,12 @@ xapian_mset_iterator_init (XapianMSetIterator *iter,
   return iter;
 }
 
-static void
-iterator_data_free (gpointer data_)
-{
-  if (G_LIKELY (data_ != NULL))
-    {
-      IteratorData *data = (IteratorData *) data_;
-
-      g_clear_object (&(data->mset));
-      g_clear_object (&(data->document));
-
-      g_free (data);
-    }
-}
-
 void
 xapian_mset_iterator_clear (XapianMSetIterator *iter)
 {
   RealMSetIterator *real_iter = (RealMSetIterator *) iter;
+
+  g_return_if_fail (iter != NULL);
 
   g_clear_pointer (&real_iter->data, iterator_data_free);
 }
@@ -312,12 +314,10 @@ xapian_mset_iterator_copy (XapianMSetIterator *iter)
         {
           copy->data = g_new0 (IteratorData, 1);
 
-          if (real_iter->data->mset != NULL)
-            {
-              copy->data->mset = (XapianMSet *) g_object_ref (real_iter->data->mset);
-              copy->data->mBegin = Xapian::MSetIterator (real_iter->data->mBegin);
-              copy->data->mEnd = Xapian::MSetIterator (real_iter->data->mEnd);
-            }
+          copy->data->mset = (XapianMSet *) g_object_ref (real_iter->data->mset);
+
+          copy->data->mBegin = Xapian::MSetIterator (real_iter->data->mBegin);
+          copy->data->mEnd = Xapian::MSetIterator (real_iter->data->mEnd);
 
           if (real_iter->data->document != NULL)
             copy->data->document = (XapianDocument *) g_object_ref (real_iter->data->document);
