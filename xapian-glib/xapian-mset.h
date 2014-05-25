@@ -27,13 +27,26 @@ G_BEGIN_DECLS
 
 /* MSet */
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
-GType xapian_mset_get_type (void);
+#define XAPIAN_MSET(obj)                (G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_MSET, XapianMSet))
+#define XAPIAN_IS_MSET(obj)             (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_MSET))
+#define XAPIAN_MSET_CLASS(klass)        (G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_MSET, XapianMSetClass))
+#define XAPIAN_IS_MSET_CLASS(klass)     (G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_MSET))
+#define XAPIAN_MSET_GET_CLASS(obj)      (G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_MSET, XapianMSetClass))
+
+typedef struct _XapianMSetClass         XapianMSetClass;
+
+struct _XapianMSet
+{
+  GObject parent_instance;
+};
+
+struct _XapianMSetClass
+{
+  GObjectClass parent_instance;
+};
 
 XAPIAN_GLIB_AVAILABLE_IN_ALL
-XapianMSet *            xapian_mset_ref                                         (XapianMSet *mset);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
-void                    xapian_mset_unref                                       (XapianMSet *mset);
+GType xapian_mset_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 unsigned int            xapian_mset_get_firstitem                               (XapianMSet *mset);

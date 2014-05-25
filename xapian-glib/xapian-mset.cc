@@ -24,43 +24,50 @@
 
 /* XapianMSet {{{ */
 
-struct _XapianMSet
-{
+#define XAPIAN_MSET_GET_PRIVATE(obj) \
+  ((XapianMSetPrivate *) xapian_mset_get_instance_private ((XapianMSet *) (obj)))
+
+typedef struct {
   Xapian::MSet mSet;
+} XapianMSetPrivate;
 
-  volatile int ref_count;
-};
+G_DEFINE_TYPE_WITH_PRIVATE (XapianMSet, xapian_mset, G_TYPE_OBJECT)
 
-G_DEFINE_BOXED_TYPE (XapianMSet, xapian_mset, xapian_mset_ref, xapian_mset_unref)
+static void
+xapian_mset_class_init (XapianMSetClass *klass)
+{
+}
 
+static void
+xapian_mset_init (XapianMSet *self)
+{
+}
+
+/*< private >
+ * xapian_mset_new:
+ * @aMSet: a Xapian::MSet
+ *
+ * ...
+ *
+ * Returns: (transfer full): ...
+ */
 XapianMSet *
 xapian_mset_new (const Xapian::MSet &aMSet)
 {
-  XapianMSet *res = g_new0 (XapianMSet, 1);
+  XapianMSet *res = (XapianMSet *) g_object_new (XAPIAN_TYPE_MSET, NULL);
 
-  res->mSet = Xapian::MSet (aMSet);
-  res->ref_count = 1;
+  XapianMSetPrivate *priv = XAPIAN_MSET_GET_PRIVATE (res);
+  priv->mSet = Xapian::MSet (aMSet);
 
   return res;
 }
 
-XapianMSet *
-xapian_mset_ref (XapianMSet *mset)
+Xapian::MSet *
+xapian_mset_get_internal (XapianMSet *mset)
 {
-  g_return_val_if_fail (mset != NULL, NULL);
+  XapianMSetPrivate *priv = XAPIAN_MSET_GET_PRIVATE (mset);
 
-  g_atomic_int_add (&mset->ref_count, 1);
-
-  return mset;
-}
-
-void
-xapian_mset_unref (XapianMSet *mset)
-{
-  g_return_if_fail (mset != NULL);
-
-  if (!g_atomic_int_dec_and_test (&mset->ref_count))
-    g_free (mset);
+  return &priv->mSet;
 }
 
 unsigned int
@@ -72,7 +79,7 @@ xapian_mset_get_termfreq (XapianMSet *mset,
 
   std::string term_s (term, strlen (term));
 
-  return mset->mSet.get_termfreq (term_s);
+  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet.get_termfreq (term_s);
 }
 
 double
@@ -84,84 +91,95 @@ xapian_mset_get_termweight (XapianMSet *mset,
 
   std::string term_s (term, strlen (term));
 
-  return mset->mSet.get_termweight (term_s);
+  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet.get_termweight (term_s);
 }
 
 unsigned int
 xapian_mset_get_firstitem (XapianMSet *mset)
 {
   g_return_val_if_fail (mset != NULL, 0);
-  return mset->mSet.get_firstitem ();
+
+  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet.get_firstitem ();
 }
 
 unsigned int
 xapian_mset_get_matches_lower_bound (XapianMSet *mset)
 {
   g_return_val_if_fail (mset != NULL, 0);
-  return mset->mSet.get_matches_lower_bound ();
+
+  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet.get_matches_lower_bound ();
 }
 
 unsigned int
 xapian_mset_get_matches_estimated (XapianMSet *mset)
 {
   g_return_val_if_fail (mset != NULL, 0);
-  return mset->mSet.get_matches_estimated ();
+
+  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet.get_matches_estimated ();
 }
 
 unsigned int
 xapian_mset_get_matches_upper_bound (XapianMSet *mset)
 {
   g_return_val_if_fail (mset != NULL, 0);
-  return mset->mSet.get_matches_upper_bound ();
+
+  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet.get_matches_upper_bound ();
 }
 
 unsigned int
 xapian_mset_get_uncollapsed_matches_lower_bound (XapianMSet *mset)
 {
   g_return_val_if_fail (mset != NULL, 0);
-  return mset->mSet.get_uncollapsed_matches_lower_bound ();
+
+  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet.get_uncollapsed_matches_lower_bound ();
 }
 
 unsigned int
 xapian_mset_get_uncollapsed_matches_estimated (XapianMSet *mset)
 {
   g_return_val_if_fail (mset != NULL, 0);
-  return mset->mSet.get_uncollapsed_matches_estimated ();
+
+  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet.get_uncollapsed_matches_estimated ();
 }
 
 unsigned int
 xapian_mset_get_uncollapsed_matches_upper_bound (XapianMSet *mset)
 {
   g_return_val_if_fail (mset != NULL, 0);
-  return mset->mSet.get_uncollapsed_matches_upper_bound ();
+
+  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet.get_uncollapsed_matches_upper_bound ();
 }
 
 double
 xapian_mset_get_max_possible (XapianMSet *mset)
 {
   g_return_val_if_fail (mset != NULL, 0);
-  return mset->mSet.get_max_possible ();
+
+  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet.get_max_possible ();
 }
 
 double
 xapian_mset_get_max_attained (XapianMSet *mset)
 {
   g_return_val_if_fail (mset != NULL, 0);
-  return mset->mSet.get_max_attained ();
+
+  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet.get_max_attained ();
 }
 
 unsigned int
 xapian_mset_get_size (XapianMSet *mset)
 {
   g_return_val_if_fail (mset != NULL, 0);
-  return mset->mSet.size ();
+
+  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet.size ();
 }
 
 gboolean
 xapian_mset_is_empty (XapianMSet *mset)
 {
   g_return_val_if_fail (mset != NULL, TRUE);
-  return mset->mSet.empty () ? TRUE : FALSE;
+
+  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet.empty () ? TRUE : FALSE;
 }
 
 /* }}} XapianMSet */
@@ -250,10 +268,10 @@ xapian_mset_iterator_init (XapianMSetIterator *iter,
 
   real_iter->data = g_new0 (IteratorData, 1);
 
-  real_iter->data->mset = xapian_mset_ref (mset);
+  real_iter->data->mset = (XapianMSet *) g_object_ref (mset);
 
-  real_iter->data->mBegin = Xapian::MSetIterator (mset->mSet.begin ());
-  real_iter->data->mEnd = Xapian::MSetIterator (mset->mSet.end ());
+  real_iter->data->mBegin = Xapian::MSetIterator (XAPIAN_MSET_GET_PRIVATE (mset)->mSet.begin ());
+  real_iter->data->mEnd = Xapian::MSetIterator (XAPIAN_MSET_GET_PRIVATE (mset)->mSet.end ());
 
   real_iter->data->mCurrentInitialized = false;
 
@@ -267,9 +285,7 @@ iterator_data_free (gpointer data_)
     {
       IteratorData *data = (IteratorData *) data_;
 
-      if (data->mset != NULL)
-        xapian_mset_unref (data->mset);
-
+      g_clear_object (&(data->mset));
       g_clear_object (&(data->document));
 
       g_free (data);
@@ -298,9 +314,9 @@ xapian_mset_iterator_copy (XapianMSetIterator *iter)
 
           if (real_iter->data->mset != NULL)
             {
-              copy->data->mset = xapian_mset_ref (real_iter->data->mset);
-              copy->data->mBegin = Xapian::MSetIterator (copy->data->mset->mSet.begin ());
-              copy->data->mEnd = Xapian::MSetIterator (copy->data->mset->mSet.end ());
+              copy->data->mset = (XapianMSet *) g_object_ref (real_iter->data->mset);
+              copy->data->mBegin = Xapian::MSetIterator (real_iter->data->mBegin);
+              copy->data->mEnd = Xapian::MSetIterator (real_iter->data->mEnd);
             }
 
           if (real_iter->data->document != NULL)
