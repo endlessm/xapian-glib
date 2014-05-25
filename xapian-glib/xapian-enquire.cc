@@ -80,9 +80,11 @@ xapian_enquire_init_internal (GInitable *self,
 
   try
     {
-      Xapian::Database database = *xapian_database_get_internal (priv->database);
+      Xapian::Database *database = xapian_database_get_internal (priv->database);
 
-      priv->mEnquire = Xapian::Enquire (database);
+      priv->mEnquire = Xapian::Enquire (*database);
+
+      return TRUE;
     }
   catch (const Xapian::Error &err)
     {
