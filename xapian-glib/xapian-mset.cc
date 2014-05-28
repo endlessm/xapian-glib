@@ -219,9 +219,9 @@ G_DEFINE_BOXED_TYPE (XapianMSetIterator, xapian_mset_iterator,
 typedef struct {
   XapianMSet *mset;
 
-  Xapian::MSetIterator mBegin;
-  Xapian::MSetIterator mEnd;
-  Xapian::MSetIterator mCurrent;
+  Xapian::MSetIterator *mBegin;
+  Xapian::MSetIterator *mEnd;
+  Xapian::MSetIterator *mCurrent;
 
   bool mCurrentInitialized;
 
@@ -238,6 +238,9 @@ iterator_data_free (gpointer data_)
   if (G_LIKELY (data_ != NULL))
     {
       IteratorData *data = (IteratorData *) data_;
+
+      delete data->mBegin;
+      delete data->mEnd;
 
       g_clear_object (&data->mset);
       g_clear_object (&data->document);
@@ -282,10 +285,11 @@ xapian_mset_iterator_init (XapianMSetIterator *iter,
 
   real_iter->data = g_new0 (IteratorData, 1);
 
-  real_iter->data->mset = (XapianMSet *) g_object_ref (mset);
+  real_iter->data->mset = static_cast<XapianMSet *> (g_object_ref (mset));
 
-  real_iter->data->mBegin = Xapian::MSetIterator (XAPIAN_MSET_GET_PRIVATE (mset)->mSet.begin ());
-  real_iter->data->mEnd = Xapian::MSetIterator (XAPIAN_MSET_GET_PRIVATE (mset)->mSet.end ());
+  real_iter->data->mBegin = new Xapian::MSetIterator (XAPIAN_MSET_GET_PRIVATE (mset)->mSet.begin ());
+  real_iter->data->mEnd = new Xapian::MSetIterator (XAPIAN_MSET_GET_PRIVATE (mset)->mSet.end ());
+  real_iter->data->mCurrent = NULL;
 
   real_iter->data->mCurrentInitialized = false;
 
@@ -314,13 +318,16 @@ xapian_mset_iterator_copy (XapianMSetIterator *iter)
         {
           copy->data = g_new0 (IteratorData, 1);
 
-          copy->data->mset = (XapianMSet *) g_object_ref (real_iter->data->mset);
+          copy->data->mset = static_cast<XapianMSet *> (g_object_ref (real_iter->data->mset));
 
-          copy->data->mBegin = Xapian::MSetIterator (real_iter->data->mBegin);
-          copy->data->mEnd = Xapian::MSetIterator (real_iter->data->mEnd);
+          Xapian::MSet *mset = xapian_mset_get_internal (copy->data->mset);
+
+          copy->data->mBegin = new Xapian::MSetIterator (mset->begin ());
+          copy->data->mEnd = new Xapian::MSetIterator (mset->end ());
+          copy->data->mCurrent = NULL;
 
           if (real_iter->data->document != NULL)
-            copy->data->document = (XapianDocument *) g_object_ref (real_iter->data->document);
+            copy->data->document = static_cast<XapianDocument *> (g_object_ref (real_iter->data->document));
 
           copy->data->mCurrentInitialized = false;
         }
@@ -372,7 +379,10 @@ xapian_mset_iterator_is_begin (XapianMSetIterator *iter)
   if (real_iter->data->mset == NULL)
     return FALSE;
 
-  return real_iter->data->mCurrent == real_iter->data->mBegin;
+  if (real_iter->data->mCurrent == real_iter->data->mBegin)
+    return TRUE;
+
+  return *real_iter->data->mCurrent == *real_iter->data->mBegin;
 }
 
 gboolean
@@ -388,7 +398,10 @@ xapian_mset_iterator_is_end (XapianMSetIterator *iter)
   if (real_iter->data->mset == NULL)
     return FALSE;
 
-  return real_iter->data->mCurrent == real_iter->data->mEnd;
+  if (real_iter->data->mCurrent == real_iter->data->mEnd)
+    return TRUE;
+
+  return *real_iter->data->mCurrent == *real_iter->data->mEnd;
 }
 
 gboolean
@@ -408,7 +421,7 @@ xapian_mset_iterator_next (XapianMSetIterator *iter)
 
   g_clear_object (&(real_iter->data->document));
 
-  return real_iter->data->mCurrent != real_iter->data->mEnd;
+  return *real_iter->data->mCurrent != *real_iter->data->mEnd;
 }
 
 gboolean
@@ -428,7 +441,7 @@ xapian_mset_iterator_prev (XapianMSetIterator *iter)
 
   g_clear_object (&(real_iter->data->document));
 
-  return real_iter->data->mCurrent != real_iter->data->mEnd;
+  return *real_iter->data->mCurrent != *real_iter->data->mEnd;
 }
 
 unsigned int
@@ -438,7 +451,7 @@ xapian_mset_iterator_get_rank (XapianMSetIterator *iter)
 
   RealMSetIterator *real_iter = (RealMSetIterator *) iter;
 
-  return real_iter->data->mCurrent.get_rank ();
+  return real_iter->data->mCurrent->get_rank ();
 }
 
 double
@@ -448,7 +461,7 @@ xapian_mset_iterator_get_weight (XapianMSetIterator *iter)
 
   RealMSetIterator *real_iter = (RealMSetIterator *) iter;
 
-  return real_iter->data->mCurrent.get_weight ();
+  return real_iter->data->mCurrent->get_weight ();
 }
 
 int
@@ -458,7 +471,7 @@ xapian_mset_iterator_get_percent (XapianMSetIterator *iter)
 
   RealMSetIterator *real_iter = (RealMSetIterator *) iter;
 
-  return real_iter->data->mCurrent.get_percent ();
+  return real_iter->data->mCurrent->get_percent ();
 }
 
 unsigned int
@@ -467,8 +480,9 @@ xapian_mset_iterator_get_docid (XapianMSetIterator *iter)
   xapian_glib_return_val_if_iter_invalid (iter, 0);
 
   RealMSetIterator *real_iter = (RealMSetIterator *) iter;
+  Xapian::MSetIterator i = *real_iter->data->mCurrent;
 
-  return *(real_iter->data->mCurrent);
+  return *i;
 }
 
 /**
@@ -496,9 +510,12 @@ xapian_mset_iterator_get_document (XapianMSetIterator *iter,
   if (real_iter->data->document != NULL)
     return real_iter->data->document;
 
+  if (real_iter->data->mCurrent == NULL)
+    return NULL;
+
   try
     {
-      Xapian::Document document = real_iter->data->mCurrent.get_document ();
+      Xapian::Document document = real_iter->data->mCurrent->get_document ();
 
       real_iter->data->document = xapian_document_new_from_document (document);
 
