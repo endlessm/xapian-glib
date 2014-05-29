@@ -18,9 +18,6 @@
 
 #include <xapian.h>
 
-#include <string.h>
-#include <string>
-
 #include "xapian-database-private.h"
 #include "xapian-document-private.h"
 #include "xapian-error-private.h"

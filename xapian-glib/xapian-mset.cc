@@ -16,8 +16,6 @@
 
 #include <config.h>
 
-#include <string.h>
-
 #include "xapian-mset-private.h"
 #include "xapian-document-private.h"
 #include "xapian-error-private.h"

@@ -18,9 +18,6 @@
 
 #include <xapian.h>
 
-#include <string.h>
-#include <string>
-
 #include "xapian-writable-database.h"
 #include "xapian-database-private.h"
 #include "xapian-document-private.h"

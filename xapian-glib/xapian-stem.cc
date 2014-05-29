@@ -16,7 +16,6 @@
 
 #include "config.h"
 
-#include <string.h>
 #include <xapian.h>
 
 #include "xapian-stem-private.h"
