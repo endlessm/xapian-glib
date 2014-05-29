@@ -233,6 +233,7 @@ class IteratorData {
     ~IteratorData () {
       delete mBegin;
       delete mEnd;
+      delete mCurrent;
 
       if (mMSet)
         g_object_unref (mMSet);
@@ -258,12 +259,12 @@ class IteratorData {
     bool next () {
       if (!mCurrentInitialized)
         {
-          mCurrent = mBegin;
+          mCurrent = new Xapian::MSetIterator (*mBegin);
           mCurrentInitialized = true;
           return *mCurrent != *mEnd;
         }
 
-      mCurrent++;
+      ++(*mCurrent);
 
       if (*mCurrent == *mEnd)
         return false;
@@ -274,12 +275,12 @@ class IteratorData {
     bool prev () {
       if (!mCurrentInitialized)
         {
-          mCurrent = mEnd;
+          mCurrent = new Xapian::MSetIterator (*mEnd);
           mCurrentInitialized = true;
           return *mCurrent != *mBegin;
         }
 
-      mCurrent--;
+      --(*mCurrent);
 
       if (*mCurrent == *mBegin)
         return false;
