@@ -1,6 +1,6 @@
 const Xapian = imports.gi.Xapian;
 
-const query_string = "bah humbug";
+const query_string = "africa";
 const QUERY_PARSER_FLAGS = Xapian.QueryParserFeature.DEFAULT | Xapian.QueryParserFeature.WILDCARD;
 const path = 'testdb';
 
