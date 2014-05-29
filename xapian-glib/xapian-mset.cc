@@ -355,6 +355,10 @@ class IteratorData {
       return 0;
     }
 
+    XapianMSet * getMSet () {
+      return mMSet;
+    }
+
   private:
     XapianMSet *mMSet;
 
@@ -573,6 +577,27 @@ xapian_mset_iterator_get_doc_id (XapianMSetIterator *iter,
     return 0;
 
   return priv->data->getDocId (error);
+}
+
+/**
+ * xapian_mset_iterator_get_mset:
+ * @iter: ...
+ *
+ * ...
+ *
+ * Returns: (transfer none): ...
+ */
+XapianMSet *
+xapian_mset_iterator_get_mset (XapianMSetIterator *iter)
+{
+  g_return_val_if_fail (XAPIAN_IS_MSET_ITERATOR (iter), NULL);
+
+  XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
+
+  if (priv->data == NULL)
+    return NULL;
+
+  return priv->data->getMSet ();
 }
 
 /* }}} XapianMSetIterator */

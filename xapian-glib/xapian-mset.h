@@ -121,6 +121,8 @@ XapianDocument *        xapian_mset_iterator_get_document       (XapianMSetItera
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 unsigned int            xapian_mset_iterator_get_doc_id         (XapianMSetIterator *iter,
                                                                  GError            **error);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+XapianMSet *            xapian_mset_iterator_get_mset           (XapianMSetIterator *iter);
 
 G_END_DECLS
 
