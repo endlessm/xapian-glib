@@ -27,7 +27,7 @@
   ((XapianStemPrivate *) xapian_stem_get_instance_private ((XapianStem *) (obj)))
 
 typedef struct {
-  Xapian::Stem mStem;
+  Xapian::Stem *mStem;
 
   char *language;
 } XapianStemPrivate;
@@ -53,7 +53,7 @@ xapian_stem_get_internal (XapianStem *stem)
 {
   XapianStemPrivate *priv = XAPIAN_STEM_GET_PRIVATE (stem);
 
-  return &priv->mStem;
+  return priv->mStem;
 }
 
 static gboolean
@@ -65,15 +65,16 @@ xapian_stem_init_internal (GInitable *initable,
 
   if (priv->language == NULL)
     {
-      priv->mStem = Xapian::Stem ();
+      priv->mStem = new Xapian::Stem ();
+
       return TRUE;
     }
 
   try
     {
-      std::string language (priv->language, strlen (priv->language));
+      std::string language (priv->language);
 
-      priv->mStem = Xapian::Stem (language);
+      priv->mStem = new Xapian::Stem (language);
     }
   catch (const Xapian::Error &err)
     {
@@ -81,6 +82,8 @@ xapian_stem_init_internal (GInitable *initable,
 
       xapian_error_to_gerror (err, &internal_error);
       g_propagate_error (error, internal_error);
+
+      priv->mStem = NULL;
 
       return FALSE;
     }
@@ -99,6 +102,7 @@ xapian_stem_finalize (GObject *gobject)
 {
   XapianStemPrivate *priv = XAPIAN_STEM_GET_PRIVATE (gobject);
 
+  delete priv->mStem;
   g_free (priv->language);
 
   G_OBJECT_CLASS (xapian_stem_parent_class)->finalize (gobject);
@@ -173,9 +177,9 @@ XapianStem *
 xapian_stem_new (void)
 {
   /* this should really always succeed */
-  return (XapianStem *) g_initable_new (XAPIAN_TYPE_STEM,
-                                        NULL, NULL,
-                                        NULL);
+  return static_cast<XapianStem *> (g_initable_new (XAPIAN_TYPE_STEM,
+                                                    NULL, NULL,
+                                                    NULL));
 }
 
 XapianStem *
@@ -184,10 +188,10 @@ xapian_stem_new_for_language (const char *language,
 {
   g_return_val_if_fail (language != NULL, NULL);
 
-  return (XapianStem *) g_initable_new (XAPIAN_TYPE_STEM,
-                                        NULL, error,
-                                        "language", language,
-                                        NULL);
+  return static_cast<XapianStem *> (g_initable_new (XAPIAN_TYPE_STEM,
+                                                    NULL, error,
+                                                    "language", language,
+                                                    NULL));
 }
 
 /**
@@ -205,7 +209,7 @@ xapian_stem_get_description (XapianStem *stem)
 
   XapianStemPrivate *priv = XAPIAN_STEM_GET_PRIVATE (stem);
 
-  std::string desc = priv->mStem.get_description ();
+  std::string desc = priv->mStem->get_description ();
 
   return g_strdup (desc.c_str ());
 }

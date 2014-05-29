@@ -31,7 +31,7 @@
   ((XapianQueryParserPrivate *) xapian_query_parser_get_instance_private ((XapianQueryParser *) (obj)))
 
 typedef struct {
-  Xapian::QueryParser mQueryParser;
+  Xapian::QueryParser *mQueryParser;
 
   XapianStem *stemmer;
   XapianStemStrategy stemming_strategy;
@@ -52,6 +52,16 @@ enum {
 static GParamSpec *obj_props[LAST_PROP] = { NULL, };
 
 G_DEFINE_TYPE_WITH_PRIVATE (XapianQueryParser, xapian_query_parser, G_TYPE_OBJECT)
+
+static void
+xapian_query_parser_finalize (GObject *gobject)
+{
+  XapianQueryParserPrivate *priv = XAPIAN_QUERY_PARSER_GET_PRIVATE (gobject);
+
+  delete priv->mQueryParser;
+
+  G_OBJECT_CLASS (xapian_query_parser_parent_class)->finalize (gobject);
+}
 
 static void
 xapian_query_parser_dispose (GObject *gobject)
@@ -151,6 +161,7 @@ xapian_query_parser_class_init (XapianQueryParserClass *klass)
   gobject_class->set_property = xapian_query_parser_set_property;
   gobject_class->get_property = xapian_query_parser_get_property;
   gobject_class->dispose = xapian_query_parser_dispose;
+  gobject_class->finalize = xapian_query_parser_finalize;
 
   g_object_class_install_properties (gobject_class, LAST_PROP, obj_props);
 }
@@ -160,13 +171,13 @@ xapian_query_parser_init (XapianQueryParser *self)
 {
   XapianQueryParserPrivate *priv = XAPIAN_QUERY_PARSER_GET_PRIVATE (self);
 
-  priv->mQueryParser = Xapian::QueryParser ();
+  priv->mQueryParser = new Xapian::QueryParser ();
 }
 
 XapianQueryParser *
 xapian_query_parser_new (void)
 {
-  return (XapianQueryParser *) g_object_new (XAPIAN_TYPE_QUERY_PARSER, NULL);
+  return static_cast<XapianQueryParser *> (g_object_new (XAPIAN_TYPE_QUERY_PARSER, NULL));
 }
 
 void
@@ -182,9 +193,9 @@ xapian_query_parser_set_stemmer (XapianQueryParser *parser,
     return;
 
   g_clear_object (&priv->stemmer);
-  priv->stemmer = (XapianStem *) g_object_ref (stemmer);
+  priv->stemmer = static_cast<XapianStem *> (g_object_ref (stemmer));
 
-  priv->mQueryParser.set_stemmer (*xapian_stem_get_internal (stemmer));
+  priv->mQueryParser->set_stemmer (*xapian_stem_get_internal (stemmer));
 
   g_object_notify_by_pspec (G_OBJECT (parser), obj_props[PROP_STEMMER]);
 }
@@ -227,10 +238,10 @@ xapian_query_parser_set_stemming_strategy (XapianQueryParser  *parser,
       g_assert_not_reached ();
     }
 #else
-  stem_strategy = (Xapian::QueryParser::stem_strategy) priv->stemming_strategy;
+  stem_strategy = static_cast<Xapian::QueryParser::stem_strategy> (priv->stemming_strategy);
 #endif
 
-  priv->mQueryParser.set_stemming_strategy (stem_strategy);
+  priv->mQueryParser->set_stemming_strategy (stem_strategy);
 
   g_object_notify_by_pspec (G_OBJECT (parser), obj_props[PROP_STEMMING_STRATEGY]);
 }
@@ -248,9 +259,9 @@ xapian_query_parser_set_database (XapianQueryParser *parser,
     return;
 
   g_clear_object (&priv->database);
-  priv->database = (XapianDatabase *) g_object_ref (database);
+  priv->database = static_cast<XapianDatabase *> (g_object_ref (database));
 
-  priv->mQueryParser.set_database (*xapian_database_get_internal (database));
+  priv->mQueryParser->set_database (*xapian_database_get_internal (database));
 
   g_object_notify_by_pspec (G_OBJECT (parser), obj_props[PROP_DATABASE]);
 }
@@ -263,11 +274,8 @@ xapian_query_parser_add_prefix (XapianQueryParser *parser,
   g_return_if_fail (XAPIAN_IS_QUERY_PARSER (parser));
   g_return_if_fail (field != NULL && prefix != NULL);
 
-  std::string field_s (field, strlen (field));
-  std::string prefix_s (prefix, strlen (prefix));
-
   XapianQueryParserPrivate *priv = XAPIAN_QUERY_PARSER_GET_PRIVATE (parser);
-  priv->mQueryParser.add_prefix (field_s, prefix_s);
+  priv->mQueryParser->add_prefix (std::string (field), std::string (prefix));
 }
 
 void
@@ -279,11 +287,8 @@ xapian_query_parser_add_boolean_prefix (XapianQueryParser *parser,
   g_return_if_fail (XAPIAN_IS_QUERY_PARSER (parser));
   g_return_if_fail (field != NULL && prefix != NULL);
 
-  std::string field_s (field, strlen (field));
-  std::string prefix_s (prefix, strlen (prefix));
-
   XapianQueryParserPrivate *priv = XAPIAN_QUERY_PARSER_GET_PRIVATE (parser);
-  priv->mQueryParser.add_boolean_prefix (field_s, prefix_s, exclusive);
+  priv->mQueryParser->add_boolean_prefix (std::string (field), std::string (prefix), exclusive);
 }
 
 /**
@@ -333,9 +338,6 @@ xapian_query_parser_parse_query_full (XapianQueryParser        *parser,
 
   try
     {
-      std::string real_query_string (query_string, strlen (query_string));
-      std::string real_default_prefix (default_prefix, strlen (default_prefix));
-
       unsigned int real_flags = 0;
 
 #ifdef XAPIAN_GLIB_ENABLE_DEBUG
@@ -369,9 +371,9 @@ xapian_query_parser_parse_query_full (XapianQueryParser        *parser,
       real_flags = flags;
 #endif
 
-      Xapian::Query query = priv->mQueryParser.parse_query (real_query_string,
-                                                            real_flags,
-                                                            real_default_prefix);
+      Xapian::Query query = priv->mQueryParser->parse_query (std::string (query_string),
+                                                             real_flags,
+                                                             std::string (default_prefix));
 
       return xapian_query_new_from_query (query);
     }

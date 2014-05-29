@@ -27,7 +27,7 @@
   ((XapianEnquirePrivate *) xapian_enquire_get_instance_private ((XapianEnquire *) (obj)))
 
 typedef struct {
-  Xapian::Enquire mEnquire;
+  Xapian::Enquire *mEnquire;
 
   XapianDatabase *database;
 
@@ -60,7 +60,7 @@ xapian_enquire_set_database (XapianEnquire  *self,
   g_assert (priv->database == NULL);
 #endif
 
-  priv->database = (XapianDatabase *) g_object_ref (db);
+  priv->database = static_cast<XapianDatabase *> (g_object_ref (db));
 }
 
 static gboolean
@@ -82,7 +82,7 @@ xapian_enquire_init_internal (GInitable *self,
     {
       Xapian::Database *database = xapian_database_get_internal (priv->database);
 
-      priv->mEnquire = Xapian::Enquire (*database);
+      priv->mEnquire = new Xapian::Enquire (*database);
 
       return TRUE;
     }
@@ -92,6 +92,8 @@ xapian_enquire_init_internal (GInitable *self,
 
       xapian_error_to_gerror (err, &internal_error);
       g_propagate_error (error, internal_error);
+
+      priv->mEnquire = NULL;
 
       return FALSE;
     }
@@ -146,6 +148,12 @@ xapian_enquire_dispose (GObject *gobject)
 {
   XapianEnquirePrivate *priv = XAPIAN_ENQUIRE_GET_PRIVATE (gobject);
 
+  if (priv->mEnquire)
+    {
+      delete priv->mEnquire;
+      priv->mEnquire = NULL;
+    }
+
   g_clear_object (&priv->database);
   g_clear_object (&priv->query);
 
@@ -184,10 +192,10 @@ xapian_enquire_new (XapianDatabase *db,
 {
   g_return_val_if_fail (XAPIAN_IS_DATABASE (db), NULL);
 
-  return (XapianEnquire *) g_initable_new (XAPIAN_TYPE_ENQUIRE,
-                                           NULL, error,
-                                           "database", db,
-                                           NULL);
+  return static_cast<XapianEnquire *> (g_initable_new (XAPIAN_TYPE_ENQUIRE,
+                                                       NULL, error,
+                                                       "database", db,
+                                                       NULL));
 }
 
 void
@@ -200,13 +208,20 @@ xapian_enquire_set_query (XapianEnquire *enquire,
 
   XapianEnquirePrivate *priv = XAPIAN_ENQUIRE_GET_PRIVATE (enquire);
 
+  if (G_UNLIKELY (priv->mEnquire == NULL))
+    {
+      g_critical ("XapianEnquire must be initialized. Use g_initable_init() "
+                  "before calling any XapianEnquire method.");
+      return;
+    }
+
   if (priv->query == query)
     return;
 
   g_clear_object (&priv->query);
-  priv->query = (XapianQuery *) g_object_ref (query);
+  priv->query = static_cast<XapianQuery *> (g_object_ref (query));
 
-  priv->mEnquire.set_query (*xapian_query_get_internal (query), qlen);
+  priv->mEnquire->set_query (*xapian_query_get_internal (query), qlen);
 }
 
 /**
@@ -247,9 +262,16 @@ xapian_enquire_get_mset (XapianEnquire *enquire,
 
   XapianEnquirePrivate *priv = XAPIAN_ENQUIRE_GET_PRIVATE (enquire);
 
+  if (G_UNLIKELY (priv->mEnquire == NULL))
+    {
+      g_critical ("XapianEnquire must be initialized. Use g_initable_init() "
+                  "before calling any XapianEnquire method.");
+      return NULL;
+    }
+
   try
     {
-      Xapian::MSet mset = priv->mEnquire.get_mset (first, max_items);
+      Xapian::MSet mset = priv->mEnquire->get_mset (first, max_items);
 
       return xapian_mset_new (mset);
     }

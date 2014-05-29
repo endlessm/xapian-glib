@@ -27,6 +27,9 @@
 #include "xapian-error-private.h"
 #include "xapian-enums.h"
 
+#define XAPIAN_WRITABLE_DATABASE_GET_PRIVATE(obj) \
+  ((XapianWritableDatabasePrivate *) xapian_writable_database_get_instance_private ((XapianWritableDatabase *) (obj)))
+
 typedef struct _XapianWritableDatabasePrivate   XapianWritableDatabasePrivate;
 
 struct _XapianWritableDatabasePrivate
@@ -65,25 +68,30 @@ xapian_writable_database_init_internal (GInitable *initable,
                                         GCancellable *cancellable,
                                         GError **error)
 {
-  XapianWritableDatabase *self = XAPIAN_WRITABLE_DATABASE (initable);
+  XapianDatabase *database = XAPIAN_DATABASE (initable);
   XapianWritableDatabasePrivate *priv;
   
-  priv = (XapianWritableDatabasePrivate *) xapian_writable_database_get_instance_private (self);
+  priv = XAPIAN_WRITABLE_DATABASE_GET_PRIVATE (initable);
 
-  Xapian::WritableDatabase db;
+  Xapian::WritableDatabase *db;
 
   try
     {
-      const char *path = xapian_database_get_path (XAPIAN_DATABASE (self));
+      const char *path = xapian_database_get_path (database);
 
       if (path == NULL)
-        db = Xapian::WritableDatabase ();
+        db = new Xapian::WritableDatabase ();
       else
         {
-          std::string file (path, strlen (path));
+          std::string file (path);
 
-          db = Xapian::WritableDatabase (file, (int) priv->action);
+          db = new Xapian::WritableDatabase (file, (int) priv->action);
         }
+
+      xapian_database_set_internal (database, db);
+      xapian_database_set_is_writable (database, TRUE);
+
+      return TRUE;
     }
   catch (const Xapian::Error &err)
     {
@@ -94,11 +102,6 @@ xapian_writable_database_init_internal (GInitable *initable,
 
       return FALSE;
     }
-
-  xapian_database_set_internal (XAPIAN_DATABASE (self), db);
-  xapian_database_set_is_writable (XAPIAN_DATABASE (self), TRUE);
-
-  return TRUE;
 }
 
 static void
@@ -108,21 +111,14 @@ initable_default_init (GInitableIface *iface)
 }
 
 static void
-xapian_writable_database_finalize (GObject *gobject)
-{
-  G_OBJECT_CLASS (xapian_writable_database_parent_class)->finalize (gobject);
-}
-
-static void
 xapian_writable_database_set_property (GObject *gobject,
                                        guint prop_id,
                                        const GValue *value,
                                        GParamSpec *pspec)
 {
-  XapianWritableDatabase *self = XAPIAN_WRITABLE_DATABASE (gobject);
   XapianWritableDatabasePrivate *priv;
 
-  priv = (XapianWritableDatabasePrivate *) xapian_writable_database_get_instance_private (self);
+  priv = XAPIAN_WRITABLE_DATABASE_GET_PRIVATE (gobject);
 
   switch (prop_id)
     {
@@ -141,10 +137,9 @@ xapian_writable_database_get_property (GObject *gobject,
                                        GValue *value,
                                        GParamSpec *pspec)
 {
-  XapianWritableDatabase *self = XAPIAN_WRITABLE_DATABASE (gobject);
   XapianWritableDatabasePrivate *priv;
 
-  priv = (XapianWritableDatabasePrivate *) xapian_writable_database_get_instance_private (self);
+  priv = XAPIAN_WRITABLE_DATABASE_GET_PRIVATE (gobject);
 
   switch (prop_id)
     {
@@ -174,7 +169,6 @@ xapian_writable_database_class_init (XapianWritableDatabaseClass *klass)
 
   gobject_class->set_property = xapian_writable_database_set_property;
   gobject_class->get_property = xapian_writable_database_get_property;
-  gobject_class->finalize = xapian_writable_database_finalize;
 
   g_object_class_install_properties (gobject_class, LAST_PROP, obj_props);
 }
@@ -189,11 +183,11 @@ xapian_writable_database_new (const char            *path,
                               XapianDatabaseAction   action,
                               GError               **error)
 {
-  return (XapianWritableDatabase *) g_initable_new (XAPIAN_TYPE_WRITABLE_DATABASE,
-                                                    NULL, error,
-                                                    "path", path,
-                                                    "action", action,
-                                                    NULL);
+  return static_cast<XapianWritableDatabase *> (g_initable_new (XAPIAN_TYPE_WRITABLE_DATABASE,
+                                                                NULL, error,
+                                                                "path", path,
+                                                                "action", action,
+                                                                NULL));
 }
 
 gboolean
@@ -212,6 +206,8 @@ xapian_writable_database_commit (XapianWritableDatabase  *self,
       Xapian::WritableDatabase *write_db = xapian_writable_database_get_internal (self);
 
       write_db->commit ();
+
+      return TRUE;
     }
   catch (const Xapian::Error &err)
     {
@@ -222,8 +218,6 @@ xapian_writable_database_commit (XapianWritableDatabase  *self,
 
       return FALSE;
     }
-
-  return TRUE;
 }
 
 /**

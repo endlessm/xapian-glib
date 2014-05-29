@@ -25,7 +25,7 @@
   ((XapianQueryPrivate *) xapian_query_get_instance_private ((XapianQuery *) (obj)))
 
 typedef struct {
-  Xapian::Query mQuery;
+  Xapian::Query *mQuery;
 } XapianQueryPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (XapianQuery, xapian_query, G_TYPE_OBJECT)
@@ -35,29 +35,41 @@ xapian_query_get_internal (XapianQuery *self)
 {
   XapianQueryPrivate *priv = XAPIAN_QUERY_GET_PRIVATE (self);
 
-  return &priv->mQuery;
+  return priv->mQuery;
+}
+
+static void
+xapian_query_dispose (GObject *gobject)
+{
+  XapianQueryPrivate *priv = XAPIAN_QUERY_GET_PRIVATE (gobject);
+
+  if (priv->mQuery)
+    {
+      delete priv->mQuery;
+      priv->mQuery = NULL;
+    }
+
+  G_OBJECT_CLASS (xapian_query_parent_class)->dispose (gobject);
 }
 
 static void
 xapian_query_class_init (XapianQueryClass *klass)
 {
+  G_OBJECT_CLASS (klass)->dispose = xapian_query_dispose;
 }
 
 static void
 xapian_query_init (XapianQuery *self)
 {
-  XapianQueryPrivate *priv = XAPIAN_QUERY_GET_PRIVATE (self);
-
-  priv->mQuery = Xapian::Query ();
 }
 
 XapianQuery *
 xapian_query_new_from_query (const Xapian::Query &aQuery)
 {
-  XapianQuery *res = (XapianQuery *) g_object_new (XAPIAN_TYPE_QUERY, NULL);
+  XapianQuery *res = static_cast<XapianQuery *> (g_object_new (XAPIAN_TYPE_QUERY, NULL));
 
   XapianQueryPrivate *priv = XAPIAN_QUERY_GET_PRIVATE (res);
-  priv->mQuery = Xapian::Query (aQuery);
+  priv->mQuery = new Xapian::Query (aQuery);
 
   return res;
 }
@@ -65,7 +77,7 @@ xapian_query_new_from_query (const Xapian::Query &aQuery)
 XapianQuery *
 xapian_query_new (void)
 {
-  return (XapianQuery *) g_object_new (XAPIAN_TYPE_QUERY, NULL);
+  return static_cast<XapianQuery *> (g_object_new (XAPIAN_TYPE_QUERY, NULL));
 }
 
 gboolean
@@ -81,9 +93,7 @@ xapian_query_get_description (XapianQuery *query)
 {
   g_return_val_if_fail (XAPIAN_IS_QUERY (query), NULL);
 
-  XapianQueryPrivate *priv = XAPIAN_QUERY_GET_PRIVATE (query);
-
-  std::string desc = priv->mQuery.get_description ();
+  std::string desc = xapian_query_get_internal (query)->get_description ();
 
   return g_strdup (desc.c_str ());
 }
@@ -93,7 +103,5 @@ xapian_query_get_length (XapianQuery *query)
 {
   g_return_val_if_fail (XAPIAN_IS_QUERY (query), 0);
 
-  XapianQueryPrivate *priv = XAPIAN_QUERY_GET_PRIVATE (query);
-
-  return priv->mQuery.get_length ();
+  return xapian_query_get_internal (query)->get_length ();
 }

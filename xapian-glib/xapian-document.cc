@@ -16,8 +16,6 @@
 
 #include "config.h"
 
-#include <string.h>
-
 #include "xapian-document-private.h"
 
 #include "xapian-error-private.h"
@@ -26,37 +24,49 @@
   ((XapianDocumentPrivate *) xapian_document_get_instance_private ((XapianDocument *) (obj)))
 
 typedef struct {
-  Xapian::Document mDocument;
+  Xapian::Document *mDocument;
 } XapianDocumentPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (XapianDocument, xapian_document, G_TYPE_OBJECT)
 
 static void
+xapian_document_dispose (GObject *gobject)
+{
+  XapianDocumentPrivate *priv = XAPIAN_DOCUMENT_GET_PRIVATE (gobject);
+
+  if (priv->mDocument)
+    {
+      delete priv->mDocument;
+      priv->mDocument = NULL;
+    }
+
+  G_OBJECT_CLASS (xapian_document_parent_class)->dispose (gobject);
+}
+
+static void
 xapian_document_class_init (XapianDocumentClass *klass)
 {
+  G_OBJECT_CLASS (klass)->dispose = xapian_document_dispose;
 }
 
 static void
 xapian_document_init (XapianDocument *self)
 {
-  XapianDocumentPrivate *priv = XAPIAN_DOCUMENT_GET_PRIVATE (self);
-
-  priv->mDocument = Xapian::Document ();
 }
 
 XapianDocument *
 xapian_document_new (void)
 {
-  return (XapianDocument *) g_object_new (XAPIAN_TYPE_DOCUMENT, NULL);
+  return static_cast<XapianDocument *> (g_object_new (XAPIAN_TYPE_DOCUMENT, NULL));
 }
 
 XapianDocument *
 xapian_document_new_from_document (const Xapian::Document &aDoc)
 {
-  XapianDocument *res = (XapianDocument *) g_object_new (XAPIAN_TYPE_DOCUMENT, NULL);
+  XapianDocument *res = static_cast<XapianDocument *> (g_object_new (XAPIAN_TYPE_DOCUMENT, NULL));
   XapianDocumentPrivate *priv = XAPIAN_DOCUMENT_GET_PRIVATE (res);
 
-  priv->mDocument = Xapian::Document (aDoc);
+  priv->mDocument = new Xapian::Document (aDoc);
 }
 
 Xapian::Document *
@@ -64,7 +74,13 @@ xapian_document_get_internal (XapianDocument *self)
 {
   XapianDocumentPrivate *priv = XAPIAN_DOCUMENT_GET_PRIVATE (self);
 
-  return &priv->mDocument;
+  /* if we got constructed without a document then we create an
+   * empty one by default
+   */
+  if (!priv->mDocument)
+    priv->mDocument = new Xapian::Document ();
+
+  return priv->mDocument;
 }
 
 char *
@@ -85,7 +101,8 @@ xapian_document_add_value (XapianDocument *document,
 {
   g_return_if_fail (XAPIAN_IS_DOCUMENT (document));
 
-  std::string tmp (value, strlen (value));
+  std::string tmp (value);
+
   xapian_document_get_internal (document)->add_value (slot, tmp);
 }
 
@@ -130,7 +147,8 @@ xapian_document_set_data (XapianDocument *document,
 {
   g_return_if_fail (XAPIAN_IS_DOCUMENT (document));
 
-  std::string tmp (data, strlen (data));
+  std::string tmp (data);
+
   xapian_document_get_internal (document)->set_data (tmp);
 }
 
@@ -177,7 +195,8 @@ xapian_document_add_posting (XapianDocument *document,
   g_return_if_fail (XAPIAN_IS_DOCUMENT (document));
   g_return_if_fail (tname != NULL);
 
-  std::string term (tname, strlen (tname));
+  std::string term (tname);
+
   xapian_document_get_internal (document)->add_posting (term, term_pos, wdf_increment);
 }
 
@@ -189,7 +208,8 @@ xapian_document_add_term (XapianDocument *document,
   g_return_if_fail (XAPIAN_IS_DOCUMENT (document));
   g_return_if_fail (tname != NULL);
 
-  std::string term (tname, strlen (tname));
+  std::string term (tname);
+
   xapian_document_get_internal (document)->add_term (term, wdf_increment);
 }
 
@@ -212,7 +232,8 @@ xapian_document_remove_posting (XapianDocument *document,
   g_return_if_fail (XAPIAN_IS_DOCUMENT (document));
   g_return_if_fail (tname != NULL);
 
-  std::string term (tname, strlen (tname));
+  std::string term (tname);
+
   xapian_document_get_internal (document)->remove_posting (term, term_pos, wdf_decrement);
 }
 
@@ -223,7 +244,8 @@ xapian_document_remove_term (XapianDocument *document,
   g_return_if_fail (XAPIAN_IS_DOCUMENT (document));
   g_return_if_fail (tname != NULL);
 
-  std::string term (tname, strlen (tname));
+  std::string term (tname);
+
   xapian_document_get_internal (document)->remove_term (term);
 }
 

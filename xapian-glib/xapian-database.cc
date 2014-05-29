@@ -34,7 +34,7 @@ struct _XapianDatabasePrivate
 {
   char *path;
 
-  Xapian::Database mDB;
+  Xapian::Database *mDB;
 
   GHashTable *databases;
 
@@ -63,16 +63,18 @@ xapian_database_get_internal (XapianDatabase *self)
 {
   XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
 
-  return &(priv->mDB);
+  return priv->mDB;
 }
 
 void
 xapian_database_set_internal (XapianDatabase *self,
-                              const Xapian::Database &aDB)
+                              Xapian::Database *aDB)
 {
   XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
 
-  priv->mDB = Xapian::Database (aDB);
+  delete priv->mDB;
+
+  priv->mDB = aDB;
 }
 
 void
@@ -111,12 +113,12 @@ xapian_database_init_internal (GInitable *self,
     {
       if (priv->path != NULL)
         {
-          std::string path (priv->path, strlen (priv->path));
+          std::string path (priv->path);
 
-          priv->mDB = Xapian::Database (path);
+          priv->mDB = new Xapian::Database (path);
         }
       else
-        priv->mDB = Xapian::Database ();
+        priv->mDB = new Xapian::Database ();
     }
   catch (const Xapian::Error &err)
     {
@@ -124,6 +126,8 @@ xapian_database_init_internal (GInitable *self,
 
       xapian_error_to_gerror (err, &internal_error);
       g_propagate_error (error, internal_error);
+
+      priv->mDB = NULL;
 
       return FALSE;
     }
@@ -142,7 +146,8 @@ xapian_database_finalize (GObject *self)
 {
   XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
 
-  priv->mDB.close();
+  priv->mDB->close();
+  delete priv->mDB;
 
   g_free (priv->path);
 
@@ -222,7 +227,7 @@ xapian_database_new (GError **error)
 {
   g_return_val_if_fail (error == NULL || *error == NULL, NULL);
 
-  return (XapianDatabase *) g_initable_new (XAPIAN_TYPE_DATABASE, NULL, error, NULL);
+  return static_cast<XapianDatabase *> (g_initable_new (XAPIAN_TYPE_DATABASE, NULL, error, NULL));
 }
 
 XapianDatabase *
@@ -232,10 +237,10 @@ xapian_database_new_with_path (const char  *path,
   g_return_val_if_fail (path != NULL, NULL);
   g_return_val_if_fail (error == NULL || *error == NULL, NULL);
 
-  return (XapianDatabase *) g_initable_new (XAPIAN_TYPE_DATABASE,
-                                            NULL, error,
-                                            "path", path,
-                                            NULL);
+  return static_cast<XapianDatabase *> (g_initable_new (XAPIAN_TYPE_DATABASE,
+                                                        NULL, error,
+                                                        "path", path,
+                                                        NULL));
 }
 
 void
@@ -259,9 +264,9 @@ xapian_database_get_description (XapianDatabase *db)
 {
   g_return_val_if_fail (XAPIAN_IS_DATABASE (db), NULL);
 
-  std::string str = xapian_database_get_internal (db)->get_description();
+  std::string str = xapian_database_get_internal (db)->get_description ();
 
-  return g_strdup (str.c_str());
+  return g_strdup (str.c_str ());
 }
 
 /**
@@ -279,7 +284,7 @@ xapian_database_get_uuid (XapianDatabase *db)
 
   std::string str = xapian_database_get_internal (db)->get_uuid ();
 
-  return g_strdup (str.c_str());
+  return g_strdup (str.c_str ());
 }
 
 /**
@@ -301,7 +306,7 @@ xapian_database_get_metadata (XapianDatabase  *db,
 
   try
     {
-      std::string tmp_key (key, strlen (key));
+      std::string tmp_key (key);
       std::string str = xapian_database_get_internal (db)->get_metadata (tmp_key);
 
       return g_strdup (str.c_str());
@@ -378,6 +383,9 @@ xapian_database_add_database (XapianDatabase *db,
   XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (db);
   if (priv->databases == NULL)
     priv->databases = g_hash_table_new_full (NULL, NULL, g_object_unref, NULL);
+
+  if (g_hash_table_lookup (priv->databases, new_db) != NULL)
+    return;
 
   Xapian::Database *real_db = xapian_database_get_internal (db);
 
