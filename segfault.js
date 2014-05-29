@@ -13,17 +13,18 @@ let qp = new Xapian.QueryParser({
     'database': db,
 });
 let parsed_query = qp.parse_query(query_string, QUERY_PARSER_FLAGS);
+print('parsed_query', parsed_query.get_description());
 
 let enquire = new Xapian.Enquire({
     'database': db
 });
 enquire.init(null);
-enquire.set_query(parsed_query, parsed_query.length);
+enquire.set_query(parsed_query, parsed_query.get_length());
 
 let matches = enquire.get_mset(0, 10);
-print('size', matches.get_size()) // bogus value, like 858993458
+print('matches_size', matches.get_size())
 
-let iter = new Xapian.MSetIterator();
-iter.init(matches);
-
-print(iter.get_document()) // segfault
+let iter = Xapian.MSetIterator.alloc().init(matches);
+while (iter.next()) {
+    print(iter.get_document())
+}
