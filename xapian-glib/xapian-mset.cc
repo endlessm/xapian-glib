@@ -89,9 +89,7 @@ xapian_mset_get_termfreq (XapianMSet *mset,
   g_return_val_if_fail (mset != NULL, 0);
   g_return_val_if_fail (term != NULL, 0);
 
-  std::string term_s (term);
-
-  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet->get_termfreq (term_s);
+  return xapian_mset_get_internal (mset)->get_termfreq (std::string (term));
 }
 
 double
@@ -101,9 +99,7 @@ xapian_mset_get_termweight (XapianMSet *mset,
   g_return_val_if_fail (mset != NULL, 0);
   g_return_val_if_fail (term != NULL, 0);
 
-  std::string term_s (term);
-
-  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet->get_termweight (term_s);
+  return xapian_mset_get_internal (mset)->get_termweight (std::string (term));
 }
 
 unsigned int
@@ -111,7 +107,7 @@ xapian_mset_get_firstitem (XapianMSet *mset)
 {
   g_return_val_if_fail (mset != NULL, 0);
 
-  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet->get_firstitem ();
+  return xapian_mset_get_internal (mset)->get_firstitem ();
 }
 
 unsigned int
@@ -119,7 +115,7 @@ xapian_mset_get_matches_lower_bound (XapianMSet *mset)
 {
   g_return_val_if_fail (mset != NULL, 0);
 
-  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet->get_matches_lower_bound ();
+  return xapian_mset_get_internal (mset)->get_matches_lower_bound ();
 }
 
 unsigned int
@@ -127,7 +123,7 @@ xapian_mset_get_matches_estimated (XapianMSet *mset)
 {
   g_return_val_if_fail (mset != NULL, 0);
 
-  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet->get_matches_estimated ();
+  return xapian_mset_get_internal (mset)->get_matches_estimated ();
 }
 
 unsigned int
@@ -135,7 +131,7 @@ xapian_mset_get_matches_upper_bound (XapianMSet *mset)
 {
   g_return_val_if_fail (mset != NULL, 0);
 
-  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet->get_matches_upper_bound ();
+  return xapian_mset_get_internal (mset)->get_matches_upper_bound ();
 }
 
 unsigned int
@@ -143,7 +139,7 @@ xapian_mset_get_uncollapsed_matches_lower_bound (XapianMSet *mset)
 {
   g_return_val_if_fail (mset != NULL, 0);
 
-  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet->get_uncollapsed_matches_lower_bound ();
+  return xapian_mset_get_internal (mset)->get_uncollapsed_matches_lower_bound ();
 }
 
 unsigned int
@@ -151,7 +147,7 @@ xapian_mset_get_uncollapsed_matches_estimated (XapianMSet *mset)
 {
   g_return_val_if_fail (mset != NULL, 0);
 
-  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet->get_uncollapsed_matches_estimated ();
+  return xapian_mset_get_internal (mset)->get_uncollapsed_matches_estimated ();
 }
 
 unsigned int
@@ -159,7 +155,7 @@ xapian_mset_get_uncollapsed_matches_upper_bound (XapianMSet *mset)
 {
   g_return_val_if_fail (mset != NULL, 0);
 
-  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet->get_uncollapsed_matches_upper_bound ();
+  return xapian_mset_get_internal (mset)->get_uncollapsed_matches_upper_bound ();
 }
 
 double
@@ -167,7 +163,7 @@ xapian_mset_get_max_possible (XapianMSet *mset)
 {
   g_return_val_if_fail (mset != NULL, 0);
 
-  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet->get_max_possible ();
+  return xapian_mset_get_internal (mset)->get_max_possible ();
 }
 
 double
@@ -175,7 +171,7 @@ xapian_mset_get_max_attained (XapianMSet *mset)
 {
   g_return_val_if_fail (mset != NULL, 0);
 
-  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet->get_max_attained ();
+  return xapian_mset_get_internal (mset)->get_max_attained ();
 }
 
 unsigned int
@@ -183,7 +179,7 @@ xapian_mset_get_size (XapianMSet *mset)
 {
   g_return_val_if_fail (mset != NULL, 0);
 
-  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet->size ();
+  return xapian_mset_get_internal (mset)->size ();
 }
 
 gboolean
@@ -191,7 +187,7 @@ xapian_mset_is_empty (XapianMSet *mset)
 {
   g_return_val_if_fail (mset != NULL, TRUE);
 
-  return XAPIAN_MSET_GET_PRIVATE (mset)->mSet->empty () ? TRUE : FALSE;
+  return xapian_mset_get_internal (mset)->empty ();
 }
 
 /* }}} XapianMSet */
