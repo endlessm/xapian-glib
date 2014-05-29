@@ -76,6 +76,7 @@ AS_IF([test "x$GCC" = "xyes"],
         LDFLAGS="$LDFLAGS -Bsymbolic-functions"
 
         # assorted compiler errors
+        CXXFLAGS="$CXXFLAGS -Wall"
         CXXFLAGS="$CXXFLAGS -Werror=cast-align"
         CXXFLAGS="$CXXFLAGS -Werror=shadow"
         CXXFLAGS="$CXXFLAGS -Werror=format"
