@@ -26,5 +26,10 @@ print('matches_size', matches.get_size())
 
 let iter = matches.get_begin();
 while (iter.next()) {
-    print(iter.get_document())
+    let result = '' + iter.get_rank() + 1 + ': '
+               + iter.get_weight() + ' '
+               + 'docid=' + iter.get_doc_id() + ' '
+               + '[' + iter.get_document().get_data() + ']';
+
+    print('result', result);
 }
