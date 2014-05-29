@@ -32,23 +32,19 @@ typedef struct {
 G_DEFINE_TYPE_WITH_PRIVATE (XapianMSet, xapian_mset, G_TYPE_OBJECT)
 
 static void
-xapian_mset_class_dispose (GObject *gobject)
+xapian_mset_class_finalize (GObject *gobject)
 {
   XapianMSetPrivate *priv = XAPIAN_MSET_GET_PRIVATE (gobject);
 
-  if (priv->mSet)
-    {
-      delete priv->mSet;
-      priv->mSet = NULL;
-    }
+  delete priv->mSet;
 
-  G_OBJECT_CLASS (xapian_mset_parent_class)->dispose (gobject);
+  G_OBJECT_CLASS (xapian_mset_parent_class)->finalize (gobject);
 }
 
 static void
 xapian_mset_class_init (XapianMSetClass *klass)
 {
-  G_OBJECT_CLASS (klass)->dispose = xapian_mset_class_dispose;
+  G_OBJECT_CLASS (klass)->finalize = xapian_mset_class_finalize;
 }
 
 static void
