@@ -70,27 +70,34 @@ XAPIAN_GLIB_AVAILABLE_IN_ALL
 unsigned int            xapian_mset_get_size                                    (XapianMSet *mset);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 gboolean                xapian_mset_is_empty                                    (XapianMSet *mset);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+XapianMSetIterator *    xapian_mset_get_begin                                   (XapianMSet *mset);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+XapianMSetIterator *    xapian_mset_get_end                                     (XapianMSet *mset);
 
 /* Iterator */
 
-#define XAPIAN_MSET_ITERATOR_INIT       { NULL }
+#define XAPIAN_MSET_ITERATOR(obj)                (G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_MSET_ITERATOR, XapianMSetIterator))
+#define XAPIAN_IS_MSET_ITERATOR(obj)             (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_MSET_ITERATOR))
+#define XAPIAN_MSET_ITERATOR_CLASS(klass)        (G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_MSET_ITERATOR, XapianMSetIteratorClass))
+#define XAPIAN_IS_MSET_ITERATOR_CLASS(klass)     (G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_MSET_ITERATOR))
+#define XAPIAN_MSET_ITERATOR_GET_CLASS(obj)      (G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_MSET_ITERATOR, XapianMSetIteratorClass))
+
+typedef struct _XapianMSetIteratorClass XapianMSetIteratorClass;
 
 struct _XapianMSetIterator
 {
-  /*< private >*/
-  gpointer data;
+  GObject parent_instance;
+};
+
+struct _XapianMSetIteratorClass
+{
+  GObjectClass parent_instance;
 };
 
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 GType xapian_mset_iterator_get_type (void);
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
-XapianMSetIterator *    xapian_mset_iterator_alloc              (void);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
-XapianMSetIterator *    xapian_mset_iterator_init               (XapianMSetIterator *iter,
-                                                                 XapianMSet         *mset);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
-void                    xapian_mset_iterator_clear              (XapianMSetIterator *iter);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 gboolean                xapian_mset_iterator_next               (XapianMSetIterator *iter);
 XAPIAN_GLIB_AVAILABLE_IN_ALL

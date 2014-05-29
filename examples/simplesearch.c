@@ -22,7 +22,7 @@ main (int argc, char *argv[])
   XapianStem *stemmer;
   XapianQuery *query;
   XapianMSet *matches;
-  XapianMSetIterator iter = XAPIAN_MSET_ITERATOR_INIT;
+  XapianMSetIterator *iter;
   GString *query_str;
   char *desc;
   int i;
@@ -166,11 +166,11 @@ main (int argc, char *argv[])
   g_print ("%d results found.\n", xapian_mset_get_matches_estimated (matches));
   g_print ("Matches 1-%d:\n\n", xapian_mset_get_size (matches));
 
-  xapian_mset_iterator_init (&iter, matches);
+  iter = xapian_mset_get_begin (matches);
 
-  while (xapian_mset_iterator_next (&iter))
+  while (xapian_mset_iterator_next (iter))
     {
-      XapianDocument *doc = xapian_mset_iterator_get_document (&iter, &error);
+      XapianDocument *doc = xapian_mset_iterator_get_document (iter, &error);
       char *data;
 
       if (error != NULL)
@@ -183,18 +183,17 @@ main (int argc, char *argv[])
       data = xapian_document_get_data (doc);
 
       g_print ("%d: %.3f docid=%u [%s]\n",
-               xapian_mset_iterator_get_rank (&iter) + 1,
-               xapian_mset_iterator_get_weight (&iter),
-               xapian_mset_iterator_get_doc_id (&iter, NULL),
+               xapian_mset_iterator_get_rank (iter) + 1,
+               xapian_mset_iterator_get_weight (iter),
+               xapian_mset_iterator_get_doc_id (iter, NULL),
                data);
 
       g_free (data);
     }
 
-  xapian_mset_iterator_clear (&iter);
-
   g_string_free (query_str, TRUE);
 
+  g_object_unref (iter);
   g_object_unref (matches);
   g_object_unref (query);
   g_object_unref (qp);

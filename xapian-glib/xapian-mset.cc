@@ -201,36 +201,6 @@ xapian_mset_is_empty (XapianMSet *mset)
 
 /* XapianMSetIterator {{{ */
 
-#ifdef G_DISABLE_CHECKS
-#define xapian_glib_return_if_iter_invalid(iter)                G_STMT_START{ (void)0; }G_STMT_END
-#define xapian_glib_return_val_if_iter_invalid(iter,res)        G_STMT_START{ (void)0; }G_STMT_END
-#else
-#define xapian_glib_return_if_iter_invalid(iter)        G_STMT_START {  \
-  RealMSetIterator *__real_iter = (RealMSetIterator *) iter;            \
-  if (G_UNLIKELY (__real_iter == NULL || __real_iter->data == NULL)) {  \
-    g_critical ("You must initialize a XapianMSetIterator using "       \
-                "xapian_mset_iterator_init() before you can call "      \
-                "%s().", G_STRFUNC);                                    \
-    return;                                                             \
-  }                                                     } G_STMT_END
-
-#define xapian_glib_return_val_if_iter_invalid(iter,res)        G_STMT_START {  \
-  RealMSetIterator *__real_iter = (RealMSetIterator *) iter;                    \
-  if (G_UNLIKELY (__real_iter == NULL || __real_iter->data == NULL)) {          \
-    g_critical ("You must initialize a XapianMSetIterator using "               \
-                "xapian_mset_iterator_init() before you can call "              \
-                "%s().", G_STRFUNC);                                            \
-    return (res);                                                               \
-  }                                                             } G_STMT_END
-#endif /* G_DISABLE_CHECKS */
-
-static XapianMSetIterator *     xapian_mset_iterator_copy       (XapianMSetIterator *iter);
-static void                     xapian_mset_iterator_free       (XapianMSetIterator *iter);
-
-G_DEFINE_BOXED_TYPE (XapianMSetIterator, xapian_mset_iterator,
-                     xapian_mset_iterator_copy,
-                     xapian_mset_iterator_free)
-
 class IteratorData {
   public:
     IteratorData (const IteratorData &aData) {
@@ -399,175 +369,173 @@ class IteratorData {
 
 typedef struct {
   IteratorData *data;
-} RealMSetIterator;
+} XapianMSetIteratorPrivate;
+
+#define XAPIAN_MSET_ITERATOR_GET_PRIVATE(obj) \
+  ((XapianMSetIteratorPrivate *) xapian_mset_iterator_get_instance_private ((XapianMSetIterator *) (obj)))
+
+G_DEFINE_TYPE_WITH_PRIVATE (XapianMSetIterator, xapian_mset_iterator, G_TYPE_OBJECT)
+
+static void
+xapian_mset_iterator_finalize (GObject *gobject)
+{
+  XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (gobject);
+
+  delete priv->data;
+
+  G_OBJECT_CLASS (xapian_mset_iterator_parent_class)->finalize (gobject);
+}
+
+static void
+xapian_mset_iterator_class_init (XapianMSetIteratorClass *klass)
+{
+  G_OBJECT_CLASS (klass)->finalize = xapian_mset_iterator_finalize;
+}
+
+static void
+xapian_mset_iterator_init (XapianMSetIterator *self)
+{
+}
 
 /**
- * xapian_mset_iterator_alloc: (constructor)
+ * xapian_mset_get_begin:
+ * @mset: ...
  *
  * ...
  *
  * Returns: (transfer full): ...
  */
 XapianMSetIterator *
-xapian_mset_iterator_alloc (void)
+xapian_mset_get_begin (XapianMSet *mset)
 {
-  return g_new0 (XapianMSetIterator, 1);
-}
+  XapianMSetIterator *iter;
+  XapianMSetIteratorPrivate *priv;
 
-/**
- * xapian_mset_iterator:
- * @iter: ...
- * @mset: ...
- *
- * ...
- *
- * Returns: (transfer none): ...
- */
-XapianMSetIterator *
-xapian_mset_iterator_init (XapianMSetIterator *iter,
-                           XapianMSet         *mset)
-{
-  RealMSetIterator *real_iter = (RealMSetIterator *) iter;
-
-  g_return_val_if_fail (iter != NULL, NULL);
-  g_return_val_if_fail (XAPIAN_IS_MSET (mset), NULL);
-
-  if (real_iter->data != NULL)
-    delete real_iter->data;
-
-  real_iter->data = new IteratorData (mset);
+  iter = static_cast<XapianMSetIterator *> (g_object_new (XAPIAN_TYPE_MSET_ITERATOR, NULL));
+  priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
+  priv->data = new IteratorData (mset);
 
   return iter;
 }
 
-void
-xapian_mset_iterator_clear (XapianMSetIterator *iter)
+/**
+ * xapian_mset_get_end:
+ * @mset: ...
+ *
+ * ...
+ *
+ * Returns: (transfer full): ...
+ */
+XapianMSetIterator *
+xapian_mset_get_end (XapianMSet *mset)
 {
-  RealMSetIterator *real_iter = (RealMSetIterator *) iter;
+  XapianMSetIterator *iter;
+  XapianMSetIteratorPrivate *priv;
 
-  g_return_if_fail (iter != NULL);
+  iter = static_cast<XapianMSetIterator *> (g_object_new (XAPIAN_TYPE_MSET_ITERATOR, NULL));
+  priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
+  priv->data = new IteratorData (mset);
 
-  if (real_iter->data)
-    {
-      delete real_iter->data;
-      real_iter->data = NULL;
-    }
-}
-
-static XapianMSetIterator *
-xapian_mset_iterator_copy (XapianMSetIterator *iter)
-{
-  if (G_UNLIKELY (iter == NULL))
-    return NULL;
-
-  RealMSetIterator *real_iter = (RealMSetIterator *) iter;
-  RealMSetIterator *copy = g_new0 (RealMSetIterator, 1);
-
-  if (real_iter->data != NULL)
-    copy->data = new IteratorData (*real_iter->data);
-
-  return (XapianMSetIterator *) copy;
-}
-
-static void
-xapian_mset_iterator_free (XapianMSetIterator *iter)
-{
-  if (G_LIKELY (iter != NULL))
-    {
-      RealMSetIterator *real_iter = (RealMSetIterator *) iter;
-
-      delete real_iter->data;
-      g_free (real_iter);
-    }
+  return iter;
 }
 
 gboolean
 xapian_mset_iterator_is_valid (XapianMSetIterator *iter)
 {
-  g_return_val_if_fail (iter != NULL, FALSE);
+  g_return_val_if_fail (XAPIAN_IS_MSET_ITERATOR (iter), FALSE);
 
-  RealMSetIterator *real_iter = (RealMSetIterator *) iter;
-
-  if (real_iter->data == NULL)
-    return FALSE;
-
-  return TRUE;
+  return XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter)->data != NULL;
 }
 
 gboolean
 xapian_mset_iterator_is_begin (XapianMSetIterator *iter)
 {
-  g_return_val_if_fail (iter != NULL, FALSE);
+  g_return_val_if_fail (XAPIAN_IS_MSET_ITERATOR (iter), FALSE);
 
-  RealMSetIterator *real_iter = (RealMSetIterator *) iter;
+  XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
 
-  if (real_iter->data == NULL)
+  if (priv->data == NULL)
     return FALSE;
 
-  return real_iter->data->isBegin () ? TRUE : FALSE;
+  return priv->data->isBegin ();
 }
 
 gboolean
 xapian_mset_iterator_is_end (XapianMSetIterator *iter)
 {
-  g_return_val_if_fail (iter != NULL, FALSE);
+  g_return_val_if_fail (XAPIAN_IS_MSET_ITERATOR (iter), FALSE);
 
-  RealMSetIterator *real_iter = (RealMSetIterator *) iter;
+  XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
 
-  if (real_iter->data == NULL)
+  if (priv->data == NULL)
     return FALSE;
 
-  return real_iter->data->isEnd () ? TRUE : FALSE;
+  return priv->data->isEnd ();
 }
 
 gboolean
 xapian_mset_iterator_next (XapianMSetIterator *iter)
 {
-  xapian_glib_return_val_if_iter_invalid (iter, FALSE);
+  g_return_val_if_fail (XAPIAN_IS_MSET_ITERATOR (iter), FALSE);
 
-  RealMSetIterator *real_iter = (RealMSetIterator *) iter;
+  XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
 
-  return real_iter->data->next () ? TRUE : FALSE;
+  if (priv->data == NULL)
+    return FALSE;
+
+  return priv->data->next ();
 }
 
 gboolean
 xapian_mset_iterator_prev (XapianMSetIterator *iter)
 {
-  xapian_glib_return_val_if_iter_invalid (iter, FALSE);
+  g_return_val_if_fail (XAPIAN_IS_MSET_ITERATOR (iter), FALSE);
 
-  RealMSetIterator *real_iter = (RealMSetIterator *) iter;
+  XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
 
-  return real_iter->data->prev () ? TRUE : FALSE;
+  if (priv->data == NULL)
+    return FALSE;
+
+  return priv->data->prev ();
 }
 
 unsigned int
 xapian_mset_iterator_get_rank (XapianMSetIterator *iter)
 {
-  xapian_glib_return_val_if_iter_invalid (iter, 0);
+  g_return_val_if_fail (XAPIAN_IS_MSET_ITERATOR (iter), 0);
 
-  RealMSetIterator *real_iter = (RealMSetIterator *) iter;
+  XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
 
-  return real_iter->data->getRank ();
+  if (priv->data == NULL)
+    return 0;
+
+  return priv->data->getRank ();
 }
 
 double
 xapian_mset_iterator_get_weight (XapianMSetIterator *iter)
 {
-  xapian_glib_return_val_if_iter_invalid (iter, 0);
+  g_return_val_if_fail (XAPIAN_IS_MSET_ITERATOR (iter), 0);
 
-  RealMSetIterator *real_iter = (RealMSetIterator *) iter;
+  XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
 
-  return real_iter->data->getWeight ();
+  if (priv->data == NULL)
+    return 0;
+
+  return priv->data->getWeight ();
 }
 
 int
 xapian_mset_iterator_get_percent (XapianMSetIterator *iter)
 {
-  xapian_glib_return_val_if_iter_invalid (iter, 0);
+  g_return_val_if_fail (XAPIAN_IS_MSET_ITERATOR (iter), 0);
 
-  RealMSetIterator *real_iter = (RealMSetIterator *) iter;
+  XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
 
-  return real_iter->data->getPercent ();
+  if (priv->data == NULL)
+    return 0;
+
+  return priv->data->getPercent ();
 }
 
 /**
@@ -583,22 +551,28 @@ XapianDocument *
 xapian_mset_iterator_get_document (XapianMSetIterator *iter,
                                    GError            **error)
 {
-  xapian_glib_return_val_if_iter_invalid (iter, NULL);
+  g_return_val_if_fail (XAPIAN_IS_MSET_ITERATOR (iter), NULL);
 
-  RealMSetIterator *real_iter = (RealMSetIterator *) iter;
+  XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
 
-  return real_iter->data->getDocument (error);
+  if (priv->data == NULL)
+    return NULL;
+
+  return priv->data->getDocument (error);
 }
 
 unsigned int
 xapian_mset_iterator_get_doc_id (XapianMSetIterator *iter,
                                  GError            **error)
 {
-  xapian_glib_return_val_if_iter_invalid (iter, 0);
+  g_return_val_if_fail (XAPIAN_IS_MSET_ITERATOR (iter), 0);
 
-  RealMSetIterator *real_iter = (RealMSetIterator *) iter;
+  XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
 
-  return real_iter->data->getDocId (error);
+  if (priv->data == NULL)
+    return 0;
+
+  return priv->data->getDocId (error);
 }
 
 /* }}} XapianMSetIterator */
