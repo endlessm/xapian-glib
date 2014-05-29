@@ -67,6 +67,8 @@ xapian_document_new_from_document (const Xapian::Document &aDoc)
   XapianDocumentPrivate *priv = XAPIAN_DOCUMENT_GET_PRIVATE (res);
 
   priv->mDocument = new Xapian::Document (aDoc);
+
+  return res;
 }
 
 Xapian::Document *
