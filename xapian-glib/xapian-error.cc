@@ -67,7 +67,7 @@ xapian_error_to_gerror (const Xapian::Error  &src,
 
   init_error_types ();
 
-  for (int i = 0; i < G_N_ELEMENTS (xapian_error_types); i++)
+  for (unsigned int i = 0; i < G_N_ELEMENTS (xapian_error_types); i++)
     {
       if (src_type == xapian_error_types[i])
         {
