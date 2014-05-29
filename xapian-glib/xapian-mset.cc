@@ -76,6 +76,9 @@ xapian_mset_get_internal (XapianMSet *mset)
 {
   XapianMSetPrivate *priv = XAPIAN_MSET_GET_PRIVATE (mset);
 
+  if (!priv->mSet)
+    priv->mSet = new Xapian::MSet ();
+
   return priv->mSet;
 }
 
