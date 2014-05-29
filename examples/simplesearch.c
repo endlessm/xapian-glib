@@ -185,7 +185,7 @@ main (int argc, char *argv[])
       g_print ("%d: %.3f docid=%u [%s]\n",
                xapian_mset_iterator_get_rank (&iter) + 1,
                xapian_mset_iterator_get_weight (&iter),
-               xapian_mset_iterator_get_docid (&iter),
+               xapian_mset_iterator_get_doc_id (&iter, NULL),
                data);
 
       g_free (data);

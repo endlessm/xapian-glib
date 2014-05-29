@@ -109,9 +109,10 @@ double                  xapian_mset_iterator_get_weight         (XapianMSetItera
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 int                     xapian_mset_iterator_get_percent        (XapianMSetIterator *iter);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
-unsigned int            xapian_mset_iterator_get_docid          (XapianMSetIterator *iter);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
 XapianDocument *        xapian_mset_iterator_get_document       (XapianMSetIterator *iter,
+                                                                 GError            **error);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+unsigned int            xapian_mset_iterator_get_doc_id         (XapianMSetIterator *iter,
                                                                  GError            **error);
 
 G_END_DECLS
