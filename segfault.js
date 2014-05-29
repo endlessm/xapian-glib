@@ -24,7 +24,7 @@ enquire.set_query(parsed_query, parsed_query.get_length());
 let matches = enquire.get_mset(0, 10);
 print('matches_size', matches.get_size())
 
-let iter = Xapian.MSetIterator.alloc().init(matches);
+let iter = matches.get_begin();
 while (iter.next()) {
     print(iter.get_document())
 }
