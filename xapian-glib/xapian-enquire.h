@@ -47,8 +47,8 @@ XAPIAN_GLIB_AVAILABLE_IN_ALL
 GType xapian_enquire_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_ALL
-XapianEnquire * xapian_enquire_new              (XapianDatabase *database,
-                                                 GError               **error);
+XapianEnquire * xapian_enquire_new              (XapianDatabase *db,
+                                                 GError        **error);
 
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 void            xapian_enquire_set_query        (XapianEnquire *enquire,

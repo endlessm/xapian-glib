@@ -205,7 +205,7 @@ xapian_enquire_init (XapianEnquire *self)
 }
 
 /**
- * xapian_query_new:
+ * xapian_enquire_new:
  * @db: a #XapianDatabase
  * @error: return location for a #GError, or %NULL
  *
