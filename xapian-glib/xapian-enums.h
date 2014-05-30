@@ -24,6 +24,17 @@ G_BEGIN_DECLS
 
 #define XAPIAN_TYPE_DATABASE_ACTION             (xapian_database_action_get_type ())
 
+/**
+ * XapianDatabaseAction:
+ * @XAPIAN_DATABASE_ACTION_CREATE_OR_OPEN: Create a database or open if it
+ *   already exists
+ * @XAPIAN_DATABASE_ACTION_CREATE: Create a database
+ * @XAPIAN_DATABASE_ACTION_CREATE_OR_OVERWRITE: Create a database and overwrite
+ *   it if one already exists
+ * @XAPIAN_DATABASE_ACTION_OPEN: Open a database
+ *
+ * Actions for #XapianWritableDatabase.
+ */
 typedef enum {
   XAPIAN_DATABASE_ACTION_CREATE_OR_OPEN = 1,
   XAPIAN_DATABASE_ACTION_CREATE = 2,
@@ -35,8 +46,38 @@ XAPIAN_GLIB_AVAILABLE_IN_ALL
 GType xapian_database_action_get_type (void);
 
 #define XAPIAN_TYPE_ERROR                       (xapian_error_get_type ())
+
+/**
+ * XAPIAN_ERROR:
+ *
+ * Error domain for Xapian.
+ */
 #define XAPIAN_ERROR                            (xapian_error_quark ())
 
+/**
+ * XapianError:
+ * @XAPIAN_ERROR_ASSERTION: Assertion failure
+ * @XAPIAN_ERROR_INVALID_ARGUMENT: Invalid argument
+ * @XAPIAN_ERROR_INVALID_OPERATION: Invalid operation
+ * @XAPIAN_ERROR_UNIMPLEMENTED: Operation not implemented
+ * @XAPIAN_ERROR_DATABASE: Database error
+ * @XAPIAN_ERROR_DATABASE_CORRUPT: Database is corrupt
+ * @XAPIAN_ERROR_DATABASE_CREATE: Failed to create a database
+ * @XAPIAN_ERROR_DATABASE_LOCK: Failed to acquire the lock on a database
+ * @XAPIAN_ERROR_DATABASE_MODIFIED: Database modified after opening
+ * @XAPIAN_ERROR_DATABASE_OPENING: Unable to open the database
+ * @XAPIAN_ERROR_DATABASE_VERSION: Version mismatch when opening the database
+ * @XAPIAN_ERROR_DOC_NOT_FOUND: Document not found
+ * @XAPIAN_ERROR_FEATURE_UNAVAILABLE: Feature not available with the current backend
+ * @XAPIAN_ERROR_INTERNAL: Internal state error
+ * @XAPIAN_ERROR_NETWORK: Network error
+ * @XAPIAN_ERROR_NETWORK_TIMEOUT: Network timeout error
+ * @XAPIAN_ERROR_QUERY_PARSER: Error when parsing a query string
+ * @XAPIAN_ERROR_SERIALISATION: Error when serialising or deserialising data
+ * @XAPIAN_ERROR_RANGE: Out of bounds access
+ *
+ * Error codes for the %XAPIAN_ERROR error domain.
+ */
 typedef enum {
   XAPIAN_ERROR_ASSERTION,
   XAPIAN_ERROR_INVALID_ARGUMENT,
@@ -69,6 +110,25 @@ GQuark xapian_error_quark (void);
 
 #define XAPIAN_TYPE_QUERY_OP            (xapian_query_op_get_type ())
 
+/**
+ * XapianQueryOp:
+ * @XAPIAN_QUERY_OP_AND: logical AND
+ * @XAPIAN_QUERY_OP_OR: logical OR
+ * @XAPIAN_QUERY_OP_AND_NOT: a AND NOT b
+ * @XAPIAN_QUERY_OP_XOR: a XOR b
+ * @XAPIAN_QUERY_OP_AND_MAYBE: a AND MAYBE b
+ * @XAPIAN_QUERY_OP_FILTER: filter
+ * @XAPIAN_QUERY_OP_NEAR: a NEAR b
+ * @XAPIAN_QUERY_OP_PHRASE: "a b"
+ * @XAPIAN_QUERY_OP_VALUE_RANGE: ...
+ * @XAPIAN_QUERY_OP_SCALE_WEIGHT: ...
+ * @XAPIAN_QUERY_OP_ELITE_SET: ...
+ * @XAPIAN_QUERY_OP_VALUE_GE: ...
+ * @XAPIAN_QUERY_OP_VALUE_LE: ...
+ * @XAPIAN_QUERY_OP_SYNONYM: ...
+ *
+ * Operators for #XapianQuery.
+ */
 typedef enum {
   XAPIAN_QUERY_OP_AND,
   XAPIAN_QUERY_OP_OR,
@@ -94,6 +154,23 @@ GType xapian_query_op_get_type (void);
 
 #define XAPIAN_TYPE_QUERY_PARSER_FEATURE        (xapian_query_parser_feature_get_type ())
 
+/**
+ * XapianQueryParserFeature:
+ * @XAPIAN_QUERY_PARSER_FEATURE_BOOLEAN: ...
+ * @XAPIAN_QUERY_PARSER_FEATURE_PHRASE: ...
+ * @XAPIAN_QUERY_PARSER_FEATURE_LOVEHATE: ...
+ * @XAPIAN_QUERY_PARSER_FEATURE_BOOLEAN_ANY_CASE: ...
+ * @XAPIAN_QUERY_PARSER_FEATURE_WILDCARD: ...
+ * @XAPIAN_QUERY_PARSER_FEATURE_PURE_NOT: ...
+ * @XAPIAN_QUERY_PARSER_FEATURE_PARTIAL: ...
+ * @XAPIAN_QUERY_PARSER_FEATURE_SPELLING_CORRECTION: ...
+ * @XAPIAN_QUERY_PARSER_FEATURE_SYNONYM: ...
+ * @XAPIAN_QUERY_PARSER_FEATURE_AUTO_SYNONYMS: ...
+ * @XAPIAN_QUERY_PARSER_FEATURE_AUTO_MULTIWORD_SYNONYMS: ...
+ * @XAPIAN_QUERY_PARSER_FEATURE_DEFAULT: ...
+ *
+ * Flags for xapian_query_parser_parse_query_full().
+ */
 typedef enum {
   XAPIAN_QUERY_PARSER_FEATURE_BOOLEAN = 1 << 0,
   XAPIAN_QUERY_PARSER_FEATURE_PHRASE = 1 << 1,
@@ -116,6 +193,15 @@ GType xapian_query_parser_feature_get_type (void);
 
 #define XAPIAN_TYPE_STEM_STRATEGY                (xapian_stem_strategy_get_type ())
 
+/**
+ * XapianStemStrategy:
+ * @XAPIAN_STEM_STRATEGY_STEM_NONE: ...
+ * @XAPIAN_STEM_STRATEGY_STEM_SOME: ...
+ * @XAPIAN_STEM_STRATEGY_STEM_ALL: ...
+ * @XAPIAN_STEM_STRATEGY_STEM_ALL_Z: ...
+ *
+ * Stemming strategies.
+ */
 typedef enum {
   XAPIAN_STEM_STRATEGY_STEM_NONE,
   XAPIAN_STEM_STRATEGY_STEM_SOME,
