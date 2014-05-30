@@ -14,6 +14,18 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * SECTION:xapian-query
+ * @Title: XapianQuery
+ * @Short_Desc: A query tree
+ *
+ * #XapianQuery is a class that represents a tree of terms and operations
+ * that is applied by #XapianEnquire to match documents in a database.
+ *
+ * Typically, you'll want to use #XapianQueryParser instead of building
+ * a #XapianQuery directly.
+ */
+
 #include "config.h"
 
 #include "xapian-query-private.h"
@@ -63,6 +75,14 @@ xapian_query_init (XapianQuery *self)
 {
 }
 
+/*< private >
+ * xapian_query_new_from_query:
+ * @aQuery: a `Xapian::Query`
+ *
+ * Creates a new #XapianQuery wrapper for @aQuery.
+ *
+ * Returns: (transfer full): the newly created #XapianQuery wrapper
+ */
 XapianQuery *
 xapian_query_new_from_query (const Xapian::Query &aQuery)
 {
@@ -235,6 +255,14 @@ xapian_query_is_empty (XapianQuery *query)
   return xapian_query_get_internal (query)->empty () ? TRUE : FALSE;
 }
 
+/**
+ * xapian_query_get_description:
+ * @query: a #XapianQuery
+ *
+ * Retrieves a description of @query, typically used for debugging.
+ *
+ * Returns: (transfer full): a string with a description of the query
+ */
 char *
 xapian_query_get_description (XapianQuery *query)
 {
@@ -245,6 +273,14 @@ xapian_query_get_description (XapianQuery *query)
   return g_strdup (desc.c_str ());
 }
 
+/**
+ * xapian_query_get_length:
+ * @query: a #XapianQuery
+ *
+ * Retrieves the length of the query.
+ *
+ * Returns: the length of the query
+ */
 unsigned int
 xapian_query_get_length (XapianQuery *query)
 {
