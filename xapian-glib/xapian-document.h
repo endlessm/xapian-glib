@@ -91,6 +91,9 @@ void                    xapian_document_remove_posting          (XapianDocument 
                                                                  unsigned int    wdf_decrement);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 void                    xapian_document_add_term                (XapianDocument *document,
+                                                                 const char     *tname);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+void                    xapian_document_add_term_full           (XapianDocument *document,
                                                                  const char     *tname,
                                                                  unsigned int    wdf_increment);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
