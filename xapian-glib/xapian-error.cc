@@ -19,7 +19,7 @@
 #include "xapian-error-private.h"
 #include "xapian-enums.h"
 
-static const char *xapian_error_types[XAPIAN_ERROR_TYPE_LAST] = { NULL, };
+static const char *xapian_error_types[XAPIAN_ERROR_LAST] = { NULL, };
 static gboolean xapian_error_types_set = FALSE;
 
 static void
@@ -29,7 +29,7 @@ init_error_types (void)
     return;
 
 #define XAPIAN_SET_ERROR_TYPE(id,name) \
-  xapian_error_types[(int) XAPIAN_ERROR_TYPE_ ## id] = g_intern_static_string (#name)
+  xapian_error_types[(int) XAPIAN_ERROR_ ## id] = g_intern_static_string (#name)
 
   XAPIAN_SET_ERROR_TYPE (ASSERTION, AssertionError);
   XAPIAN_SET_ERROR_TYPE (INVALID_ARGUMENT, InvalidArgumentError);
@@ -56,14 +56,14 @@ init_error_types (void)
   xapian_error_types_set = TRUE;
 }
 
-G_DEFINE_QUARK (xapian-error-type-quark, xapian_error_type)
+G_DEFINE_QUARK (xapian-error-quark, xapian_error)
 
 void
 xapian_error_to_gerror (const Xapian::Error  &src,
                         GError              **dest)
 {
   const char *src_type = g_intern_string (src.get_type ());
-  XapianErrorType error_type = XAPIAN_ERROR_TYPE_LAST;
+  XapianError error_type = XAPIAN_ERROR_LAST;
 
   init_error_types ();
 
@@ -71,13 +71,13 @@ xapian_error_to_gerror (const Xapian::Error  &src,
     {
       if (src_type == xapian_error_types[i])
         {
-          error_type = (XapianErrorType) i;
+          error_type = (XapianError) i;
           break;
         }
     }
 
   /* unknown error in the bindings */
-  if (error_type == XAPIAN_ERROR_TYPE_LAST)
+  if (error_type == XAPIAN_ERROR_LAST)
     {
       g_critical ("Unknown error type %d.\n", error_type);
       return;
@@ -87,11 +87,11 @@ xapian_error_to_gerror (const Xapian::Error  &src,
 
   if (src.get_error_string () != NULL)
     {
-      g_set_error (dest, XAPIAN_ERROR_TYPE, error_type,
+      g_set_error (dest, XAPIAN_ERROR, error_type,
                    "%s (error: %s)",
                    src_msg.c_str (),
                    src.get_error_string ());
     }
   else
-    g_set_error_literal (dest, XAPIAN_ERROR_TYPE, error_type, src_msg.c_str ());
+    g_set_error_literal (dest, XAPIAN_ERROR, error_type, src_msg.c_str ());
 }

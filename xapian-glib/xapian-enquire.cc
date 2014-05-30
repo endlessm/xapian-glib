@@ -72,8 +72,8 @@ xapian_enquire_init_internal (GInitable *self,
 
   if (priv->database == NULL)
     {
-      g_set_error_literal (error, XAPIAN_ERROR_TYPE,
-                           XAPIAN_ERROR_TYPE_INVALID_ARGUMENT,
+      g_set_error_literal (error, XAPIAN_ERROR,
+                           XAPIAN_ERROR_INVALID_ARGUMENT,
                            "XapianEnquire:database must not be empty or NULL");
       return FALSE;
     }
