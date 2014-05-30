@@ -14,6 +14,15 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * SECTION:xapian-stem
+ * @Title: XapianStem
+ * @Short_Desc: Language-dependent stemming abstraction
+ *
+ * #XapianStem is a class representing a stemming abstraction for
+ * specific languages.
+ */
+
 #include "config.h"
 
 #include <xapian.h>
@@ -151,6 +160,12 @@ xapian_stem_class_init (XapianStemClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
+  /**
+   * XapianStem:language:
+   *
+   * The language used by the stemmer; valid values are the
+   * ones returned by xapian_stem_get_available_languages().
+   */
   obj_props[PROP_LANGUAGE] =
     g_param_spec_string ("language",
                          "Language",
@@ -172,6 +187,13 @@ xapian_stem_init (XapianStem *self)
 {
 }
 
+/**
+ * xapian_stem_new:
+ *
+ * Creates a new #XapianStem for the `none` language.
+ *
+ * Returns: (transfer full): the newly created #XapianStem instance
+ */
 XapianStem *
 xapian_stem_new (void)
 {
@@ -181,6 +203,20 @@ xapian_stem_new (void)
                                                     NULL));
 }
 
+/**
+ * xapian_stem_new_for_language:
+ * @language: the language for the stemmer
+ * @error: return location for a #GError
+ *
+ * Creates and initializes a new #XapianStem for the given @language.
+ *
+ * Valid values are the ones returned by xapian_stem_get_available_languages().
+ *
+ * If the initialization of the #XapianStem instance failed, this
+ * function returns %NULL and sets @error.
+ *
+ * Returns: (transfer full): the newly created #XapianStem instance
+ */
 XapianStem *
 xapian_stem_new_for_language (const char *language,
                               GError    **error)
@@ -195,11 +231,11 @@ xapian_stem_new_for_language (const char *language,
 
 /**
  * xapian_stem_get_description:
- * @stem: ...
+ * @stem: a #XapianStem
  *
- * ...
+ * Retrieves a description for @stem, typically used for debugging.
  *
- * Returns: (transfer full): ...
+ * Returns: (transfer full): a description for the @stem
  */
 char *
 xapian_stem_get_description (XapianStem *stem)
@@ -216,9 +252,10 @@ xapian_stem_get_description (XapianStem *stem)
 /**
  * xapian_stem_get_available_languages:
  *
- * ...
+ * Retrieves an array of available languages for #XapianStem.
  *
- * Returns: (array zero-terminated=1) (transfer full): ...
+ * Returns: (array zero-terminated=1) (transfer full): an array
+ *   of available language strings.
  */
 char **
 xapian_stem_get_available_languages (void)
