@@ -200,7 +200,7 @@ xapian_database_finalize (GObject *self)
 {
   XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
 
-  priv->mDB->close();
+  priv->mDB->close ();
   delete priv->mDB;
 
   g_free (priv->path);
@@ -403,10 +403,9 @@ xapian_database_get_metadata (XapianDatabase  *db,
 
   try
     {
-      std::string tmp_key (key);
-      std::string str = xapian_database_get_internal (db)->get_metadata (tmp_key);
+      std::string str = xapian_database_get_internal (db)->get_metadata (std::string (key));
 
-      return g_strdup (str.c_str());
+      return g_strdup (str.c_str ());
     }
   catch (const Xapian::Error &err)
     {
