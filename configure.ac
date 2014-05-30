@@ -65,9 +65,6 @@ XAPIAN_GLIB_LDFLAGS="-version-info $XAPIAN_GLIB_LT_VERSION"
 
 dnl === Platform checks =======================================================
 
-platform_linux=no
-platform_win32=no
-
 AC_CANONICAL_HOST
 
 AS_IF([test "x$GCC" = "xyes"],
