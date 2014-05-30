@@ -14,6 +14,15 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * SECTION:xapian-writable-database
+ * @Title: XapianWritableDatabase
+ * @Short_Desc: A writable database
+ *
+ * #XapianWritableDatabase is a #XapianDatabase sub-class that can
+ * be written to.
+ */
+
 #include "config.h"
 
 #include <xapian.h>
@@ -154,6 +163,11 @@ xapian_writable_database_class_init (XapianWritableDatabaseClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
+  /**
+   * XapianWritableDatabase:action:
+   *
+   * The action to be performed when creating a database.
+   */
   obj_props[PROP_ACTION] =
     g_param_spec_enum ("action",
                        "Action",
@@ -175,6 +189,21 @@ xapian_writable_database_init (XapianWritableDatabase *self)
 {
 }
 
+/**
+ * xapian_writable_database_new:
+ * @path: the path of the database
+ * @action: the action to perform
+ * @error: return location for a #GError
+ *
+ * Creates and initialises a #XapianWritableDatabase for the
+ * given @path.
+ *
+ * If the initialization was not successful, this function
+ * returns %NULL and sets @error.
+ *
+ * Returns: (transfer full): the newly created #XapianWritableDatabase
+ *   instance
+ */
 XapianWritableDatabase *
 xapian_writable_database_new (const char            *path,
                               XapianDatabaseAction   action,
@@ -187,6 +216,15 @@ xapian_writable_database_new (const char            *path,
                                                                 NULL));
 }
 
+/**
+ * xapian_writable_database_commit:
+ * @self: a #XapianWritableDatabase
+ * @error: return location for a #GError
+ *
+ * Commits the pending changes of the database.
+ *
+ * Returns: %TRUE if the commit was successful
+ */
 gboolean
 xapian_writable_database_commit (XapianWritableDatabase  *self,
                                  GError                 **error)
@@ -219,12 +257,13 @@ xapian_writable_database_commit (XapianWritableDatabase  *self,
 
 /**
  * xapian_writable_database_add_document:
- * @self: ...
- * @document: ...
- * @docid_out: (out): ...
- * @error: ..
+ * @self: a #XapianWritableDatabase
+ * @document: a #XapianDocument to add
+ * @docid_out: (out): return location for the id of the newly
+ *   added document
+ * @error: return location for a #GError
  *
- * ...
+ * Adds @document to a database.
  *
  * Returns: %TRUE if the document was added, and %FALSE on error
  */
@@ -266,6 +305,16 @@ xapian_writable_database_add_document (XapianWritableDatabase *self,
     }
 }
 
+/**
+ * xapian_writable_database_delete_document:
+ * @self: a #XapianWritableDatabase
+ * @docid: the document to delete
+ * @error: return location for a #GError
+ *
+ * Deletes the document with the given @docid from a database.
+ *
+ * Returns: %TRUE if the document was successfully deleted
+ */
 gboolean
 xapian_writable_database_delete_document (XapianWritableDatabase *self,
                                           unsigned int            docid,
