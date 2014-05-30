@@ -14,6 +14,17 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * SECTION:xapian-query-parser
+ * @Title: XapianQueryParser
+ *
+ * #XapianQueryParser is a class that can parse a query string and
+ * generate a #XapianQuery instance from it.
+ *
+ * #XapianQueryParser can use a #XapianStem to isolate the terms
+ * for the query, as well as use a database for wildcard expansion.
+ */
+
 #include "config.h"
 
 #include <xapian.h>
@@ -132,6 +143,11 @@ xapian_query_parser_class_init (XapianQueryParserClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
+  /**
+   * XapianQueryParser:stemmer:
+   *
+   * The #XapianStem instance to be used for stemming the query string.
+   */
   obj_props[PROP_STEMMER] =
     g_param_spec_object ("stemmer",
                          "Stemmer",
@@ -140,6 +156,12 @@ xapian_query_parser_class_init (XapianQueryParserClass *klass)
                          (GParamFlags) (G_PARAM_READWRITE |
                                         G_PARAM_STATIC_STRINGS));
 
+  /**
+   * XapianQueryParser:stemming-strategy:
+   *
+   * The stemming strategy to use with the #XapianStem set with the
+   * #XapianQueryParser:stemmer property.
+   */
   obj_props[PROP_STEMMING_STRATEGY] =
     g_param_spec_enum ("stemming-strategy",
                        "Stemming Strategy",
@@ -149,6 +171,11 @@ xapian_query_parser_class_init (XapianQueryParserClass *klass)
                        (GParamFlags) (G_PARAM_READWRITE |
                                       G_PARAM_STATIC_STRINGS));
 
+  /**
+   * XapianQueryParser:database:
+   *
+   * The #XapianDatabase to be used for wildcard expansion.
+   */
   obj_props[PROP_DATABASE] =
     g_param_spec_object ("database",
                          "Database",
@@ -173,12 +200,26 @@ xapian_query_parser_init (XapianQueryParser *self)
   priv->mQueryParser = new Xapian::QueryParser ();
 }
 
+/**
+ * xapian_query_parser_new:
+ *
+ * Creates a new #XapianQueryParser.
+ *
+ * Returns: (transfer full): the newly created #XapianQueryParser instance
+ */
 XapianQueryParser *
 xapian_query_parser_new (void)
 {
   return static_cast<XapianQueryParser *> (g_object_new (XAPIAN_TYPE_QUERY_PARSER, NULL));
 }
 
+/**
+ * xapian_query_parser_set_stemmer:
+ * @parser: a #XapianQueryParser
+ * @stemmer: a #XapianStem
+ *
+ * Sets the stemmer for @parser.
+ */
 void
 xapian_query_parser_set_stemmer (XapianQueryParser *parser,
                                  XapianStem        *stemmer)
@@ -199,6 +240,15 @@ xapian_query_parser_set_stemmer (XapianQueryParser *parser,
   g_object_notify_by_pspec (G_OBJECT (parser), obj_props[PROP_STEMMER]);
 }
 
+/**
+ * xapian_query_parser_set_stemming_strategy:
+ * @parser: a #XapianQueryParser
+ * @strategy: a #XapianStemStrategy value
+ *
+ * Sets the stemming @strategy for @parser.
+ *
+ * The stemming strategy is only used if @parser uses a stemmer.
+ */
 void
 xapian_query_parser_set_stemming_strategy (XapianQueryParser  *parser,
                                            XapianStemStrategy  strategy)
@@ -245,6 +295,13 @@ xapian_query_parser_set_stemming_strategy (XapianQueryParser  *parser,
   g_object_notify_by_pspec (G_OBJECT (parser), obj_props[PROP_STEMMING_STRATEGY]);
 }
 
+/**
+ * xapian_query_parser_set_database:
+ * @parser: a #XapianQueryParser
+ * @database: a #XapianDatabase
+ *
+ * Sets the @database used by @parser for wildcard expansion.
+ */
 void
 xapian_query_parser_set_database (XapianQueryParser *parser,
                                   XapianDatabase    *database)
@@ -265,6 +322,29 @@ xapian_query_parser_set_database (XapianQueryParser *parser,
   g_object_notify_by_pspec (G_OBJECT (parser), obj_props[PROP_DATABASE]);
 }
 
+/**
+ * xapian_query_parser_add_prefix:
+ * @parser: a #XapianQueryParser
+ * @field: the user visible field name
+ * @prefix: the term prefix to map the @field to
+ *
+ * Adds a probabilistic term prefix.
+ *
+ * For instance, calling:
+ *
+ * |[<!-- language="C" -->
+ *   xapian_query_parser_add_prefix (parser, "author", "A");
+ * ]|
+ *
+ * allows the user to search for `author:Orwell`, which will be
+ * converted to a search for `Aorwell`.
+ *
+ * It is possible to map multiple fields to the same prefix, for
+ * instance `title` and `subject`.
+ *
+ * It is possible to map the same field to multiple prefixes; the
+ * generated query will perform an OR operation on each term.
+ */
 void
 xapian_query_parser_add_prefix (XapianQueryParser *parser,
                                 const char        *field,
@@ -273,10 +353,27 @@ xapian_query_parser_add_prefix (XapianQueryParser *parser,
   g_return_if_fail (XAPIAN_IS_QUERY_PARSER (parser));
   g_return_if_fail (field != NULL && prefix != NULL);
 
-  XapianQueryParserPrivate *priv = XAPIAN_QUERY_PARSER_GET_PRIVATE (parser);
-  priv->mQueryParser->add_prefix (std::string (field), std::string (prefix));
+  try
+    {
+      XapianQueryParserPrivate *priv = XAPIAN_QUERY_PARSER_GET_PRIVATE (parser);
+      priv->mQueryParser->add_prefix (std::string (field), std::string (prefix));
+    }
+  catch (const Xapian::Error &err)
+    {
+      /* XXX: should we display a critical? */
+    }
 }
 
+/**
+ * xapian_query_parser_add_boolean_prefix:
+ * @parser: a #XapianQueryParser
+ * @field: the user visible field name
+ * @prefix: the term prefix to map the @field to
+ * @exclusive: if %TRUE each document can have at most one term
+ *   with the given @prefix
+ *
+ * Adds a boolean term prefix to the query.
+ */
 void
 xapian_query_parser_add_boolean_prefix (XapianQueryParser *parser,
                                         const char        *field,
@@ -292,13 +389,15 @@ xapian_query_parser_add_boolean_prefix (XapianQueryParser *parser,
 
 /**
  * xapian_query_parser_parse_query:
- * @parser: ...
- * @query_string: ...
- * @error: ...
+ * @parser: a #XapianQueryParser
+ * @query_string: the query string
+ * @error: return location for a #GError
  *
- * ...
+ * Parses a query string and generates a #XapianQuery instance for it.
  *
- * Returns: (transfer full): ...
+ * See also: xapian_query_parser_parse_query_full()
+ *
+ * Returns: (transfer full): the newly created #XapianQuery instance
  */
 XapianQuery *
 xapian_query_parser_parse_query (XapianQueryParser  *parser,
@@ -313,15 +412,15 @@ xapian_query_parser_parse_query (XapianQueryParser  *parser,
 
 /**
  * xapian_query_parser_parse_query_full:
- * @parser: ...
- * @query_string: ...
- * @flags: ...
- * @default_prefix: ...
- * @error: ...
+ * @parser: a #XapianQuery
+ * @query_string: the query string
+ * @flags: a bitwise OR of #XapianQueryParserFeature values
+ * @default_prefix: the default prefix for terms
+ * @error: return location for a #GError
  *
- * ...
+ * Parses @query_string and creates a #XapianQuery instance for it.
  *
- * Returns: (transfer full): ...
+ * Returns: (transfer full): the newly created #XapianQuery instance
  */
 XapianQuery *
 xapian_query_parser_parse_query_full (XapianQueryParser        *parser,
