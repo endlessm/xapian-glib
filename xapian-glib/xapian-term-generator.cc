@@ -14,6 +14,14 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * SECTION:xapian-term-generator
+ * @Title: XapianTermGenerator
+ * @Short_Desc: Document indexer
+ *
+ * #XapianTermGenerator is a class used to index document data.
+ */
+
 #include "config.h"
 
 #include <xapian.h>
