@@ -22,6 +22,20 @@
 
 /* XapianMSet {{{ */
 
+/**
+ * SECTION:xapian-mset
+ * @Title: XapianMSet
+ * @Short_Desc: Set of matching documents
+ *
+ * #XapianMSet represents a set of documents in a #XapianDatabase
+ * matching a specific #XapianQuery performed by a #XapianEnquire
+ * instance.
+ *
+ * You can query the whole set for information on the results, but
+ * typically you will iterate over the #XapianMSet using an instance
+ * of the #XapianMSetIterator class.
+ */
+
 #define XAPIAN_MSET_GET_PRIVATE(obj) \
   ((XapianMSetPrivate *) xapian_mset_get_instance_private ((XapianMSet *) (obj)))
 
@@ -56,9 +70,9 @@ xapian_mset_init (XapianMSet *self)
  * xapian_mset_new:
  * @aMSet: a Xapian::MSet
  *
- * ...
+ * Creates a new #XapianMSet for the given `Xapian::MSet` instance.
  *
- * Returns: (transfer full): ...
+ * Returns: (transfer full): the newly created #XapianMSet
  */
 XapianMSet *
 xapian_mset_new (const Xapian::MSet &aMSet)
@@ -71,6 +85,14 @@ xapian_mset_new (const Xapian::MSet &aMSet)
   return res;
 }
 
+/*< private >
+ * xapian_mset_get_internal:
+ * @mset: a #XapianMSet
+ *
+ * Retrieves the internal `Xapian::MSet` instance.
+ *
+ * Returns: (transfer none): a pointer to the internal instance
+ */
 Xapian::MSet *
 xapian_mset_get_internal (XapianMSet *mset)
 {
@@ -82,6 +104,15 @@ xapian_mset_get_internal (XapianMSet *mset)
   return priv->mSet;
 }
 
+/**
+ * xapian_mset_get_termfreq:
+ * @mset: a #XapianMSet
+ * @term: a term
+ *
+ * Retrieves the frequency of the given @term.
+ *
+ * Return value: the frequence of the term
+ */
 unsigned int
 xapian_mset_get_termfreq (XapianMSet *mset,
                           const char *term)
@@ -89,9 +120,25 @@ xapian_mset_get_termfreq (XapianMSet *mset,
   g_return_val_if_fail (mset != NULL, 0);
   g_return_val_if_fail (term != NULL, 0);
 
-  return xapian_mset_get_internal (mset)->get_termfreq (std::string (term));
+  try
+    {
+      return xapian_mset_get_internal (mset)->get_termfreq (std::string (term));
+    }
+  catch (const Xapian::InvalidOperationError &err)
+    {
+      return 0;
+    }
 }
 
+/**
+ * xapian_mset_get_termweight:
+ * @mset: a #XapianMSet
+ * @term: the term to use
+ *
+ * Retrieves the weight of the given @term.
+ *
+ * Returns: the weight of the term
+ */
 double
 xapian_mset_get_termweight (XapianMSet *mset,
                             const char *term)
@@ -99,9 +146,24 @@ xapian_mset_get_termweight (XapianMSet *mset,
   g_return_val_if_fail (mset != NULL, 0);
   g_return_val_if_fail (term != NULL, 0);
 
-  return xapian_mset_get_internal (mset)->get_termweight (std::string (term));
+  try
+    {
+      return xapian_mset_get_internal (mset)->get_termweight (std::string (term));
+    }
+  catch (const Xapian::Error &err)
+    {
+      return 0;
+    }
 }
 
+/**
+ * xapian_mset_get_firstitem:
+ * @mset: a #XapianMSet
+ *
+ * Retrieves the index of the first item in the @mset.
+ *
+ * Returns: the index of the first item
+ */
 unsigned int
 xapian_mset_get_firstitem (XapianMSet *mset)
 {
@@ -110,6 +172,14 @@ xapian_mset_get_firstitem (XapianMSet *mset)
   return xapian_mset_get_internal (mset)->get_firstitem ();
 }
 
+/**
+ * xapian_mset_get_matches_lower_bound:
+ * @mset: a #XapianMSet
+ *
+ * Retrieves the lower bound of the matching documents in the database.
+ *
+ * Returns: a lower bound of documents
+ */
 unsigned int
 xapian_mset_get_matches_lower_bound (XapianMSet *mset)
 {
@@ -118,6 +188,14 @@ xapian_mset_get_matches_lower_bound (XapianMSet *mset)
   return xapian_mset_get_internal (mset)->get_matches_lower_bound ();
 }
 
+/**
+ * xapian_mset_get_matches_estimated:
+ * @mset: a #XapianMSet
+ *
+ * Retrieves an estimation of the matching documents in the database.
+ *
+ * Returns: an estimated number of documents
+ */
 unsigned int
 xapian_mset_get_matches_estimated (XapianMSet *mset)
 {
@@ -126,6 +204,14 @@ xapian_mset_get_matches_estimated (XapianMSet *mset)
   return xapian_mset_get_internal (mset)->get_matches_estimated ();
 }
 
+/**
+ * xapian_mset_get_matches_upper_bound:
+ * @mset: a #XapianMSet
+ *
+ * Retrieves the upper bound of the matching documents in the database.
+ *
+ * Returns: an upper bound of documents
+ */
 unsigned int
 xapian_mset_get_matches_upper_bound (XapianMSet *mset)
 {
@@ -134,6 +220,15 @@ xapian_mset_get_matches_upper_bound (XapianMSet *mset)
   return xapian_mset_get_internal (mset)->get_matches_upper_bound ();
 }
 
+/**
+ * xapian_mset_get_uncollapsed_matches_lower_bound:
+ * @mset: a #XapianMSet
+ *
+ * Retrieves the lower bound of the matching documents in the database if
+ * collapsing was not used.
+ *
+ * Returns: a lower bound of documents
+ */
 unsigned int
 xapian_mset_get_uncollapsed_matches_lower_bound (XapianMSet *mset)
 {
@@ -142,6 +237,15 @@ xapian_mset_get_uncollapsed_matches_lower_bound (XapianMSet *mset)
   return xapian_mset_get_internal (mset)->get_uncollapsed_matches_lower_bound ();
 }
 
+/**
+ * xapian_mset_get_uncollapsed_matches_estimated:
+ * @mset: a #XapianMSet
+ *
+ * Retrieves an estimated number of matching documents in the database if
+ * collapsing was not used.
+ *
+ * Returns: an estimate of matching documents
+ */
 unsigned int
 xapian_mset_get_uncollapsed_matches_estimated (XapianMSet *mset)
 {
@@ -150,6 +254,15 @@ xapian_mset_get_uncollapsed_matches_estimated (XapianMSet *mset)
   return xapian_mset_get_internal (mset)->get_uncollapsed_matches_estimated ();
 }
 
+/**
+ * xapian_mset_get_uncollapsed_matches_upper_bound:
+ * @mset: a #XapianMSet
+ *
+ * Retrieves the upper bound of the matching documents in the database if
+ * collapsing was not used.
+ *
+ * Returns: an upper bound of matching documents
+ */
 unsigned int
 xapian_mset_get_uncollapsed_matches_upper_bound (XapianMSet *mset)
 {
@@ -158,6 +271,16 @@ xapian_mset_get_uncollapsed_matches_upper_bound (XapianMSet *mset)
   return xapian_mset_get_internal (mset)->get_uncollapsed_matches_upper_bound ();
 }
 
+/**
+ * xapian_mset_get_max_possible:
+ * @mset: a #XapianMSet
+ *
+ * The maximum possible weight in the @mset.
+ *
+ * See also: xapian_mset_get_max_attained()
+ *
+ * Returns: the maximum weight in the set
+ */
 double
 xapian_mset_get_max_possible (XapianMSet *mset)
 {
@@ -166,6 +289,19 @@ xapian_mset_get_max_possible (XapianMSet *mset)
   return xapian_mset_get_internal (mset)->get_max_possible ();
 }
 
+/**
+ * xapian_mset_get_max_attained:
+ * @mset: a #XapianMSet
+ *
+ * The greatest weight which is attained by any document in the
+ * database.
+ *
+ * If @mset was the result of xapian_enquire_get_mset() with a
+ * first item set to 0, the returned value is the weight of the
+ * first item in the @mset.
+ *
+ * Returns: the maximum weight in the database
+ */
 double
 xapian_mset_get_max_attained (XapianMSet *mset)
 {
@@ -174,6 +310,14 @@ xapian_mset_get_max_attained (XapianMSet *mset)
   return xapian_mset_get_internal (mset)->get_max_attained ();
 }
 
+/**
+ * xapian_mset_get_size:
+ * @mset: a #XapianMSet
+ *
+ * Retrieves the number of items in the @mset.
+ *
+ * Returns: the number of items
+ */
 unsigned int
 xapian_mset_get_size (XapianMSet *mset)
 {
@@ -182,6 +326,14 @@ xapian_mset_get_size (XapianMSet *mset)
   return xapian_mset_get_internal (mset)->size ();
 }
 
+/**
+ * xapian_mset_is_empty:
+ * @mset: a #XapianMSet
+ *
+ * Checks whether the @mset is empty.
+ *
+ * Returns: %TRUE if the set is empty, and %FALSE otherwise
+ */
 gboolean
 xapian_mset_is_empty (XapianMSet *mset)
 {
