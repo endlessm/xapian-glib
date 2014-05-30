@@ -1,6 +1,6 @@
 DOC_MODULE = xapian-glib
 DOC_MAIN_SGML_FILE = xapian-glib-docs.xml
-DOC_SOURCE_DIR = ../../xapian-glib
+DOC_SOURCE_DIR = $(top_srcdir)/xapian-glib
 
 SCAN_OPTIONS =
 SCANGOBJ_OPTIONS =
