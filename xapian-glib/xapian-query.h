@@ -48,6 +48,14 @@ GType xapian_query_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 XapianQuery *   xapian_query_new                (void);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+XapianQuery *   xapian_query_new_for_term       (const char *term);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+XapianQuery *   xapian_query_new_for_pair       (XapianQueryOp op,
+                                                 XapianQuery *a,
+                                                 XapianQuery *b);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+XapianQuery *   xapian_query_new_from_string    (const char *data);
 
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 gboolean        xapian_query_is_empty           (XapianQuery *query);
@@ -57,6 +65,8 @@ unsigned int    xapian_query_get_length         (XapianQuery *query);
 
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 char *          xapian_query_get_description    (XapianQuery *query);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+char *          xapian_query_serialise          (XapianQuery *query);
 
 G_END_DECLS
 
