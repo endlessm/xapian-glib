@@ -51,6 +51,12 @@ GType xapian_mset_get_type (void);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 unsigned int            xapian_mset_get_firstitem                               (XapianMSet *mset);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
+unsigned int            xapian_mset_get_termfreq                                (XapianMSet *mset,
+                                                                                 const char *term);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+double                  xapian_mset_get_termweight                              (XapianMSet *mset,
+                                                                                 const char *term);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
 unsigned int            xapian_mset_get_matches_lower_bound                     (XapianMSet *mset);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 unsigned int            xapian_mset_get_matches_estimated                       (XapianMSet *mset);
@@ -74,6 +80,7 @@ XAPIAN_GLIB_AVAILABLE_IN_ALL
 XapianMSetIterator *    xapian_mset_get_begin                                   (XapianMSet *mset);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 XapianMSetIterator *    xapian_mset_get_end                                     (XapianMSet *mset);
+
 
 /* Iterator */
 
@@ -121,6 +128,10 @@ XapianDocument *        xapian_mset_iterator_get_document       (XapianMSetItera
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 unsigned int            xapian_mset_iterator_get_doc_id         (XapianMSetIterator *iter,
                                                                  GError            **error);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+unsigned int            xapian_mset_iterator_get_collapse_count (XapianMSetIterator *iter);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+char *                  xapian_mset_iterator_get_description    (XapianMSetIterator *iter);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 XapianMSet *            xapian_mset_iterator_get_mset           (XapianMSetIterator *iter);
 

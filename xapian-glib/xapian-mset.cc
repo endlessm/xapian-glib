@@ -346,6 +346,15 @@ xapian_mset_is_empty (XapianMSet *mset)
 
 /* XapianMSetIterator {{{ */
 
+/**
+ * SECTION:xapian-mset-iterator
+ * @Title: XapianMSetIterator
+ * @Short_Desc: Iterate through a XapianMSet
+ *
+ * #XapianMSetIterator is a class that allows iterating through the items
+ * inside a #XapianMSet.
+ */
+
 class IteratorData {
   public:
     IteratorData (const IteratorData &aData) {
@@ -505,6 +514,22 @@ class IteratorData {
       return 0;
     }
 
+    unsigned int getCollapseCount () {
+      if (!mCurrentInitialized)
+        return 0;
+
+      return mCurrent->get_collapse_count ();
+    }
+
+    char * getDescription () {
+      if (!mCurrentInitialized)
+        return NULL;
+
+      std::string desc = mCurrent->get_description ();
+
+      return g_strdup (desc.c_str ());
+    }
+
     XapianMSet * getMSet () {
       return mMSet;
     }
@@ -553,11 +578,26 @@ xapian_mset_iterator_init (XapianMSetIterator *self)
 
 /**
  * xapian_mset_get_begin:
- * @mset: ...
+ * @mset: a #XapianMSet
  *
- * ...
+ * Creates an iterator placed before the beginning of the @mset.
  *
- * Returns: (transfer full): ...
+ * In order to access the contents of the @mset through the
+ * #XapianMSetIterator API you will have to advance the iterator
+ * first, e.g.:
+ *
+ * |[<!-- language=C -->
+ *   XapianMSetIter *iter = xapian_mset_get_begin (mset);
+ *
+ *   while (xapian_mset_iterator_next (iter))
+ *     {
+ *       // ...
+ *     }
+ *
+ *   g_object_unref (iter);
+ * ]|
+ *
+ * Returns: (transfer full): the newly created #XapianMSetIterator instance
  */
 XapianMSetIterator *
 xapian_mset_get_begin (XapianMSet *mset)
@@ -574,11 +614,26 @@ xapian_mset_get_begin (XapianMSet *mset)
 
 /**
  * xapian_mset_get_end:
- * @mset: ...
+ * @mset: a #XapianMSet
  *
- * ...
+ * Creates a new #XapianMSetIterator placed after the end of the @mset.
  *
- * Returns: (transfer full): ...
+ * In order to access the contents of the @mset through the
+ * #XapianMSetIterator API you will have to advance the iterator
+ * first, e.g.:
+ *
+ * |[<!-- language=C -->
+ *   XapianMSetIter *iter = xapian_mset_get_end (mset);
+ *
+ *   while (xapian_mset_iterator_prev (iter))
+ *     {
+ *       // ...
+ *     }
+ *
+ *   g_object_unref (iter);
+ * ]|
+ *
+ * Returns: (transfer full): the newly created #XapianMSetIterator instance
  */
 XapianMSetIterator *
 xapian_mset_get_end (XapianMSet *mset)
@@ -593,6 +648,14 @@ xapian_mset_get_end (XapianMSet *mset)
   return iter;
 }
 
+/**
+ * xapian_mset_iterator_is_valid:
+ * @iter: a #XapianMSetIterator
+ *
+ * Checks whether @iter is valid.
+ *
+ * Returns: %TRUE if the iterator is valid
+ */
 gboolean
 xapian_mset_iterator_is_valid (XapianMSetIterator *iter)
 {
@@ -601,6 +664,14 @@ xapian_mset_iterator_is_valid (XapianMSetIterator *iter)
   return XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter)->data != NULL;
 }
 
+/**
+ * xapian_mset_iterator_is_begin:
+ * @iter: a #XapianMSetIterator
+ *
+ * Checks if @iter is at the start of the set.
+ *
+ * Returns: %TRUE if the iterator is at the start
+ */
 gboolean
 xapian_mset_iterator_is_begin (XapianMSetIterator *iter)
 {
@@ -614,6 +685,14 @@ xapian_mset_iterator_is_begin (XapianMSetIterator *iter)
   return priv->data->isBegin ();
 }
 
+/**
+ * xapian_mset_iterator_is_end:
+ * @iter: a #XapianMSetIterator
+ *
+ * Checks if @iter is at the end of the set.
+ *
+ * Returns: %TRUE if the iterator is at the end
+ */
 gboolean
 xapian_mset_iterator_is_end (XapianMSetIterator *iter)
 {
@@ -627,6 +706,18 @@ xapian_mset_iterator_is_end (XapianMSetIterator *iter)
   return priv->data->isEnd ();
 }
 
+/**
+ * xapian_mset_iterator_next:
+ * @iter: a #XapianMSetIterator
+ *
+ * Advances the @iter forward.
+ *
+ * You should use the return value to check if @iter is still
+ * valid after being advanced, before using the #XapianMSetIterator
+ * API.
+ *
+ * Returns: %TRUE if the iterator was advanced, and %FALSE otherwise
+ */
 gboolean
 xapian_mset_iterator_next (XapianMSetIterator *iter)
 {
@@ -640,6 +731,18 @@ xapian_mset_iterator_next (XapianMSetIterator *iter)
   return priv->data->next ();
 }
 
+/**
+ * xapian_mset_iterator_prev:
+ * @iter: a #XapianMSetIterator
+ *
+ * Advances the @iter backward.
+ *
+ * You should use the return value to check if @iter is still
+ * valid after being advanced, before using the #XapianMSetIterator
+ * API.
+ *
+ * Returns: %TRUE if the iterator was advanced, and %FALSE otherwise
+ */
 gboolean
 xapian_mset_iterator_prev (XapianMSetIterator *iter)
 {
@@ -653,6 +756,17 @@ xapian_mset_iterator_prev (XapianMSetIterator *iter)
   return priv->data->prev ();
 }
 
+/**
+ * xapian_mset_iterator_get_rank:
+ * @iter: a #XapianMSetIterator
+ *
+ * Retrieves the rank of the current item pointed by @iter.
+ *
+ * The rank is the position of the item in the ordered list
+ * of results. The rank starts from zero.
+ *
+ * Returns: the rank of the item
+ */
 unsigned int
 xapian_mset_iterator_get_rank (XapianMSetIterator *iter)
 {
@@ -666,6 +780,14 @@ xapian_mset_iterator_get_rank (XapianMSetIterator *iter)
   return priv->data->getRank ();
 }
 
+/**
+ * xapian_mset_iterator_get_weight:
+ * @iter: a #XapianMSetIterator
+ *
+ * Retrieves the weight of the current item pointed by @iter.
+ *
+ * Returns: the weight of the item
+ */
 double
 xapian_mset_iterator_get_weight (XapianMSetIterator *iter)
 {
@@ -690,6 +812,49 @@ xapian_mset_iterator_get_percent (XapianMSetIterator *iter)
     return 0;
 
   return priv->data->getPercent ();
+}
+
+/**
+ * xapian_mset_iterator_get_collapse_count:
+ * @iter: a #XapianMSetIterator
+ *
+ * Retrieves the estimated number of documents that have been
+ * collapsed into the current item pointed by @iter.
+ *
+ * Returns: the number of collapsed documents
+ */
+unsigned int
+xapian_mset_iterator_get_collapse_count (XapianMSetIterator *iter)
+{
+  g_return_val_if_fail (XAPIAN_IS_MSET_ITERATOR (iter), 0);
+
+  XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
+
+  if (priv->data == NULL)
+    return 0;
+
+  return priv->data->getCollapseCount ();
+}
+
+/**
+ * xapian_mset_iterator_get_description:
+ * @iter: a #XapianMSetIterator
+ *
+ * Retrieves a description of @iter, typically used for debugging.
+ *
+ * Returns: (transfer full): a description of the iterator
+ */
+char *
+xapian_mset_iterator_get_description (XapianMSetIterator *iter)
+{
+  g_return_val_if_fail (XAPIAN_IS_MSET_ITERATOR (iter), NULL);
+
+  XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
+
+  if (priv->data == NULL)
+    return NULL;
+
+  return priv->data->getDescription ();
 }
 
 /**
