@@ -20,26 +20,106 @@
 
 #include "xapian-utils.h"
 
+/**
+ * xapian_glib_version_string:
+ *
+ * The version string of the Xapian GLib bindings,
+ * e.g. "1.2.3"
+ *
+ * Returns: (transfer none): the version string
+ */
 const char *
 xapian_glib_version_string (void)
+{
+  return XAPIAN_GLIB_VERSION_S;
+}
+
+/**
+ * xapian_glib_major_version:
+ *
+ * The major version of the Xapian GLib bindings,
+ * e.g. 1 in 1.2.3
+ */
+int
+xapian_glib_major_version (void)
+{
+  return XAPIAN_GLIB_MAJOR_VERSION;
+}
+
+/**
+ * xapian_glib_minor_version:
+ *
+ * The minor version of the Xapian GLib bindings,
+ * e.g. 2 in 1.2.3
+ */
+int
+xapian_glib_minor_version (void)
+{
+  return XAPIAN_GLIB_MINOR_VERSION;
+}
+
+/**
+ * xapian_glib_micro_version:
+ *
+ * The micro version of the Xapian GLib bindings,
+ * e.g. 3 in 1.2.3
+ */
+int
+xapian_glib_micro_version (void)
+{
+  return XAPIAN_GLIB_MICRO_VERSION;
+}
+
+/**
+ * xapian_version_string:
+ *
+ * The version string of the underlying Xapian library,
+ * e.g. "1.2.17".
+ *
+ * Returns: (transfer none): the version string
+ */
+const char *
+xapian_version_string (void)
 {
   return Xapian::version_string ();
 }
 
+/**
+ * xapian_major_version:
+ *
+ * The major version of the underlying Xapian library,
+ * e.g 1 in 1.2.17.
+ *
+ * Returns: the major version
+ */
 int
-xapian_glib_major_version (void)
+xapian_major_version (void)
 {
   return Xapian::major_version ();
 }
 
+/**
+ * xapian_minor_version:
+ *
+ * The minor version of the underlying Xapian library,
+ * e.g. 2 in 1.2.17.
+ *
+ * Returns: the minor version
+ */
 int
-xapian_glib_minor_version (void)
+xapian_minor_version (void)
 {
   return Xapian::minor_version ();
 }
 
+/**
+ * xapian_revision:
+ *
+ * The revision number of the underlying Xapian library,
+ * e.g. 17 in 1.2.17
+ */
 int
-xapian_glib_revision (void)
+xapian_revision (void)
 {
   return Xapian::revision ();
 }

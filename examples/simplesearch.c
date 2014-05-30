@@ -48,13 +48,11 @@ main (int argc, char *argv[])
   if (show_version)
     {
       g_print ("%s:\n"
-               "Xapian-GLib version: %d.%d.%d\n"
-               "Xapian version: %d.%d.%d\n",
+               "Xapian-GLib version: %s\n"
+               "Xapian version: %s\n",
                argv[0],
-               XAPIAN_GLIB_MAJOR_VERSION, XAPIAN_GLIB_MINOR_VERSION, XAPIAN_GLIB_MICRO_VERSION,
-               xapian_glib_major_version (),
-               xapian_glib_minor_version (),
-               xapian_glib_revision ());
+               xapian_glib_version_string (),
+               xapian_version_string ());
       return EXIT_SUCCESS;
     }
 

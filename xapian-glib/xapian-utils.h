@@ -28,7 +28,16 @@ int             xapian_glib_major_version       (void);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 int             xapian_glib_minor_version       (void);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
-int             xapian_glib_revision            (void);
+int             xapian_glib_micro_version       (void);
+
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+const char *    xapian_version_string           (void);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+int             xapian_major_version            (void);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+int             xapian_minor_version            (void);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+int             xapian_revision                 (void);
 
 G_END_DECLS
 
