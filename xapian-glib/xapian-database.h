@@ -35,11 +35,13 @@ typedef struct _XapianDatabaseClass     XapianDatabaseClass;
 
 struct _XapianDatabase
 {
+  /*< private >*/
   GObject parent_instance;
 };
 
 struct _XapianDatabaseClass
 {
+  /*< private >*/
   GObjectClass parent_instance;
 };
 

@@ -14,6 +14,18 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * SECTION:xapian-database
+ * @Title: XapianDatabase
+ * @Short_Desc: A read-only database
+ *
+ * #XapianDatabase is a class that allows read-only access to a
+ * Xapian database at a given path.
+ *
+ * Typically, you will use #XapianDatabase to open a database for
+ * querying, by using the #XapianEnquire class.
+ */
+
 #include "config.h"
 
 #include <xapian.h>
@@ -55,6 +67,14 @@ G_DEFINE_TYPE_WITH_CODE (XapianDatabase, xapian_database, G_TYPE_OBJECT,
                          G_ADD_PRIVATE (XapianDatabase)
                          G_IMPLEMENT_INTERFACE (G_TYPE_INITABLE, initable_iface_init))
 
+/*< private >
+ * xapian_database_get_internal:
+ * @self: a #XapianDatabase
+ *
+ * Retrieves the `Xapian::Database` object used by @self.
+ *
+ * Returns: (transfer none): a pointer to the internal database instance
+ */
 Xapian::Database *
 xapian_database_get_internal (XapianDatabase *self)
 {
@@ -63,6 +83,14 @@ xapian_database_get_internal (XapianDatabase *self)
   return priv->mDB;
 }
 
+/*< private >
+ * xapian_database_set_internal:
+ * @self: a #XapianDatabase
+ * @aDB: a `Xapian::Database` instance
+ *
+ * Sets the internal database instance wrapped by @self, clearing
+ * any existing instance if needed.
+ */
 void
 xapian_database_set_internal (XapianDatabase *self,
                               Xapian::Database *aDB)
@@ -74,6 +102,18 @@ xapian_database_set_internal (XapianDatabase *self,
   priv->mDB = aDB;
 }
 
+/*< private >
+ * xapian_database_set_is_writable:
+ * @self: a #XapianDatabase
+ * @is_writable: whether the internal instance is writable
+ *
+ * Sets the writable bit on the #XapianDatabase wrapper.
+ *
+ * The writable bit is needed because #XapianDatabase acts as
+ * a wrapper of both #XapianDatabase and #XapianWritableDatabase
+ * to preserve the inheritance model of C++. We use the writable
+ * bit to avoid a type check.
+ */
 void
 xapian_database_set_is_writable (XapianDatabase *self,
 				 gboolean        is_writable)
@@ -83,6 +123,14 @@ xapian_database_set_is_writable (XapianDatabase *self,
   priv->is_writable = !!is_writable;
 }
 
+/*< private >
+ * xapian_database_get_is_writable:
+ * @self: a #XapianDatabase
+ *
+ * Retrieves whether the #XapianDatabase has the writable bit set.
+ *
+ * Returns: %TRUE if the database is writable, and %FALSE otherwise
+ */
 gboolean
 xapian_database_get_is_writable (XapianDatabase *self)
 {
@@ -91,6 +139,15 @@ xapian_database_get_is_writable (XapianDatabase *self)
   return priv->is_writable;
 }
 
+/*< private >
+ * xapian_database_get_path:
+ * @self: a #XapianDatabase
+ *
+ * Internal accessor for the #XapianDatabase:path property that
+ * avoids a copy.
+ *
+ * Returs: (transfer none): the path of the database
+ */
 const char *
 xapian_database_get_path (XapianDatabase *self)
 {
@@ -202,6 +259,11 @@ xapian_database_class_init (XapianDatabaseClass *klass)
   gobject_class->get_property = xapian_database_get_property;
   gobject_class->finalize = xapian_database_finalize;
 
+  /**
+   * XapianDatabase:path:
+   *
+   * The path to the database directory.
+   */
   obj_props[PROP_PATH] =
     g_param_spec_string ("path",
                          "Path",
@@ -219,6 +281,17 @@ xapian_database_init (XapianDatabase *self)
 {
 }
 
+/**
+ * xapian_database_new:
+ * @error: return location for a #GError, or %NULL
+ *
+ * Creates and initializes a new, empty #XapianDatabase instance.
+ *
+ * If the initialization was not successful, @error is set.
+ *
+ * Returns: (transfer full): the newly created #XapianDatabase instance,
+ *   or %NULL if the initialization failed
+ */
 XapianDatabase *
 xapian_database_new (GError **error)
 {
@@ -227,6 +300,18 @@ xapian_database_new (GError **error)
   return static_cast<XapianDatabase *> (g_initable_new (XAPIAN_TYPE_DATABASE, NULL, error, NULL));
 }
 
+/**
+ * xapian_database_new_with_path:
+ * @path: the path to the database
+ * @error: return location for a #GError, or %NULL
+ *
+ * Creates and initializes a new #XapianDatabase at @path.
+ *
+ * If the initialization was not successful, @error is set.
+ *
+ * Returns: (transfer full): the newly created #XapianDatabase instance
+ *   for the given @path, or %NULL if the initialization failed
+ */
 XapianDatabase *
 xapian_database_new_with_path (const char  *path,
                                GError     **error)
@@ -240,6 +325,15 @@ xapian_database_new_with_path (const char  *path,
                                                         NULL));
 }
 
+/**
+ * xapian_database_close:
+ * @db: a #XapianDatabase
+ *
+ * Explicitly closes a database.
+ *
+ * #XapianDatabase instances are implicitly closed when being
+ * finalized, so you'll rarely need to call this function.
+ */
 void
 xapian_database_close (XapianDatabase *db)
 {
@@ -250,11 +344,13 @@ xapian_database_close (XapianDatabase *db)
 
 /**
  * xapian_database_get_description:
- * @db: ...
+ * @db: a #XapianDatabase
  *
- * ...
+ * Retrieves a string describing the #XapianDatabase.
  *
- * Returns: (transfer full): ...
+ * Typically, this function is used when debugging.
+ *
+ * Returns: (transfer full): a description of the database
  */
 char *
 xapian_database_get_description (XapianDatabase *db)
@@ -268,11 +364,11 @@ xapian_database_get_description (XapianDatabase *db)
 
 /**
  * xapian_database_get_uuid:
- * @db: ...
+ * @db: a #XapianDatabase
  *
- * ...
+ * Retrieves a unique identifier for a #XapianDatabase.
  *
- * Returns: (transfer full): ...
+ * Returns: (transfer full): a unique identifier for the database
  */
 char *
 xapian_database_get_uuid (XapianDatabase *db)
@@ -286,12 +382,16 @@ xapian_database_get_uuid (XapianDatabase *db)
 
 /**
  * xapian_database_get_metadata:
- * @db: ...
- * @key: ...
+ * @db: a #XapianDatabase
+ * @key: a key to access in the database metadata
  *
- * ...
+ * Retrieves custom metadata associated to a key inside the
+ * #XapianDatabase.
  *
- * Returns: (transfer full): ...
+ * In case of error, this function returns %NULL and sets
+ * the @error argument.
+ *
+ * Returns: (transfer full): the stored metadata.
  */
 char *
 xapian_database_get_metadata (XapianDatabase  *db,
@@ -319,6 +419,14 @@ xapian_database_get_metadata (XapianDatabase  *db,
     }
 }
 
+/**
+ * xapian_database_get_doc_count:
+ * @db: a #XapianDatabase
+ *
+ * Retrieves the number of documents in the database.
+ *
+ * Returns: the number of documents in the database
+ */
 unsigned int
 xapian_database_get_doc_count (XapianDatabase *db)
 {
@@ -327,6 +435,14 @@ xapian_database_get_doc_count (XapianDatabase *db)
   return xapian_database_get_internal (db)->get_doccount ();
 }
 
+/**
+ * xapian_database_get_last_doc_id:
+ * @db: a #XapianDatabase
+ *
+ * Retrieves the highest document id in use in the database
+ *
+ * Returns: the highest document id in use
+ */
 unsigned int
 xapian_database_get_last_doc_id (XapianDatabase *db)
 {
@@ -337,13 +453,17 @@ xapian_database_get_last_doc_id (XapianDatabase *db)
 
 /**
  * xapian_database_get_document:
- * @db: ...
- * @docid: ...
- * @error: ...
+ * @db: a #XapianDatabase
+ * @docid: the document id to retrieve
+ * @error: return location for a #GError, or %NULL
  *
- * ...
+ * Retrieves the #XapianDocument with the given @docid inside
+ * the database.
  *
- * Returns: (transfer full): ...
+ * If the @docid was not found, @error is set and %NULL is
+ * returned.
+ *
+ * Returns: (transfer full): a #XapianDocument instance
  */
 XapianDocument *
 xapian_database_get_document (XapianDatabase  *db,
@@ -370,6 +490,14 @@ xapian_database_get_document (XapianDatabase  *db,
     }
 }
 
+/**
+ * xapian_database_add_database:
+ * @db: a #XapianDatabase
+ * @new_db: a #XapianDatabase
+ *
+ * Adds an existing database (or group of databases) to those
+ * accessed by @db.
+ */
 void
 xapian_database_add_database (XapianDatabase *db,
                               XapianDatabase *new_db)
