@@ -14,6 +14,19 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * SECTION:xapian-enquire
+ * @Title: XapianEnquire
+ * @Short_Desc: Query a database for matching documents
+ *
+ * #XapianEnquire is class used to perform queries on #XapianDatabases.
+ *
+ * Typically, you create a new #XapianEnquire instance for a specific
+ * #XapianDatabase (which may contain multiple groups of databases),
+ * and assign a #XapianQuery to the #XapianEnquire instance; then you
+ * retrive the set of matching documents through #XapianMSet.
+ */
+
 #include "config.h"
 
 #include "xapian-enquire.h"
@@ -165,6 +178,11 @@ xapian_enquire_class_init (XapianEnquireClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
+  /**
+   * XapianEnquire:database:
+   *
+   * The #XapianDatabase to query.
+   */
   obj_props[PROP_DATABASE] =
     g_param_spec_object ("database",
                          "Database",
@@ -186,6 +204,19 @@ xapian_enquire_init (XapianEnquire *self)
 {
 }
 
+/**
+ * xapian_query_new:
+ * @db: a #XapianDatabase
+ * @error: return location for a #GError, or %NULL
+ *
+ * Creates and initializes a new #XapianEnquire instance for the
+ * given #XapianDatabase.
+ *
+ * If the initializion failed, @error is set, and this function
+ * will return %NULL.
+ *
+ * Returns: (transfer full): the newly created #XapianEnquire instance
+ */
 XapianEnquire *
 xapian_enquire_new (XapianDatabase *db,
                     GError        **error)
@@ -198,6 +229,14 @@ xapian_enquire_new (XapianDatabase *db,
                                                        NULL));
 }
 
+/**
+ * xapian_enquire_set_query:
+ * @enquire: a #XapianEnquire
+ * @query: a #XapianQuery
+ * @qlen: the length of the @query
+ *
+ * Sets the #XapianQuery for the #XapianEnquire instance.
+ */
 void
 xapian_enquire_set_query (XapianEnquire *enquire,
 			  XapianQuery   *query,
@@ -226,11 +265,11 @@ xapian_enquire_set_query (XapianEnquire *enquire,
 
 /**
  * xapian_enquire_get_query:
- * @enquire: ...
+ * @enquire: a #XapianEnquire
  *
- * ...
+ * Retrieves the #XapianQuery set using xapian_enquire_set_query().
  *
- * Returns: (transfer none): ...
+ * Returns: (transfer none): a #XapianQuery or %NULL if none is set
  */
 XapianQuery *
 xapian_enquire_get_query (XapianEnquire *enquire)
@@ -244,13 +283,23 @@ xapian_enquire_get_query (XapianEnquire *enquire)
 
 /**
  * xapian_enquire_get_mset:
- * @enquire: ..
- * @first: ...
- * @max_items: ...
+ * @enquire: a #XapianEnquire
+ * @first: the first item in the result set
+ * @max_items: the maximum number of results to return
  *
- * ...
+ * Retrieves @max_items items matching the #XapianQuery used with
+ * the @enquire instance.
  *
- * Returns: (transfer full): ...
+ * If @first is zero, the first item returned will be the one with
+ * the highest score. If non-zero, the value will be the number of
+ * items ignored. A combination of @first and @max_items can be used
+ * to paginate the matching results.
+ *
+ * In case of error, @error will be set, and this function will
+ * return %NULL.
+ *
+ * Returns: (transfer full): a #XapianMSet containing the matching
+ *   documents
  */
 XapianMSet *
 xapian_enquire_get_mset (XapianEnquire *enquire,
