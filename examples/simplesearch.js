@@ -1,3 +1,8 @@
+// simplesearch.js - port of simplesearch.c to JS using GJS
+//
+// you need to run this script after running `make install` from the examples/
+// directory where the testdb database lives.
+
 const Xapian = imports.gi.Xapian;
 
 const query_string = "africa";
