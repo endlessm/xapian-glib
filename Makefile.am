@@ -31,7 +31,7 @@ lcov-clean:
 	-$(RM) -rf xapian-glib-lcov.info xapian-glib-lcov
 else
 lcov genlcov lcov-clean:
-	@echo You need to configure Graphene with --enable-code-coverage
+	@echo You need to configure Xapian-GLib with --enable-code-coverage
 endif
 
 .PHONY: lcov genlcov lcov-clean

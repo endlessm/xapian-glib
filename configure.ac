@@ -188,13 +188,13 @@ AS_IF([test "x$use_gcov" = "xyes"],
         AC_CHECK_PROG(LTP_GENHTML, genhtml, genhtml)
 
         if test "$LTP"; then
-          AC_CACHE_CHECK([for ltp version], graphene_cv_ltp_version,
+          AC_CACHE_CHECK([for ltp version], xapian_cv_ltp_version,
                          [
-                           graphene_cv_ltp_version=invalid
+                           xapian_cv_ltp_version=invalid
                            ltp_version=`$LTP -v 2>/dev/null | $SED -e 's/^.* //'`
                            for ltp_check_version in $ltp_version_list; do
                              if test "$ltp_version" = "$ltp_check_version"; then
-                               graphene_cv_ltp_version="$ltp_check_version (ok)"
+                               xapian_cv_ltp_version="$ltp_check_version (ok)"
                              fi
                            done
                          ])
@@ -203,7 +203,7 @@ AS_IF([test "x$use_gcov" = "xyes"],
           AC_MSG_ERROR([$ltp_msg])
         fi
 
-        case $graphene_cv_ltp_version in
+        case $xapian_cv_ltp_version in
           ""|invalid[)]
           ltp_msg="You must have one of the following versions of LTP: $ltp_version_list (found: $ltp_version)."
           AC_MSG_ERROR([$ltp_msg])
