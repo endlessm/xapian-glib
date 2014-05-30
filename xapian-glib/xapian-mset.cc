@@ -264,6 +264,8 @@ class IteratorData {
           return *mCurrent != *mEnd;
         }
 
+      g_clear_object (&mDocument);
+
       ++(*mCurrent);
 
       if (*mCurrent == *mEnd)
@@ -279,6 +281,8 @@ class IteratorData {
           mCurrentInitialized = true;
           return *mCurrent != *mBegin;
         }
+
+      g_clear_object (&mDocument);
 
       --(*mCurrent);
 
