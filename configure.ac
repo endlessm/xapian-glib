@@ -218,9 +218,9 @@ AS_IF([test "x$use_gcov" = "xyes"],
         AC_DEFINE(HAVE_GCOV, 1, [Whether you have gcov])
 
         dnl Remove all optimization flags from CFLAGS
-        changequote({,})
+        m4_changequote({,})
         CXXFLAGS=`echo "$CXXFLAGS" | $SED -e 's/-O[0-9]*//g'`
-        changequote([,])
+        m4_changequote([,])
 
         dnl Define the special gcc flags
         CXXFLAGS="$CXXFLAGS -O0 -fprofile-arcs -ftest-coverage"
