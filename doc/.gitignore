@@ -14,3 +14,4 @@ xapian-glib.hierarchy
 xapian-glib.interfaces
 xapian-glib.prerequisites
 xapian-glib.signals
+xapian-glib.types

@@ -2,7 +2,7 @@ DOC_MODULE = xapian-glib
 DOC_MAIN_SGML_FILE = xapian-glib-docs.xml
 DOC_SOURCE_DIR = $(top_srcdir)/xapian-glib
 
-SCAN_OPTIONS =
+SCAN_OPTIONS = --rebuild-types
 SCANGOBJ_OPTIONS =
 MKDB_OPTIONS = --output-format=xml --name-space=xapian
 FIXXREF_OPTIONS =
