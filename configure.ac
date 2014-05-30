@@ -233,6 +233,10 @@ dnl === Introspection =========================================================
 
 GOBJECT_INTROSPECTION_CHECK([1.40.0])
 
+dnl === API reference =========================================================
+
+GTK_DOC_CHECK([1.20], [--flavour no-tmpl])
+
 dnl === Output ================================================================
 
 AC_SUBST(XAPIAN_GLIB_MAJOR_VERSION)
@@ -255,6 +259,8 @@ AC_CONFIG_FILES([
         xapian-glib/tests/Makefile
 
         examples/Makefile
+
+        doc/Makefile
 ])
 
 AC_OUTPUT

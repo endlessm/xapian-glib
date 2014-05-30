@@ -1,0 +1,16 @@
+/*.stamp
+/html
+/xml
+xapian-glib-decl-list.txt
+xapian-glib-decl-list.txt.bak
+xapian-glib-decl.txt
+xapian-glib-decl.txt.bak
+xapian-glib-overrides.txt
+xapian-glib-undeclared.txt
+xapian-glib-undocumented.txt
+xapian-glib-unused.txt
+xapian-glib.args
+xapian-glib.hierarchy
+xapian-glib.interfaces
+xapian-glib.prerequisites
+xapian-glib.signals

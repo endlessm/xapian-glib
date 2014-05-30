@@ -23,6 +23,7 @@ config.h.in~
 config.log
 config.status
 configure
+gtk-doc.make
 libtool
 stamp-h1
 xapian-glib-lcov.info
