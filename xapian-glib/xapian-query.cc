@@ -47,27 +47,26 @@ xapian_query_get_internal (XapianQuery *self)
 {
   XapianQueryPrivate *priv = XAPIAN_QUERY_GET_PRIVATE (self);
 
+  if (!priv->mQuery)
+    priv->mQuery = new Xapian::Query ();
+
   return priv->mQuery;
 }
 
 static void
-xapian_query_dispose (GObject *gobject)
+xapian_query_finalize (GObject *gobject)
 {
   XapianQueryPrivate *priv = XAPIAN_QUERY_GET_PRIVATE (gobject);
 
-  if (priv->mQuery)
-    {
-      delete priv->mQuery;
-      priv->mQuery = NULL;
-    }
+  delete priv->mQuery;
 
-  G_OBJECT_CLASS (xapian_query_parent_class)->dispose (gobject);
+  G_OBJECT_CLASS (xapian_query_parent_class)->finalize (gobject);
 }
 
 static void
 xapian_query_class_init (XapianQueryClass *klass)
 {
-  G_OBJECT_CLASS (klass)->dispose = xapian_query_dispose;
+  G_OBJECT_CLASS (klass)->finalize = xapian_query_finalize;
 }
 
 static void
