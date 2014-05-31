@@ -289,6 +289,7 @@ xapian_enquire_get_query (XapianEnquire *enquire)
  * @enquire: a #XapianEnquire
  * @first: the first item in the result set
  * @max_items: the maximum number of results to return
+ * @error: return location for a #GError
  *
  * Retrieves @max_items items matching the #XapianQuery used with
  * the @enquire instance.

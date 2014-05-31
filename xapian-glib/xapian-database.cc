@@ -384,6 +384,7 @@ xapian_database_get_uuid (XapianDatabase *db)
  * xapian_database_get_metadata:
  * @db: a #XapianDatabase
  * @key: a key to access in the database metadata
+ * @error: return location for a #GError
  *
  * Retrieves custom metadata associated to a key inside the
  * #XapianDatabase.
