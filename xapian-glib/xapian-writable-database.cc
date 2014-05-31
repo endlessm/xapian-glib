@@ -117,10 +117,10 @@ initable_default_init (GInitableIface *iface)
 }
 
 static void
-xapian_writable_database_set_property (GObject *gobject,
-                                       guint prop_id,
+xapian_writable_database_set_property (GObject      *gobject,
+                                       guint         prop_id,
                                        const GValue *value,
-                                       GParamSpec *pspec)
+                                       GParamSpec   *pspec)
 {
   XapianWritableDatabasePrivate *priv;
 
@@ -138,9 +138,9 @@ xapian_writable_database_set_property (GObject *gobject,
 }
 
 static void
-xapian_writable_database_get_property (GObject *gobject,
-                                       guint prop_id,
-                                       GValue *value,
+xapian_writable_database_get_property (GObject    *gobject,
+                                       guint       prop_id,
+                                       GValue     *value,
                                        GParamSpec *pspec)
 {
   XapianWritableDatabasePrivate *priv;

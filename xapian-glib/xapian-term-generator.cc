@@ -87,10 +87,10 @@ xapian_term_generator_dispose (GObject *gobject)
 }
 
 static void
-xapian_term_generator_set_property (GObject *gobject,
-                                    guint prop_id,
+xapian_term_generator_set_property (GObject      *gobject,
+                                    guint         prop_id,
                                     const GValue *value,
-                                    GParamSpec *pspec)
+                                    GParamSpec   *pspec)
 {
   XapianTermGenerator *self = XAPIAN_TERM_GENERATOR (gobject);
 
@@ -118,9 +118,9 @@ xapian_term_generator_set_property (GObject *gobject,
 }
 
 static void
-xapian_term_generator_get_property (GObject *gobject,
-                                    guint prop_id,
-                                    GValue *value,
+xapian_term_generator_get_property (GObject    *gobject,
+                                    guint       prop_id,
+                                    GValue     *value,
                                     GParamSpec *pspec)
 {
   XapianTermGeneratorPrivate *priv = XAPIAN_TERM_GENERATOR_GET_PRIVATE (gobject);

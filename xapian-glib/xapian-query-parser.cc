@@ -85,10 +85,10 @@ xapian_query_parser_dispose (GObject *gobject)
 }
 
 static void
-xapian_query_parser_set_property (GObject *gobject,
-                                  guint prop_id,
+xapian_query_parser_set_property (GObject      *gobject,
+                                  guint         prop_id,
                                   const GValue *value,
-                                  GParamSpec *pspec)
+                                  GParamSpec   *pspec)
 {
   XapianQueryParser *self = XAPIAN_QUERY_PARSER (gobject);
 
@@ -112,9 +112,9 @@ xapian_query_parser_set_property (GObject *gobject,
 }
 
 static void
-xapian_query_parser_get_property (GObject *gobject,
-                                  guint prop_id,
-                                  GValue *value,
+xapian_query_parser_get_property (GObject    *gobject,
+                                  guint       prop_id,
+                                  GValue     *value,
                                   GParamSpec *pspec)
 {
   XapianQueryParserPrivate *priv = XAPIAN_QUERY_PARSER_GET_PRIVATE (gobject);

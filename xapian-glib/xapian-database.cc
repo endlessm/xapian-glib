@@ -212,10 +212,10 @@ xapian_database_finalize (GObject *self)
 }
 
 static void
-xapian_database_set_property (GObject *gobject,
-                              guint prop_id,
+xapian_database_set_property (GObject      *gobject,
+                              guint         prop_id,
                               const GValue *value,
-                              GParamSpec *pspec)
+                              GParamSpec   *pspec)
 {
   XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (gobject);
 
@@ -232,9 +232,9 @@ xapian_database_set_property (GObject *gobject,
 }
 
 static void
-xapian_database_get_property (GObject *gobject,
-                              guint prop_id,
-                              GValue *value,
+xapian_database_get_property (GObject    *gobject,
+                              guint       prop_id,
+                              GValue     *value,
                               GParamSpec *pspec)
 {
   XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (gobject);

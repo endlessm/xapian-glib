@@ -117,10 +117,10 @@ xapian_stem_finalize (GObject *gobject)
 }
 
 static void
-xapian_stem_set_property (GObject *gobject,
-                          guint prop_id,
+xapian_stem_set_property (GObject      *gobject,
+                          guint         prop_id,
                           const GValue *value,
-                          GParamSpec *pspec)
+                          GParamSpec   *pspec)
 {
   XapianStemPrivate *priv = XAPIAN_STEM_GET_PRIVATE (gobject);
 
@@ -137,9 +137,9 @@ xapian_stem_set_property (GObject *gobject,
 }
 
 static void
-xapian_stem_get_property (GObject *gobject,
-                          guint prop_id,
-                          GValue *value,
+xapian_stem_get_property (GObject    *gobject,
+                          guint       prop_id,
+                          GValue     *value,
                           GParamSpec *pspec)
 {
   XapianStemPrivate *priv = XAPIAN_STEM_GET_PRIVATE (gobject);

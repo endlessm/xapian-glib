@@ -117,10 +117,10 @@ initable_iface_init (GInitableIface *iface)
 }
 
 static void
-xapian_enquire_set_property (GObject *gobject,
-                             guint prop_id,
+xapian_enquire_set_property (GObject      *gobject,
+                             guint         prop_id,
                              const GValue *value,
-                             GParamSpec *pspec)
+                             GParamSpec   *pspec)
 {
   XapianEnquire *self = XAPIAN_ENQUIRE (gobject);
 
@@ -136,9 +136,9 @@ xapian_enquire_set_property (GObject *gobject,
 }
 
 static void
-xapian_enquire_get_property (GObject *gobject,
-                             guint prop_id,
-                             GValue *value,
+xapian_enquire_get_property (GObject    *gobject,
+                             guint       prop_id,
+                             GValue     *value,
                              GParamSpec *pspec)
 {
   XapianEnquirePrivate *priv = XAPIAN_ENQUIRE_GET_PRIVATE (gobject);
