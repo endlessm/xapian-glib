@@ -358,9 +358,11 @@ xapian_query_parser_add_prefix (XapianQueryParser *parser,
       XapianQueryParserPrivate *priv = XAPIAN_QUERY_PARSER_GET_PRIVATE (parser);
       priv->mQueryParser->add_prefix (std::string (field), std::string (prefix));
     }
-  catch (const Xapian::Error &err)
+  catch (const Xapian::InvalidOperationError &err)
     {
-      /* XXX: should we display a critical? */
+      std::string desc = err.get_msg ();
+
+      g_critical ("add_prefix: %s", desc.c_str ());
     }
 }
 
@@ -383,8 +385,20 @@ xapian_query_parser_add_boolean_prefix (XapianQueryParser *parser,
   g_return_if_fail (XAPIAN_IS_QUERY_PARSER (parser));
   g_return_if_fail (field != NULL && prefix != NULL);
 
-  XapianQueryParserPrivate *priv = XAPIAN_QUERY_PARSER_GET_PRIVATE (parser);
-  priv->mQueryParser->add_boolean_prefix (std::string (field), std::string (prefix), exclusive);
+  try
+    {
+      XapianQueryParserPrivate *priv = XAPIAN_QUERY_PARSER_GET_PRIVATE (parser);
+
+      priv->mQueryParser->add_boolean_prefix (std::string (field),
+                                              std::string (prefix),
+                                              exclusive);
+    }
+  catch (const Xapian::InvalidOperationError &err)
+    {
+      std::string desc = err.get_msg ();
+
+      g_critical ("add_boolean_prefix: %s", desc.c_str ());
+    }
 }
 
 /**
