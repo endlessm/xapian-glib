@@ -32,7 +32,7 @@
  *
  * |[<!-- language="C" -->
  *   // retrieve the first 10 results
- *   XapianMSet *mset = xapian_enquire_get_mset (enquire, 0, 10);
+ *   XapianMSet *mset = xapian_enquire_get_mset (enquire, 0, 10, NULL);
  *
  *   unsigned int size = xapian_mset_get_size (mset);
  *
