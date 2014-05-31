@@ -4,7 +4,7 @@ DOC_SOURCE_DIR = $(top_srcdir)/xapian-glib
 
 SCAN_OPTIONS = --rebuild-types
 SCANGOBJ_OPTIONS =
-MKDB_OPTIONS = --output-format=xml --name-space=xapian
+MKDB_OPTIONS = --output-format=xml --name-space=xapian --source-suffixes=c,h,cc
 FIXXREF_OPTIONS =
 
 HFILE_GLOB = $(top_srcdir)/xapian-glib/*.h $(top_builddir)/xapian-glib/*.h
