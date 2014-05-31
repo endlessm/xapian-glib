@@ -47,6 +47,7 @@ source_c_public = \
 	xapian-enums.cc \
 	xapian-error.cc \
 	xapian-mset.cc \
+	xapian-mset-iterator.cc \
 	xapian-query.cc \
 	xapian-query-parser.cc \
 	xapian-stem.cc \
