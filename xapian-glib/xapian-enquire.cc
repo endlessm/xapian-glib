@@ -69,9 +69,7 @@ xapian_enquire_set_database (XapianEnquire  *self,
 {
   XapianEnquirePrivate *priv = XAPIAN_ENQUIRE_GET_PRIVATE (self);
 
-#ifdef XAPIAN_GLIB_ENABLE_DEBUG
   g_assert (priv->database == NULL);
-#endif
 
   priv->database = static_cast<XapianDatabase *> (g_object_ref (db));
 }
