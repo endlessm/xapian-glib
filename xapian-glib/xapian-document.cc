@@ -39,15 +39,11 @@ typedef struct {
 G_DEFINE_TYPE_WITH_PRIVATE (XapianDocument, xapian_document, G_TYPE_OBJECT)
 
 static void
-xapian_document_dispose (GObject *gobject)
+xapian_document_finalize (GObject *gobject)
 {
   XapianDocumentPrivate *priv = XAPIAN_DOCUMENT_GET_PRIVATE (gobject);
 
-  if (priv->mDocument)
-    {
-      delete priv->mDocument;
-      priv->mDocument = NULL;
-    }
+  delete priv->mDocument;
 
   G_OBJECT_CLASS (xapian_document_parent_class)->dispose (gobject);
 }
@@ -55,7 +51,7 @@ xapian_document_dispose (GObject *gobject)
 static void
 xapian_document_class_init (XapianDocumentClass *klass)
 {
-  G_OBJECT_CLASS (klass)->dispose = xapian_document_dispose;
+  G_OBJECT_CLASS (klass)->finalize = xapian_document_finalize;
 }
 
 static void
