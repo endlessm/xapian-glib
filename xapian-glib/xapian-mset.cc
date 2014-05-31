@@ -341,6 +341,25 @@ xapian_mset_is_empty (XapianMSet *mset)
 }
 
 /**
+ * xapian_mset_convert_to_percent:
+ * @mset: a #XapianMSet
+ * @weight: the weight of an item
+ *
+ * Converts a weight, typically returned by
+ * xapian_mset_iterator_get_weight(), into a percentage.
+ *
+ * Returns: the weight of an item expressed as a percentage
+ */
+int
+xapian_mset_convert_to_percent (XapianMSet *mset,
+                                double      weight)
+{
+  g_return_val_if_fail (XAPIAN_IS_MSET (mset), 0);
+
+  return xapian_mset_get_internal (mset)->convert_to_percent (weight);
+}
+
+/**
  * xapian_mset_get_begin:
  * @mset: a #XapianMSet
  *

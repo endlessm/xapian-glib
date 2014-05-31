@@ -77,6 +77,9 @@ unsigned int            xapian_mset_get_size                                    
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 gboolean                xapian_mset_is_empty                                    (XapianMSet *mset);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
+int                     xapian_mset_convert_to_percent                          (XapianMSet *mset,
+                                                                                 double      weight);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
 XapianMSetIterator *    xapian_mset_get_begin                                   (XapianMSet *mset);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 XapianMSetIterator *    xapian_mset_get_end                                     (XapianMSet *mset);
