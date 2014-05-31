@@ -17,6 +17,7 @@ XAPIAN_DATABASE_CLASS
 XAPIAN_DATABASE_GET_CLASS
 XAPIAN_IS_DATABASE
 XAPIAN_IS_DATABASE_CLASS
+XAPIAN_TYPE_DATABASE
 XapianDatabase
 XapianDatabaseClass
 xapian_database_get_type
@@ -49,6 +50,7 @@ XAPIAN_DOCUMENT_CLASS
 XAPIAN_DOCUMENT_GET_CLASS
 XAPIAN_IS_DOCUMENT
 XAPIAN_IS_DOCUMENT_CLASS
+XAPIAN_TYPE_DOCUMENT
 XapianDocument
 XapianDocumentClass
 xapian_document_get_type
@@ -67,61 +69,15 @@ XAPIAN_ENQUIRE_CLASS
 XAPIAN_ENQUIRE_GET_CLASS
 XAPIAN_IS_ENQUIRE
 XAPIAN_IS_ENQUIRE_CLASS
+XAPIAN_TYPE_ENQUIRE
 XapianEnquire
 XapianEnquireClass
 xapian_enquire_get_type
 </SECTION>
 
 <SECTION>
-<FILE>xapian-enums</FILE>
-XapianDatabaseAction
-XapianError
-xapian_error_quark
-XapianQueryOp
-XapianQueryParserFeature
-XapianStemStrategy
-<SUBSECTION Standard>
-XAPIAN_ERROR
-XAPIAN_TYPE_DATABASE_ACTION
-XAPIAN_TYPE_ERROR
-XAPIAN_TYPE_QUERY_OP
-XAPIAN_TYPE_QUERY_PARSER_FEATURE
-XAPIAN_TYPE_STEM_STRATEGY
-xapian_database_action_get_type
-xapian_error_get_type
-xapian_query_op_get_type
-xapian_query_parser_feature_get_type
-xapian_stem_strategy_get_type
-</SECTION>
-
-<SECTION>
-<FILE>xapian-glib-types</FILE>
-XAPIAN_TYPE_DATABASE
-XAPIAN_TYPE_WRITABLE_DATABASE
-XAPIAN_TYPE_DOCUMENT
-XAPIAN_TYPE_ENQUIRE
-XAPIAN_TYPE_QUERY
-XAPIAN_TYPE_STEM
-XAPIAN_TYPE_QUERY_PARSER
-XAPIAN_TYPE_MSET
-XAPIAN_TYPE_MSET_ITERATOR
-XAPIAN_TYPE_TERM_GENERATOR
-XapianDatabase
-XapianWritableDatabase
-XapianMSetIterator
-XapianEnquire
-XapianQueryParser
-XapianQuery
-XapianTermGenerator
-XapianStem
-XapianDocument
-</SECTION>
-
-<SECTION>
 <FILE>xapian-mset</FILE>
 <TITLE>XapianMSet</TITLE>
-XapianMSet
-XapianMSetClass
 xapian_mset_get_firstitem
 xapian_mset_get_termfreq
 xapian_mset_get_termweight
@@ -135,6 +91,7 @@ xapian_mset_get_max_possible
 xapian_mset_get_max_attained
 xapian_mset_get_size
 xapian_mset_is_empty
+xapian_mset_convert_to_percent
 xapian_mset_get_begin
 xapian_mset_get_end
 <SUBSECTION Standard>
@@ -143,14 +100,15 @@ XAPIAN_IS_MSET_CLASS
 XAPIAN_MSET
 XAPIAN_MSET_CLASS
 XAPIAN_MSET_GET_CLASS
+XAPIAN_TYPE_MSET
+XapianMSet
+XapianMSetClass
 xapian_mset_get_type
 </SECTION>
 
 <SECTION>
 <FILE>xapian-mset-iterator</FILE>
 <TITLE>XapianMSetIterator</TITLE>
-XapianMSetIterator
-XapianMSetIteratorClass
 xapian_mset_iterator_next
 xapian_mset_iterator_prev
 xapian_mset_iterator_is_valid
@@ -170,6 +128,9 @@ XAPIAN_IS_MSET_ITERATOR_CLASS
 XAPIAN_MSET_ITERATOR
 XAPIAN_MSET_ITERATOR_CLASS
 XAPIAN_MSET_ITERATOR_GET_CLASS
+XAPIAN_TYPE_MSET_ITERATOR
+XapianMSetIterator
+XapianMSetIteratorClass
 xapian_mset_iterator_get_type
 </SECTION>
 
@@ -178,6 +139,7 @@ xapian_mset_iterator_get_type
 <TITLE>XapianQuery</TITLE>
 xapian_query_new
 xapian_query_new_for_term
+XapianQueryOp
 xapian_query_new_for_pair
 xapian_query_new_from_string
 xapian_query_is_empty
@@ -190,7 +152,10 @@ XAPIAN_IS_QUERY_CLASS
 XAPIAN_QUERY
 XAPIAN_QUERY_CLASS
 XAPIAN_QUERY_GET_CLASS
+XAPIAN_TYPE_QUERY
+XAPIAN_TYPE_QUERY_OP
 xapian_query_get_type
+xapian_query_op_get_type
 </SECTION>
 
 <SECTION>
@@ -198,11 +163,13 @@ xapian_query_get_type
 <TITLE>XapianQueryParser</TITLE>
 xapian_query_parser_new
 xapian_query_parser_set_stemmer
+XapianStemStrategy
 xapian_query_parser_set_stemming_strategy
 xapian_query_parser_set_database
 xapian_query_parser_add_prefix
 xapian_query_parser_add_boolean_prefix
 xapian_query_parser_parse_query
+XapianQueryParserFeature
 xapian_query_parser_parse_query_full
 <SUBSECTION Standard>
 XAPIAN_IS_QUERY_PARSER
@@ -210,9 +177,14 @@ XAPIAN_IS_QUERY_PARSER_CLASS
 XAPIAN_QUERY_PARSER
 XAPIAN_QUERY_PARSER_CLASS
 XAPIAN_QUERY_PARSER_GET_CLASS
+XAPIAN_TYPE_QUERY_PARSER
+XAPIAN_TYPE_QUERY_PARSER_FEATURE
+XAPIAN_TYPE_STEM_STRATEGY
 XapianQueryParser
 XapianQueryParserClass
+xapian_query_parser_feature_get_type
 xapian_query_parser_get_type
+xapian_stem_strategy_get_type
 </SECTION>
 
 <SECTION>
@@ -229,6 +201,7 @@ XAPIAN_IS_STEM_CLASS
 XAPIAN_STEM
 XAPIAN_STEM_CLASS
 XAPIAN_STEM_GET_CLASS
+XAPIAN_TYPE_STEM
 XapianStem
 XapianStemClass
 xapian_stem_get_type
@@ -250,6 +223,7 @@ XAPIAN_IS_TERM_GENERATOR_CLASS
 XAPIAN_TERM_GENERATOR
 XAPIAN_TERM_GENERATOR_CLASS
 XAPIAN_TERM_GENERATOR_GET_CLASS
+XAPIAN_TYPE_TERM_GENERATOR
 XapianTermGenerator
 XapianTermGeneratorClass
 xapian_term_generator_get_type
@@ -262,19 +236,44 @@ XAPIAN_GLIB_MINOR_VERSION
 XAPIAN_GLIB_MICRO_VERSION
 XAPIAN_GLIB_VERSION_S
 XAPIAN_GLIB_VERSION
+<SUBSECTION>
 xapian_glib_version_string
 xapian_glib_major_version
 xapian_glib_minor_version
 xapian_glib_micro_version
+<SUBSECTION>
 xapian_version_string
 xapian_major_version
 xapian_minor_version
 xapian_revision
+<SUBSECTION>
+XAPIAN_ERROR
+XapianError
+<SUBSECTION Standard>
+XAPIAN_TYPE_ERROR
+xapian_error_get_type
+xapian_error_quark
+</SECTION>
+
+<SUBSECTION Standard>
+XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_DEPRECATED
+XAPIAN_GLIB_DEPRECATED_FOR
+XAPIAN_GLIB_DEPRECATED_IN_1_0
+XAPIAN_GLIB_DEPRECATED_IN_1_0_FOR
+XAPIAN_GLIB_UNAVAILABLE
+XAPIAN_GLIB_VERSION_1_0
+XAPIAN_GLIB_VERSION_CUR_STABLE
+XAPIAN_GLIB_VERSION_MAX_ALLOWED
+XAPIAN_GLIB_VERSION_MIN_REQUIRED
+XAPIAN_GLIB_VERSION_PREV_STABLE
 </SECTION>
 
 <SECTION>
 <FILE>xapian-writable-database</FILE>
 <TITLE>XapianWritableDatabase</TITLE>
+XapianDatabaseAction
 xapian_writable_database_new
 xapian_writable_database_commit
 xapian_writable_database_begin_transaction
@@ -289,7 +288,10 @@ XAPIAN_IS_WRITABLE_DATABASE_CLASS
 XAPIAN_WRITABLE_DATABASE
 XAPIAN_WRITABLE_DATABASE_CLASS
 XAPIAN_WRITABLE_DATABASE_GET_CLASS
+XAPIAN_TYPE_DATABASE_ACTION
+XAPIAN_TYPE_WRITABLE_DATABASE
 XapianWritableDatabase
 XapianWritableDatabaseClass
+xapian_database_action_get_type
 xapian_writable_database_get_type
 </SECTION>

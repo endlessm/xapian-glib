@@ -37,11 +37,13 @@ typedef struct _XapianMSetClass         XapianMSetClass;
 
 struct _XapianMSet
 {
+  /*< private >*/
   GObject parent_instance;
 };
 
 struct _XapianMSetClass
 {
+  /*< private >*/
   GObjectClass parent_instance;
 };
 
@@ -97,11 +99,13 @@ typedef struct _XapianMSetIteratorClass XapianMSetIteratorClass;
 
 struct _XapianMSetIterator
 {
+  /*< private >*/
   GObject parent_instance;
 };
 
 struct _XapianMSetIteratorClass
 {
+  /*< private >*/
   GObjectClass parent_instance;
 };
 

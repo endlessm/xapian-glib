@@ -18,6 +18,7 @@ IGNORE_HFILES = \
 	$(top_srcdir)/xapian-glib/xapian-mset-private.h \
 	$(top_srcdir)/xapian-glib/xapian-query-private.h \
 	$(top_srcdir)/xapian-glib/xapian-stem-private.h \
+	$(top_srcdir)/xapian-glib/xapian-glib-macros.h \
 	$(top_srcdir)/xapian-glib/xapian-glib.h
 
 EXTRA_HFILES =

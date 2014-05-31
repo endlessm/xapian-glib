@@ -153,6 +153,15 @@ xapian_term_generator_class_init (XapianTermGeneratorClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
+  /**
+   * XapianTermGenerator:stemmer:
+   *
+   * The #XapianStem instance used for stemming the indexed data.
+   *
+   * The value of this property is only used when the
+   * #XapianTermGenerator:stemming-strategy property is set
+   * to a value different than %XAPIAN_STEM_STRATEGY_STEM_NONE.
+   */
   obj_props[PROP_STEMMER] =
     g_param_spec_object ("stemmer",
                          "Stemmer",
@@ -160,6 +169,13 @@ xapian_term_generator_class_init (XapianTermGeneratorClass *klass)
                          XAPIAN_TYPE_STEM,
                          (GParamFlags) (G_PARAM_READWRITE |
                                         G_PARAM_STATIC_STRINGS));
+
+  /**
+   * XapianTermGenerator:stemming-strategy:
+   *
+   * The stemming strategy to use when the #XapianTermGenerator:stemmer
+   * property is set.
+   */
   obj_props[PROP_STEMMING_STRATEGY] =
     g_param_spec_enum ("stemming-strategy",
                        "Stemming Strategy",
@@ -168,6 +184,13 @@ xapian_term_generator_class_init (XapianTermGeneratorClass *klass)
                        XAPIAN_STEM_STRATEGY_STEM_NONE,
                        (GParamFlags) (G_PARAM_READWRITE |
                                       G_PARAM_STATIC_STRINGS));
+
+  /**
+   * XapianTermGenerator:database:
+   *
+   * The #XapianWritableDatabase instance used to store the indexed
+   * data.
+   */
   obj_props[PROP_DATABASE] =
     g_param_spec_object ("database",
                          "Database",
@@ -175,6 +198,12 @@ xapian_term_generator_class_init (XapianTermGeneratorClass *klass)
                          XAPIAN_TYPE_WRITABLE_DATABASE,
                          (GParamFlags) (G_PARAM_READWRITE |
                                         G_PARAM_STATIC_STRINGS));
+
+  /**
+   * XapianTermGenerator:document:
+   *
+   * The currently indexed document.
+   */
   obj_props[PROP_DOCUMENT] =
     g_param_spec_object ("document",
                          "Document",
@@ -199,12 +228,26 @@ xapian_term_generator_init (XapianTermGenerator *self)
   priv->mGenerator = new Xapian::TermGenerator ();
 }
 
+/**
+ * xapian_term_generator_new:
+ *
+ * Creates a new #XapianTermGenerator instance.
+ *
+ * Returns: (transfer full): the newly created #XapianTermGenerator.
+ */
 XapianTermGenerator *
 xapian_term_generator_new (void)
 {
   return static_cast<XapianTermGenerator *> (g_object_new (XAPIAN_TYPE_TERM_GENERATOR, NULL));
 }
 
+/**
+ * xapian_term_generator_set_stemmer:
+ * @generator: a #XapianTermGenerator
+ * @stemmer: a #XapianStem
+ *
+ * Sets the stemmer for @generator.
+ */
 void
 xapian_term_generator_set_stemmer (XapianTermGenerator *generator,
                                    XapianStem          *stemmer)
@@ -225,6 +268,13 @@ xapian_term_generator_set_stemmer (XapianTermGenerator *generator,
   g_object_notify_by_pspec (G_OBJECT (generator), obj_props[PROP_STEMMER]);
 }
 
+/**
+ * xapian_term_generator_set_stemming_strategy:
+ * @generator: a #XapianTermGenerator
+ * @strategy: a #XapianStemStrategy value
+ *
+ * Sets the stemming strategy for @generator.
+ */
 void
 xapian_term_generator_set_stemming_strategy (XapianTermGenerator *generator,
                                              XapianStemStrategy   strategy)
@@ -271,6 +321,13 @@ xapian_term_generator_set_stemming_strategy (XapianTermGenerator *generator,
   g_object_notify_by_pspec (G_OBJECT (generator), obj_props[PROP_STEMMING_STRATEGY]);
 }
 
+/**
+ * xapian_term_generator_set_database:
+ * @generator: a #XapianTermGenerator
+ * @database: a #XapianWritableDatabase
+ *
+ * Sets the database used to store the indexed data.
+ */
 void
 xapian_term_generator_set_database (XapianTermGenerator    *generator,
                                     XapianWritableDatabase *database)
@@ -293,6 +350,14 @@ xapian_term_generator_set_database (XapianTermGenerator    *generator,
 
   g_object_notify_by_pspec (G_OBJECT (generator), obj_props[PROP_DATABASE]);
 }
+
+/**
+ * xapian_term_generator_set_document:
+ * @generator: a #XapianTermGenerator
+ * @document: a #XapianDocument
+ *
+ * Sets the current document.
+ */
 void
 xapian_term_generator_set_document (XapianTermGenerator *generator,
                                     XapianDocument      *document)
@@ -313,6 +378,15 @@ xapian_term_generator_set_document (XapianTermGenerator *generator,
   g_object_notify_by_pspec (G_OBJECT (generator), obj_props[PROP_DOCUMENT]);
 }
 
+/**
+ * xapian_term_generator_index_text:
+ * @generator: a #XapianTermGenerator
+ * @data: the data to be indexed
+ *
+ * Indexes @data into the current document.
+ *
+ * See also: xapian_term_generator_index_text_full()
+ */
 void
 xapian_term_generator_index_text (XapianTermGenerator *generator,
                                   const char          *data)
@@ -323,6 +397,19 @@ xapian_term_generator_index_text (XapianTermGenerator *generator,
   xapian_term_generator_index_text_full (generator, data, 1, NULL);
 }
 
+/**
+ * xapian_term_generator_index_text_full:
+ * @generator: a #XapianTermGenerator
+ * @data: the data to be indexed
+ * @wdf_inc: the increment of the WDF
+ * @prefix: the default prefix for the indexed data
+ *
+ * Indexes @data into the current document.
+ *
+ * Unlike xapian_term_generator_index_text(), this function also
+ * allows setting the WDF increment and the default prefix for
+ * the indexed data.
+ */
 void
 xapian_term_generator_index_text_full (XapianTermGenerator *generator,
                                        const char          *data,

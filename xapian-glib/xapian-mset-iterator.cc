@@ -27,6 +27,30 @@
  *
  * #XapianMSetIterator is a class that allows iterating through the items
  * inside a #XapianMSet.
+ *
+ * A typical example is:
+ *
+ * |[<!-- language="C" -->
+ *   // retrieve the first 10 results
+ *   XapianMSet *mset = xapian_enquire_get_mset (enquire, 0, 10);
+ *
+ *   unsigned int size = xapian_mset_get_size (mset);
+ *
+ *   XapianMSetIterator *iter = xapian_mset_get_begin (mset);
+ *
+ *   while (xapian_mset_iterator_next (iter))
+ *     {
+ *       g_print ("Result %u of %u: %.3f [docid=%u]",
+ *                xapian_mset_iterator_get_rank (iter) + 1,
+ *                size,
+ *                xapian_mset_iterator_get_weight (iter),
+ *                xapian_mset_iterator_get_doc_id (iter, NULL));
+ *
+ *       XapianDocument *doc = xapian_mset_iterator_get_document (iter, NULL);
+ *
+ *       // ... use the document
+ *     }
+ * ]|
  */
 
 class IteratorData {
@@ -416,6 +440,15 @@ xapian_mset_iterator_get_weight (XapianMSetIterator *iter)
   return priv->data->getWeight ();
 }
 
+/**
+ * xapian_mset_iterator_get_percent:
+ * @iter: a #XapianMSetIterator
+ *
+ * Retrieves the weight of the current item pointed by @iter
+ * as a percentage between 0 and 100.
+ *
+ * Returns: the weight of the item as a percentage
+ */
 int
 xapian_mset_iterator_get_percent (XapianMSetIterator *iter)
 {
@@ -474,12 +507,13 @@ xapian_mset_iterator_get_description (XapianMSetIterator *iter)
 
 /**
  * xapian_mset_iterator_get_document:
- * @iter: ...
- * @error: ...
+ * @iter: a #XapianMSetIterator
+ * @error: return location for a #GError
  *
- * ...
+ * Retrieves the #XapianDocument currently pointed by the
+ * iterator.
  *
- * Returns: (transfer none): ...
+ * Returns: (transfer none): a #XapianDocument
  */
 XapianDocument *
 xapian_mset_iterator_get_document (XapianMSetIterator *iter,
@@ -495,6 +529,16 @@ xapian_mset_iterator_get_document (XapianMSetIterator *iter,
   return priv->data->getDocument (error);
 }
 
+/**
+ * xapian_mset_iterator_get_doc_id:
+ * @iter: a #XapianMSetIterator
+ * @error: return location for a #GError
+ *
+ * Retrieves the id of the document currently pointed by the
+ * iterator.
+ *
+ * Returns: a document id
+ */
 unsigned int
 xapian_mset_iterator_get_doc_id (XapianMSetIterator *iter,
                                  GError            **error)
@@ -511,11 +555,11 @@ xapian_mset_iterator_get_doc_id (XapianMSetIterator *iter,
 
 /**
  * xapian_mset_iterator_get_mset:
- * @iter: ...
+ * @iter: a #XapianMSetIterator
  *
- * ...
+ * Retrieves the #XapianMSet that created the @iter.
  *
- * Returns: (transfer none): ...
+ * Returns: (transfer none): a #XapianMSetIterator
  */
 XapianMSet *
 xapian_mset_iterator_get_mset (XapianMSetIterator *iter)
@@ -529,5 +573,3 @@ xapian_mset_iterator_get_mset (XapianMSetIterator *iter)
 
   return priv->data->getMSet ();
 }
-
-/* }}} XapianMSetIterator */

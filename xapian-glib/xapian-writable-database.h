@@ -79,7 +79,7 @@ gboolean                        xapian_writable_database_delete_document        
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 gboolean                        xapian_writable_database_replace_document       (XapianWritableDatabase *self,
                                                                                  unsigned int            docid,
-                                                                                 XapianDocument         *doc,
+                                                                                 XapianDocument         *document,
                                                                                  GError                **error);
 
 G_END_DECLS

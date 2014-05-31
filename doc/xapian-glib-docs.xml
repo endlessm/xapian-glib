@@ -7,6 +7,12 @@
 <book id="index">
   <bookinfo>
     <title>Xapian-GLib Reference Manual</title>
+
+    <copyright>
+      <year>2014</year>
+      <holder>Endless Mobile</holder>
+    </copyright>
+
   </bookinfo>
 
   <chapter>

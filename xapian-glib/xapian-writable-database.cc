@@ -345,6 +345,18 @@ xapian_writable_database_delete_document (XapianWritableDatabase *self,
     }
 }
 
+/**
+ * xapian_writable_database_replace_document:
+ * @self: a #XapianWritableDatabase
+ * @docid: the id of the document to replace
+ * @document: a #XapianDocument
+ * @error: return location for a #GError
+ *
+ * Replaces the #XapianDocument with @docid inside a
+ * #XapianWritableDatabase with the given @document.
+ *
+ * Returns: %TRUE if the document was replaced
+ */
 gboolean
 xapian_writable_database_replace_document (XapianWritableDatabase *self,
                                            unsigned int            docid,
@@ -378,6 +390,23 @@ xapian_writable_database_replace_document (XapianWritableDatabase *self,
     }
 }
 
+/**
+ * xapian_writable_database_begin_transaction:
+ * @self: a #XapianWritableDatabase
+ * @flushed: whether the transaction should be permanently stored
+ *   in the database when committed, or if the transaction should
+ *   only be applied to the database
+ * @error: return location for a #GError
+ *
+ * Begins a transaction in the database.
+ *
+ * See also: xapian_writable_database_commit_transaction(),
+ *   xapian_writable_database_cancel_transaction()
+ *
+ * Returns: %TRUE if the transaction can be started, and
+ *   %FALSE if the backend does not support transactions or
+ *   if a transaction is already in progress
+ */
 gboolean
 xapian_writable_database_begin_transaction (XapianWritableDatabase *self,
                                             gboolean                flushed,
@@ -405,6 +434,22 @@ xapian_writable_database_begin_transaction (XapianWritableDatabase *self,
     }
 }
 
+/**
+ * xapian_writable_database_commit_transaction:
+ * @self: a #XapianWritableDatabase
+ * @error: return location for a #GError
+ *
+ * Commits the currently pending transaction.
+ *
+ * If the transaction was started by passing %TRUE to the `flushed`
+ * argument of xapian_writable_database_begin_transaction() then all
+ * the changes caused by the transaction will be permanently stored
+ * inside the database.
+ *
+ * In case of error, this function will return %FALSE and set @error.
+ *
+ * Returns: %TRUE if the transaction was successfully committed.
+ */
 gboolean
 xapian_writable_database_commit_transaction (XapianWritableDatabase *self,
                                              GError                **error)
@@ -430,6 +475,15 @@ xapian_writable_database_commit_transaction (XapianWritableDatabase *self,
     }
 }
 
+/**
+ * xapian_writable_database_cancel_transaction:
+ * @self: a #XapianWritableDatabase
+ * @error: return location for a #GError
+ *
+ * Cancels the currently pending transaction.
+ *
+ * Returns: %TRUE if the transaction was successfully cancelled
+ */
 gboolean
 xapian_writable_database_cancel_transaction (XapianWritableDatabase *self,
                                              GError                **error)
