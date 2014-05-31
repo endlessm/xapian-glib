@@ -155,15 +155,19 @@ xapian_enquire_get_property (GObject *gobject,
 }
 
 static void
-xapian_enquire_dispose (GObject *gobject)
+xapian_enquire_finalize (GObject *gobject)
 {
   XapianEnquirePrivate *priv = XAPIAN_ENQUIRE_GET_PRIVATE (gobject);
 
-  if (priv->mEnquire)
-    {
-      delete priv->mEnquire;
-      priv->mEnquire = NULL;
-    }
+  delete priv->mEnquire;
+
+  G_OBJECT_CLASS (xapian_enquire_parent_class)->finalize (gobject);
+}
+
+static void
+xapian_enquire_dispose (GObject *gobject)
+{
+  XapianEnquirePrivate *priv = XAPIAN_ENQUIRE_GET_PRIVATE (gobject);
 
   g_clear_object (&priv->database);
   g_clear_object (&priv->query);
@@ -193,6 +197,7 @@ xapian_enquire_class_init (XapianEnquireClass *klass)
   gobject_class->set_property = xapian_enquire_set_property;
   gobject_class->get_property = xapian_enquire_get_property;
   gobject_class->dispose = xapian_enquire_dispose;
+  gobject_class->finalize = xapian_enquire_finalize;
 
   g_object_class_install_properties (gobject_class, LAST_PROP, obj_props);
 }
