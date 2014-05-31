@@ -407,14 +407,14 @@ class IteratorData {
       if (!mCurrentInitialized)
         return false;
 
-      return mCurrent == mBegin || *mCurrent == *mBegin;
+      return *mCurrent == *mBegin;
     }
 
     bool isEnd () {
       if (!mCurrentInitialized)
         return false;
 
-      return mCurrent == mEnd || *mCurrent == *mEnd;
+      return *mCurrent == *mEnd;
     }
 
     bool next () {
