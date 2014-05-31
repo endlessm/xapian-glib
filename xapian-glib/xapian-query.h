@@ -55,6 +55,14 @@ XapianQuery *   xapian_query_new_for_pair       (XapianQueryOp op,
                                                  XapianQuery *a,
                                                  XapianQuery *b);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
+XapianQuery *   xapian_query_new_for_value      (XapianQueryOp op,
+                                                 unsigned int slot,
+                                                 const char *value);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+XapianQuery *   xapian_query_new_for_terms_pair (XapianQueryOp op,
+                                                 const char *a,
+                                                 const char *b);
+XAPIAN_GLIB_AVAILABLE_IN_ALL
 XapianQuery *   xapian_query_new_from_string    (const char *data);
 
 XAPIAN_GLIB_AVAILABLE_IN_ALL

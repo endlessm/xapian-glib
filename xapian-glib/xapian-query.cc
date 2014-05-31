@@ -53,6 +53,81 @@ xapian_query_get_internal (XapianQuery *self)
   return priv->mQuery;
 }
 
+static Xapian::Query::op
+xapian_query_op_internal (XapianQueryOp op)
+{
+  Xapian::Query::op query_op = Xapian::Query::OP_AND;
+
+#ifdef XAPIAN_GLIB_ENABLE_DEBUG
+  switch (op)
+    {
+    case XAPIAN_QUERY_OP_AND:
+      query_op = Xapian::Query::OP_AND;
+      break;
+
+    case XAPIAN_QUERY_OP_OR:
+      query_op = Xapian::Query::OP_OR;
+      break;
+
+    case XAPIAN_QUERY_OP_AND_NOT:
+      query_op = Xapian::Query::OP_AND_NOT;
+      break;
+
+    case XAPIAN_QUERY_OP_XOR:
+      query_op = Xapian::Query::OP_XOR;
+      break;
+
+    case XAPIAN_QUERY_OP_AND_MAYBE:
+      query_op = Xapian::Query::OP_AND_MAYBE;
+      break;
+
+    case XAPIAN_QUERY_OP_FILTER:
+      query_op = Xapian::Query::OP_FILTER;
+      break;
+
+    case XAPIAN_QUERY_OP_NEAR:
+      query_op = Xapian::Query::OP_NEAR;
+      break;
+
+    case XAPIAN_QUERY_OP_PHRASE:
+      query_op = Xapian::Query::OP_PHRASE;
+      break;
+
+    case XAPIAN_QUERY_OP_VALUE_RANGE:
+      query_op = Xapian::Query::OP_VALUE_RANGE;
+      break;
+
+    case XAPIAN_QUERY_OP_SCALE_WEIGHT:
+      query_op = Xapian::Query::OP_SCALE_WEIGHT;
+      break;
+
+    case XAPIAN_QUERY_OP_ELITE_SET:
+      query_op = Xapian::Query::OP_ELITE_SET;
+      break;
+
+    case XAPIAN_QUERY_OP_VALUE_GE:
+      query_op = Xapian::Query::OP_VALUE_GE;
+      break;
+
+    case XAPIAN_QUERY_OP_VALUE_LE:
+      query_op = Xapian::Query::OP_VALUE_LE;
+      break;
+
+    case XAPIAN_QUERY_OP_SYNONYM:
+      query_op = Xapian::Query::OP_SYNONYM;
+      break;
+
+    default:
+      g_assert_not_reached ();
+    }
+#else
+  /* we keep XapianQueryOP and Xapian::Query::op in sync */
+  query_op = (Xapian::Query::op) op;
+#endif /* XAPIAN_GLIB_ENABLE_DEBUG */
+
+  return query_op;
+}
+
 static void
 xapian_query_finalize (GObject *gobject)
 {
@@ -145,76 +220,68 @@ xapian_query_new_for_pair (XapianQueryOp op,
 
   Xapian::Query *query_a = xapian_query_get_internal (a);
   Xapian::Query *query_b = xapian_query_get_internal (b);
-  Xapian::Query::op query_op = Xapian::Query::OP_AND;
-
-#ifdef XAPIAN_GLIB_ENABLE_DEBUG
-  switch (op)
-    {
-    case XAPIAN_QUERY_OP_AND:
-      query_op = Xapian::Query::OP_AND;
-      break;
-
-    case XAPIAN_QUERY_OP_OR:
-      query_op = Xapian::Query::OP_OR;
-      break;
-
-    case XAPIAN_QUERY_OP_AND_NOT:
-      query_op = Xapian::Query::OP_AND_NOT;
-      break;
-
-    case XAPIAN_QUERY_OP_XOR:
-      query_op = Xapian::Query::OP_XOR;
-      break;
-
-    case XAPIAN_QUERY_OP_AND_MAYBE:
-      query_op = Xapian::Query::OP_AND_MAYBE;
-      break;
-
-    case XAPIAN_QUERY_OP_FILTER:
-      query_op = Xapian::Query::OP_FILTER;
-      break;
-
-    case XAPIAN_QUERY_OP_NEAR:
-      query_op = Xapian::Query::OP_NEAR;
-      break;
-
-    case XAPIAN_QUERY_OP_PHRASE:
-      query_op = Xapian::Query::OP_PHRASE;
-      break;
-
-    case XAPIAN_QUERY_OP_VALUE_RANGE:
-      query_op = Xapian::Query::OP_VALUE_RANGE;
-      break;
-
-    case XAPIAN_QUERY_OP_SCALE_WEIGHT:
-      query_op = Xapian::Query::OP_SCALE_WEIGHT;
-      break;
-
-    case XAPIAN_QUERY_OP_ELITE_SET:
-      query_op = Xapian::Query::OP_ELITE_SET;
-      break;
-
-    case XAPIAN_QUERY_OP_VALUE_GE:
-      query_op = Xapian::Query::OP_VALUE_GE;
-      break;
-
-    case XAPIAN_QUERY_OP_VALUE_LE:
-      query_op = Xapian::Query::OP_VALUE_LE;
-      break;
-
-    case XAPIAN_QUERY_OP_SYNONYM:
-      query_op = Xapian::Query::OP_SYNONYM;
-      break;
-
-    default:
-      g_assert_not_reached ();
-    }
-#else
-  /* we keep XapianQueryOP and Xapian::Query::op in sync */
-  query_op = (Xapian::Query::op) op;
-#endif /* XAPIAN_GLIB_ENABLE_DEBUG */
-
+  Xapian::Query::op query_op = xapian_query_op_internal (op);
   Xapian::Query query = Xapian::Query (query_op, *query_a, *query_b);
+
+  return xapian_query_new_from_query (query);
+}
+
+/**
+ * xapian_query_new_for_value:
+ * @op: a #XapianQueryOp value, currently either %XAPIAN_QUERY_OP_VALUE_GE
+ *   or %XAPIAN_QUERY_OP_VALUE_LE
+ * @slot: the slot number to get the value from
+ * @value: the value to compare
+ *
+ * Creates a new #XapianQuery that matches values from a document
+ * value slot.
+ *
+ * Returns: (transfer full): the newly creates #XapianQuery
+ */
+XapianQuery *
+xapian_query_new_for_value (XapianQueryOp  op,
+                            unsigned int   slot,
+                            const char    *value)
+{
+  g_return_val_if_fail (op == XAPIAN_QUERY_OP_VALUE_GE ||
+                        op == XAPIAN_QUERY_OP_VALUE_LE,
+                        NULL);
+  g_return_val_if_fail (value != NULL, NULL);
+
+  Xapian::Query::op query_op;
+
+  if (op == XAPIAN_QUERY_OP_VALUE_GE)
+    query_op = Xapian::Query::OP_VALUE_GE;
+  else if (op == XAPIAN_QUERY_OP_VALUE_LE)
+    query_op = Xapian::Query::OP_VALUE_LE;
+  else
+    g_assert_not_reached ();
+
+  Xapian::Query query = Xapian::Query (query_op, slot, std::string (value));
+
+  return xapian_query_new_from_query (query);
+}
+
+/**
+ * xapian_query_new_for_terms_pair:
+ * @op: a #XapianQueryOp value
+ * @a: the left hand side term
+ * @b: the right hand side term
+ *
+ * Creates a new #XapianQuery for the two given terms, using the
+ * given operator.
+ *
+ * Returns: (transfer full): the newly created #XapianQuery
+ */
+XapianQuery *
+xapian_query_new_for_terms_pair (XapianQueryOp  op,
+                                 const char    *a,
+                                 const char    *b)
+{
+  g_return_val_if_fail (a != NULL && b != NULL, NULL);
+
+  Xapian::Query::op query_op = xapian_query_op_internal (op);
+  Xapian::Query query = Xapian::Query (query_op, std::string (a), std::string (b));
 
   return xapian_query_new_from_query (query);
 }

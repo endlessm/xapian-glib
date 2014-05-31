@@ -141,6 +141,8 @@ xapian_query_new
 xapian_query_new_for_term
 XapianQueryOp
 xapian_query_new_for_pair
+xapian_query_new_for_terms_pair
+xapian_query_new_for_value
 xapian_query_new_from_string
 xapian_query_is_empty
 xapian_query_get_length
