@@ -17,7 +17,7 @@
 /**
  * SECTION:xapian-query
  * @Title: XapianQuery
- * @Short_Desc: A query tree
+ * @short_description: A query tree
  *
  * #XapianQuery is a class that represents a tree of terms and operations
  * that is applied by #XapianEnquire to match documents in a database.

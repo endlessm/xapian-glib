@@ -20,8 +20,8 @@
     <xi:include href="xml/xapian-database.xml"/>
     <xi:include href="xml/xapian-document.xml"/>
     <xi:include href="xml/xapian-enquire.xml"/>
-    <xi:include href="xml/xapian-enums.xml"/>
     <xi:include href="xml/xapian-mset.xml"/>
+    <xi:include href="xml/xapian-mset-iterator.xml"/>
     <xi:include href="xml/xapian-query.xml"/>
     <xi:include href="xml/xapian-query-parser.xml"/>
     <xi:include href="xml/xapian-stem.xml"/>

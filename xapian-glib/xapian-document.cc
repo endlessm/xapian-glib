@@ -17,7 +17,7 @@
 /**
  * SECTION:xapian-document
  * @Title: XapianDocument
- * @Short_Desc: A document inside a database
+ * @short_description: A document inside a database
  *
  * #XapianDocument is a class representing a document inside a
  * Xapian database.

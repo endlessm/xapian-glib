@@ -17,7 +17,7 @@
 /**
  * SECTION:xapian-enquire
  * @Title: XapianEnquire
- * @Short_Desc: Query a database for matching documents
+ * @short_description: Query a database for matching documents
  *
  * #XapianEnquire is class used to perform queries on #XapianDatabases.
  *

@@ -21,6 +21,12 @@
 #include "xapian-utils.h"
 
 /**
+ * SECTION:xapian-utils
+ * @Title: Utility API
+ *
+ */
+
+/**
  * xapian_glib_version_string:
  *
  * The version string of the Xapian GLib bindings,

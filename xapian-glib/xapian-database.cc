@@ -17,7 +17,7 @@
 /**
  * SECTION:xapian-database
  * @Title: XapianDatabase
- * @Short_Desc: A read-only database
+ * @short_description: A read-only database
  *
  * #XapianDatabase is a class that allows read-only access to a
  * Xapian database at a given path.

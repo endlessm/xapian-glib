@@ -17,7 +17,7 @@
 /**
  * SECTION:xapian-writable-database
  * @Title: XapianWritableDatabase
- * @Short_Desc: A writable database
+ * @short_description: A writable database
  *
  * #XapianWritableDatabase is a #XapianDatabase sub-class that can
  * be written to.

@@ -17,7 +17,7 @@
 /**
  * SECTION:xapian-stem
  * @Title: XapianStem
- * @Short_Desc: Language-dependent stemming abstraction
+ * @short_description: Language-dependent stemming abstraction
  *
  * #XapianStem is a class representing a stemming abstraction for
  * specific languages.

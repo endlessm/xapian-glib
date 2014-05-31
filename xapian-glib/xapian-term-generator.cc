@@ -17,7 +17,7 @@
 /**
  * SECTION:xapian-term-generator
  * @Title: XapianTermGenerator
- * @Short_Desc: Document indexer
+ * @short_description: Document indexer
  *
  * #XapianTermGenerator is a class used to index document data.
  */

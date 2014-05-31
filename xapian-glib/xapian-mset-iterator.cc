@@ -23,7 +23,7 @@
 /**
  * SECTION:xapian-mset-iterator
  * @Title: XapianMSetIterator
- * @Short_Desc: Iterate through a XapianMSet
+ * @short_description: Iterate through a XapianMSet
  *
  * #XapianMSetIterator is a class that allows iterating through the items
  * inside a #XapianMSet.

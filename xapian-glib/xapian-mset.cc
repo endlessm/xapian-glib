@@ -23,7 +23,7 @@
 /**
  * SECTION:xapian-mset
  * @Title: XapianMSet
- * @Short_Desc: Set of matching documents
+ * @short_description: Set of matching documents
  *
  * #XapianMSet represents a set of documents in a #XapianDatabase
  * matching a specific #XapianQuery performed by a #XapianEnquire
