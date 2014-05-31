@@ -111,7 +111,7 @@ xapian_mset_get_internal (XapianMSet *mset)
  *
  * Retrieves the frequency of the given @term.
  *
- * Return value: the frequence of the term
+ * Return value: the frequency of the term
  */
 unsigned int
 xapian_mset_get_termfreq (XapianMSet *mset,
