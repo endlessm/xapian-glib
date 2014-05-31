@@ -79,7 +79,7 @@ xapian_error_to_gerror (const Xapian::Error  &src,
   /* unknown error in the bindings */
   if (error_type == XAPIAN_ERROR_LAST)
     {
-      g_critical ("Unknown error type %d.\n", error_type);
+      g_critical ("Unknown error type %d.", error_type);
       return;
     }
 
