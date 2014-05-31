@@ -112,20 +112,31 @@ GQuark xapian_error_quark (void);
 
 /**
  * XapianQueryOp:
- * @XAPIAN_QUERY_OP_AND: logical AND
- * @XAPIAN_QUERY_OP_OR: logical OR
- * @XAPIAN_QUERY_OP_AND_NOT: a AND NOT b
- * @XAPIAN_QUERY_OP_XOR: a XOR b
- * @XAPIAN_QUERY_OP_AND_MAYBE: a AND MAYBE b
- * @XAPIAN_QUERY_OP_FILTER: filter
- * @XAPIAN_QUERY_OP_NEAR: a NEAR b
- * @XAPIAN_QUERY_OP_PHRASE: "a b"
- * @XAPIAN_QUERY_OP_VALUE_RANGE: ...
- * @XAPIAN_QUERY_OP_SCALE_WEIGHT: ...
- * @XAPIAN_QUERY_OP_ELITE_SET: ...
- * @XAPIAN_QUERY_OP_VALUE_GE: ...
- * @XAPIAN_QUERY_OP_VALUE_LE: ...
- * @XAPIAN_QUERY_OP_SYNONYM: ...
+ * @XAPIAN_QUERY_OP_AND: filters if both sub-queries are satisfied
+ * @XAPIAN_QUERY_OP_OR: filters if either sub-queries are satisfied
+ * @XAPIAN_QUERY_OP_AND_NOT: filters if only the left sub-query is
+ *   satisfied but not the right
+ * @XAPIAN_QUERY_OP_XOR: filters if either sub-query is satisfied
+ *   but not both
+ * @XAPIAN_QUERY_OP_AND_MAYBE: filters if left sub-query is satisfied
+ *   but uses the weights for both
+ * @XAPIAN_QUERY_OP_FILTER: filters as %XAPIAN_QUERY_OP_AND, but
+ *   uses only weights from the left sub-query
+ * @XAPIAN_QUERY_OP_NEAR: filters if occurrances of a list of terms
+ *   appear within a specified window of positions
+ * @XAPIAN_QUERY_OP_PHRASE: filters if occurrances of a list of terms
+ *   appear both within a specified window of positions and als in
+ *   the specified order
+ * @XAPIAN_QUERY_OP_VALUE_RANGE: filters by a range of values
+ * @XAPIAN_QUERY_OP_SCALE_WEIGHT: scales the weight of a sub-query by
+ *   the specified factor
+ * @XAPIAN_QUERY_OP_ELITE_SET: picks the best N sub-queries and
+ *   combines them with %XAPIAN_QUERY_OP_OR
+ * @XAPIAN_QUERY_OP_VALUE_GE: filters a document value using a
+ *   greater than or equal test
+ * @XAPIAN_QUERY_OP_VALUE_LE: filters a document value using a
+ *   less than or equal test
+ * @XAPIAN_QUERY_OP_SYNONYM: treats a set of sub-queries as synonyms
  *
  * Operators for #XapianQuery.
  */
@@ -156,18 +167,24 @@ GType xapian_query_op_get_type (void);
 
 /**
  * XapianQueryParserFeature:
- * @XAPIAN_QUERY_PARSER_FEATURE_BOOLEAN: ...
- * @XAPIAN_QUERY_PARSER_FEATURE_PHRASE: ...
- * @XAPIAN_QUERY_PARSER_FEATURE_LOVEHATE: ...
- * @XAPIAN_QUERY_PARSER_FEATURE_BOOLEAN_ANY_CASE: ...
- * @XAPIAN_QUERY_PARSER_FEATURE_WILDCARD: ...
- * @XAPIAN_QUERY_PARSER_FEATURE_PURE_NOT: ...
- * @XAPIAN_QUERY_PARSER_FEATURE_PARTIAL: ...
- * @XAPIAN_QUERY_PARSER_FEATURE_SPELLING_CORRECTION: ...
- * @XAPIAN_QUERY_PARSER_FEATURE_SYNONYM: ...
- * @XAPIAN_QUERY_PARSER_FEATURE_AUTO_SYNONYMS: ...
- * @XAPIAN_QUERY_PARSER_FEATURE_AUTO_MULTIWORD_SYNONYMS: ...
- * @XAPIAN_QUERY_PARSER_FEATURE_DEFAULT: ...
+ * @XAPIAN_QUERY_PARSER_FEATURE_BOOLEAN: support AND, OR, etc as well as
+ *   bracketed subexpressions
+ * @XAPIAN_QUERY_PARSER_FEATURE_PHRASE: support quoted phrases
+ * @XAPIAN_QUERY_PARSER_FEATURE_LOVEHATE: support `+` and `-`
+ * @XAPIAN_QUERY_PARSER_FEATURE_BOOLEAN_ANY_CASE: support AND, OR, etc.
+ *   even if not in upper case
+ * @XAPIAN_QUERY_PARSER_FEATURE_WILDCARD: support right truncation,
+ *   e.g. `Xap*`
+ * @XAPIAN_QUERY_PARSER_FEATURE_PURE_NOT: allow queries such as `NOT apples`
+ * @XAPIAN_QUERY_PARSER_FEATURE_PARTIAL: enable partial matching
+ * @XAPIAN_QUERY_PARSER_FEATURE_SPELLING_CORRECTION: enable spelling
+ *   correction
+ * @XAPIAN_QUERY_PARSER_FEATURE_SYNONYM: enable synonym operator `~`
+ * @XAPIAN_QUERY_PARSER_FEATURE_AUTO_SYNONYMS: enable automatic use of
+ *   synonyms for single terms
+ * @XAPIAN_QUERY_PARSER_FEATURE_AUTO_MULTIWORD_SYNONYMS: enable automatic
+ *   use of synonyms for single terms and groups of terms
+ * @XAPIAN_QUERY_PARSER_FEATURE_DEFAULT: default flags
  *
  * Flags for xapian_query_parser_parse_query_full().
  */
@@ -195,10 +212,10 @@ GType xapian_query_parser_feature_get_type (void);
 
 /**
  * XapianStemStrategy:
- * @XAPIAN_STEM_STRATEGY_STEM_NONE: ...
- * @XAPIAN_STEM_STRATEGY_STEM_SOME: ...
- * @XAPIAN_STEM_STRATEGY_STEM_ALL: ...
- * @XAPIAN_STEM_STRATEGY_STEM_ALL_Z: ...
+ * @XAPIAN_STEM_STRATEGY_STEM_NONE: do not perform any stemming
+ * @XAPIAN_STEM_STRATEGY_STEM_SOME: generate both stemmed and unstemmed terms
+ * @XAPIAN_STEM_STRATEGY_STEM_ALL: generate only stemmed terms, without the Z prefix
+ * @XAPIAN_STEM_STRATEGY_STEM_ALL_Z: generate only stemmed term, with the Z prefix
  *
  * Stemming strategies.
  */
