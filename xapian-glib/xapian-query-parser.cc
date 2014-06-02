@@ -17,6 +17,7 @@
 /**
  * SECTION:xapian-query-parser
  * @Title: XapianQueryParser
+ * @short_description: Parse query strings
  *
  * #XapianQueryParser is a class that can parse a query string and
  * generate a #XapianQuery instance from it.
