@@ -215,7 +215,7 @@ GType xapian_query_parser_feature_get_type (void);
  * @XAPIAN_STEM_STRATEGY_STEM_NONE: do not perform any stemming
  * @XAPIAN_STEM_STRATEGY_STEM_SOME: generate both stemmed and unstemmed terms
  * @XAPIAN_STEM_STRATEGY_STEM_ALL: generate only stemmed terms, without the Z prefix
- * @XAPIAN_STEM_STRATEGY_STEM_ALL_Z: generate only stemmed term, with the Z prefix
+ * @XAPIAN_STEM_STRATEGY_STEM_ALL_Z: generate only stemmed terms, with the Z prefix
  *
  * Stemming strategies.
  */
