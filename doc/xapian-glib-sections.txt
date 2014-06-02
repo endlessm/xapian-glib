@@ -77,7 +77,6 @@ xapian_enquire_get_type
 
 <SECTION>
 <FILE>xapian-mset</FILE>
-<TITLE>XapianMSet</TITLE>
 xapian_mset_get_firstitem
 xapian_mset_get_termfreq
 xapian_mset_get_termweight
@@ -131,18 +130,19 @@ XAPIAN_MSET_ITERATOR_GET_CLASS
 XAPIAN_TYPE_MSET_ITERATOR
 XapianMSetIterator
 XapianMSetIteratorClass
+xapian_mset_get_type
 xapian_mset_iterator_get_type
 </SECTION>
 
 <SECTION>
 <FILE>xapian-query</FILE>
 <TITLE>XapianQuery</TITLE>
+XapianQueryOp
 xapian_query_new
 xapian_query_new_for_term
-XapianQueryOp
 xapian_query_new_for_pair
-xapian_query_new_for_terms_pair
 xapian_query_new_for_value
+xapian_query_new_for_terms_pair
 xapian_query_new_from_string
 xapian_query_is_empty
 xapian_query_get_length
@@ -156,6 +156,8 @@ XAPIAN_QUERY_CLASS
 XAPIAN_QUERY_GET_CLASS
 XAPIAN_TYPE_QUERY
 XAPIAN_TYPE_QUERY_OP
+XapianQuery
+XapianQueryClass
 xapian_query_get_type
 xapian_query_op_get_type
 </SECTION>
@@ -184,8 +186,8 @@ XAPIAN_TYPE_QUERY_PARSER_FEATURE
 XAPIAN_TYPE_STEM_STRATEGY
 XapianQueryParser
 XapianQueryParserClass
-xapian_query_parser_feature_get_type
 xapian_query_parser_get_type
+xapian_query_parser_feature_get_type
 xapian_stem_strategy_get_type
 </SECTION>
 
@@ -233,7 +235,9 @@ xapian_term_generator_get_type
 
 <SECTION>
 <FILE>xapian-utils</FILE>
-<TITLE>Utility API</TITLE>
+XAPIAN_ERROR
+XapianError
+<SUBSECTION>
 XAPIAN_GLIB_MAJOR_VERSION
 XAPIAN_GLIB_MINOR_VERSION
 XAPIAN_GLIB_MICRO_VERSION
@@ -244,33 +248,14 @@ xapian_glib_version_string
 xapian_glib_major_version
 xapian_glib_minor_version
 xapian_glib_micro_version
-<SUBSECTION>
 xapian_version_string
 xapian_major_version
 xapian_minor_version
 xapian_revision
-<SUBSECTION>
-XAPIAN_ERROR
-XapianError
 <SUBSECTION Standard>
 XAPIAN_TYPE_ERROR
-xapian_error_get_type
 xapian_error_quark
-</SECTION>
-
-<SUBSECTION Standard>
-XAPIAN_GLIB_AVAILABLE_IN_1_0
-XAPIAN_GLIB_AVAILABLE_IN_ALL
-XAPIAN_GLIB_DEPRECATED
-XAPIAN_GLIB_DEPRECATED_FOR
-XAPIAN_GLIB_DEPRECATED_IN_1_0
-XAPIAN_GLIB_DEPRECATED_IN_1_0_FOR
-XAPIAN_GLIB_UNAVAILABLE
-XAPIAN_GLIB_VERSION_1_0
-XAPIAN_GLIB_VERSION_CUR_STABLE
-XAPIAN_GLIB_VERSION_MAX_ALLOWED
-XAPIAN_GLIB_VERSION_MIN_REQUIRED
-XAPIAN_GLIB_VERSION_PREV_STABLE
+xapian_error_get_type
 </SECTION>
 
 <SECTION>
@@ -288,13 +273,14 @@ xapian_writable_database_replace_document
 <SUBSECTION Standard>
 XAPIAN_IS_WRITABLE_DATABASE
 XAPIAN_IS_WRITABLE_DATABASE_CLASS
+XAPIAN_TYPE_DATABASE_ACTION
+XAPIAN_TYPE_WRITABLE_DATABASE
 XAPIAN_WRITABLE_DATABASE
 XAPIAN_WRITABLE_DATABASE_CLASS
 XAPIAN_WRITABLE_DATABASE_GET_CLASS
-XAPIAN_TYPE_DATABASE_ACTION
-XAPIAN_TYPE_WRITABLE_DATABASE
 XapianWritableDatabase
 XapianWritableDatabaseClass
 xapian_database_action_get_type
 xapian_writable_database_get_type
 </SECTION>
+
