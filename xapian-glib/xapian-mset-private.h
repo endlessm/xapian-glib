@@ -21,8 +21,8 @@
 #include "xapian-mset.h"
 
 XapianMSet *    	xapian_mset_new                 (const Xapian::MSet &aMSet);
-Xapian::MSet *  	xapian_mset_get_internal        (XapianMSet *mset);
+Xapian::MSet *  	xapian_mset_get_internal        (XapianMSet         *mset);
 
-XapianMSetIterator *	xapian_mset_iterator_new	(XapianMSet *mset);
+XapianMSetIterator *	xapian_mset_iterator_new	(XapianMSet         *mset);
 
 #endif /* __XAPIAN_GLIB_MSET_PRIVATE_H__ */

@@ -318,7 +318,7 @@ xapian_query_is_empty (XapianQuery *query)
 {
   g_return_val_if_fail (XAPIAN_IS_QUERY (query), TRUE);
 
-  return xapian_query_get_internal (query)->empty () ? TRUE : FALSE;
+  return xapian_query_get_internal (query)->empty ();
 }
 
 /**

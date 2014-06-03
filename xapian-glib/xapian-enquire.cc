@@ -75,9 +75,9 @@ xapian_enquire_set_database (XapianEnquire  *self,
 }
 
 static gboolean
-xapian_enquire_init_internal (GInitable *self,
+xapian_enquire_init_internal (GInitable    *self,
                               GCancellable *cancellable,
-                              GError **error)
+                              GError      **error)
 {
   XapianEnquirePrivate *priv = XAPIAN_ENQUIRE_GET_PRIVATE (self);
 

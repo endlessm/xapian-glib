@@ -25,11 +25,11 @@
 
 G_BEGIN_DECLS
 
-#define XAPIAN_QUERY(obj)            	(G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_QUERY, XapianQuery))
-#define XAPIAN_IS_QUERY(obj)         	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_QUERY))
-#define XAPIAN_QUERY_CLASS(klass)    	(G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_QUERY, XapianQueryClass))
+#define XAPIAN_QUERY(obj)               (G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_QUERY, XapianQuery))
+#define XAPIAN_IS_QUERY(obj)            (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_QUERY))
+#define XAPIAN_QUERY_CLASS(klass)       (G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_QUERY, XapianQueryClass))
 #define XAPIAN_IS_QUERY_CLASS(klass)    (G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_QUERY))
-#define XAPIAN_QUERY_GET_CLASS(obj)  	(G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_QUERY, XapianQueryClass))
+#define XAPIAN_QUERY_GET_CLASS(obj)     (G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_QUERY, XapianQueryClass))
 
 typedef struct _XapianQueryClass     XapianQueryClass;
 
@@ -49,32 +49,32 @@ GType xapian_query_get_type (void);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 XapianQuery *   xapian_query_new                (void);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
-XapianQuery *   xapian_query_new_for_term       (const char *term);
+XapianQuery *   xapian_query_new_for_term       (const char    *term);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
-XapianQuery *   xapian_query_new_for_pair       (XapianQueryOp op,
-                                                 XapianQuery *a,
-                                                 XapianQuery *b);
+XapianQuery *   xapian_query_new_for_pair       (XapianQueryOp  op,
+                                                 XapianQuery   *a,
+                                                 XapianQuery   *b);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
-XapianQuery *   xapian_query_new_for_value      (XapianQueryOp op,
-                                                 unsigned int slot,
-                                                 const char *value);
+XapianQuery *   xapian_query_new_for_value      (XapianQueryOp  op,
+                                                 unsigned int   slot,
+                                                 const char    *value);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
-XapianQuery *   xapian_query_new_for_terms_pair (XapianQueryOp op,
-                                                 const char *a,
-                                                 const char *b);
+XapianQuery *   xapian_query_new_for_terms_pair (XapianQueryOp  op,
+                                                 const char    *a,
+                                                 const char    *b);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
-XapianQuery *   xapian_query_new_from_string    (const char *data);
+XapianQuery *   xapian_query_new_from_string    (const char    *data);
 
 XAPIAN_GLIB_AVAILABLE_IN_ALL
-gboolean        xapian_query_is_empty           (XapianQuery *query);
+gboolean        xapian_query_is_empty           (XapianQuery   *query);
 
 XAPIAN_GLIB_AVAILABLE_IN_ALL
-unsigned int    xapian_query_get_length         (XapianQuery *query);
+unsigned int    xapian_query_get_length         (XapianQuery   *query);
 
 XAPIAN_GLIB_AVAILABLE_IN_ALL
-char *          xapian_query_get_description    (XapianQuery *query);
+char *          xapian_query_get_description    (XapianQuery   *query);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
-char *          xapian_query_serialise          (XapianQuery *query);
+char *          xapian_query_serialise          (XapianQuery   *query);
 
 G_END_DECLS
 

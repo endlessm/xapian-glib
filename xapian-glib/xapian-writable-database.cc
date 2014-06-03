@@ -70,9 +70,9 @@ xapian_writable_database_get_internal (XapianWritableDatabase *self)
 }
 
 static gboolean
-xapian_writable_database_init_internal (GInitable *initable,
+xapian_writable_database_init_internal (GInitable    *initable,
                                         GCancellable *cancellable,
-                                        GError **error)
+                                        GError      **error)
 {
   XapianDatabase *database = XAPIAN_DATABASE (initable);
   XapianWritableDatabasePrivate *priv;

@@ -92,7 +92,7 @@ xapian_database_get_internal (XapianDatabase *self)
  * any existing instance if needed.
  */
 void
-xapian_database_set_internal (XapianDatabase *self,
+xapian_database_set_internal (XapianDatabase   *self,
                               Xapian::Database *aDB)
 {
   XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
@@ -157,9 +157,9 @@ xapian_database_get_path (XapianDatabase *self)
 }
 
 static gboolean
-xapian_database_init_internal (GInitable *self,
+xapian_database_init_internal (GInitable    *self,
                                GCancellable *cancellable,
-                               GError **error)
+                               GError      **error)
 {
   XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
 

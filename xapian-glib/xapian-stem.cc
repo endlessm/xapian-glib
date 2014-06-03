@@ -65,9 +65,9 @@ xapian_stem_get_internal (XapianStem *stem)
 }
 
 static gboolean
-xapian_stem_init_internal (GInitable *initable,
+xapian_stem_init_internal (GInitable    *initable,
                            GCancellable *cancellable,
-                           GError **error)
+                           GError      **error)
 {
   XapianStemPrivate *priv = XAPIAN_STEM_GET_PRIVATE (initable);
 
