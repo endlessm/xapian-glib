@@ -14,15 +14,13 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __XAPIAN_GLIB_DOCUMENT_PRIVATE_H__
-#define __XAPIAN_GLIB_DOCUMENT_PRIVATE_H__
+#ifndef __XAPIAN_GLIB_QUERY_PRIVATE_H__
+#define __XAPIAN_GLIB_QUERY_PRIVATE_H__
 
 #include <xapian.h>
+#include "xapian-query.h"
 
-#include "xapian-document.h"
+Xapian::Query * xapian_query_get_internal       (XapianQuery         *self);
+XapianQuery *   xapian_query_new_from_query     (const Xapian::Query &aQuery);
 
-XapianDocument *        xapian_document_new_from_document       (const Xapian::Document &aDoc);
-
-Xapian::Document *      xapian_document_get_internal            (XapianDocument         *doc);
-
-#endif /* __XAPIAN_GLIB_DOCUMENT_PRIVATE_H__ */
+#endif /* __XAPIAN_GLIB_QUERY_PRIVATE_H__ */

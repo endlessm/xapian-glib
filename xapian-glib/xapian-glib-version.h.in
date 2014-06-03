@@ -17,16 +17,83 @@
 #ifndef __XAPIAN_GLIB_VERSION_H__
 #define __XAPIAN_GLIB_VERSION_H__
 
+/**
+ * XAPIAN_GLIB_MAJOR_VERSION:
+ *
+ * Evaluates to the major version of the Xapian-GLib version,
+ * e.g. 1 if the version is 1.2.3.
+ *
+ * Use this macro for compile-time checks.
+ *
+ * For run-time checks, use xapian_glib_major_version() instead.
+ */
+#define XAPIAN_GLIB_MAJOR_VERSION            (@XAPIAN_GLIB_MAJOR_VERSION@)
+
+/**
+ * XAPIAN_GLIB_MINOR_VERSION:
+ *
+ * Evaluates to the minor version of the Xapian-GLib version,
+ * e.g. 2 if the version is 1.2.3.
+ *
+ * Use this macro for compile-time checks.
+ *
+ * For run-time checks, use xapian_glib_minor_version() instead.
+ */
+#define XAPIAN_GLIB_MINOR_VERSION            (@XAPIAN_GLIB_MINOR_VERSION@)
+
+/**
+ * XAPIAN_GLIB_MICRO_VERSION:
+ *
+ * Evaluates to the micro version of the Xapian-GLib version,
+ * e.g. 3 if the version is 1.2.3.
+ *
+ * Use this macro for compile-time checks.
+ *
+ * For run-time checks, use xapian_glib_micro_version() instead.
+ */
+#define XAPIAN_GLIB_MICRO_VERSION            (@XAPIAN_GLIB_MICRO_VERSION@)
+
+/**
+ * XAPIAN_GLIB_VERSION_S:
+ *
+ * Evaluates to a string with the version of Xapian-GLib, useful
+ * for concatenating or for printing.
+ */
+#define XAPIAN_GLIB_VERSION_S                "@XAPIAN_GLIB_VERSION@"
+
 #define _XAPIAN_ENCODE_VERSION(major,minor,micro) \
         ((major) << 24 | (minor) << 16 | (micro) << 8)
 
-#define XAPIAN_GLIB_MAJOR_VERSION            (@XAPIAN_GLIB_MAJOR_VERSION@)
-#define XAPIAN_GLIB_MINOR_VERSION            (@XAPIAN_GLIB_MINOR_VERSION@)
-#define XAPIAN_GLIB_MICRO_VERSION            (@XAPIAN_GLIB_MICRO_VERSION@)
-
-#define XAPIAN_GLIB_VERSION_S                "@XAPIAN_GLIB_VERSION@"
-
+/**
+ * XAPIAN_GLIB_VERSION:
+ *
+ * Evaluates to an encoded integer representation of the Xapian-GLib
+ * version, useful for compile-time version comparisons.
+ *
+ * Use %XAPIAN_GLIB_ENCODE_VERSION to generate an integer representation
+ * that can be compared to the result of this macro, e.g.:
+ *
+ * |[<!-- language="C" -->
+ * #if XAPIAN_GLIB_VERSION >= XAPIAN_GLIB_ENCODE_VERSION (1, 2, 3)
+ *   // code that can be used with Xapian-GLib 1.2.3 or later
+ * #elif
+ *   // code that can be used with earlier versions of Xapian-GLib
+ * #endif
+ * ]|
+ */
 #define XAPIAN_GLIB_VERSION                  \
-        (_XAPIAN_ENCODE_VERSION (XAPIAN_GLIB_MAJOR_VERSION, XAPIAN_GLIB_MINOR_VERSION, XAPIAN_GLIB_MICRO_VERSION))
+  (_XAPIAN_ENCODE_VERSION (XAPIAN_GLIB_MAJOR_VERSION, XAPIAN_GLIB_MINOR_VERSION, XAPIAN_GLIB_MICRO_VERSION))
+
+/**
+ * XAPIAN_GLIB_ENCODE_VERSION:
+ * @major: the major version number, e.g. 1
+ * @minor: the minor version number, e.g. 2
+ * @micro: the micro version number, e.g. 3
+ *
+ * Generates an integer encoded representation of a Xapian-GLib version,
+ * useful for compile-time comparisons with %XAPIAN_GLIB_VERSION.
+ */
+#define XAPIAN_GLIB_ENCODE_VERSION(major,minor,micro) \
+  (_XAPIAN_ENCODE_VERSION ((major), (minor), (micro))
 
 #endif /* __XAPIAN_GLIB_VERSION_H__ */

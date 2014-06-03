@@ -16,11 +16,11 @@ test $TEST_TYPE $FILE || {
 	exit 1
 }
 
-#GTKDOCIZE=`which gtkdocize`
-#if test -z $GTKDOCIZE; then
-#        echo "*** No GTK-Doc found, please install it ***"
-#        exit 1
-#fi
+GTKDOCIZE=`which gtkdocize`
+if test -z $GTKDOCIZE; then
+        echo "*** No GTK-Doc found, please install it ***"
+        exit 1
+fi
 
 AUTORECONF=`which autoreconf`
 if test -z $AUTORECONF; then
@@ -38,7 +38,7 @@ fi
 
 rm -rf autom4te.cache
 
-#gtkdocize || exit $?
+gtkdocize || exit $?
 autoreconf --force --install --verbose || exit $?
 
 cd "$olddir"

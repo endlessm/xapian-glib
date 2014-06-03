@@ -24,6 +24,17 @@ G_BEGIN_DECLS
 
 #define XAPIAN_TYPE_DATABASE_ACTION             (xapian_database_action_get_type ())
 
+/**
+ * XapianDatabaseAction:
+ * @XAPIAN_DATABASE_ACTION_CREATE_OR_OPEN: Create a database or open if it
+ *   already exists
+ * @XAPIAN_DATABASE_ACTION_CREATE: Create a database
+ * @XAPIAN_DATABASE_ACTION_CREATE_OR_OVERWRITE: Create a database and overwrite
+ *   it if one already exists
+ * @XAPIAN_DATABASE_ACTION_OPEN: Open a database
+ *
+ * Actions for #XapianWritableDatabase.
+ */
 typedef enum {
   XAPIAN_DATABASE_ACTION_CREATE_OR_OPEN = 1,
   XAPIAN_DATABASE_ACTION_CREATE = 2,
@@ -34,38 +45,189 @@ typedef enum {
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 GType xapian_database_action_get_type (void);
 
-#define XAPIAN_TYPE_ERROR_TYPE                  (xapian_error_type_get_type ())
-#define XAPIAN_ERROR_TYPE                       (xapian_error_type_quark ())
+#define XAPIAN_TYPE_ERROR                       (xapian_error_get_type ())
 
+/**
+ * XAPIAN_ERROR:
+ *
+ * Error domain for Xapian.
+ */
+#define XAPIAN_ERROR                            (xapian_error_quark ())
+
+/**
+ * XapianError:
+ * @XAPIAN_ERROR_ASSERTION: Assertion failure
+ * @XAPIAN_ERROR_INVALID_ARGUMENT: Invalid argument
+ * @XAPIAN_ERROR_INVALID_OPERATION: Invalid operation
+ * @XAPIAN_ERROR_UNIMPLEMENTED: Operation not implemented
+ * @XAPIAN_ERROR_DATABASE: Database error
+ * @XAPIAN_ERROR_DATABASE_CORRUPT: Database is corrupt
+ * @XAPIAN_ERROR_DATABASE_CREATE: Failed to create a database
+ * @XAPIAN_ERROR_DATABASE_LOCK: Failed to acquire the lock on a database
+ * @XAPIAN_ERROR_DATABASE_MODIFIED: Database modified after opening
+ * @XAPIAN_ERROR_DATABASE_OPENING: Unable to open the database
+ * @XAPIAN_ERROR_DATABASE_VERSION: Version mismatch when opening the database
+ * @XAPIAN_ERROR_DOC_NOT_FOUND: Document not found
+ * @XAPIAN_ERROR_FEATURE_UNAVAILABLE: Feature not available with the current backend
+ * @XAPIAN_ERROR_INTERNAL: Internal state error
+ * @XAPIAN_ERROR_NETWORK: Network error
+ * @XAPIAN_ERROR_NETWORK_TIMEOUT: Network timeout error
+ * @XAPIAN_ERROR_QUERY_PARSER: Error when parsing a query string
+ * @XAPIAN_ERROR_SERIALISATION: Error when serialising or deserialising data
+ * @XAPIAN_ERROR_RANGE: Out of bounds access
+ *
+ * Error codes for the %XAPIAN_ERROR error domain.
+ */
 typedef enum {
-  XAPIAN_ERROR_TYPE_ASSERTION,
-  XAPIAN_ERROR_TYPE_INVALID_ARGUMENT,
-  XAPIAN_ERROR_TYPE_INVALID_OPERATION,
-  XAPIAN_ERROR_TYPE_UNIMPLEMENTED,
-  XAPIAN_ERROR_TYPE_DATABASE,
-  XAPIAN_ERROR_TYPE_DATABASE_CORRUPT,
-  XAPIAN_ERROR_TYPE_DATABASE_CREATE,
-  XAPIAN_ERROR_TYPE_DATABASE_LOCK,
-  XAPIAN_ERROR_TYPE_DATABASE_MODIFIED,
-  XAPIAN_ERROR_TYPE_DATABASE_OPENING,
-  XAPIAN_ERROR_TYPE_DATABASE_VERSION,
-  XAPIAN_ERROR_TYPE_DOC_NOT_FOUND,
-  XAPIAN_ERROR_TYPE_FEATURE_UNAVAILABLE,
-  XAPIAN_ERROR_TYPE_INTERNAL,
-  XAPIAN_ERROR_TYPE_NETWORK,
-  XAPIAN_ERROR_TYPE_NETWORK_TIMEOUT,
-  XAPIAN_ERROR_TYPE_QUERY_PARSER,
-  XAPIAN_ERROR_TYPE_SERIALISATION,
-  XAPIAN_ERROR_TYPE_RANGE,
+  XAPIAN_ERROR_ASSERTION,
+  XAPIAN_ERROR_INVALID_ARGUMENT,
+  XAPIAN_ERROR_INVALID_OPERATION,
+  XAPIAN_ERROR_UNIMPLEMENTED,
+  XAPIAN_ERROR_DATABASE,
+  XAPIAN_ERROR_DATABASE_CORRUPT,
+  XAPIAN_ERROR_DATABASE_CREATE,
+  XAPIAN_ERROR_DATABASE_LOCK,
+  XAPIAN_ERROR_DATABASE_MODIFIED,
+  XAPIAN_ERROR_DATABASE_OPENING,
+  XAPIAN_ERROR_DATABASE_VERSION,
+  XAPIAN_ERROR_DOC_NOT_FOUND,
+  XAPIAN_ERROR_FEATURE_UNAVAILABLE,
+  XAPIAN_ERROR_INTERNAL,
+  XAPIAN_ERROR_NETWORK,
+  XAPIAN_ERROR_NETWORK_TIMEOUT,
+  XAPIAN_ERROR_QUERY_PARSER,
+  XAPIAN_ERROR_SERIALISATION,
+  XAPIAN_ERROR_RANGE,
 
   /*< private >*/
-  XAPIAN_ERROR_TYPE_LAST
-} XapianErrorType;
+  XAPIAN_ERROR_LAST
+} XapianError;
 
 XAPIAN_GLIB_AVAILABLE_IN_ALL
-GType xapian_error_type_get_type (void);
+GType xapian_error_get_type (void);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
-GQuark xapian_error_type_quark (void);
+GQuark xapian_error_quark (void);
+
+#define XAPIAN_TYPE_QUERY_OP            (xapian_query_op_get_type ())
+
+/**
+ * XapianQueryOp:
+ * @XAPIAN_QUERY_OP_AND: filters if both sub-queries are satisfied
+ * @XAPIAN_QUERY_OP_OR: filters if either sub-queries are satisfied
+ * @XAPIAN_QUERY_OP_AND_NOT: filters if only the left sub-query is
+ *   satisfied but not the right
+ * @XAPIAN_QUERY_OP_XOR: filters if either sub-query is satisfied
+ *   but not both
+ * @XAPIAN_QUERY_OP_AND_MAYBE: filters if left sub-query is satisfied
+ *   but uses the weights for both
+ * @XAPIAN_QUERY_OP_FILTER: filters as %XAPIAN_QUERY_OP_AND, but
+ *   uses only weights from the left sub-query
+ * @XAPIAN_QUERY_OP_NEAR: filters if occurrances of a list of terms
+ *   appear within a specified window of positions
+ * @XAPIAN_QUERY_OP_PHRASE: filters if occurrances of a list of terms
+ *   appear both within a specified window of positions and als in
+ *   the specified order
+ * @XAPIAN_QUERY_OP_VALUE_RANGE: filters by a range of values
+ * @XAPIAN_QUERY_OP_SCALE_WEIGHT: scales the weight of a sub-query by
+ *   the specified factor
+ * @XAPIAN_QUERY_OP_ELITE_SET: picks the best N sub-queries and
+ *   combines them with %XAPIAN_QUERY_OP_OR
+ * @XAPIAN_QUERY_OP_VALUE_GE: filters a document value using a
+ *   greater than or equal test
+ * @XAPIAN_QUERY_OP_VALUE_LE: filters a document value using a
+ *   less than or equal test
+ * @XAPIAN_QUERY_OP_SYNONYM: treats a set of sub-queries as synonyms
+ *
+ * Operators for #XapianQuery.
+ */
+typedef enum {
+  XAPIAN_QUERY_OP_AND,
+  XAPIAN_QUERY_OP_OR,
+  XAPIAN_QUERY_OP_AND_NOT,
+  XAPIAN_QUERY_OP_XOR,
+  XAPIAN_QUERY_OP_AND_MAYBE,
+  XAPIAN_QUERY_OP_FILTER,
+  XAPIAN_QUERY_OP_NEAR,
+  XAPIAN_QUERY_OP_PHRASE,
+  XAPIAN_QUERY_OP_VALUE_RANGE,
+  XAPIAN_QUERY_OP_SCALE_WEIGHT,
+  XAPIAN_QUERY_OP_ELITE_SET,
+  XAPIAN_QUERY_OP_VALUE_GE,
+  XAPIAN_QUERY_OP_VALUE_LE,
+  XAPIAN_QUERY_OP_SYNONYM,
+
+  /*< private >*/
+  XAPIAN_QUERY_OP_LAST
+} XapianQueryOp;
+
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+GType xapian_query_op_get_type (void);
+
+#define XAPIAN_TYPE_QUERY_PARSER_FEATURE        (xapian_query_parser_feature_get_type ())
+
+/**
+ * XapianQueryParserFeature:
+ * @XAPIAN_QUERY_PARSER_FEATURE_BOOLEAN: support AND, OR, etc as well as
+ *   bracketed subexpressions
+ * @XAPIAN_QUERY_PARSER_FEATURE_PHRASE: support quoted phrases
+ * @XAPIAN_QUERY_PARSER_FEATURE_LOVEHATE: support `+` and `-`
+ * @XAPIAN_QUERY_PARSER_FEATURE_BOOLEAN_ANY_CASE: support AND, OR, etc.
+ *   even if not in upper case
+ * @XAPIAN_QUERY_PARSER_FEATURE_WILDCARD: support right truncation,
+ *   e.g. `Xap*`
+ * @XAPIAN_QUERY_PARSER_FEATURE_PURE_NOT: allow queries such as `NOT apples`
+ * @XAPIAN_QUERY_PARSER_FEATURE_PARTIAL: enable partial matching
+ * @XAPIAN_QUERY_PARSER_FEATURE_SPELLING_CORRECTION: enable spelling
+ *   correction
+ * @XAPIAN_QUERY_PARSER_FEATURE_SYNONYM: enable synonym operator `~`
+ * @XAPIAN_QUERY_PARSER_FEATURE_AUTO_SYNONYMS: enable automatic use of
+ *   synonyms for single terms
+ * @XAPIAN_QUERY_PARSER_FEATURE_AUTO_MULTIWORD_SYNONYMS: enable automatic
+ *   use of synonyms for single terms and groups of terms
+ * @XAPIAN_QUERY_PARSER_FEATURE_DEFAULT: default flags
+ *
+ * Flags for xapian_query_parser_parse_query_full().
+ */
+typedef enum {
+  XAPIAN_QUERY_PARSER_FEATURE_BOOLEAN = 1 << 0,
+  XAPIAN_QUERY_PARSER_FEATURE_PHRASE = 1 << 1,
+  XAPIAN_QUERY_PARSER_FEATURE_LOVEHATE = 1 << 2,
+  XAPIAN_QUERY_PARSER_FEATURE_BOOLEAN_ANY_CASE = 1 << 3,
+  XAPIAN_QUERY_PARSER_FEATURE_WILDCARD = 1 << 4,
+  XAPIAN_QUERY_PARSER_FEATURE_PURE_NOT = 1 << 5,
+  XAPIAN_QUERY_PARSER_FEATURE_PARTIAL = 1 << 6,
+  XAPIAN_QUERY_PARSER_FEATURE_SPELLING_CORRECTION = 1 << 7,
+  XAPIAN_QUERY_PARSER_FEATURE_SYNONYM = 1 << 8,
+  XAPIAN_QUERY_PARSER_FEATURE_AUTO_SYNONYMS = 1 << 9,
+  XAPIAN_QUERY_PARSER_FEATURE_AUTO_MULTIWORD_SYNONYMS = 1 << 10 | XAPIAN_QUERY_PARSER_FEATURE_AUTO_SYNONYMS,
+  XAPIAN_QUERY_PARSER_FEATURE_DEFAULT = XAPIAN_QUERY_PARSER_FEATURE_BOOLEAN |
+                                        XAPIAN_QUERY_PARSER_FEATURE_PHRASE |
+                                        XAPIAN_QUERY_PARSER_FEATURE_LOVEHATE
+} XapianQueryParserFeature;
+
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+GType xapian_query_parser_feature_get_type (void);
+
+#define XAPIAN_TYPE_STEM_STRATEGY                (xapian_stem_strategy_get_type ())
+
+/**
+ * XapianStemStrategy:
+ * @XAPIAN_STEM_STRATEGY_STEM_NONE: do not perform any stemming
+ * @XAPIAN_STEM_STRATEGY_STEM_SOME: generate both stemmed and unstemmed terms
+ * @XAPIAN_STEM_STRATEGY_STEM_ALL: generate only stemmed terms, without the Z prefix
+ * @XAPIAN_STEM_STRATEGY_STEM_ALL_Z: generate only stemmed terms, with the Z prefix
+ *
+ * Stemming strategies.
+ */
+typedef enum {
+  XAPIAN_STEM_STRATEGY_STEM_NONE,
+  XAPIAN_STEM_STRATEGY_STEM_SOME,
+  XAPIAN_STEM_STRATEGY_STEM_ALL,
+  XAPIAN_STEM_STRATEGY_STEM_ALL_Z
+} XapianStemStrategy;
+
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+GType xapian_stem_strategy_get_type (void);
 
 G_END_DECLS
 

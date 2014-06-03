@@ -14,15 +14,12 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __XAPIAN_GLIB_DOCUMENT_PRIVATE_H__
-#define __XAPIAN_GLIB_DOCUMENT_PRIVATE_H__
+#ifndef __XAPIAN_GLIB_STEM_PRIVATE_H__
+#define __XAPIAN_GLIB_STEM_PRIVATE_H__
 
 #include <xapian.h>
+#include "xapian-stem.h"
 
-#include "xapian-document.h"
+Xapian::Stem *  xapian_stem_get_internal        (XapianStem *stem);
 
-XapianDocument *        xapian_document_new_from_document       (const Xapian::Document &aDoc);
-
-Xapian::Document *      xapian_document_get_internal            (XapianDocument         *doc);
-
-#endif /* __XAPIAN_GLIB_DOCUMENT_PRIVATE_H__ */
+#endif /* __XAPIAN_GLIB_STEM_PRIVATE_H__ */

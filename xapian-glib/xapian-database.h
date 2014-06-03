@@ -35,11 +35,13 @@ typedef struct _XapianDatabaseClass     XapianDatabaseClass;
 
 struct _XapianDatabase
 {
+  /*< private >*/
   GObject parent_instance;
 };
 
 struct _XapianDatabaseClass
 {
+  /*< private >*/
   GObjectClass parent_instance;
 };
 
@@ -47,10 +49,10 @@ XAPIAN_GLIB_AVAILABLE_IN_ALL
 GType xapian_database_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_ALL
-XapianDatabase *        xapian_database_new             (GError **error);
+XapianDatabase *        xapian_database_new             (GError        **error);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
-XapianDatabase *        xapian_database_new_from_file   (const char *path,
-                                                         GError **error);
+XapianDatabase *        xapian_database_new_with_path   (const char     *path,
+                                                         GError        **error);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
 void                    xapian_database_close           (XapianDatabase *db);
 XAPIAN_GLIB_AVAILABLE_IN_ALL
@@ -70,6 +72,10 @@ XAPIAN_GLIB_AVAILABLE_IN_ALL
 XapianDocument *        xapian_database_get_document    (XapianDatabase *db,
                                                          unsigned int    docid,
                                                          GError        **error);
+
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+void                    xapian_database_add_database    (XapianDatabase *db,
+                                                         XapianDatabase *new_db);
 
 G_END_DECLS
 

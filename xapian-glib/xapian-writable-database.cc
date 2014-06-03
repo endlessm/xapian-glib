@@ -14,18 +14,27 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * SECTION:xapian-writable-database
+ * @Title: XapianWritableDatabase
+ * @short_description: A writable database
+ *
+ * #XapianWritableDatabase is a #XapianDatabase sub-class that can
+ * be written to.
+ */
+
 #include "config.h"
 
 #include <xapian.h>
-
-#include <string.h>
-#include <string>
 
 #include "xapian-writable-database.h"
 #include "xapian-database-private.h"
 #include "xapian-document-private.h"
 #include "xapian-error-private.h"
 #include "xapian-enums.h"
+
+#define XAPIAN_WRITABLE_DATABASE_GET_PRIVATE(obj) \
+  ((XapianWritableDatabasePrivate *) xapian_writable_database_get_instance_private ((XapianWritableDatabase *) (obj)))
 
 typedef struct _XapianWritableDatabasePrivate   XapianWritableDatabasePrivate;
 
@@ -61,29 +70,34 @@ xapian_writable_database_get_internal (XapianWritableDatabase *self)
 }
 
 static gboolean
-xapian_writable_database_init_internal (GInitable *initable,
+xapian_writable_database_init_internal (GInitable    *initable,
                                         GCancellable *cancellable,
-                                        GError **error)
+                                        GError      **error)
 {
-  XapianWritableDatabase *self = XAPIAN_WRITABLE_DATABASE (initable);
+  XapianDatabase *database = XAPIAN_DATABASE (initable);
   XapianWritableDatabasePrivate *priv;
   
-  priv = (XapianWritableDatabasePrivate *) xapian_writable_database_get_instance_private (self);
+  priv = XAPIAN_WRITABLE_DATABASE_GET_PRIVATE (initable);
 
-  Xapian::WritableDatabase db;
+  Xapian::WritableDatabase *db;
 
   try
     {
-      const char *path = xapian_database_get_path (XAPIAN_DATABASE (self));
+      const char *path = xapian_database_get_path (database);
 
       if (path == NULL)
-        db = Xapian::WritableDatabase ();
+        db = new Xapian::WritableDatabase ();
       else
         {
-          std::string file (path, strlen (path));
+          std::string file (path);
 
-          db = Xapian::WritableDatabase (file, (int) priv->action);
+          db = new Xapian::WritableDatabase (file, (int) priv->action);
         }
+
+      xapian_database_set_internal (database, db);
+      xapian_database_set_is_writable (database, TRUE);
+
+      return TRUE;
     }
   catch (const Xapian::Error &err)
     {
@@ -94,11 +108,6 @@ xapian_writable_database_init_internal (GInitable *initable,
 
       return FALSE;
     }
-
-  xapian_database_set_internal (XAPIAN_DATABASE (self), db);
-  xapian_database_set_is_writable (XAPIAN_DATABASE (self), TRUE);
-
-  return TRUE;
 }
 
 static void
@@ -108,21 +117,14 @@ initable_default_init (GInitableIface *iface)
 }
 
 static void
-xapian_writable_database_finalize (GObject *gobject)
-{
-  G_OBJECT_CLASS (xapian_writable_database_parent_class)->finalize (gobject);
-}
-
-static void
-xapian_writable_database_set_property (GObject *gobject,
-                                       guint prop_id,
+xapian_writable_database_set_property (GObject      *gobject,
+                                       guint         prop_id,
                                        const GValue *value,
-                                       GParamSpec *pspec)
+                                       GParamSpec   *pspec)
 {
-  XapianWritableDatabase *self = XAPIAN_WRITABLE_DATABASE (gobject);
   XapianWritableDatabasePrivate *priv;
 
-  priv = (XapianWritableDatabasePrivate *) xapian_writable_database_get_instance_private (self);
+  priv = XAPIAN_WRITABLE_DATABASE_GET_PRIVATE (gobject);
 
   switch (prop_id)
     {
@@ -136,15 +138,14 @@ xapian_writable_database_set_property (GObject *gobject,
 }
 
 static void
-xapian_writable_database_get_property (GObject *gobject,
-                                       guint prop_id,
-                                       GValue *value,
+xapian_writable_database_get_property (GObject    *gobject,
+                                       guint       prop_id,
+                                       GValue     *value,
                                        GParamSpec *pspec)
 {
-  XapianWritableDatabase *self = XAPIAN_WRITABLE_DATABASE (gobject);
   XapianWritableDatabasePrivate *priv;
 
-  priv = (XapianWritableDatabasePrivate *) xapian_writable_database_get_instance_private (self);
+  priv = XAPIAN_WRITABLE_DATABASE_GET_PRIVATE (gobject);
 
   switch (prop_id)
     {
@@ -162,6 +163,11 @@ xapian_writable_database_class_init (XapianWritableDatabaseClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
+  /**
+   * XapianWritableDatabase:action:
+   *
+   * The action to be performed when creating a database.
+   */
   obj_props[PROP_ACTION] =
     g_param_spec_enum ("action",
                        "Action",
@@ -174,7 +180,6 @@ xapian_writable_database_class_init (XapianWritableDatabaseClass *klass)
 
   gobject_class->set_property = xapian_writable_database_set_property;
   gobject_class->get_property = xapian_writable_database_get_property;
-  gobject_class->finalize = xapian_writable_database_finalize;
 
   g_object_class_install_properties (gobject_class, LAST_PROP, obj_props);
 }
@@ -184,18 +189,42 @@ xapian_writable_database_init (XapianWritableDatabase *self)
 {
 }
 
+/**
+ * xapian_writable_database_new:
+ * @path: the path of the database
+ * @action: the action to perform
+ * @error: return location for a #GError
+ *
+ * Creates and initialises a #XapianWritableDatabase for the
+ * given @path.
+ *
+ * If the initialization was not successful, this function
+ * returns %NULL and sets @error.
+ *
+ * Returns: (transfer full): the newly created #XapianWritableDatabase
+ *   instance
+ */
 XapianWritableDatabase *
 xapian_writable_database_new (const char            *path,
                               XapianDatabaseAction   action,
                               GError               **error)
 {
-  return (XapianWritableDatabase *) g_initable_new (XAPIAN_TYPE_WRITABLE_DATABASE,
-                                                    NULL, error,
-                                                    "path", path,
-                                                    "action", action,
-                                                    NULL);
+  return static_cast<XapianWritableDatabase *> (g_initable_new (XAPIAN_TYPE_WRITABLE_DATABASE,
+                                                                NULL, error,
+                                                                "path", path,
+                                                                "action", action,
+                                                                NULL));
 }
 
+/**
+ * xapian_writable_database_commit:
+ * @self: a #XapianWritableDatabase
+ * @error: return location for a #GError
+ *
+ * Commits the pending changes of the database.
+ *
+ * Returns: %TRUE if the commit was successful
+ */
 gboolean
 xapian_writable_database_commit (XapianWritableDatabase  *self,
                                  GError                 **error)
@@ -212,6 +241,8 @@ xapian_writable_database_commit (XapianWritableDatabase  *self,
       Xapian::WritableDatabase *write_db = xapian_writable_database_get_internal (self);
 
       write_db->commit ();
+
+      return TRUE;
     }
   catch (const Xapian::Error &err)
     {
@@ -222,18 +253,17 @@ xapian_writable_database_commit (XapianWritableDatabase  *self,
 
       return FALSE;
     }
-
-  return TRUE;
 }
 
 /**
  * xapian_writable_database_add_document:
- * @self: ...
- * @document: ...
- * @docid_out: (out): ...
- * @error: ..
+ * @self: a #XapianWritableDatabase
+ * @document: a #XapianDocument to add
+ * @docid_out: (out): return location for the id of the newly
+ *   added document
+ * @error: return location for a #GError
  *
- * ...
+ * Adds @document to a database.
  *
  * Returns: %TRUE if the document was added, and %FALSE on error
  */
@@ -275,6 +305,16 @@ xapian_writable_database_add_document (XapianWritableDatabase *self,
     }
 }
 
+/**
+ * xapian_writable_database_delete_document:
+ * @self: a #XapianWritableDatabase
+ * @docid: the document to delete
+ * @error: return location for a #GError
+ *
+ * Deletes the document with the given @docid from a database.
+ *
+ * Returns: %TRUE if the document was successfully deleted
+ */
 gboolean
 xapian_writable_database_delete_document (XapianWritableDatabase *self,
                                           unsigned int            docid,
@@ -305,6 +345,18 @@ xapian_writable_database_delete_document (XapianWritableDatabase *self,
     }
 }
 
+/**
+ * xapian_writable_database_replace_document:
+ * @self: a #XapianWritableDatabase
+ * @docid: the id of the document to replace
+ * @document: a #XapianDocument
+ * @error: return location for a #GError
+ *
+ * Replaces the #XapianDocument with @docid inside a
+ * #XapianWritableDatabase with the given @document.
+ *
+ * Returns: %TRUE if the document was replaced
+ */
 gboolean
 xapian_writable_database_replace_document (XapianWritableDatabase *self,
                                            unsigned int            docid,
@@ -338,6 +390,23 @@ xapian_writable_database_replace_document (XapianWritableDatabase *self,
     }
 }
 
+/**
+ * xapian_writable_database_begin_transaction:
+ * @self: a #XapianWritableDatabase
+ * @flushed: whether the transaction should be permanently stored
+ *   in the database when committed, or if the transaction should
+ *   only be applied to the database
+ * @error: return location for a #GError
+ *
+ * Begins a transaction in the database.
+ *
+ * See also: xapian_writable_database_commit_transaction(),
+ *   xapian_writable_database_cancel_transaction()
+ *
+ * Returns: %TRUE if the transaction can be started, and
+ *   %FALSE if the backend does not support transactions or
+ *   if a transaction is already in progress
+ */
 gboolean
 xapian_writable_database_begin_transaction (XapianWritableDatabase *self,
                                             gboolean                flushed,
@@ -365,6 +434,22 @@ xapian_writable_database_begin_transaction (XapianWritableDatabase *self,
     }
 }
 
+/**
+ * xapian_writable_database_commit_transaction:
+ * @self: a #XapianWritableDatabase
+ * @error: return location for a #GError
+ *
+ * Commits the currently pending transaction.
+ *
+ * If the transaction was started by passing %TRUE to the `flushed`
+ * argument of xapian_writable_database_begin_transaction() then all
+ * the changes caused by the transaction will be permanently stored
+ * inside the database.
+ *
+ * In case of error, this function will return %FALSE and set @error.
+ *
+ * Returns: %TRUE if the transaction was successfully committed.
+ */
 gboolean
 xapian_writable_database_commit_transaction (XapianWritableDatabase *self,
                                              GError                **error)
@@ -390,6 +475,15 @@ xapian_writable_database_commit_transaction (XapianWritableDatabase *self,
     }
 }
 
+/**
+ * xapian_writable_database_cancel_transaction:
+ * @self: a #XapianWritableDatabase
+ * @error: return location for a #GError
+ *
+ * Cancels the currently pending transaction.
+ *
+ * Returns: %TRUE if the transaction was successfully cancelled
+ */
 gboolean
 xapian_writable_database_cancel_transaction (XapianWritableDatabase *self,
                                              GError                **error)

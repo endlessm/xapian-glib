@@ -25,7 +25,14 @@
 
 #include "xapian-database.h"
 #include "xapian-document.h"
+#include "xapian-enquire.h"
 #include "xapian-enums.h"
+#include "xapian-mset.h"
+#include "xapian-query.h"
+#include "xapian-query-parser.h"
+#include "xapian-stem.h"
+#include "xapian-term-generator.h"
+#include "xapian-utils.h"
 #include "xapian-writable-database.h"
 
 #undef XAPIAN_GLIB_H_INSIDE

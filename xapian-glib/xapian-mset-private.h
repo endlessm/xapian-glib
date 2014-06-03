@@ -14,15 +14,15 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __XAPIAN_GLIB_DOCUMENT_PRIVATE_H__
-#define __XAPIAN_GLIB_DOCUMENT_PRIVATE_H__
+#ifndef __XAPIAN_GLIB_MSET_PRIVATE_H__
+#define __XAPIAN_GLIB_MSET_PRIVATE_H__
 
 #include <xapian.h>
+#include "xapian-mset.h"
 
-#include "xapian-document.h"
+XapianMSet *    	xapian_mset_new                 (const Xapian::MSet &aMSet);
+Xapian::MSet *  	xapian_mset_get_internal        (XapianMSet         *mset);
 
-XapianDocument *        xapian_document_new_from_document       (const Xapian::Document &aDoc);
+XapianMSetIterator *	xapian_mset_iterator_new	(XapianMSet         *mset);
 
-Xapian::Document *      xapian_document_get_internal            (XapianDocument         *doc);
-
-#endif /* __XAPIAN_GLIB_DOCUMENT_PRIVATE_H__ */
+#endif /* __XAPIAN_GLIB_MSET_PRIVATE_H__ */
