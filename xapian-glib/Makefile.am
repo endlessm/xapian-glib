@@ -22,6 +22,8 @@ source_h_public = \
 	xapian-document.h \
 	xapian-enquire.h \
 	xapian-enums.h \
+	xapian-glib-macros.h \
+	xapian-glib-types.h \
 	xapian-mset.h \
 	xapian-query.h \
 	xapian-query-parser.h \
@@ -63,9 +65,9 @@ EXTRA_DIST += xapian-glib-version.h.in
 
 # headers
 xapianincludedir = $(includedir)/xapian-glib-1.0
-xapianinclude_DATA = \
+nodist_xapianinclude_DATA = $(top_builddir)/xapian-glib/xapian-glib-version.h
+dist_xapianinclude_DATA = \
 	$(source_h_public) \
-	$(top_builddir)/xapian-glib/xapian-glib-version.h \
 	$(top_srcdir)/xapian-glib/xapian-glib.h \
 	$(NULL)
 
