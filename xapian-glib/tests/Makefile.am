@@ -1,6 +1,6 @@
 include $(top_srcdir)/build/autotools/glib-tap.mk
 
-LDADD = $(top_builddir)/xapian-glib/libxapian-glib-1.0.la
+LDADD = $(top_builddir)/xapian-glib/libxapian-glib-1.0.la $(XAPIAN_GLIB_LIBS)
 AM_CPPFLAGS = -g -O0 \
 	$(XAPIAN_GLIB_CFLAGS) \
 	$(XAPIAN_GLIB_DEBUG_CFLAGS) \
