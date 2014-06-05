@@ -11,7 +11,7 @@ Standards-Version: 3.9.4
 Section: non-free/libs
 Homepage: http://www.endlessm.com
 
-Package: gir1.2-xapian-0
+Package: gir1.2-xapian-1.0
 Section: non-free/libdevel
 Architecture: any
 Depends: gir1.2-glib-2.0,
