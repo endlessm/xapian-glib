@@ -35,7 +35,7 @@ AC_CONFIG_MACRO_DIR([build/autotools])
 AC_CONFIG_HEADER([xapian-glib/config.h])
 AC_CONFIG_SRCDIR([xapian-glib/xapian-glib.h])
 
-AM_INIT_AUTOMAKE([1.13 no-define foreign -Wno-portability dist-xz no-dist-gzip tar-ustar])
+AM_INIT_AUTOMAKE([1.11 no-define foreign -Wno-portability dist-xz no-dist-gzip tar-ustar])
 AM_SILENT_RULES([yes])
 
 LT_PREREQ([2.2.6])
