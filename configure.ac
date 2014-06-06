@@ -8,12 +8,11 @@ m4_define([xapian_version], [xapian_major_version.xapian_minor_version.xapian_mi
 
 m4_define([xapian_release_status],
           [m4_if(m4_eval(xapian_micro_version % 2), [1], [git],
-                 [m4_if(m4_eval(xapian_minor_version % 2), [1], [snapshot],
-                                                              [release])])])
+                 [m4_if(m4_eval(xapian_minor_version % 2), [1], [snapshot], [release])])])
 
 # bump up by 1 for every micro release with no API changes, otherwise
 # set to 0. after release, bump up by 1
-m4_define([xapian_interface_age], [1])
+m4_define([xapian_interface_age], [0])
 m4_define([xapian_binary_age], [m4_eval(100 * xapian_minor_version + xapian_micro_version)])
 
 m4_define([lt_current], [m4_eval(100 * xapian_minor_version + xapian_micro_version - xapian_interface_age)])
