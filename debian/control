@@ -15,10 +15,7 @@ Homepage: http://www.endlessm.com
 Package: gir1.2-xapian-1.0
 Section: non-free/libdevel
 Architecture: any
-Depends: gir1.2-glib-2.0,
-         gir1.2-gio-2.0,
-         xapian-config,
-         ${misc:Depends},
+Depends: ${misc:Depends},
          ${shlibs:Depends}
 Description: GObject/C bindings for the Xapian API
  Xapian-GLib is a wrapper library that offers a C API and GObject types for the
