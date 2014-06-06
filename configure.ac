@@ -25,9 +25,9 @@ AC_PREREQ([2.63])
 
 AC_INIT([xapian-glib],
         [xapian_version],
-        [],
+        [https://github.com/endlessm/eos-sdk/issues/],
         [xapian-glib],
-        [])
+        [https://github.com/endlessm/xapian-glib])
 
 AC_CONFIG_AUX_DIR([build])
 AC_CONFIG_MACRO_DIR([build/autotools])
