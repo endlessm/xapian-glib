@@ -200,8 +200,11 @@ xapian_database_finalize (GObject *self)
 {
   XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
 
-  priv->mDB->close ();
-  delete priv->mDB;
+  if (priv->mDB)
+    {
+      priv->mDB->close ();
+      delete priv->mDB;
+    }
 
   g_free (priv->path);
 
