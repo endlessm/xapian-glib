@@ -47,43 +47,43 @@ struct _XapianMSetClass
   GObjectClass parent_instance;
 };
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 GType xapian_mset_get_type (void);
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 unsigned int            xapian_mset_get_firstitem                               (XapianMSet *mset);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 unsigned int            xapian_mset_get_termfreq                                (XapianMSet *mset,
                                                                                  const char *term);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 double                  xapian_mset_get_termweight                              (XapianMSet *mset,
                                                                                  const char *term);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 unsigned int            xapian_mset_get_matches_lower_bound                     (XapianMSet *mset);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 unsigned int            xapian_mset_get_matches_estimated                       (XapianMSet *mset);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 unsigned int            xapian_mset_get_matches_upper_bound                     (XapianMSet *mset);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 unsigned int            xapian_mset_get_uncollapsed_matches_lower_bound         (XapianMSet *mset);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 unsigned int            xapian_mset_get_uncollapsed_matches_estimated           (XapianMSet *mset);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 unsigned int            xapian_mset_get_uncollapsed_matches_upper_bound         (XapianMSet *mset);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 double                  xapian_mset_get_max_possible                            (XapianMSet *mset);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 double                  xapian_mset_get_max_attained                            (XapianMSet *mset);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 unsigned int            xapian_mset_get_size                                    (XapianMSet *mset);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 gboolean                xapian_mset_is_empty                                    (XapianMSet *mset);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 int                     xapian_mset_convert_to_percent                          (XapianMSet *mset,
                                                                                  double      weight);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianMSetIterator *    xapian_mset_get_begin                                   (XapianMSet *mset);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianMSetIterator *    xapian_mset_get_end                                     (XapianMSet *mset);
 
 
@@ -109,37 +109,37 @@ struct _XapianMSetIteratorClass
   GObjectClass parent_instance;
 };
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 GType xapian_mset_iterator_get_type (void);
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 gboolean                xapian_mset_iterator_next               (XapianMSetIterator *iter);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 gboolean                xapian_mset_iterator_prev               (XapianMSetIterator *iter);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 gboolean                xapian_mset_iterator_is_valid           (XapianMSetIterator *iter);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 gboolean                xapian_mset_iterator_is_begin           (XapianMSetIterator *iter);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 gboolean                xapian_mset_iterator_is_end             (XapianMSetIterator *iter);
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 unsigned int            xapian_mset_iterator_get_rank           (XapianMSetIterator *iter);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 double                  xapian_mset_iterator_get_weight         (XapianMSetIterator *iter);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 int                     xapian_mset_iterator_get_percent        (XapianMSetIterator *iter);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianDocument *        xapian_mset_iterator_get_document       (XapianMSetIterator *iter,
                                                                  GError            **error);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 unsigned int            xapian_mset_iterator_get_doc_id         (XapianMSetIterator *iter,
                                                                  GError            **error);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 unsigned int            xapian_mset_iterator_get_collapse_count (XapianMSetIterator *iter);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 char *                  xapian_mset_iterator_get_description    (XapianMSetIterator *iter);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianMSet *            xapian_mset_iterator_get_mset           (XapianMSetIterator *iter);
 
 G_END_DECLS

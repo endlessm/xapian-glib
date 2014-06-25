@@ -44,39 +44,39 @@ struct _XapianWritableDatabaseClass
   XapianDatabaseClass parent_instance;
 };
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 GType xapian_writable_database_get_type (void);
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianWritableDatabase *        xapian_writable_database_new                    (const char            *path,
                                                                                  XapianDatabaseAction   action,
                                                                                  GError               **error);
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 gboolean                        xapian_writable_database_commit                 (XapianWritableDatabase *self,
                                                                                  GError **error);
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 gboolean                        xapian_writable_database_begin_transaction      (XapianWritableDatabase *self,
                                                                                  gboolean                flushed,
                                                                                  GError                **error);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 gboolean                        xapian_writable_database_commit_transaction     (XapianWritableDatabase *self,
                                                                                  GError                **error);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 gboolean                        xapian_writable_database_cancel_transaction     (XapianWritableDatabase *self,
                                                                                  GError                **error);
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 gboolean                        xapian_writable_database_add_document           (XapianWritableDatabase *self,
                                                                                  XapianDocument         *document,
                                                                                  unsigned int           *docid_out,
                                                                                  GError                **error);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 gboolean                        xapian_writable_database_delete_document        (XapianWritableDatabase *self,
                                                                                  unsigned int            docid,
                                                                                  GError                **error);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 gboolean                        xapian_writable_database_replace_document       (XapianWritableDatabase *self,
                                                                                  unsigned int            docid,
                                                                                  XapianDocument         *document,
