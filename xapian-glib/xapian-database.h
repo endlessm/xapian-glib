@@ -45,35 +45,35 @@ struct _XapianDatabaseClass
   GObjectClass parent_instance;
 };
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 GType xapian_database_get_type (void);
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianDatabase *        xapian_database_new             (GError        **error);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianDatabase *        xapian_database_new_with_path   (const char     *path,
                                                          GError        **error);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_database_close           (XapianDatabase *db);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 char *                  xapian_database_get_description (XapianDatabase *db);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 char *                  xapian_database_get_uuid        (XapianDatabase *db);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 char *                  xapian_database_get_metadata    (XapianDatabase *db,
                                                          const char     *key,
                                                          GError        **error);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 unsigned int            xapian_database_get_doc_count   (XapianDatabase *db);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 unsigned int            xapian_database_get_last_doc_id (XapianDatabase *db);
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianDocument *        xapian_database_get_document    (XapianDatabase *db,
                                                          unsigned int    docid,
                                                          GError        **error);
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_database_add_database    (XapianDatabase *db,
                                                          XapianDatabase *new_db);
 

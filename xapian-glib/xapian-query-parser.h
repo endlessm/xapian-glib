@@ -43,37 +43,37 @@ struct _XapianQueryParserClass
   GObjectClass parent_instance;
 };
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 GType xapian_query_parser_get_type (void);
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianQueryParser *     xapian_query_parser_new                         (void);
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_query_parser_set_stemmer                 (XapianQueryParser        *parser,
                                                                          XapianStem               *stemmer);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_query_parser_set_stemming_strategy       (XapianQueryParser        *parser,
                                                                          XapianStemStrategy        strategy);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_query_parser_set_database                (XapianQueryParser        *parser,
                                                                          XapianDatabase           *database);
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_query_parser_add_prefix                  (XapianQueryParser        *parser,
                                                                          const char               *field,
                                                                          const char               *prefix);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_query_parser_add_boolean_prefix          (XapianQueryParser        *parser,
                                                                          const char               *field,
                                                                          const char               *prefix,
                                                                          gboolean                  exclusive);
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianQuery *           xapian_query_parser_parse_query                 (XapianQueryParser        *parser,
                                                                          const char               *query_string,
                                                                          GError                  **error);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianQuery *           xapian_query_parser_parse_query_full            (XapianQueryParser        *parser,
                                                                          const char               *query_string,
                                                                          XapianQueryParserFeature  flags,

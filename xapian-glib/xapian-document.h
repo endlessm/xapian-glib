@@ -43,68 +43,68 @@ struct _XapianDocumentClass
   GObjectClass parent_instance;
 };
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 GType xapian_document_get_type (void);
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianDocument *        xapian_document_new                     (void);
 
 /* values */
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 char *                  xapian_document_get_value               (XapianDocument *document,
                                                                  unsigned int    slot);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_document_add_value               (XapianDocument *document,
                                                                  unsigned int    slot,
                                                                  const char     *value);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_document_remove_value            (XapianDocument *document,
                                                                  unsigned int    slot);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_document_clear_values            (XapianDocument *document);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 unsigned int            xapian_document_get_values_count        (XapianDocument *document);
 
 /* data */
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 char *                  xapian_document_get_data                (XapianDocument *document);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_document_set_data                (XapianDocument *document,
                                                                  const char     *data);
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 unsigned int            xapian_document_get_doc_id              (XapianDocument *document);
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 char *                  xapian_document_get_description         (XapianDocument *document);
 
 /* terms */
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_document_add_posting             (XapianDocument *document,
                                                                  const char     *tname,
                                                                  unsigned int    term_pos,
                                                                  unsigned int    wdf_increment);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_document_remove_posting          (XapianDocument *document,
                                                                  const char     *tname,
                                                                  unsigned int    term_pos,
                                                                  unsigned int    wdf_decrement);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_document_add_term                (XapianDocument *document,
                                                                  const char     *tname);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_document_add_term_full           (XapianDocument *document,
                                                                  const char     *tname,
                                                                  unsigned int    wdf_increment);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_document_add_boolean_term        (XapianDocument *document,
                                                                  const char     *tname);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_document_remove_term             (XapianDocument *document,
                                                                  const char     *tname);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_document_clear_terms             (XapianDocument *document);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 unsigned int            xapian_document_get_termlist_count      (XapianDocument *document);
 
 
