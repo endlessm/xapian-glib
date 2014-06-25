@@ -51,6 +51,15 @@ XapianEnquire * xapian_enquire_new              (XapianDatabase *db,
                                                  GError        **error);
 
 XAPIAN_GLIB_AVAILABLE_IN_ALL
+void            xapian_enquire_set_collapse_key (XapianEnquire *enquire,
+                                                 unsigned int   collapse_key);
+
+XAPIAN_GLIB_AVAILABLE_IN_ALL
+void            xapian_enquire_set_collapse_key_full (XapianEnquire *enquire,
+                                                 unsigned int   collapse_key,
+                                                 unsigned int   collapse_max);
+
+XAPIAN_GLIB_AVAILABLE_IN_ALL
 void            xapian_enquire_set_query        (XapianEnquire *enquire,
                                                  XapianQuery   *query,
                                                  unsigned int   qlen);
