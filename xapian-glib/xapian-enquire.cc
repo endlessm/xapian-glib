@@ -239,10 +239,12 @@ xapian_enquire_new (XapianDatabase *db,
  *
  * Sets the collapse key for the #XapianEnquire instance with the default
  * collapse_max value of 1.
+ *
+ * Since 1.2
  */
 void
 xapian_enquire_set_collapse_key (XapianEnquire *enquire,
-              unsigned int  collapse_key)
+                                 unsigned int  collapse_key)
 {
   g_return_if_fail (XAPIAN_IS_ENQUIRE (enquire));
 
@@ -265,11 +267,13 @@ xapian_enquire_set_collapse_key (XapianEnquire *enquire,
  * @collapse_max: Max number of items with the same key to leave after collapsing
  *
  * Sets the collapse key for the #XapianEnquire instance.
+ *
+ * Since 1.2
  */
 void
 xapian_enquire_set_collapse_key_full (XapianEnquire *enquire,
-              unsigned int  collapse_key,
-              unsigned int  collapse_max)
+                                      unsigned int  collapse_key,
+                                      unsigned int  collapse_max)
 {
   g_return_if_fail (XAPIAN_IS_ENQUIRE (enquire));
 
