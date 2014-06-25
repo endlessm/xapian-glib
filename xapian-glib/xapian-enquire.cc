@@ -250,12 +250,14 @@ xapian_enquire_set_query (XapianEnquire *enquire,
 
   XapianEnquirePrivate *priv = XAPIAN_ENQUIRE_GET_PRIVATE (enquire);
 
+#ifdef XAPIAN_GLIB_ENABLE_DEBUG
   if (G_UNLIKELY (priv->mEnquire == NULL))
     {
       g_critical ("XapianEnquire must be initialized. Use g_initable_init() "
                   "before calling any XapianEnquire method.");
       return;
     }
+#endif
 
   if (priv->query == query)
     return;
@@ -315,12 +317,14 @@ xapian_enquire_get_mset (XapianEnquire *enquire,
 
   XapianEnquirePrivate *priv = XAPIAN_ENQUIRE_GET_PRIVATE (enquire);
 
+#ifdef XAPIAN_GLIB_ENABLE_DEBUG
   if (G_UNLIKELY (priv->mEnquire == NULL))
     {
       g_critical ("XapianEnquire must be initialized. Use g_initable_init() "
                   "before calling any XapianEnquire method.");
       return NULL;
     }
+#endif
 
   try
     {
