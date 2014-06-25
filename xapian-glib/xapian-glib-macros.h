@@ -36,8 +36,6 @@
 
 /* XXX: Each new cycle should add a new version symbol here */
 
-#define XAPIAN_GLIB_AVAILABLE_IN_ALL _XAPIAN_GLIB_EXTERN
-
 #define XAPIAN_GLIB_VERSION_1_0 (G_ENCODE_VERSION (1, 0))
 
 #define XAPIAN_GLIB_VERSION_1_2 (G_ENCODE_VERSION (1, 2))
