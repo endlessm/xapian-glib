@@ -18,16 +18,16 @@
   <chapter>
     <title>Xapian-GLib</title>
     <xi:include href="xml/xapian-database.xml"/>
+    <xi:include href="xml/xapian-writable-database.xml"/>
     <xi:include href="xml/xapian-document.xml"/>
     <xi:include href="xml/xapian-enquire.xml"/>
-    <xi:include href="xml/xapian-mset.xml"/>
-    <xi:include href="xml/xapian-mset-iterator.xml"/>
     <xi:include href="xml/xapian-query.xml"/>
     <xi:include href="xml/xapian-query-parser.xml"/>
+    <xi:include href="xml/xapian-mset.xml"/>
+    <xi:include href="xml/xapian-mset-iterator.xml"/>
     <xi:include href="xml/xapian-stem.xml"/>
     <xi:include href="xml/xapian-term-generator.xml"/>
     <xi:include href="xml/xapian-utils.xml"/>
-    <xi:include href="xml/xapian-writable-database.xml"/>
 
   </chapter>
   <chapter id="object-tree">
