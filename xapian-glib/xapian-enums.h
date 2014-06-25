@@ -42,7 +42,7 @@ typedef enum {
   XAPIAN_DATABASE_ACTION_OPEN = 4
 } XapianDatabaseAction;
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 GType xapian_database_action_get_type (void);
 
 #define XAPIAN_TYPE_ERROR                       (xapian_error_get_type ())
@@ -103,9 +103,9 @@ typedef enum {
   XAPIAN_ERROR_LAST
 } XapianError;
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 GType xapian_error_get_type (void);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 GQuark xapian_error_quark (void);
 
 #define XAPIAN_TYPE_QUERY_OP            (xapian_query_op_get_type ())
@@ -160,7 +160,7 @@ typedef enum {
   XAPIAN_QUERY_OP_LAST
 } XapianQueryOp;
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 GType xapian_query_op_get_type (void);
 
 #define XAPIAN_TYPE_QUERY_PARSER_FEATURE        (xapian_query_parser_feature_get_type ())
@@ -205,7 +205,7 @@ typedef enum {
                                         XAPIAN_QUERY_PARSER_FEATURE_LOVEHATE
 } XapianQueryParserFeature;
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 GType xapian_query_parser_feature_get_type (void);
 
 #define XAPIAN_TYPE_STEM_STRATEGY                (xapian_stem_strategy_get_type ())
@@ -226,7 +226,7 @@ typedef enum {
   XAPIAN_STEM_STRATEGY_STEM_ALL_Z
 } XapianStemStrategy;
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 GType xapian_stem_strategy_get_type (void);
 
 G_END_DECLS

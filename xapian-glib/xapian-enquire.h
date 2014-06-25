@@ -43,21 +43,21 @@ struct _XapianEnquireClass
   GObjectClass parent_instance;
 };
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 GType xapian_enquire_get_type (void);
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianEnquire * xapian_enquire_new              (XapianDatabase *db,
                                                  GError        **error);
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 void            xapian_enquire_set_query        (XapianEnquire *enquire,
                                                  XapianQuery   *query,
                                                  unsigned int   qlen);
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianQuery *   xapian_enquire_get_query        (XapianEnquire *enquire);
 
-XAPIAN_GLIB_AVAILABLE_IN_ALL
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianMSet *    xapian_enquire_get_mset         (XapianEnquire *enquire,
                                                  unsigned int   first,
                                                  unsigned int   max_items,
