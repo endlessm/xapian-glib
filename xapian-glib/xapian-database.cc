@@ -338,7 +338,23 @@ xapian_database_close (XapianDatabase *db)
 {
   g_return_if_fail (XAPIAN_IS_DATABASE (db));
 
-  xapian_database_get_internal (db)->close();
+  xapian_database_get_internal (db)->close ();
+}
+
+/**
+ * xapian_database_reopen:
+ * @db: a #XapianDatabase
+ *
+ * Reopens a #XapianDatabase.
+ *
+ * Since: 1.2
+ */
+void
+xapian_database_reopen (XapianDatabase *db)
+{
+  g_return_if_fail (XAPIAN_IS_DATABASE (db));
+
+  xapian_database_get_internal (db)->reopen ();
 }
 
 /**

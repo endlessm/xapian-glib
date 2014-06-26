@@ -4,6 +4,7 @@
 xapian_database_new
 xapian_database_new_with_path
 xapian_database_close
+xapian_database_reopen
 xapian_database_get_description
 xapian_database_get_uuid
 xapian_database_get_metadata

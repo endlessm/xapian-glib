@@ -55,6 +55,9 @@ XapianDatabase *        xapian_database_new_with_path   (const char     *path,
                                                          GError        **error);
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_database_close           (XapianDatabase *db);
+XAPIAN_GLIB_AVAILABLE_IN_1_2
+void                    xapian_database_reopen          (XapianDatabase *db);
+
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 char *                  xapian_database_get_description (XapianDatabase *db);
 XAPIAN_GLIB_AVAILABLE_IN_1_0
