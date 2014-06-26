@@ -233,6 +233,63 @@ xapian_enquire_new (XapianDatabase *db,
 }
 
 /**
+ * xapian_enquire_set_collapse_key:
+ * @enquire: a #XapianEnquire
+ * @collapse_key: value number to collapse on
+ *
+ * Sets the collapse key for the #XapianEnquire instance with the default
+ * collapse_max value of 1.
+ *
+ * Since 1.2
+ */
+void
+xapian_enquire_set_collapse_key (XapianEnquire *enquire,
+                                 unsigned int  collapse_key)
+{
+  g_return_if_fail (XAPIAN_IS_ENQUIRE (enquire));
+
+  XapianEnquirePrivate *priv = XAPIAN_ENQUIRE_GET_PRIVATE (enquire);
+
+  if (G_UNLIKELY (priv->mEnquire == NULL))
+    {
+      g_critical ("XapianEnquire must be initialized. Use g_initable_init() "
+                  "before calling any XapianEnquire method.");
+      return;
+    }
+
+  priv->mEnquire->set_collapse_key (collapse_key);
+}
+
+/**
+ * xapian_enquire_set_collapse_key_full:
+ * @enquire: a #XapianEnquire
+ * @collapse_key: value number to collapse on
+ * @collapse_max: Max number of items with the same key to leave after collapsing
+ *
+ * Sets the collapse key for the #XapianEnquire instance.
+ *
+ * Since 1.2
+ */
+void
+xapian_enquire_set_collapse_key_full (XapianEnquire *enquire,
+                                      unsigned int  collapse_key,
+                                      unsigned int  collapse_max)
+{
+  g_return_if_fail (XAPIAN_IS_ENQUIRE (enquire));
+
+  XapianEnquirePrivate *priv = XAPIAN_ENQUIRE_GET_PRIVATE (enquire);
+
+  if (G_UNLIKELY (priv->mEnquire == NULL))
+    {
+      g_critical ("XapianEnquire must be initialized. Use g_initable_init() "
+                  "before calling any XapianEnquire method.");
+      return;
+    }
+
+  priv->mEnquire->set_collapse_key (collapse_key, collapse_max);
+}
+
+/**
  * xapian_enquire_set_query:
  * @enquire: a #XapianEnquire
  * @query: a #XapianQuery
