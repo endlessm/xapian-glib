@@ -290,6 +290,67 @@ xapian_enquire_set_collapse_key_full (XapianEnquire *enquire,
 }
 
 /**
+ * xapian_enquire_set_cutoff:
+ * @enquire: a #XapianEnquire
+ * @percent_cutoff: Minimum percentage score for returned documents. If a
+ *                  document has a lower percentage score than this, it will
+ *                  not appear in the MSet.
+ *
+ * Set the percentage cutoffs with no weight cutoff.
+ *
+ * Since 1.2
+ */
+void
+xapian_enquire_set_cutoff (XapianEnquire *enquire,
+                           gfloat         percent_cutoff)
+{
+  g_return_if_fail (XAPIAN_IS_ENQUIRE (enquire));
+
+  XapianEnquirePrivate *priv = XAPIAN_ENQUIRE_GET_PRIVATE (enquire);
+
+  if (G_UNLIKELY (priv->mEnquire == NULL))
+    {
+      g_critical ("XapianEnquire must be initialized. Use g_initable_init() "
+                  "before calling any XapianEnquire method.");
+      return;
+    }
+
+  priv->mEnquire->set_cutoff (percent_cutoff, 0);
+}
+
+/**
+ * xapian_enquire_set_cutoff_full:
+ * @enquire: a #XapianEnquire
+ * @percent_cutoff: Minimum percentage score for returned documents. If a
+ *                  document has a lower percentage score than this, it will
+ *                  not appear in the MSet.
+ * @weight_cutoff: Minimum weight for a document to be returned. If a document
+ *                 has a lower score that this, it will not appear in the MSet
+ *
+ * Set the percentage and weight cutoffs.
+ *
+ * Since 1.2
+ */
+void
+xapian_enquire_set_cutoff_full (XapianEnquire *enquire,
+                                gfloat         percent_cutoff,
+                                unsigned int   weight_cutoff)
+{
+  g_return_if_fail (XAPIAN_IS_ENQUIRE (enquire));
+
+  XapianEnquirePrivate *priv = XAPIAN_ENQUIRE_GET_PRIVATE (enquire);
+
+  if (G_UNLIKELY (priv->mEnquire == NULL))
+    {
+      g_critical ("XapianEnquire must be initialized. Use g_initable_init() "
+                  "before calling any XapianEnquire method.");
+      return;
+    }
+
+  priv->mEnquire->set_cutoff (percent_cutoff, weight_cutoff);
+}
+
+/**
  * xapian_enquire_set_query:
  * @enquire: a #XapianEnquire
  * @query: a #XapianQuery

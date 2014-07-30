@@ -58,6 +58,14 @@ XAPIAN_GLIB_AVAILABLE_IN_1_2
 void            xapian_enquire_set_collapse_key_full  (XapianEnquire *enquire,
                                                        unsigned int   collapse_key,
                                                        unsigned int   collapse_max);
+XAPIAN_GLIB_AVAILABLE_IN_1_2
+void            xapian_enquire_set_cutoff             (XapianEnquire *enquire,
+                                                       gfloat         percent_cutoff);
+
+XAPIAN_GLIB_AVAILABLE_IN_1_2
+void            xapian_enquire_set_cutoff_full        (XapianEnquire *enquire,
+                                                       gfloat         percent_cutoff,
+                                                       unsigned int   weight_cutoff);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 void            xapian_enquire_set_query              (XapianEnquire *enquire,
