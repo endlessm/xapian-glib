@@ -65,6 +65,8 @@ xapian_enquire_set_query
 xapian_enquire_get_query
 xapian_enquire_set_collapse_key
 xapian_enquire_set_collapse_key_full
+xapian_enquire_set_cutoff
+xapian_enquire_set_cutoff_full
 xapian_enquire_get_mset
 <SUBSECTION Standard>
 XAPIAN_ENQUIRE
