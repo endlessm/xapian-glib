@@ -28,6 +28,7 @@ source_h_public = \
 	xapian-query.h \
 	xapian-query-parser.h \
 	xapian-stem.h \
+	xapian-simple-stopper.h \
 	xapian-term-generator.h \
 	xapian-utils.h \
 	xapian-writable-database.h \
@@ -53,6 +54,7 @@ source_c_public = \
 	xapian-query.cc \
 	xapian-query-parser.cc \
 	xapian-stem.cc \
+	xapian-simple-stopper.cc \
 	xapian-term-generator.cc \
 	xapian-utils.cc \
 	xapian-writable-database.cc \

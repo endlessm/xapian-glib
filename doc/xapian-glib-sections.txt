@@ -197,6 +197,24 @@ xapian_stem_strategy_get_type
 </SECTION>
 
 <SECTION>
+<FILE>xapian-simple-stopper</FILE>
+<TITLE>XapianSimpleStopper</TITLE>
+xapian_simple_stopper_new
+xapian_simple_stopper_add
+xapian_simple_stopper_get_description
+<SUBSECTION Standard>
+XAPIAN_SIMPLE_STOPPER
+XAPIAN_SIMPLE_STOPPER_CLASS
+XAPIAN_SIMPLE_STOPPER_GET_CLASS
+XAPIAN_IS_SIMPLE_STOPPER
+XAPIAN_IS_SIMPLE_STOPPER_CLASS
+XAPIAN_TYPE_SIMPLE_STOPPER
+XapianSimpleStopper
+XapianSimpleStopperClass
+xapian_simple_stopper_get_type
+</SECTION>
+
+<SECTION>
 <FILE>xapian-stem</FILE>
 <TITLE>XapianStem</TITLE>
 XAPIAN_STEM_LANGUAGE_NONE
