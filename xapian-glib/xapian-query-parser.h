@@ -80,6 +80,9 @@ XapianQuery *           xapian_query_parser_parse_query_full            (XapianQ
                                                                          const char               *default_prefix,
                                                                          GError                  **error);
 
+XAPIAN_GLIB_AVAILABLE_IN_1_2
+const char *            xapian_query_parser_get_corrected_query_string  (XapianQueryParser        *parser);
+
 G_END_DECLS
 
 #endif /* __XAPIAN_GLIB_QUERY_PARSER_H__ */
