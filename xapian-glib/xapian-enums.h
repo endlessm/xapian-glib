@@ -229,6 +229,23 @@ typedef enum {
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 GType xapian_stem_strategy_get_type (void);
 
+#define XAPIAN_TYPE_TERM_GENERATOR_FEATURE         (xapian_term_generator_feature_get_type ())
+
+/**
+ * XapianTermGeneratorFeature:
+ * @XAPIAN_TERM_GENERATOR_FEATURE_SPELLING: Index data required for spelling correction
+ *
+ * TermGenerator flags
+ *
+ * Since 1.2
+ */
+typedef enum {
+  XAPIAN_TERM_GENERATOR_FEATURE_SPELLING
+} XapianTermGeneratorFeature;
+
+XAPIAN_GLIB_AVAILABLE_IN_1_2
+GType xapian_term_generator_feature_get_type (void);
+
 G_END_DECLS
 
 #endif /* __XAPIAN_ENUMS_H__ */
