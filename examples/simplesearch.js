@@ -5,18 +5,22 @@
 
 const Xapian = imports.gi.Xapian;
 
-const query_string = "africa";
+const query_string = "drop me africa";
 const QUERY_PARSER_FLAGS = Xapian.QueryParserFeature.DEFAULT | Xapian.QueryParserFeature.WILDCARD;
-const path = 'testdb';
+const path = 'examples/testdb';
 
 let db = new Xapian.Database({
     'path': path
 }); 
 db.init(null);
 
+let stopper = new Xapian.SimpleStopper();
+stopper.add('drop');
+stopper.add('me');
 let qp = new Xapian.QueryParser({
     'database': db,
 });
+qp.set_stopper(stopper);
 let parsed_query = qp.parse_query(query_string, QUERY_PARSER_FLAGS);
 print('parsed_query', parsed_query.get_description());
 
@@ -36,5 +40,5 @@ while (iter.next()) {
                + 'docid=' + iter.get_doc_id() + ' '
                + '[' + iter.get_document().get_data() + ']';
 
-    print('result', result);
+    //print('result', result);
 }
