@@ -80,6 +80,10 @@ xapian_simple_stopper_init (XapianSimpleStopper *stopper)
   priv->mSimpleStopper = new Xapian::SimpleStopper ();
 }
 
+/**
+ * xapian_simple_stopper_add:
+ * @word: stop word to be added
+ */
 void
 xapian_simple_stopper_add (XapianSimpleStopper *stopper,
                            const gchar *word)
@@ -91,6 +95,12 @@ xapian_simple_stopper_add (XapianSimpleStopper *stopper,
   priv->mSimpleStopper->add(word);
 }
 
+/**
+ * xapian_simple_stopper_get_description:
+ * @stopper: stopper
+ *
+ * Returns: (transfer full): description of the stopper
+ */
 char *
 xapian_simple_stopper_get_description (XapianSimpleStopper *stopper)
 {

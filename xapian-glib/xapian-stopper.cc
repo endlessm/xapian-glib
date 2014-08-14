@@ -17,7 +17,7 @@
 /**
  * SECTION:xapian-stopper
  * @Title: XapianStopper
- * @short_description:  stopper
+ * @short_description: stopper
  */
 
 #include "config.h"

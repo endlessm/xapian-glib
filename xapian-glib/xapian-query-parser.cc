@@ -201,12 +201,12 @@ xapian_query_parser_class_init (XapianQueryParserClass *klass)
   /**
    * XapianQueryParser:stopper:
    *
-   * The #XapianDatabase to be used for stuff
+   * The #XapianStopper to be used for dropping stop words
    */
   obj_props[PROP_STOPPER] =
     g_param_spec_object ("stopper",
                          "Stopper",
-                         "The stopper used for stuff",
+                         "The stopper to be used for dropping stop words",
                          XAPIAN_TYPE_STOPPER,
                          (GParamFlags) (G_PARAM_READWRITE |
                                         G_PARAM_STATIC_STRINGS));
@@ -352,13 +352,13 @@ xapian_query_parser_set_database (XapianQueryParser *parser,
 /**
  * xapian_query_parser_set_stopper:
  * @parser: a #XapianQueryParser
- * @stopper: a #XapianDatabase
+ * @stopper: a #XapianStopper
  *
- * Sets the @stopper used by @parser for wildcard expansion.
+ * Sets the @stopper used by @parser stop word elimination.
  */
 void
 xapian_query_parser_set_stopper (XapianQueryParser *parser,
-                                  XapianStopper    *stopper)
+                                 XapianStopper    *stopper)
 {
   g_return_if_fail (XAPIAN_IS_QUERY_PARSER (parser));
   g_return_if_fail (XAPIAN_IS_STOPPER (stopper));
