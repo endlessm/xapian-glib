@@ -373,7 +373,7 @@ xapian_query_parser_set_stopper (XapianQueryParser *parser,
 
   priv->mQueryParser->set_stopper (xapian_stopper_get_internal (stopper));
 
-  //g_object_notify_by_pspec (G_OBJECT (parser), obj_props[PROP_STOPPER]);
+  g_object_notify_by_pspec (G_OBJECT (parser), obj_props[PROP_STOPPER]);
 }
 
 /**
