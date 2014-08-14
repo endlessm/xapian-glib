@@ -82,6 +82,24 @@ gboolean                        xapian_writable_database_replace_document       
                                                                                  XapianDocument         *document,
                                                                                  GError                **error);
 
+XAPIAN_GLIB_AVAILABLE_IN_1_2
+void                            xapian_writable_database_add_spelling           (XapianWritableDatabase *self,
+                                                                                 const char             *word);
+
+XAPIAN_GLIB_AVAILABLE_IN_1_2
+void                            xapian_writable_database_add_spelling_full      (XapianWritableDatabase *self,
+                                                                                 const char             *word,
+                                                                                 unsigned int            freqinc);
+
+XAPIAN_GLIB_AVAILABLE_IN_1_2
+void                            xapian_writable_database_remove_spelling        (XapianWritableDatabase *self,
+                                                                                 const char             *word);
+
+XAPIAN_GLIB_AVAILABLE_IN_1_2
+void                            xapian_writable_database_remove_spelling_full   (XapianWritableDatabase *self,
+                                                                                 const char             *word,
+                                                                                 unsigned int            freqdec);
+
 G_END_DECLS
 
 #endif /* __XAPIAN_GLIB_WRITABLE_DATABASE_H__ */

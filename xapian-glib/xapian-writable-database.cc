@@ -508,3 +508,89 @@ xapian_writable_database_cancel_transaction (XapianWritableDatabase *self,
       return FALSE;
     }
 }
+
+/**
+ * xapian_writable_database_add_spelling:
+ * @self: a #XapianWritableDatabase
+ * @word: The word to add
+ *
+ * Add a word to the spelling dictionary with a default frequency increase of 1.
+ *
+ * If the word is already present, its frequency is increased.
+ *
+ * Since 1.2
+ */
+void
+xapian_writable_database_add_spelling    (XapianWritableDatabase *self,
+                                          const char *word)
+{
+  g_return_if_fail (XAPIAN_IS_WRITABLE_DATABASE (self));
+  Xapian::WritableDatabase *write_db = xapian_writable_database_get_internal (self);
+
+  write_db->add_spelling (word, 1);
+}
+
+/**
+ * xapian_writable_database_add_spelling_full:
+ * @self: a #XapianWritableDatabase
+ * @word: The word to add
+ * @freqinc: How much to increase its frequency by
+ *
+ * Add a word to the spelling dictionary.
+ *
+ * If the word is already present, its frequency is increased.
+ *
+ * Since 1.2
+ */
+void
+xapian_writable_database_add_spelling_full (XapianWritableDatabase *self,
+                                            const char *word,
+                                            unsigned int freqinc)
+{
+  g_return_if_fail (XAPIAN_IS_WRITABLE_DATABASE (self));
+  Xapian::WritableDatabase *write_db = xapian_writable_database_get_internal (self);
+
+  write_db->add_spelling (word, freqinc);
+}
+
+/**
+ * xapian_writable_database_remove_spelling:
+ * Remove a word from the spelling dictionary.
+ * @word    The word to remove
+ * 
+ * The word's frequency is decreased by 1, and if would become zero or less then
+ * the word is removed completely.
+ *
+ * Since 1.2
+ */
+void
+xapian_writable_database_remove_spelling (XapianWritableDatabase *self,
+                                          const char *word)
+{
+  g_return_if_fail (XAPIAN_IS_WRITABLE_DATABASE (self));
+  Xapian::WritableDatabase *write_db = xapian_writable_database_get_internal (self);
+
+  write_db->remove_spelling (word, 1);
+}
+
+/**
+ * xapian_writable_database_remove_spelling_full:
+ * Remove a word from the spelling dictionary.
+ * @word    The word to remove
+ * @freqdec How much to decrease its frequency by
+ * 
+ * The word's frequency is decreased, and if would become zero or less then the
+ * word is removed completely.
+ *
+ * Since 1.2
+ */
+void
+xapian_writable_database_remove_spelling_full (XapianWritableDatabase *self,
+                                               const char *word,
+                                               unsigned int freqdec)
+{
+  g_return_if_fail (XAPIAN_IS_WRITABLE_DATABASE (self));
+  Xapian::WritableDatabase *write_db = xapian_writable_database_get_internal (self);
+
+  write_db->remove_spelling (word, freqdec);
+}
