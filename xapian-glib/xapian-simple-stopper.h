@@ -22,6 +22,7 @@
 #endif
 
 #include "xapian-glib-types.h"
+#include "xapian-stopper.h"
 
 G_BEGIN_DECLS
 
@@ -31,16 +32,17 @@ G_BEGIN_DECLS
 #define XAPIAN_IS_SIMPLE_STOPPER_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_SIMPLE_STOPPER))
 #define XAPIAN_SIMPLE_STOPPER_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_SIMPLE_STOPPER, XapianSimpleStopperClass))
 
+typedef struct _XapianSimpleStopper           XapianSimpleStopper;
 typedef struct _XapianSimpleStopperClass      XapianSimpleStopperClass;
 
 struct _XapianSimpleStopper
 {
-  GObject parent_instance;
+  XapianStopper parent_instance;
 };
 
 struct _XapianSimpleStopperClass
 {
-  GObjectClass parent_instance;
+  XapianStopperClass parent_instance;
 };
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0

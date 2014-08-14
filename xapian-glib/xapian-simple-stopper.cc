@@ -32,24 +32,7 @@ typedef struct {
   Xapian::SimpleStopper *mSimpleStopper;
 } XapianSimpleStopperPrivate;
 
-static void initable_iface_init (GInitableIface *iface);
-
-G_DEFINE_TYPE_WITH_CODE (XapianSimpleStopper, xapian_simple_stopper, G_TYPE_OBJECT,
-                         G_ADD_PRIVATE (XapianSimpleStopper)
-                         G_IMPLEMENT_INTERFACE (G_TYPE_INITABLE, initable_iface_init))
-
-static gboolean
-xapian_simple_stopper_init_internal (GInitable    *self,
-                              GCancellable *cancellable,
-                              GError      **error)
-{
-}
-
-static void
-initable_iface_init (GInitableIface *iface)
-{
-  iface->init = xapian_simple_stopper_init_internal;
-}
+G_DEFINE_TYPE_WITH_PRIVATE (XapianSimpleStopper, xapian_simple_stopper, XAPIAN_TYPE_STOPPER)
 
 static void
 xapian_simple_stopper_finalize (GObject *gobject)
@@ -69,13 +52,24 @@ xapian_simple_stopper_dispose (GObject *gobject)
   G_OBJECT_CLASS (xapian_simple_stopper_parent_class)->dispose (gobject);
 }
 
+gpointer
+xapian_simple_stopper_get_internal (XapianStopper *stopper)
+{
+
+  XapianSimpleStopperPrivate *priv = XAPIAN_SIMPLE_STOPPER_GET_PRIVATE (stopper);
+  return static_cast<gpointer>(priv->mSimpleStopper);
+}
+
 static void
 xapian_simple_stopper_class_init (XapianSimpleStopperClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
+  XapianStopperClass *xapian_stopper_class = XAPIAN_STOPPER_CLASS (klass);
 
   gobject_class->dispose = xapian_simple_stopper_dispose;
   gobject_class->finalize = xapian_simple_stopper_finalize;
+
+  xapian_stopper_class->get_internal = xapian_simple_stopper_get_internal;
 }
 
 static void
