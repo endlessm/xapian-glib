@@ -45,17 +45,14 @@ struct _XapianSimpleStopperClass
   XapianStopperClass parent_instance;
 };
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_1_2
 GType xapian_simple_stopper_get_type (void);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
-XapianSimpleStopper * xapian_simple_stopper_new (GError **error);
-
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_1_2
 void xapian_simple_stopper_add (XapianSimpleStopper *stopper,
                                 const gchar *word);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_1_2
 char * xapian_simple_stopper_get_description (XapianSimpleStopper *stopper);
 
 G_END_DECLS

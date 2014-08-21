@@ -202,6 +202,7 @@ xapian_query_parser_class_init (XapianQueryParserClass *klass)
    * XapianQueryParser:stopper:
    *
    * The #XapianStopper to be used for dropping stop words
+   * Since 1.2
    */
   obj_props[PROP_STOPPER] =
     g_param_spec_object ("stopper",
@@ -355,6 +356,7 @@ xapian_query_parser_set_database (XapianQueryParser *parser,
  * @stopper: a #XapianStopper
  *
  * Sets the @stopper used by @parser stop word elimination.
+ * Since 1.2
  */
 void
 xapian_query_parser_set_stopper (XapianQueryParser *parser,

@@ -22,5 +22,7 @@
 #include "xapian-stopper.h"
 
 Xapian::Stopper *      xapian_stopper_get_internal    (XapianStopper   *self);
+void			xapian_stopper_set_internal    (XapianStopper   *self,
+							 Xapian::Stopper *aStopper);
 
 #endif /* __XAPIAN_GLIB_STOPPER_PRIVATE_H__ */

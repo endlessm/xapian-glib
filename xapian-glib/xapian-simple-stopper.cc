@@ -18,71 +18,47 @@
  * SECTION:xapian-simple-stopper
  * @Title: XapianSimpleStopper
  * @short_description: Simple stopper
+ *
+ * Simple implementation of Stopper class - this will suit most users.
  */
 
 #include "config.h"
 
+#include "xapian-stopper-private.h"
 #include "xapian-simple-stopper.h"
 #include "xapian-error-private.h"
 
-#define XAPIAN_SIMPLE_STOPPER_GET_PRIVATE(obj) \
-  ((XapianSimpleStopperPrivate *) xapian_simple_stopper_get_instance_private ((XapianSimpleStopper *) (obj)))
-
-typedef struct {
-  Xapian::SimpleStopper *mSimpleStopper;
-} XapianSimpleStopperPrivate;
-
-G_DEFINE_TYPE_WITH_PRIVATE (XapianSimpleStopper, xapian_simple_stopper, XAPIAN_TYPE_STOPPER)
-
-static void
-xapian_simple_stopper_finalize (GObject *gobject)
-{
-  XapianSimpleStopperPrivate *priv = XAPIAN_SIMPLE_STOPPER_GET_PRIVATE (gobject);
-
-  delete priv->mSimpleStopper;
-
-  G_OBJECT_CLASS (xapian_simple_stopper_parent_class)->finalize (gobject);
-}
-
-static void
-xapian_simple_stopper_dispose (GObject *gobject)
-{
-  XapianSimpleStopperPrivate *priv = XAPIAN_SIMPLE_STOPPER_GET_PRIVATE (gobject);
-
-  G_OBJECT_CLASS (xapian_simple_stopper_parent_class)->dispose (gobject);
-}
-
-gpointer
-xapian_simple_stopper_get_internal (XapianStopper *stopper)
-{
-
-  XapianSimpleStopperPrivate *priv = XAPIAN_SIMPLE_STOPPER_GET_PRIVATE (stopper);
-  return static_cast<gpointer>(priv->mSimpleStopper);
-}
+G_DEFINE_TYPE (XapianSimpleStopper, xapian_simple_stopper, XAPIAN_TYPE_STOPPER)
 
 static void
 xapian_simple_stopper_class_init (XapianSimpleStopperClass *klass)
 {
-  GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
-  XapianStopperClass *xapian_stopper_class = XAPIAN_STOPPER_CLASS (klass);
-
-  gobject_class->dispose = xapian_simple_stopper_dispose;
-  gobject_class->finalize = xapian_simple_stopper_finalize;
-
-  xapian_stopper_class->get_internal = xapian_simple_stopper_get_internal;
 }
 
-static void
-xapian_simple_stopper_init (XapianSimpleStopper *stopper)
+static Xapian::SimpleStopper *
+xapian_simple_stopper_get_internal (XapianSimpleStopper *self)
 {
-  XapianSimpleStopperPrivate *priv = XAPIAN_SIMPLE_STOPPER_GET_PRIVATE (stopper);
+  Xapian::Stopper *stopper = xapian_stopper_get_internal (XAPIAN_STOPPER (self));
+  Xapian::SimpleStopper *simple_stopper = dynamic_cast<Xapian::SimpleStopper *> (stopper);
 
-  priv->mSimpleStopper = new Xapian::SimpleStopper ();
+  return simple_stopper;
+}
+
+
+static void
+xapian_simple_stopper_init (XapianSimpleStopper *self)
+{
+  Xapian::SimpleStopper *aStopper = new Xapian::SimpleStopper ();
+
+  xapian_stopper_set_internal(XAPIAN_STOPPER (self), aStopper);
 }
 
 /**
  * xapian_simple_stopper_add:
  * @word: stop word to be added
+ *
+ * Adds a single stop word.
+ * Since 1.2
  */
 void
 xapian_simple_stopper_add (XapianSimpleStopper *stopper,
@@ -90,42 +66,28 @@ xapian_simple_stopper_add (XapianSimpleStopper *stopper,
 {
   g_return_if_fail (XAPIAN_IS_SIMPLE_STOPPER (stopper));
 
-  XapianSimpleStopperPrivate *priv = XAPIAN_SIMPLE_STOPPER_GET_PRIVATE (stopper);
+  Xapian::SimpleStopper *mSimpleStopper = xapian_simple_stopper_get_internal(stopper);
 
-  priv->mSimpleStopper->add(word);
+  mSimpleStopper->add(word);
 }
 
 /**
  * xapian_simple_stopper_get_description:
  * @stopper: stopper
  *
+ * Return a string describing this object. 
+ *
  * Returns: (transfer full): description of the stopper
+ * Since 1.2
  */
 char *
 xapian_simple_stopper_get_description (XapianSimpleStopper *stopper)
 {
   g_return_val_if_fail (XAPIAN_IS_SIMPLE_STOPPER (stopper), NULL);
 
-  XapianSimpleStopperPrivate *priv = XAPIAN_SIMPLE_STOPPER_GET_PRIVATE (stopper);
+  Xapian::SimpleStopper *mSimpleStopper = xapian_simple_stopper_get_internal(stopper);
 
-  std::string desc = priv->mSimpleStopper->get_description ();
+  std::string desc = mSimpleStopper->get_description ();
 
   return g_strdup (desc.c_str ());
-}
-
-/**
- * xapian_simple_stopper_new:
- * @error: return location for a #GError, or %NULL
- *
- * If the initializion failed, @error is set, and this function
- * will return %NULL.
- *
- * Returns: (transfer full): the newly created #XapianSimpleStopper instance
- */
-XapianSimpleStopper *
-xapian_simple_stopper_new (GError        **error)
-{
-  return static_cast<XapianSimpleStopper *> (g_initable_new (XAPIAN_TYPE_SIMPLE_STOPPER,
-                                                       NULL, error,
-                                                       NULL));
 }

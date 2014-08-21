@@ -18,6 +18,8 @@
  * SECTION:xapian-stopper
  * @Title: XapianStopper
  * @short_description: stopper
+ *
+ * Abstract class for stop-word decision functor.
  */
 
 #include "config.h"
@@ -26,7 +28,17 @@
 #include "xapian-stopper-private.h"
 #include "xapian-error-private.h"
 
-G_DEFINE_ABSTRACT_TYPE (XapianStopper, xapian_stopper, G_TYPE_OBJECT)
+#define XAPIAN_STOPPER_GET_PRIVATE(obj) \
+  ((XapianStopperPrivate *) xapian_stopper_get_instance_private ((XapianStopper *) (obj)))
+
+typedef struct _XapianStopperPrivate   XapianStopperPrivate;
+
+struct _XapianStopperPrivate
+{
+  Xapian::Stopper *mStopper;
+};
+
+G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (XapianStopper, xapian_stopper, G_TYPE_OBJECT)
 
 static void
 xapian_stopper_finalize (GObject *gobject)
@@ -34,14 +46,48 @@ xapian_stopper_finalize (GObject *gobject)
   G_OBJECT_CLASS (xapian_stopper_parent_class)->finalize (gobject);
 }
 
-Xapian::Stopper* xapian_stopper_get_internal (XapianStopper *self) {
-    XapianStopperClass *klass = XAPIAN_STOPPER_GET_CLASS(self);
-    return static_cast<Xapian::Stopper*>(klass->get_internal(self));
+/*< private >
+ * xapian_stopper_get_internal:
+ * @self: a #XapianStopper
+ *
+ * Retrieves the `Xapian::Stopper` object used by @self.
+ *
+ * Returns: (transfer none): a pointer to the internal stopper instance
+ */
+Xapian::Stopper *
+xapian_stopper_get_internal (XapianStopper *self)
+{
+  XapianStopperPrivate *priv = XAPIAN_STOPPER_GET_PRIVATE (self);
+
+  return priv->mStopper;
 }
 
-char* xapian_stopper_get_description (XapianStopper *self) {
-  Xapian::Stopper *stopper = static_cast<Xapian::Stopper*>(XAPIAN_STOPPER_GET_CLASS(self)->get_internal(self));
+/*< private >
+ * xapian_stopper_set_internal:
+ * @self: a #XapianStopper
+ * @aDB: a `Xapian::Stopper` instance
+ *
+ * Sets the internal stopper instance wrapped by @self, clearing
+ * any existing instance if needed.
+ */
+void
+xapian_stopper_set_internal (XapianStopper   *self,
+                             Xapian::Stopper *aStopper)
+{
+  XapianStopperPrivate *priv = XAPIAN_STOPPER_GET_PRIVATE (self);
+
+  delete priv->mStopper;
+
+  priv->mStopper = aStopper;
+}
+
+char *
+xapian_stopper_get_description (XapianStopper *self)
+{
+  Xapian::Stopper *stopper = xapian_stopper_get_internal(self);
+
   std::string desc = stopper->get_description();
+
   return g_strdup (desc.c_str ());
 }
 
