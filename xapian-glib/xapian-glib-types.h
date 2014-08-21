@@ -32,6 +32,7 @@ G_BEGIN_DECLS
 #define XAPIAN_TYPE_QUERY_PARSER        (xapian_query_parser_get_type ())
 #define XAPIAN_TYPE_MSET                (xapian_mset_get_type ())
 #define XAPIAN_TYPE_MSET_ITERATOR       (xapian_mset_iterator_get_type ())
+#define XAPIAN_TYPE_POSTING_SOURCE      (xapian_posting_source_get_type ())
 #define XAPIAN_TYPE_SIMPLE_STOPPER      (xapian_simple_stopper_get_type ())
 #define XAPIAN_TYPE_STOPPER             (xapian_stopper_get_type ())
 #define XAPIAN_TYPE_TERM_GENERATOR      (xapian_term_generator_get_type ())
