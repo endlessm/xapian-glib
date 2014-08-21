@@ -16,6 +16,8 @@ IGNORE_HFILES = \
 	$(top_srcdir)/xapian-glib/xapian-document-private.h \
 	$(top_srcdir)/xapian-glib/xapian-error-private.h \
 	$(top_srcdir)/xapian-glib/xapian-mset-private.h \
+	$(top_srcdir)/xapian-glib/xapian-posting-source-private.h \
+	$(top_srcdir)/xapian-glib/xapian-value-posting-source-private.h \
 	$(top_srcdir)/xapian-glib/xapian-query-private.h \
 	$(top_srcdir)/xapian-glib/xapian-stem-private.h \
 	$(top_srcdir)/xapian-glib/xapian-stopper-private.h \
