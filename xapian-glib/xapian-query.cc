@@ -31,6 +31,7 @@
 #include "xapian-query-private.h"
 
 #include "xapian-enums.h"
+#include "xapian-posting-source-private.h"
 #include "xapian-error-private.h"
 
 #define XAPIAN_QUERY_GET_PRIVATE(obj) \
@@ -301,6 +302,28 @@ xapian_query_new_from_string (const char *data)
   g_return_val_if_fail (data != NULL, NULL);
 
   Xapian::Query query = Xapian::Query (std::string (data));
+
+  return xapian_query_new_from_query (query);
+}
+
+/**
+ * xapian_query_new_from_posting_source:
+ * @posting_source: a posting source
+ *
+ * Creates a new #XapianQuery from a posting source.
+ *
+ * Returns: (transfer full): the newly created #XapianQuery instance
+ *
+ * Since: 1.2
+ */
+XapianQuery *
+xapian_query_new_from_posting_source (XapianPostingSource *posting_source)
+{
+  g_return_val_if_fail (posting_source != NULL, NULL);
+
+  Xapian::PostingSource *priv = xapian_posting_source_get_internal(posting_source);
+
+  Xapian::Query query = Xapian::Query(priv);
 
   return xapian_query_new_from_query (query);
 }
