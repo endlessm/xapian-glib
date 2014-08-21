@@ -29,6 +29,7 @@ G_BEGIN_DECLS
 #define XAPIAN_TYPE_ENQUIRE                     (xapian_enquire_get_type ())
 #define XAPIAN_TYPE_POSTING_SOURCE              (xapian_posting_source_get_type ())
 #define XAPIAN_TYPE_VALUE_POSTING_SOURCE        (xapian_value_posting_source_get_type ())
+#define XAPIAN_TYPE_VALUE_WEIGHT_POSTING_SOURCE (xapian_value_weight_posting_source_get_type ())
 #define XAPIAN_TYPE_QUERY                       (xapian_query_get_type ())
 #define XAPIAN_TYPE_STEM                        (xapian_stem_get_type ())
 #define XAPIAN_TYPE_QUERY_PARSER                (xapian_query_parser_get_type ())
@@ -44,6 +45,7 @@ typedef struct _XapianDocument                  XapianDocument;
 typedef struct _XapianEnquire                   XapianEnquire;
 typedef struct _XapianPostingSource             XapianPostingSource;
 typedef struct _XapianValuePostingSource        XapianValuePostingSource;
+typedef struct _XapianValueWeightPostingSource  XapianValueWeightPostingSource;
 typedef struct _XapianQuery                     XapianQuery;
 typedef struct _XapianStem                      XapianStem;
 typedef struct _XapianQueryParser               XapianQueryParser;
