@@ -25,6 +25,9 @@
     <xi:include href="xml/xapian-query-parser.xml"/>
     <xi:include href="xml/xapian-mset.xml"/>
     <xi:include href="xml/xapian-mset-iterator.xml"/>
+    <xi:include href="xml/xapian-posting-source.xml"/>
+    <xi:include href="xml/xapian-value-posting-source.xml"/>
+    <xi:include href="xml/xapian-value-weight-posting-source.xml"/>
     <xi:include href="xml/xapian-stem.xml"/>
     <xi:include href="xml/xapian-term-generator.xml"/>
     <xi:include href="xml/xapian-utils.xml"/>
