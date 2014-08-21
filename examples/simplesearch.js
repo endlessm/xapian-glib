@@ -8,6 +8,7 @@ const Xapian = imports.gi.Xapian;
 const query_string = "drop me africa";
 const QUERY_PARSER_FLAGS = Xapian.QueryParserFeature.DEFAULT | Xapian.QueryParserFeature.WILDCARD;
 const path = 'examples/testdb';
+const POSTING_SOURCE_SLOT_NUMBER = 1;
 
 let db = new Xapian.Database({
     'path': path
@@ -24,6 +25,10 @@ let qp = new Xapian.QueryParser({
 });
 qp.stopper = stopper;
 let parsed_query = qp.parse_query(query_string, QUERY_PARSER_FLAGS);
+let posting_source = Xapian.Query.new_from_posting_source(pageRank);
+
+parsed_query = Xapian.Query.new_for_pair(Xapian.QueryOp.AND_MAYBE, parsed_query, posting_source);
+
 print('parsed_query', parsed_query.get_description());
 
 let enquire = new Xapian.Enquire({
@@ -40,7 +45,7 @@ while (iter.next()) {
     let result = '' + iter.get_rank() + 1 + ': '
                + iter.get_weight() + ' '
                + 'docid=' + iter.get_doc_id() + ' '
-               + '[' + iter.get_document().get_data() + ']';
+               + 'title=' + JSON.parse(iter.get_document().get_data()).title;
 
     print('result', result);
 }

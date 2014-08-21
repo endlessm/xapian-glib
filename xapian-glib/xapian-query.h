@@ -66,6 +66,9 @@ XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianQuery *   xapian_query_new_from_string    (const char    *data);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0
+XapianQuery *   xapian_query_new_from_posting_source    (XapianPostingSource *posting_source);
+
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 gboolean        xapian_query_is_empty           (XapianQuery   *query);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0
