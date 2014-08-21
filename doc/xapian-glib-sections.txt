@@ -199,7 +199,6 @@ xapian_stem_strategy_get_type
 <SECTION>
 <FILE>xapian-simple-stopper</FILE>
 <TITLE>XapianSimpleStopper</TITLE>
-xapian_simple_stopper_new
 xapian_simple_stopper_add
 xapian_simple_stopper_get_description
 <SUBSECTION Standard>
@@ -218,7 +217,6 @@ xapian_simple_stopper_get_type
 <FILE>xapian-stopper</FILE>
 <TITLE>XapianStopper</TITLE>
 xapian_stopper_get_description
-xapian_stopper_get_internal
 <SUBSECTION Standard>
 XAPIAN_STOPPER
 XAPIAN_STOPPER_CLASS
