@@ -527,7 +527,7 @@ xapian_writable_database_add_spelling    (XapianWritableDatabase *self,
   g_return_if_fail (XAPIAN_IS_WRITABLE_DATABASE (self));
   Xapian::WritableDatabase *write_db = xapian_writable_database_get_internal (self);
 
-  write_db->add_spelling (word, 1);
+  write_db->add_spelling (word);
 }
 
 /**
@@ -555,8 +555,9 @@ xapian_writable_database_add_spelling_full (XapianWritableDatabase *self,
 
 /**
  * xapian_writable_database_remove_spelling:
+ * @word: The word to remove
+ *
  * Remove a word from the spelling dictionary.
- * @word    The word to remove
  * 
  * The word's frequency is decreased by 1, and if would become zero or less then
  * the word is removed completely.
@@ -570,15 +571,16 @@ xapian_writable_database_remove_spelling (XapianWritableDatabase *self,
   g_return_if_fail (XAPIAN_IS_WRITABLE_DATABASE (self));
   Xapian::WritableDatabase *write_db = xapian_writable_database_get_internal (self);
 
-  write_db->remove_spelling (word, 1);
+  write_db->remove_spelling (word);
 }
 
 /**
  * xapian_writable_database_remove_spelling_full:
- * Remove a word from the spelling dictionary.
- * @word    The word to remove
- * @freqdec How much to decrease its frequency by
+ * @word: The word to remove
+ * @freqdec: How much to decrease its frequency by
  * 
+ * Remove a word from the spelling dictionary.
+ *
  * The word's frequency is decreased, and if would become zero or less then the
  * word is removed completely.
  *
