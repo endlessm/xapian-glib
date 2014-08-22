@@ -352,6 +352,29 @@ xapian_term_generator_set_database (XapianTermGenerator    *generator,
 }
 
 /**
+ * xapian_term_generator_set_flags:
+ * @generator: a #XapianTermGenerator
+ * @flags: a #XapianTermGeneratorFeature
+ *
+ * Sets the generator's flags
+ *
+ * Since 1.2
+ */
+void
+xapian_term_generator_set_flags (XapianTermGenerator    *generator,
+                                 XapianTermGeneratorFeature flags)
+{
+  XapianTermGeneratorPrivate *priv = XAPIAN_TERM_GENERATOR_GET_PRIVATE (generator);
+
+  int real_flags = 0;
+
+  if (flags & XAPIAN_TERM_GENERATOR_FEATURE_SPELLING)
+    real_flags |= Xapian::TermGenerator::FLAG_SPELLING;
+
+  priv->mGenerator->set_flags(static_cast<Xapian::TermGenerator::flags>(real_flags));
+}
+
+/**
  * xapian_term_generator_set_document:
  * @generator: a #XapianTermGenerator
  * @document: a #XapianDocument
