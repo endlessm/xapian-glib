@@ -91,3 +91,20 @@ xapian_simple_stopper_get_description (XapianSimpleStopper *stopper)
 
   return g_strdup (desc.c_str ());
 }
+
+/**
+ * xapian_simple_stopper_new:
+ * @error: return location for a #GError, or %NULL
+ *
+ * If the initializion failed, @error is set, and this function
+ * will return %NULL.
+ *
+ * Returns: (transfer full): the newly created #XapianSimpleStopper instance
+ */
+XapianSimpleStopper *
+xapian_simple_stopper_new (GError        **error)
+{
+  return static_cast<XapianSimpleStopper *> (g_initable_new (XAPIAN_TYPE_SIMPLE_STOPPER,
+                                                       NULL, error,
+                                                       NULL));
+}

@@ -41,9 +41,13 @@ struct _XapianStopperPrivate
 G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (XapianStopper, xapian_stopper, G_TYPE_OBJECT)
 
 static void
-xapian_stopper_finalize (GObject *gobject)
+xapian_stopper_finalize (GObject *self)
 {
-  G_OBJECT_CLASS (xapian_stopper_parent_class)->finalize (gobject);
+  XapianStopperPrivate *priv = XAPIAN_STOPPER_GET_PRIVATE (self);
+
+  delete priv->mStopper;
+
+  G_OBJECT_CLASS (xapian_stopper_parent_class)->finalize (self);
 }
 
 /*< private >
@@ -81,6 +85,15 @@ xapian_stopper_set_internal (XapianStopper   *self,
   priv->mStopper = aStopper;
 }
 
+/**
+ * xapian_stopper_get_description:
+ * @stopper: stopper
+ *
+ * Return a string describing this object. 
+ *
+ * Returns: (transfer full): description of the stopper
+ * Since 1.2
+ */
 char *
 xapian_stopper_get_description (XapianStopper *self)
 {
@@ -92,17 +105,10 @@ xapian_stopper_get_description (XapianStopper *self)
 }
 
 static void
-xapian_stopper_dispose (GObject *gobject)
-{
-  G_OBJECT_CLASS (xapian_stopper_parent_class)->dispose (gobject);
-}
-
-static void
 xapian_stopper_class_init (XapianStopperClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
-  gobject_class->dispose = xapian_stopper_dispose;
   gobject_class->finalize = xapian_stopper_finalize;
 }
 

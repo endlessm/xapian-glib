@@ -42,7 +42,7 @@ struct _XapianStopper
 struct _XapianStopperClass
 {
   GObjectClass parent_instance;
-  gpointer (*get_internal)(XapianStopper *self);
+  gpointer _padding[8];
 };
 
 XAPIAN_GLIB_AVAILABLE_IN_1_2

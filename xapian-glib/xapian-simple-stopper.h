@@ -49,6 +49,10 @@ XAPIAN_GLIB_AVAILABLE_IN_1_2
 GType xapian_simple_stopper_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_2
+XapianSimpleStopper * xapian_simple_stopper_new (GError **error);
+
+
+XAPIAN_GLIB_AVAILABLE_IN_1_2
 void xapian_simple_stopper_add (XapianSimpleStopper *stopper,
                                 const gchar *word);
 
