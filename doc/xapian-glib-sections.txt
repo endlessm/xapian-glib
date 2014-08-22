@@ -217,6 +217,7 @@ xapian_simple_stopper_get_type
 <FILE>xapian-stopper</FILE>
 <TITLE>XapianStopper</TITLE>
 xapian_stopper_get_description
+xapian_stopper_new
 <SUBSECTION Standard>
 XAPIAN_STOPPER
 XAPIAN_STOPPER_CLASS
