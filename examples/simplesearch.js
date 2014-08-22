@@ -40,5 +40,5 @@ while (iter.next()) {
                + 'docid=' + iter.get_doc_id() + ' '
                + '[' + iter.get_document().get_data() + ']';
 
-    //print('result', result);
+    print('result', result);
 }
