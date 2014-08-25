@@ -97,9 +97,9 @@ xapian_stopper_set_internal (XapianStopper   *self,
 char *
 xapian_stopper_get_description (XapianStopper *self)
 {
-  Xapian::Stopper *stopper = xapian_stopper_get_internal(self);
+  Xapian::Stopper *stopper = xapian_stopper_get_internal (self);
 
-  std::string desc = stopper->get_description();
+  std::string desc = stopper->get_description ();
 
   return g_strdup (desc.c_str ());
 }

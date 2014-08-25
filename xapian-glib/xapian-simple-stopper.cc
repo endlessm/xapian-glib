@@ -50,7 +50,7 @@ xapian_simple_stopper_init (XapianSimpleStopper *self)
 {
   Xapian::SimpleStopper *aStopper = new Xapian::SimpleStopper ();
 
-  xapian_stopper_set_internal(XAPIAN_STOPPER (self), aStopper);
+  xapian_stopper_set_internal (XAPIAN_STOPPER (self), aStopper);
 }
 
 /**
@@ -66,45 +66,22 @@ xapian_simple_stopper_add (XapianSimpleStopper *stopper,
 {
   g_return_if_fail (XAPIAN_IS_SIMPLE_STOPPER (stopper));
 
-  Xapian::SimpleStopper *mSimpleStopper = xapian_simple_stopper_get_internal(stopper);
+  Xapian::SimpleStopper *mSimpleStopper = xapian_simple_stopper_get_internal (stopper);
 
-  mSimpleStopper->add(word);
-}
-
-/**
- * xapian_simple_stopper_get_description:
- * @stopper: stopper
- *
- * Return a string describing this object. 
- *
- * Returns: (transfer full): description of the stopper
- * Since 1.2
- */
-char *
-xapian_simple_stopper_get_description (XapianSimpleStopper *stopper)
-{
-  g_return_val_if_fail (XAPIAN_IS_SIMPLE_STOPPER (stopper), NULL);
-
-  Xapian::SimpleStopper *mSimpleStopper = xapian_simple_stopper_get_internal(stopper);
-
-  std::string desc = mSimpleStopper->get_description ();
-
-  return g_strdup (desc.c_str ());
+  mSimpleStopper->add (word);
 }
 
 /**
  * xapian_simple_stopper_new:
  * @error: return location for a #GError, or %NULL
  *
- * If the initializion failed, @error is set, and this function
- * will return %NULL.
+ * Creates a new #XapianSimpleStopper
  *
  * Returns: (transfer full): the newly created #XapianSimpleStopper instance
+ * Since 1.2
  */
 XapianSimpleStopper *
-xapian_simple_stopper_new (GError        **error)
+xapian_simple_stopper_new ()
 {
-  return static_cast<XapianSimpleStopper *> (g_initable_new (XAPIAN_TYPE_SIMPLE_STOPPER,
-                                                       NULL, error,
-                                                       NULL));
+  return static_cast<XapianSimpleStopper *> (g_object_new (XAPIAN_TYPE_SIMPLE_STOPPER, NULL));
 }

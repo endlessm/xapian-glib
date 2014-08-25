@@ -56,9 +56,6 @@ XAPIAN_GLIB_AVAILABLE_IN_1_2
 void xapian_simple_stopper_add (XapianSimpleStopper *stopper,
                                 const gchar *word);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
-char * xapian_simple_stopper_get_description (XapianSimpleStopper *stopper);
-
 G_END_DECLS
 
 #endif /* __XAPIAN_GLIB_SIMPLE_STOPPER_H__ */
