@@ -20,7 +20,7 @@ stopper.add('me');
 let qp = new Xapian.QueryParser({
     'database': db,
 });
-qp.set_stopper(stopper);
+qp.stopper = stopper;
 let parsed_query = qp.parse_query(query_string, QUERY_PARSER_FLAGS);
 print('parsed_query', parsed_query.get_description());
 
