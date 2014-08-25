@@ -49,7 +49,7 @@ XAPIAN_GLIB_AVAILABLE_IN_1_2
 GType xapian_simple_stopper_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_2
-XapianSimpleStopper * xapian_simple_stopper_new (GError **error);
+XapianSimpleStopper * xapian_simple_stopper_new ();
 
 
 XAPIAN_GLIB_AVAILABLE_IN_1_2

@@ -73,7 +73,6 @@ xapian_simple_stopper_add (XapianSimpleStopper *stopper,
 
 /**
  * xapian_simple_stopper_new:
- * @error: return location for a #GError, or %NULL
  *
  * Creates a new #XapianSimpleStopper
  *
