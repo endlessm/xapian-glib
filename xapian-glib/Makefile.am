@@ -42,6 +42,7 @@ source_h_private = \
 	xapian-mset-private.h \
 	xapian-query-private.h \
 	xapian-stem-private.h \
+	xapian-stopper-private.h \
 	$(NULL)
 
 source_c_public = \
