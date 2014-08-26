@@ -39,15 +39,26 @@ struct _XapianStopper
   GObject parent_instance;
 };
 
+/**
+ * XapianStopperClass:
+ * @is_stop_term: virtual function for querying a #XapianStopper if
+ *   a term is a stop word
+ * @get_description: virtual function for retrieving the description
+ *   string of a #XapianStopper implementation
+ *
+ * The `XapianStopperClass` structure contains only private data.
+ *
+ * Since: 1.2
+ */
 struct _XapianStopperClass
 {
   /*< private >*/
   GObjectClass parent_instance;
 
   /*< public >*/
-  gboolean (* is_stop_term)    (XapianStopper *stopper,
+  gboolean (* is_stop_term)    (XapianStopper *self,
                                 const char    *term);
-  char *   (* get_description) (XapianStopper *stopper);
+  char *   (* get_description) (XapianStopper *self);
 
   /*< private >*/
   gpointer _padding[8];

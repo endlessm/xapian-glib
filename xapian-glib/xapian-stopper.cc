@@ -114,9 +114,9 @@ xapian_stopper_set_internal (XapianStopper   *self,
 
 /**
  * xapian_stopper_get_description:
- * @stopper: stopper
+ * @self: a #XapianStopper
  *
- * Return a string describing this object. 
+ * Returns a string describing this object.
  *
  * Returns: (transfer full): description of the stopper
  * Since 1.2
@@ -131,6 +131,17 @@ xapian_stopper_get_description (XapianStopper *self)
   return g_strdup (desc.c_str ());
 }
 
+/**
+ * xapian_stopper_is_stop_term:
+ * @self: a #XapianStopper
+ * @term: a term
+ *
+ * Checks whether @term is a stopper term.
+ *
+ * Returns: %TRUE if @term is a stopper term
+ *
+ * Since: 1.2
+ */
 gboolean
 xapian_stopper_is_stop_term (XapianStopper *self,
                              const char    *term)

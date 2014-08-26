@@ -44,7 +44,6 @@ xapian_simple_stopper_get_internal (XapianSimpleStopper *self)
   return simple_stopper;
 }
 
-
 static void
 xapian_simple_stopper_init (XapianSimpleStopper *self)
 {
@@ -55,14 +54,16 @@ xapian_simple_stopper_init (XapianSimpleStopper *self)
 
 /**
  * xapian_simple_stopper_add:
+ * @stopper: a #XapianSimpleStopper
  * @word: stop word to be added
  *
  * Adds a single stop word.
+ *
  * Since 1.2
  */
 void
 xapian_simple_stopper_add (XapianSimpleStopper *stopper,
-                           const gchar *word)
+                           const gchar         *word)
 {
   g_return_if_fail (XAPIAN_IS_SIMPLE_STOPPER (stopper));
 
@@ -77,6 +78,7 @@ xapian_simple_stopper_add (XapianSimpleStopper *stopper,
  * Creates a new #XapianSimpleStopper
  *
  * Returns: (transfer full): the newly created #XapianSimpleStopper instance
+ *
  * Since 1.2
  */
 XapianSimpleStopper *
