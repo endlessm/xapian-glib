@@ -38,6 +38,33 @@ struct _XapianStopperPrivate
   Xapian::Stopper *mStopper;
 };
 
+class GenericStopper : public Xapian::Stopper {
+  public:
+    GenericStopper (XapianStopper *aWrapper)
+      : mWrapper(aWrapper) {}
+
+    virtual bool operator() (const std::string &term) const {
+        XapianStopperClass *klass = XAPIAN_STOPPER_GET_CLASS (mWrapper);
+
+        return klass->is_stop_term (mWrapper, term.c_str ());
+    }
+
+    virtual std::string get_description() const {
+        XapianStopperClass *klass = XAPIAN_STOPPER_GET_CLASS (mWrapper);
+
+        char *str = klass->get_description (mWrapper);
+
+        std::string res (str);
+
+        g_free (str);
+
+        return res;
+    }
+
+  private:
+    XapianStopper *mWrapper;
+};
+
 G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (XapianStopper, xapian_stopper, G_TYPE_OBJECT)
 
 static void
@@ -104,12 +131,50 @@ xapian_stopper_get_description (XapianStopper *self)
   return g_strdup (desc.c_str ());
 }
 
+gboolean
+xapian_stopper_is_stop_term (XapianStopper *self,
+                             const char    *term)
+{
+  Xapian::Stopper *stopper = xapian_stopper_get_internal (self);
+
+  return (*stopper) (std::string (term));
+}
+
+static void
+xapian_stopper_constructed (GObject *gobject)
+{
+  XapianStopper *stopper = XAPIAN_STOPPER (gobject);
+  XapianStopperPrivate *priv = XAPIAN_STOPPER_GET_PRIVATE (stopper);
+
+  if (priv->mStopper == NULL)
+    priv->mStopper = new GenericStopper (stopper);
+
+  G_OBJECT_CLASS (xapian_stopper_parent_class)->constructed (gobject);
+}
+
+static gboolean
+xapian_stopper_real_is_stop_term (XapianStopper *stopper,
+                                  const char    *term)
+{
+  return FALSE;
+}
+
+static char *
+xapian_stopper_real_get_description (XapianStopper *stopper)
+{
+  return g_strdup ("<Unimplemented XapianStopper::get_description()>");
+}
+
 static void
 xapian_stopper_class_init (XapianStopperClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
+  gobject_class->constructed = xapian_stopper_constructed;
   gobject_class->finalize = xapian_stopper_finalize;
+
+  klass->is_stop_term = xapian_stopper_real_is_stop_term;
+  klass->get_description = xapian_stopper_real_get_description;
 }
 
 static void

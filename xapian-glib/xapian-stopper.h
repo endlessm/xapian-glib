@@ -41,7 +41,15 @@ struct _XapianStopper
 
 struct _XapianStopperClass
 {
+  /*< private >*/
   GObjectClass parent_instance;
+
+  /*< public >*/
+  gboolean (* is_stop_term)    (XapianStopper *stopper,
+                                const char    *term);
+  char *   (* get_description) (XapianStopper *stopper);
+
+  /*< private >*/
   gpointer _padding[8];
 };
 
@@ -49,7 +57,11 @@ XAPIAN_GLIB_AVAILABLE_IN_1_2
 GType xapian_stopper_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_2
-gchar * xapian_stopper_get_description  (XapianStopper *self);
+gchar *         xapian_stopper_get_description  (XapianStopper *self);
+
+XAPIAN_GLIB_AVAILABLE_IN_1_2
+gboolean        xapian_stopper_is_stop_term     (XapianStopper *self,
+                                                 const char    *term);
 
 G_END_DECLS
 
