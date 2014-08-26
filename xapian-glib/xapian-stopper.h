@@ -49,7 +49,7 @@ XAPIAN_GLIB_AVAILABLE_IN_1_2
 GType xapian_stopper_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_2
-gchar* xapian_stopper_get_description (XapianStopper self);
+gchar * xapian_stopper_get_description  (XapianStopper *self);
 
 G_END_DECLS
 
