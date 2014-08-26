@@ -240,7 +240,7 @@ GType xapian_stem_strategy_get_type (void);
  * Since 1.2
  */
 typedef enum {
-  XAPIAN_TERM_GENERATOR_FEATURE_SPELLING
+  XAPIAN_TERM_GENERATOR_FEATURE_SPELLING = 1
 } XapianTermGeneratorFeature;
 
 XAPIAN_GLIB_AVAILABLE_IN_1_2
