@@ -512,11 +512,11 @@ xapian_query_parser_parse_query_full (XapianQueryParser        *parser,
  *
  * If there were no corrections, an empty string is returned.
  *
- * Since 1.2
- *
  * Returns: (transfer full): the corrected query string
+ *
+ * Since 1.2
  */
-const char*
+char*
 xapian_query_parser_get_corrected_query_string (XapianQueryParser *parser)
 {
   g_return_val_if_fail (XAPIAN_IS_QUERY_PARSER (parser), NULL);
