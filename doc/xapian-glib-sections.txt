@@ -175,6 +175,7 @@ xapian_query_parser_set_stemmer
 XapianStemStrategy
 xapian_query_parser_set_stemming_strategy
 xapian_query_parser_set_database
+xapian_query_parser_set_stopper
 xapian_query_parser_add_prefix
 xapian_query_parser_add_boolean_prefix
 xapian_query_parser_parse_query
@@ -217,6 +218,7 @@ xapian_simple_stopper_get_type
 <FILE>xapian-stopper</FILE>
 <TITLE>XapianStopper</TITLE>
 xapian_stopper_get_description
+xapian_stopper_is_stop_term
 <SUBSECTION Standard>
 XAPIAN_STOPPER
 XAPIAN_STOPPER_CLASS
