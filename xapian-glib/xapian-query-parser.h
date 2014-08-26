@@ -55,6 +55,9 @@ void                    xapian_query_parser_set_stemmer                 (XapianQ
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_query_parser_set_stemming_strategy       (XapianQueryParser        *parser,
                                                                          XapianStemStrategy        strategy);
+XAPIAN_GLIB_AVAILABLE_IN_1_2
+void                    xapian_query_parser_set_stopper                 (XapianQueryParser        *parser,
+                                                                         XapianStopper               *stopper);
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_query_parser_set_database                (XapianQueryParser        *parser,
                                                                          XapianDatabase           *database);

@@ -33,6 +33,7 @@
 #include "xapian-query-parser.h"
 
 #include "xapian-database-private.h"
+#include "xapian-stopper-private.h"
 #include "xapian-enums.h"
 #include "xapian-error-private.h"
 #include "xapian-query-private.h"
@@ -48,6 +49,8 @@ typedef struct {
   XapianStemStrategy stemming_strategy;
 
   XapianDatabase *database;
+
+  XapianStopper *stopper;
 } XapianQueryParserPrivate;
 
 enum {
@@ -56,6 +59,7 @@ enum {
   PROP_STEMMER,
   PROP_STEMMING_STRATEGY,
   PROP_DATABASE,
+  PROP_STOPPER,
 
   LAST_PROP
 };
@@ -81,6 +85,7 @@ xapian_query_parser_dispose (GObject *gobject)
 
   g_clear_object (&priv->stemmer);
   g_clear_object (&priv->database);
+  g_clear_object (&priv->stopper);
 
   G_OBJECT_CLASS (xapian_query_parser_parent_class)->dispose (gobject);
 }
@@ -105,6 +110,10 @@ xapian_query_parser_set_property (GObject      *gobject,
 
     case PROP_DATABASE:
       xapian_query_parser_set_database (self, (XapianDatabase *) g_value_get_object (value));
+      break;
+
+    case PROP_STOPPER:
+      xapian_query_parser_set_stopper (self, (XapianStopper *) g_value_get_object (value));
       break;
 
     default:
@@ -132,6 +141,10 @@ xapian_query_parser_get_property (GObject    *gobject,
 
     case PROP_DATABASE:
       g_value_set_object (value, priv->database);
+      break;
+
+    case PROP_STOPPER:
+      g_value_set_object (value, priv->stopper);
       break;
 
     default:
@@ -182,6 +195,20 @@ xapian_query_parser_class_init (XapianQueryParserClass *klass)
                          "Database",
                          "The database used for wildcard expansion",
                          XAPIAN_TYPE_DATABASE,
+                         (GParamFlags) (G_PARAM_READWRITE |
+                                        G_PARAM_STATIC_STRINGS));
+
+  /**
+   * XapianQueryParser:stopper:
+   *
+   * The #XapianStopper to be used for dropping stop words
+   * Since 1.2
+   */
+  obj_props[PROP_STOPPER] =
+    g_param_spec_object ("stopper",
+                         "Stopper",
+                         "The stopper to be used for dropping stop words",
+                         XAPIAN_TYPE_STOPPER,
                          (GParamFlags) (G_PARAM_READWRITE |
                                         G_PARAM_STATIC_STRINGS));
 
@@ -321,6 +348,34 @@ xapian_query_parser_set_database (XapianQueryParser *parser,
   priv->mQueryParser->set_database (*xapian_database_get_internal (database));
 
   g_object_notify_by_pspec (G_OBJECT (parser), obj_props[PROP_DATABASE]);
+}
+
+/**
+ * xapian_query_parser_set_stopper:
+ * @parser: a #XapianQueryParser
+ * @stopper: a #XapianStopper
+ *
+ * Sets the @stopper used by @parser stop word elimination.
+ * Since 1.2
+ */
+void
+xapian_query_parser_set_stopper (XapianQueryParser *parser,
+                                 XapianStopper    *stopper)
+{
+  g_return_if_fail (XAPIAN_IS_QUERY_PARSER (parser));
+  g_return_if_fail (XAPIAN_IS_STOPPER (stopper));
+
+  XapianQueryParserPrivate *priv = XAPIAN_QUERY_PARSER_GET_PRIVATE (parser);
+
+  if (priv->stopper == stopper)
+    return;
+
+  g_clear_object (&priv->stopper);
+  priv->stopper = static_cast<XapianStopper *> (g_object_ref (stopper));
+
+  priv->mQueryParser->set_stopper (xapian_stopper_get_internal (stopper));
+
+  g_object_notify_by_pspec (G_OBJECT (parser), obj_props[PROP_STOPPER]);
 }
 
 /**

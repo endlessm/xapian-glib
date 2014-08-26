@@ -32,6 +32,8 @@ G_BEGIN_DECLS
 #define XAPIAN_TYPE_QUERY_PARSER        (xapian_query_parser_get_type ())
 #define XAPIAN_TYPE_MSET                (xapian_mset_get_type ())
 #define XAPIAN_TYPE_MSET_ITERATOR       (xapian_mset_iterator_get_type ())
+#define XAPIAN_TYPE_SIMPLE_STOPPER      (xapian_simple_stopper_get_type ())
+#define XAPIAN_TYPE_STOPPER             (xapian_stopper_get_type ())
 #define XAPIAN_TYPE_TERM_GENERATOR      (xapian_term_generator_get_type ())
 
 typedef struct _XapianDatabase          XapianDatabase;
@@ -46,6 +48,8 @@ typedef struct _XapianQueryParser       XapianQueryParser;
 typedef struct _XapianMSet              XapianMSet;
 typedef struct _XapianMSetIterator      XapianMSetIterator;
 
+typedef struct _XapianSimpleStopper     XapianSimpleStopper;
+typedef struct _XapianStopper           XapianStopper;
 typedef struct _XapianTermGenerator     XapianTermGenerator;
 
 G_END_DECLS
