@@ -55,6 +55,7 @@ xapian_simple_stopper_init (XapianSimpleStopper *self)
 
 /**
  * xapian_simple_stopper_add:
+ * @stopper: a #XapianSimpleStopper
  * @word: stop word to be added
  *
  * Adds a single stop word.

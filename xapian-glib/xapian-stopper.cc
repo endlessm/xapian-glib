@@ -87,7 +87,7 @@ xapian_stopper_set_internal (XapianStopper   *self,
 
 /**
  * xapian_stopper_get_description:
- * @stopper: stopper
+ * @self: a #XapianStopper
  *
  * Return a string describing this object. 
  *
