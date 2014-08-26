@@ -522,7 +522,7 @@ xapian_writable_database_cancel_transaction (XapianWritableDatabase *self,
  */
 void
 xapian_writable_database_add_spelling    (XapianWritableDatabase *self,
-                                          const char *word)
+                                          const char             *word)
 {
   g_return_if_fail (XAPIAN_IS_WRITABLE_DATABASE (self));
   Xapian::WritableDatabase *write_db = xapian_writable_database_get_internal (self);
@@ -544,8 +544,8 @@ xapian_writable_database_add_spelling    (XapianWritableDatabase *self,
  */
 void
 xapian_writable_database_add_spelling_full (XapianWritableDatabase *self,
-                                            const char *word,
-                                            unsigned int freqinc)
+                                            const char             *word,
+                                            unsigned int            freqinc)
 {
   g_return_if_fail (XAPIAN_IS_WRITABLE_DATABASE (self));
   Xapian::WritableDatabase *write_db = xapian_writable_database_get_internal (self);
@@ -566,7 +566,7 @@ xapian_writable_database_add_spelling_full (XapianWritableDatabase *self,
  */
 void
 xapian_writable_database_remove_spelling (XapianWritableDatabase *self,
-                                          const char *word)
+                                          const char             *word)
 {
   g_return_if_fail (XAPIAN_IS_WRITABLE_DATABASE (self));
   Xapian::WritableDatabase *write_db = xapian_writable_database_get_internal (self);
@@ -588,8 +588,8 @@ xapian_writable_database_remove_spelling (XapianWritableDatabase *self,
  */
 void
 xapian_writable_database_remove_spelling_full (XapianWritableDatabase *self,
-                                               const char *word,
-                                               unsigned int freqdec)
+                                               const char             *word,
+                                               unsigned int            freqdec)
 {
   g_return_if_fail (XAPIAN_IS_WRITABLE_DATABASE (self));
   Xapian::WritableDatabase *write_db = xapian_writable_database_get_internal (self);

@@ -361,8 +361,8 @@ xapian_term_generator_set_database (XapianTermGenerator    *generator,
  * Since 1.2
  */
 void
-xapian_term_generator_set_flags (XapianTermGenerator    *generator,
-                                 XapianTermGeneratorFeature flags)
+xapian_term_generator_set_flags (XapianTermGenerator        *generator,
+                                 XapianTermGeneratorFeature  flags)
 {
   XapianTermGeneratorPrivate *priv = XAPIAN_TERM_GENERATOR_GET_PRIVATE (generator);
 
