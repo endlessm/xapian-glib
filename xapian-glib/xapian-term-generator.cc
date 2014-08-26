@@ -368,7 +368,7 @@ xapian_term_generator_set_flags (XapianTermGenerator        *generator,
 
   int real_flags = 0;
 
-  if (flags & XAPIAN_TERM_GENERATOR_FEATURE_SPELLING)
+  if ((flags & XAPIAN_TERM_GENERATOR_FEATURE_SPELLING) != 0)
     real_flags |= Xapian::TermGenerator::FLAG_SPELLING;
 
   priv->mGenerator->set_flags(static_cast<Xapian::TermGenerator::flags>(real_flags));
