@@ -358,7 +358,7 @@ xapian_term_generator_set_database (XapianTermGenerator    *generator,
  *
  * Sets the generator's flags
  *
- * Since 1.2
+ * Since: 1.2
  */
 void
 xapian_term_generator_set_flags (XapianTermGenerator        *generator,

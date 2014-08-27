@@ -240,7 +240,7 @@ xapian_enquire_new (XapianDatabase *db,
  * Sets the collapse key for the #XapianEnquire instance with the default
  * collapse_max value of 1.
  *
- * Since 1.2
+ * Since: 1.2
  */
 void
 xapian_enquire_set_collapse_key (XapianEnquire *enquire,
@@ -268,7 +268,7 @@ xapian_enquire_set_collapse_key (XapianEnquire *enquire,
  *
  * Sets the collapse key for the #XapianEnquire instance.
  *
- * Since 1.2
+ * Since: 1.2
  */
 void
 xapian_enquire_set_collapse_key_full (XapianEnquire *enquire,
@@ -298,7 +298,7 @@ xapian_enquire_set_collapse_key_full (XapianEnquire *enquire,
  *
  * Set the percentage cutoffs with no weight cutoff.
  *
- * Since 1.2
+ * Since: 1.2
  */
 void
 xapian_enquire_set_cutoff (XapianEnquire *enquire,
@@ -329,7 +329,7 @@ xapian_enquire_set_cutoff (XapianEnquire *enquire,
  *
  * Set the percentage and weight cutoffs.
  *
- * Since 1.2
+ * Since: 1.2
  */
 void
 xapian_enquire_set_cutoff_full (XapianEnquire *enquire,

@@ -237,7 +237,7 @@ GType xapian_stem_strategy_get_type (void);
  *
  * TermGenerator flags
  *
- * Since 1.2
+ * Since: 1.2
  */
 typedef enum {
   XAPIAN_TERM_GENERATOR_FEATURE_SPELLING = 1

@@ -514,7 +514,7 @@ xapian_query_parser_parse_query_full (XapianQueryParser        *parser,
  *
  * Returns: (transfer full): the corrected query string
  *
- * Since 1.2
+ * Since: 1.2
  */
 char*
 xapian_query_parser_get_corrected_query_string (XapianQueryParser *parser)

@@ -518,7 +518,7 @@ xapian_writable_database_cancel_transaction (XapianWritableDatabase *self,
  *
  * If the word is already present, its frequency is increased.
  *
- * Since 1.2
+ * Since: 1.2
  */
 void
 xapian_writable_database_add_spelling (XapianWritableDatabase *self,
@@ -540,7 +540,7 @@ xapian_writable_database_add_spelling (XapianWritableDatabase *self,
  *
  * If the word is already present, its frequency is increased.
  *
- * Since 1.2
+ * Since: 1.2
  */
 void
 xapian_writable_database_add_spelling_full (XapianWritableDatabase *self,
@@ -562,7 +562,7 @@ xapian_writable_database_add_spelling_full (XapianWritableDatabase *self,
  * The word's frequency is decreased by 1, and if would become zero or less then
  * the word is removed completely.
  *
- * Since 1.2
+ * Since: 1.2
  */
 void
 xapian_writable_database_remove_spelling (XapianWritableDatabase *self,
@@ -584,7 +584,7 @@ xapian_writable_database_remove_spelling (XapianWritableDatabase *self,
  * The word's frequency is decreased, and if would become zero or less then the
  * word is removed completely.
  *
- * Since 1.2
+ * Since: 1.2
  */
 void
 xapian_writable_database_remove_spelling_full (XapianWritableDatabase *self,
