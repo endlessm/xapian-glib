@@ -228,6 +228,7 @@ xapian_term_generator_set_document
 xapian_term_generator_set_flags
 xapian_term_generator_index_text
 xapian_term_generator_index_text_full
+XapianTermGeneratorFeature
 <SUBSECTION Standard>
 XAPIAN_IS_TERM_GENERATOR
 XAPIAN_IS_TERM_GENERATOR_CLASS
@@ -236,9 +237,11 @@ XAPIAN_TERM_GENERATOR_CLASS
 XAPIAN_TERM_GENERATOR_GET_CLASS
 XAPIAN_TERM_GENERATOR_FEATURE
 XAPIAN_TYPE_TERM_GENERATOR
+XAPIAN_TYPE_TERM_GENERATOR_FEATURE
 XapianTermGenerator
 XapianTermGeneratorClass
 xapian_term_generator_get_type
+xapian_term_generator_feature_get_type
 </SECTION>
 
 <SECTION>

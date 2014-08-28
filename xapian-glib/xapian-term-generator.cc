@@ -56,6 +56,7 @@ enum {
   PROP_STEMMING_STRATEGY,
   PROP_DATABASE,
   PROP_DOCUMENT,
+  PROP_FLAGS,
 
   LAST_PROP
 };
@@ -110,6 +111,10 @@ xapian_term_generator_set_property (GObject      *gobject,
 
     case PROP_DOCUMENT:
       xapian_term_generator_set_document (self, (XapianDocument *) g_value_get_object (value));
+      break;
+
+    case PROP_FLAGS:
+      xapian_term_generator_set_flags (self, (XapianTermGeneratorFeature) g_value_get_enum (value));
       break;
 
     default:
@@ -211,6 +216,20 @@ xapian_term_generator_class_init (XapianTermGeneratorClass *klass)
                          XAPIAN_TYPE_DOCUMENT,
                          (GParamFlags) (G_PARAM_READWRITE |
                                         G_PARAM_STATIC_STRINGS));
+
+  /**
+   * XapianTermGenerator:flags:
+   *
+   * Flags affecting this object's behaviour; see #XapianTermGeneratorFeature.
+   */
+  obj_props[PROP_FLAGS] =
+    g_param_spec_flags ("flags",
+                        "Flags",
+                        "Flags affecting the term generator",
+                        XAPIAN_TYPE_TERM_GENERATOR_FEATURE,
+                        XAPIAN_TERM_GENERATOR_FEATURE_NONE,
+                        (GParamFlags) (G_PARAM_WRITABLE |
+                                      G_PARAM_STATIC_STRINGS));
 
   gobject_class->set_property = xapian_term_generator_set_property;
   gobject_class->get_property = xapian_term_generator_get_property;

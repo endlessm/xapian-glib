@@ -233,6 +233,7 @@ GType xapian_stem_strategy_get_type (void);
 
 /**
  * XapianTermGeneratorFeature:
+ * @XAPIAN_TERM_GENERATOR_FEATURE_NONE: No features
  * @XAPIAN_TERM_GENERATOR_FEATURE_SPELLING: Index data required for spelling correction
  *
  * TermGenerator flags
@@ -240,6 +241,7 @@ GType xapian_stem_strategy_get_type (void);
  * Since: 1.2
  */
 typedef enum {
+  XAPIAN_TERM_GENERATOR_FEATURE_NONE,
   XAPIAN_TERM_GENERATOR_FEATURE_SPELLING = 1
 } XapianTermGeneratorFeature;
 
