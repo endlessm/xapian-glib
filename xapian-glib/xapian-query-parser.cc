@@ -555,3 +555,29 @@ xapian_query_parser_parse_query_full (XapianQueryParser        *parser,
       return NULL;
     }
 }
+
+/**
+ * xapian_query_parser_get_corrected_query_string
+ * @parser: a #XapianQueryParser
+ *
+ * Get the spelling-corrected query string.
+ *
+ * This will only be set if FLAG_SPELLING_CORRECTION is specified when 
+ * QueryParser::parse_query() was last called.
+ *
+ * If there were no corrections, an empty string is returned.
+ *
+ * Returns: (transfer full): the corrected query string
+ *
+ * Since: 1.2
+ */
+char*
+xapian_query_parser_get_corrected_query_string (XapianQueryParser *parser)
+{
+  g_return_val_if_fail (XAPIAN_IS_QUERY_PARSER (parser), NULL);
+
+  XapianQueryParserPrivate *priv = XAPIAN_QUERY_PARSER_GET_PRIVATE (parser);
+  
+  std::string corrected = priv->mQueryParser->get_corrected_query_string ();
+  return g_strdup (corrected.c_str ());
+}

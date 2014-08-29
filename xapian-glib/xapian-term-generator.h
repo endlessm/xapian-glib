@@ -51,6 +51,9 @@ XapianTermGenerator *   xapian_term_generator_new       (void);
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_term_generator_set_database              (XapianTermGenerator    *generator,
                                                                          XapianWritableDatabase *database);
+XAPIAN_GLIB_AVAILABLE_IN_1_2
+void                    xapian_term_generator_set_flags                 (XapianTermGenerator    *generator,
+                                                                         XapianTermGeneratorFeature flags);
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_term_generator_set_stemmer               (XapianTermGenerator    *generator,
                                                                          XapianStem             *stemmer);
