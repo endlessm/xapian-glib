@@ -351,6 +351,38 @@ xapian_enquire_set_cutoff_full (XapianEnquire *enquire,
 }
 
 /**
+ * xapian_enquire_set_sort_by_value:
+ * @enquire: a #XapianEnquire
+ * @sort_key: value number to sort on.
+ * @reverse: If true, reverses the sort order.
+ *
+ * Set the sorting to be by value only.
+ * Note that sorting by values uses a string comparison; to use this function to sort by a numeric
+ * value you will have to store the values in a way that sorts appropriately, for instance by padding
+ * the numbers using leading zeros — e.g. `001, 002, 003, ...`.
+ *
+ * Since: 1.2
+ */
+void
+xapian_enquire_set_sort_by_value (XapianEnquire *enquire,
+                                  unsigned int   sort_key,
+                                  gboolean       reverse)
+{
+  g_return_if_fail (XAPIAN_IS_ENQUIRE (enquire));
+
+  XapianEnquirePrivate *priv = XAPIAN_ENQUIRE_GET_PRIVATE (enquire);
+
+  if (G_UNLIKELY (priv->mEnquire == NULL))
+    {
+      g_critical ("XapianEnquire must be initialized. Use g_initable_init() "
+                  "before calling any XapianEnquire method.");
+      return;
+    }
+
+  priv->mEnquire->set_sort_by_value (sort_key, reverse);
+}
+
+/**
  * xapian_enquire_set_query:
  * @enquire: a #XapianEnquire
  * @query: a #XapianQuery

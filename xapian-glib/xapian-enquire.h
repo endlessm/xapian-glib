@@ -67,6 +67,11 @@ void            xapian_enquire_set_cutoff_full        (XapianEnquire *enquire,
                                                        gfloat         percent_cutoff,
                                                        unsigned int   weight_cutoff);
 
+XAPIAN_GLIB_AVAILABLE_IN_1_2
+void            xapian_enquire_set_sort_by_value      (XapianEnquire *enquire,
+                                                       unsigned int   sort_key,
+                                                       gboolean       reverse);
+
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 void            xapian_enquire_set_query              (XapianEnquire *enquire,
                                                        XapianQuery   *query,
