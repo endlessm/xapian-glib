@@ -135,6 +135,17 @@ xapian_posting_source_get_description (XapianPostingSource *self)
 }
 
 static void
+xapian_posting_source_finalize (GObject *object)
+{
+  XapianPostingSource *posting_source = XAPIAN_POSTING_SOURCE (object);
+  XapianPostingSourcePrivate *priv = XAPIAN_POSTING_SOURCE_GET_PRIVATE (posting_source);
+
+  delete priv->mPostingSource;
+
+  G_OBJECT_CLASS (xapian_posting_source_parent_class)->finalize (object);
+}
+
+static void
 xapian_posting_source_constructed (GObject *gobject)
 {
   XapianPostingSource *posting_source = XAPIAN_POSTING_SOURCE (gobject);
@@ -150,7 +161,9 @@ static void
 xapian_posting_source_class_init (XapianPostingSourceClass *klass)
 {
   GObjectClass * gobject_class = G_OBJECT_CLASS(klass);
+
   gobject_class->constructed = xapian_posting_source_constructed;
+  gobject_class->finalize = xapian_posting_source_finalize;
 }
 
 static void
