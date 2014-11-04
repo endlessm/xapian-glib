@@ -44,9 +44,7 @@ xapian_value_weight_posting_source_init_internal (GInitable    *self,
 
   try
     {
-      unsigned int slot;
-      g_object_get (self, "slot", &slot, NULL);
-
+      guint slot = xapian_value_posting_source_get_slot (XAPIAN_VALUE_POSTING_SOURCE (self));
       mValueWeightPostingSource = new Xapian::ValueWeightPostingSource (slot);
       xapian_posting_source_set_internal (pSource, (Xapian::PostingSource *) mValueWeightPostingSource);
 

@@ -175,3 +175,23 @@ xapian_value_posting_source_new (unsigned int slot,
                                                                   "slot", slot,
                                                                   NULL));
 }
+
+/**
+ * xapian_value_posting_source_get_slot:
+ * @self: a #XapianValuePostingSource
+ *
+ * Accessor for the value of the #XapianValuePostingSource:slot property.
+ *
+ * Returns: the value of the #XapianValuePostingSource:slot property
+ *
+ * Since: 1.2
+ */
+guint
+xapian_value_posting_source_get_slot (XapianValuePostingSource *self)
+{
+  XapianValuePostingSourcePrivate *priv = XAPIAN_VALUE_POSTING_SOURCE_GET_PRIVATE (self);
+
+  g_return_val_if_fail (XAPIAN_IS_VALUE_POSTING_SOURCE (self), 0);
+
+  return priv->slot;
+}

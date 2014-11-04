@@ -160,6 +160,7 @@ xapian_posting_source_get_type
 <FILE>xapian-value-posting-source</FILE>
 <TITLE>XapianValuePostingSource</TITLE>
 xapian_value_posting_source_new
+xapian_value_posting_source_get_slot
 <SUBSECTION Standard>
 XAPIAN_IS_VALUE_POSTING_SOURCE
 XAPIAN_IS_VALUE_POSTING_SOURCE_CLASS
