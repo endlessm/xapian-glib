@@ -49,7 +49,7 @@ XAPIAN_GLIB_AVAILABLE_IN_1_2
 GType xapian_value_posting_source_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_2
-XapianValuePostingSource * xapian_value_posting_source_new (unsigned int slot_, GError **error);
+XapianValuePostingSource * xapian_value_posting_source_new (unsigned int slot, GError **error);
 
 G_END_DECLS
 

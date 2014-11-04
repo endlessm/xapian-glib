@@ -28,63 +28,27 @@
 #include "xapian-value-weight-posting-source.h"
 #include "xapian-error-private.h"
 
-#define XAPIAN_VALUE_WEIGHT_POSTING_SOURCE_GET_PRIVATE(obj) \
-  ((XapianValueWeightPostingSourcePrivate *) xapian_value_weight_posting_source_get_instance_private ((XapianValueWeightPostingSource *) (obj)))
-
-const unsigned int MIN_SLOT_VAL = 0;
-const unsigned int MAX_SLOT_VAL = Xapian::BAD_VALUENO;
-
-/*
- * Weights are generated from values stored in a specified slot
- * in the associated database.
- */ 
-typedef struct {
-  unsigned int slot;
-  gboolean slot_set;
-} XapianValueWeightPostingSourcePrivate;
-
-enum
-{
-  PROP_0,
-
-  PROP_SLOT,
-
-  LAST_PROP
-};
-
-
-
-static GParamSpec *obj_props[LAST_PROP] = { NULL, };  
-
 static void initable_iface_init (GInitableIface *iface);
 
 G_DEFINE_TYPE_WITH_CODE (XapianValueWeightPostingSource, xapian_value_weight_posting_source,
                          XAPIAN_TYPE_VALUE_POSTING_SOURCE,
-                         G_ADD_PRIVATE (XapianValueWeightPostingSource)
                          G_IMPLEMENT_INTERFACE (G_TYPE_INITABLE, initable_iface_init))
 
 static gboolean
 xapian_value_weight_posting_source_init_internal (GInitable    *self,
-                              GCancellable *cancellable,
-                              GError      **error)
+                                                  GCancellable *cancellable,
+                                                  GError      **error)
 {
-  XapianPostingSource *pSource = XAPIAN_POSTING_SOURCE(self);
-  XapianValueWeightPostingSourcePrivate *priv = XAPIAN_VALUE_WEIGHT_POSTING_SOURCE_GET_PRIVATE (self);
+  XapianPostingSource *pSource = XAPIAN_POSTING_SOURCE (self);
   Xapian::ValueWeightPostingSource *mValueWeightPostingSource;
+
   try
     {
-      if (priv->slot_set)
-        {
-          unsigned int slot = priv->slot;
+      unsigned int slot;
+      g_object_get (self, "slot", &slot, NULL);
 
-          mValueWeightPostingSource = new Xapian::ValueWeightPostingSource(slot);
-        }
-      else {
-        mValueWeightPostingSource = new Xapian::ValueWeightPostingSource(MIN_SLOT_VAL);
-        priv->slot_set = TRUE;
-      }
-
-      xapian_posting_source_set_internal(pSource, (Xapian::PostingSource *)mValueWeightPostingSource);
+      mValueWeightPostingSource = new Xapian::ValueWeightPostingSource (slot);
+      xapian_posting_source_set_internal (pSource, (Xapian::PostingSource *) mValueWeightPostingSource);
 
       return TRUE;
     }
@@ -105,71 +69,19 @@ initable_iface_init (GInitableIface *iface)
   iface->init = xapian_value_weight_posting_source_init_internal;
 }
 
-static void xapian_value_weight_posting_source_init (XapianValueWeightPostingSource *self)
-{
-}
-
 static void
-xapian_value_weight_posting_source_set_property (GObject      *gobject,
-                                                 guint         prop_id,
-                                                 const GValue *value,
-                                                 GParamSpec   *pspec)
+xapian_value_weight_posting_source_init (XapianValueWeightPostingSource *self)
 {
-  XapianValueWeightPostingSourcePrivate *priv = XAPIAN_VALUE_WEIGHT_POSTING_SOURCE_GET_PRIVATE (gobject);
-
-  switch (prop_id)
-    {
-    case PROP_SLOT:
-      priv->slot = g_value_get_uint(value);
-      priv->slot_set = TRUE;
-      break;
-
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, prop_id, pspec);
-    }
-}
-
-static void
-xapian_value_weight_posting_source_get_property (GObject    *gobject,
-                              guint       prop_id,
-                              GValue     *value,
-                              GParamSpec *pspec)
-{
-  XapianValueWeightPostingSourcePrivate *priv = XAPIAN_VALUE_WEIGHT_POSTING_SOURCE_GET_PRIVATE (gobject);
-
-  switch (prop_id)
-    {
-    case PROP_SLOT:
-      g_value_set_int (value, priv->slot);
-      break;
-
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, prop_id, pspec);
-    }
 }
 
 static void
 xapian_value_weight_posting_source_class_init (XapianValueWeightPostingSourceClass *klass)
 {
-  GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
-
-  gobject_class->set_property = xapian_value_weight_posting_source_set_property;
-  gobject_class->get_property = xapian_value_weight_posting_source_get_property;
-
-  obj_props[PROP_SLOT] =
-        g_param_spec_uint ("slot",
-                         "Slot",
-                         "Slot in the database entries to use for source",
-                         MIN_SLOT_VAL, MAX_SLOT_VAL, MIN_SLOT_VAL,
-                         (GParamFlags) (G_PARAM_READWRITE |
-                                        G_PARAM_CONSTRUCT_ONLY));
-
-  g_object_class_install_properties (gobject_class, LAST_PROP, obj_props);
 }
-
 
 /**
  * xapian_value_weight_posting_source_new:
+ * @slot: slot in the database entries to use for source
  * @error: return location for a #GError, or %NULL
  *
  * If the initializion failed, @error is set, and this function
@@ -180,11 +92,11 @@ xapian_value_weight_posting_source_class_init (XapianValueWeightPostingSourceCla
  * Since: 1.2
  */
 XapianValueWeightPostingSource *
-xapian_value_weight_posting_source_new (unsigned int slot, GError **error)
+xapian_value_weight_posting_source_new (unsigned int slot,
+                                        GError **error)
 {
   return static_cast<XapianValueWeightPostingSource *> (g_initable_new (XAPIAN_TYPE_VALUE_WEIGHT_POSTING_SOURCE,
-                                                       NULL, error,
-                                                       "slot", slot,
-                                                       NULL));
+                                                                        NULL, error,
+                                                                        "slot", slot,
+                                                                        NULL));
 }
-
