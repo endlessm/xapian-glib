@@ -31,27 +31,15 @@
 #include "xapian-query-private.h"
 
 #include "xapian-enums.h"
-#include "xapian-posting-source-private.h"
 #include "xapian-error-private.h"
+#include "xapian-posting-source-private.h"
 
 #define XAPIAN_QUERY_GET_PRIVATE(obj) \
   ((XapianQueryPrivate *) xapian_query_get_instance_private ((XapianQuery *) (obj)))
 
 typedef struct {
   Xapian::Query *mQuery;
-
-  XapianPostingSource *posting_source;
 } XapianQueryPrivate;
-
-enum {
-  PROP_0,
-
-  PROP_POSTING_SOURCE,
-
-  LAST_PROP
-};
-
-static GParamSpec *obj_props[LAST_PROP] = { NULL, };
 
 G_DEFINE_TYPE_WITH_PRIVATE (XapianQuery, xapian_query, G_TYPE_OBJECT)
 
@@ -64,17 +52,6 @@ xapian_query_get_internal (XapianQuery *self)
     priv->mQuery = new Xapian::Query ();
 
   return priv->mQuery;
-}
-
-static void
-xapian_query_set_posting_source (XapianQuery  *self,
-                                 XapianPostingSource *posting_source)
-{
-  XapianQueryPrivate *priv = XAPIAN_QUERY_GET_PRIVATE (self);
-
-  g_assert (priv->posting_source == NULL);
-
-  priv->posting_source = static_cast<XapianPostingSource *> (g_object_ref (posting_source));
 }
 
 static Xapian::Query::op
@@ -153,45 +130,6 @@ xapian_query_op_internal (XapianQueryOp op)
 }
 
 static void
-xapian_query_set_property (GObject      *gobject,
-                           guint         prop_id,
-                           const GValue *value,
-                           GParamSpec   *pspec)
-{
-  XapianQuery *self = XAPIAN_QUERY (gobject);
-
-  switch (prop_id)
-    {
-    case PROP_POSTING_SOURCE:
-      if (G_IS_OBJECT(value))
-        xapian_query_set_posting_source (self, (XapianPostingSource *) g_value_get_object (value));
-      break;
-
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, prop_id, pspec);
-    }
-}
-
-static void
-xapian_query_get_property (GObject    *gobject,
-                           guint       prop_id,
-                           GValue     *value,
-                           GParamSpec *pspec)
-{
-  XapianQueryPrivate *priv = XAPIAN_QUERY_GET_PRIVATE (gobject);
-
-  switch (prop_id)
-    {
-    case PROP_POSTING_SOURCE:
-      g_value_set_object (value, priv->posting_source);
-      break;
-
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, prop_id, pspec);
-    }
-}
-
-static void
 xapian_query_finalize (GObject *gobject)
 {
   XapianQueryPrivate *priv = XAPIAN_QUERY_GET_PRIVATE (gobject);
@@ -205,26 +143,7 @@ static void
 xapian_query_class_init (XapianQueryClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
-
-/**
-   * XapianQuery:posting-source
-   *
-   * The #XapianPostingSource from which to build a query.
-   */
-  obj_props[PROP_POSTING_SOURCE] =
-    g_param_spec_object ("posting-source",
-                         "Posting Source",
-                         "The posting source of a query",
-                         XAPIAN_TYPE_POSTING_SOURCE,
-                         (GParamFlags) (G_PARAM_READWRITE |
-                                        G_PARAM_CONSTRUCT_ONLY |
-                                        G_PARAM_STATIC_STRINGS));
-
-  gobject_class->set_property = xapian_query_set_property;
-  gobject_class->get_property = xapian_query_get_property;
   gobject_class->finalize = xapian_query_finalize;
-
-  g_object_class_install_properties (gobject_class, LAST_PROP, obj_props);
 }
 
 static void
@@ -403,7 +322,10 @@ xapian_query_new_from_posting_source (XapianPostingSource *posting_source)
 {
   g_return_val_if_fail (posting_source != NULL, NULL);
 
-  return static_cast<XapianQuery *> (g_object_new (XAPIAN_TYPE_QUERY, "posting-source", posting_source, NULL));
+  Xapian::PostingSource *aPostingSource = xapian_posting_source_get_internal (posting_source);
+  Xapian::Query query = Xapian::Query (aPostingSource);
+
+  return xapian_query_new_from_query (query);
 }
 
 /**
