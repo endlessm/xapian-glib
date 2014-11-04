@@ -18,6 +18,12 @@
  * SECTION:xapian-value-posting-source
  * @Title: XapianValuePostingSource
  * @short_description: Value posting source
+ *
+ * #XapianValuePostingSource is a #XapianPostingSource that generates
+ * weights from a value slot. It is typically used as a base class
+ * for classes that generate weights using values stored in the specified
+ * slot. See #XapianValueWeightPostingSource for an implementation that
+ * uses sortable_unserialise to convert values directly to weights.
  */
 
 #include "config.h"
@@ -157,13 +163,14 @@ xapian_value_posting_source_class_init (XapianValuePostingSourceClass *klass)
 
 /**
  * xapian_value_posting_source_new:
+ * @slot: slot in the database entries to use for source
  * @error: return location for a #GError, or %NULL
  *
  * If the initializion failed, @error is set, and this function
  * will return %NULL.
  *
  * Returns: (transfer full): the newly created #XapianValuePostingSource instance
-  *
+ *
  * Since: 1.2
  */
 XapianValuePostingSource *

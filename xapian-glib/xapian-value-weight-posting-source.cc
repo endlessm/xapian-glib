@@ -18,9 +18,15 @@
  * SECTION:xapian-value-weight-posting-source
  * @Title: XapianValueWeightPostingSource
  * @short_description: Value weight posting source
- * @long_description: A posting source which reads weights from a value slot.
+ *
+ * #XapianValueWeightPostingSource is a posting source  which reads weights
+ * from a value slot.
+ *
  * This returns entries for all documents in the given database which have a 
- * non empty values in the specified slot.
+ * non empty values in the specified slot. It returns a weight calculated
+ * by applying sortable_unserialise to the value stored in the slot
+ * (so the values stored should probably have been calculated by applying
+ * sortable_serialise to a floating point number at index time).
  */
 
 #include "config.h"

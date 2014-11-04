@@ -18,6 +18,12 @@
  * SECTION:xapian-posting-source
  * @Title: XapianPostingSource
  * @short_description: Posting source
+ *
+ * #XapianPostingSource is an abstract class that serves as a base
+ * for posting sources implementation.
+ *
+ * See #XapianValuePostingSource or #XapianValueWeightPostingSource
+ * for examples of that.
  */
 
 #include "config.h"
@@ -114,7 +120,7 @@ xapian_posting_source_set_internal (XapianPostingSource   *self,
   priv->mPostingSource = aPostingSource;
 }
 
-/*< private >
+/**
  * xapian_posting_source_get_description:
  * @self: a #XapianPostingSource
  *
