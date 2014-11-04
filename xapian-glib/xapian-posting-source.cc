@@ -151,10 +151,10 @@ xapian_posting_source_constructed (GObject *gobject)
   XapianPostingSource *posting_source = XAPIAN_POSTING_SOURCE (gobject);
   XapianPostingSourcePrivate *priv = XAPIAN_POSTING_SOURCE_GET_PRIVATE (posting_source);
 
+  G_OBJECT_CLASS (xapian_posting_source_parent_class)->constructed (gobject);
+
   if (priv->mPostingSource == NULL)
     priv->mPostingSource = new GenericPostingSource (posting_source);
-
-  G_OBJECT_CLASS (xapian_posting_source_parent_class)->constructed (gobject);
 }
 
 static void
