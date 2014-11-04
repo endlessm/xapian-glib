@@ -141,6 +141,55 @@ xapian_mset_iterator_get_type
 </SECTION>
 
 <SECTION>
+<FILE>xapian-posting-source</FILE>
+<TITLE>XapianPostingSource</TITLE>
+xapian_posting_source_get_description
+<SUBSECTION Standard>
+XAPIAN_IS_POSTING_SOURCE
+XAPIAN_IS_POSTING_SOURCE_CLASS
+XAPIAN_POSTING_SOURCE
+XAPIAN_POSTING_SOURCE_CLASS
+XAPIAN_POSTING_SOURCE_GET_CLASS
+XAPIAN_TYPE_POSTING_SOURCE
+XapianPostingSource
+XapianPostingSourceClass
+xapian_posting_source_get_type
+</SECTION>
+
+<SECTION>
+<FILE>xapian-value-posting-source</FILE>
+<TITLE>XapianValuePostingSource</TITLE>
+xapian_value_posting_source_new
+xapian_value_posting_source_get_slot
+<SUBSECTION Standard>
+XAPIAN_IS_VALUE_POSTING_SOURCE
+XAPIAN_IS_VALUE_POSTING_SOURCE_CLASS
+XAPIAN_VALUE_POSTING_SOURCE
+XAPIAN_VALUE_POSTING_SOURCE_CLASS
+XAPIAN_VALUE_POSTING_SOURCE_GET_CLASS
+XAPIAN_TYPE_VALUE_POSTING_SOURCE
+XapianValuePostingSource
+XapianValuePostingSourceClass
+xapian_value_posting_source_get_type
+</SECTION>
+
+<SECTION>
+<FILE>xapian-value-weight-posting-source</FILE>
+<TITLE>XapianValueWeightPostingSource</TITLE>
+xapian_value_weight_posting_source_new
+<SUBSECTION Standard>
+XAPIAN_IS_VALUE_WEIGHT_POSTING_SOURCE
+XAPIAN_IS_VALUE_WEIGHT_POSTING_SOURCE_CLASS
+XAPIAN_VALUE_WEIGHT_POSTING_SOURCE
+XAPIAN_VALUE_WEIGHT_POSTING_SOURCE_CLASS
+XAPIAN_VALUE_WEIGHT_POSTING_SOURCE_GET_CLASS
+XAPIAN_TYPE_VALUE_WEIGHT_POSTING_SOURCE
+XapianValueWeightPostingSource
+XapianValueWeightPostingSourceClass
+xapian_value_weight_posting_source_get_type
+</SECTION>
+
+<SECTION>
 <FILE>xapian-query</FILE>
 <TITLE>XapianQuery</TITLE>
 XapianQueryOp
@@ -149,6 +198,7 @@ xapian_query_new_for_term
 xapian_query_new_for_pair
 xapian_query_new_for_value
 xapian_query_new_for_terms_pair
+xapian_query_new_from_posting_source
 xapian_query_new_from_string
 xapian_query_is_empty
 xapian_query_get_length

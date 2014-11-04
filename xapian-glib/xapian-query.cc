@@ -32,6 +32,7 @@
 
 #include "xapian-enums.h"
 #include "xapian-error-private.h"
+#include "xapian-posting-source-private.h"
 
 #define XAPIAN_QUERY_GET_PRIVATE(obj) \
   ((XapianQueryPrivate *) xapian_query_get_instance_private ((XapianQuery *) (obj)))
@@ -141,7 +142,8 @@ xapian_query_finalize (GObject *gobject)
 static void
 xapian_query_class_init (XapianQueryClass *klass)
 {
-  G_OBJECT_CLASS (klass)->finalize = xapian_query_finalize;
+  GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
+  gobject_class->finalize = xapian_query_finalize;
 }
 
 static void
@@ -301,6 +303,27 @@ xapian_query_new_from_string (const char *data)
   g_return_val_if_fail (data != NULL, NULL);
 
   Xapian::Query query = Xapian::Query (std::string (data));
+
+  return xapian_query_new_from_query (query);
+}
+
+/**
+ * xapian_query_new_from_posting_source:
+ * @posting_source: a posting source
+ *
+ * Creates a new #XapianQuery from a posting source.
+ *
+ * Returns: (transfer full): the newly created #XapianQuery instance
+ *
+ * Since: 1.2
+ */
+XapianQuery *
+xapian_query_new_from_posting_source (XapianPostingSource *posting_source)
+{
+  g_return_val_if_fail (posting_source != NULL, NULL);
+
+  Xapian::PostingSource *aPostingSource = xapian_posting_source_get_internal (posting_source);
+  Xapian::Query query = Xapian::Query (aPostingSource);
 
   return xapian_query_new_from_query (query);
 }
