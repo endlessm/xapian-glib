@@ -58,7 +58,8 @@ static void initable_default_init (GInitableIface *iface);
 
 G_DEFINE_TYPE_WITH_CODE (XapianWritableDatabase, xapian_writable_database,
                          XAPIAN_TYPE_DATABASE,
-                         G_IMPLEMENT_INTERFACE (G_TYPE_INITABLE, initable_default_init))
+                         G_IMPLEMENT_INTERFACE (G_TYPE_INITABLE, initable_default_init)
+                         G_ADD_PRIVATE (XapianWritableDatabase))
 
 static Xapian::WritableDatabase *
 xapian_writable_database_get_internal (XapianWritableDatabase *self)
