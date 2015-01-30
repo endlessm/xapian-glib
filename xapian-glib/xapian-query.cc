@@ -329,6 +329,22 @@ xapian_query_new_from_posting_source (XapianPostingSource *posting_source)
 }
 
 /**
+ * xapian_query_new_match_all:
+ *
+ * Creates a new #XapianQuery that will match all documents
+ * in the database.
+ *
+ * Returns: (transfer full): the newly created #XapianQuery instance
+ *
+ * Since: 1.2
+ */
+XapianQuery *
+xapian_query_new_match_all (void)
+{
+  return xapian_query_new_from_query (Xapian::Query::MatchAll);
+}
+
+/**
  * xapian_query_is_empty:
  * @query: a #XapianQuery
  *
