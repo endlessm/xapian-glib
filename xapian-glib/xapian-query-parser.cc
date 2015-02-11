@@ -562,8 +562,8 @@ xapian_query_parser_parse_query_full (XapianQueryParser        *parser,
  *
  * Get the spelling-corrected query string.
  *
- * This will only be set if FLAG_SPELLING_CORRECTION is specified when 
- * QueryParser::parse_query() was last called.
+ * This will only be set if %XAPIAN_QUERY_PARSER_FEATURE_SPELLING_CORRECTION
+ * is specified when xapian_query_parser_parse_query_full() was last called.
  *
  * If there were no corrections, an empty string is returned.
  *
@@ -571,7 +571,7 @@ xapian_query_parser_parse_query_full (XapianQueryParser        *parser,
  *
  * Since: 1.2
  */
-char*
+char *
 xapian_query_parser_get_corrected_query_string (XapianQueryParser *parser)
 {
   g_return_val_if_fail (XAPIAN_IS_QUERY_PARSER (parser), NULL);
