@@ -8,13 +8,6 @@ olddir=`pwd`
 
 cd $srcdir
 PROJECT=Xapian-GLib
-TEST_TYPE=-f
-FILE=xapian-glib/xapian-glib.h
-
-test $TEST_TYPE $FILE || {
-	echo "You must run this script in the top-level $PROJECT directory"
-	exit 1
-}
 
 GTKDOCIZE=`which gtkdocize`
 if test -z $GTKDOCIZE; then
