@@ -556,6 +556,7 @@ xapian_writable_database_add_spelling_full (XapianWritableDatabase *self,
 
 /**
  * xapian_writable_database_remove_spelling:
+ * @self: a #XapianWritableDatabase
  * @word: The word to remove
  *
  * Remove a word from the spelling dictionary.
@@ -577,6 +578,7 @@ xapian_writable_database_remove_spelling (XapianWritableDatabase *self,
 
 /**
  * xapian_writable_database_remove_spelling_full:
+ * @self: a #XapianWritableDatabase
  * @word: The word to remove
  * @freqdec: How much to decrease its frequency by
  * 
