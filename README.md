@@ -3,7 +3,7 @@
 ### GObject/C bindings for the Xapian API
 
 Xapian-GLib is a wrapper library that offers a C API and GObject types for
-the Xapian database.
+the [Xapian](http://xapian.org) database.
 
 Xapian-GLib allows accessing the Xapian API in various languages, through
 the GObject Introspection API.
