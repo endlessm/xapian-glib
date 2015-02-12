@@ -1,6 +1,6 @@
 DOC_MODULE = xapian-glib
 DOC_MAIN_SGML_FILE = xapian-glib-docs.xml
-DOC_SOURCE_DIR = $(top_srcdir)/xapian-glib
+DOC_SOURCE_DIR = $(top_srcdir)/xapian-glib $(top_builddir)/xapian-glib
 
 SCAN_OPTIONS = --rebuild-types
 SCANGOBJ_OPTIONS =
@@ -11,18 +11,18 @@ HFILE_GLOB = $(top_srcdir)/xapian-glib/*.h $(top_builddir)/xapian-glib/*.h
 CFILE_GLOB = $(top_srcdir)/xapian-glib/*.cc
 
 IGNORE_HFILES = \
-	$(top_builddir)/xapian-glib/config.h \
-	$(top_srcdir)/xapian-glib/xapian-database-private.h \
-	$(top_srcdir)/xapian-glib/xapian-document-private.h \
-	$(top_srcdir)/xapian-glib/xapian-error-private.h \
-	$(top_srcdir)/xapian-glib/xapian-mset-private.h \
-	$(top_srcdir)/xapian-glib/xapian-posting-source-private.h \
-	$(top_srcdir)/xapian-glib/xapian-value-posting-source-private.h \
-	$(top_srcdir)/xapian-glib/xapian-query-private.h \
-	$(top_srcdir)/xapian-glib/xapian-stem-private.h \
-	$(top_srcdir)/xapian-glib/xapian-stopper-private.h \
-	$(top_srcdir)/xapian-glib/xapian-glib-macros.h \
-	$(top_srcdir)/xapian-glib/xapian-glib.h
+	config.h \
+	xapian-database-private.h \
+	xapian-document-private.h \
+	xapian-error-private.h \
+	xapian-mset-private.h \
+	xapian-posting-source-private.h \
+	xapian-value-posting-source-private.h \
+	xapian-query-private.h \
+	xapian-stem-private.h \
+	xapian-stopper-private.h \
+	xapian-glib-macros.h \
+	xapian-glib.h
 
 EXTRA_HFILES =
 
