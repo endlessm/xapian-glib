@@ -25,7 +25,7 @@ AC_PREREQ([2.63])
 
 AC_INIT([xapian-glib],
         [xapian_version],
-        [https://github.com/endlessm/eos-sdk/issues/],
+        [https://github.com/endlessm/xapian-glib/issues/],
         [xapian-glib],
         [https://github.com/endlessm/xapian-glib])
 
