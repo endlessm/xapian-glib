@@ -32,7 +32,7 @@ You can install to the default location of `/usr/local` by using:
     # make install
 
 If you want to use an alternative location, use the `--prefix` configuration
-switch with the `autogen.sh` script.
+switch with the `configure` script.
 
 ## License
 
