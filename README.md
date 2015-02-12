@@ -13,7 +13,7 @@ the GObject Introspection API.
 Xapian-GLib, unsurprisingly, requires:
 
  * Xapian
- * GObject
+ * GObject ≥ 2.40
 
 ## Building
 
