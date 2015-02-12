@@ -1,8 +1,8 @@
 # bump micro_version to the next even number for each point release
 # bump micro_version to the next odd number after each release
 m4_define([xapian_major_version], [1])
-m4_define([xapian_minor_version], [1])
-m4_define([xapian_micro_version], [1])
+m4_define([xapian_minor_version], [2])
+m4_define([xapian_micro_version], [0])
 
 m4_define([xapian_version], [xapian_major_version.xapian_minor_version.xapian_micro_version])
 
