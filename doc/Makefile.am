@@ -35,3 +35,13 @@ AM_CPPFLAGS = -I$(top_srcdir) -I$(top_builddir) $(XAPIAN_GLIB_CFLAGS)
 GTKDOC_LIBS = $(top_builddir)/xapian-glib/libxapian-glib-1.0.la $(XAPIAN_GLIB_LIBS)
 
 include $(top_srcdir)/gtk-doc.make
+
+if ENABLE_GTK_DOC
+TESTS_ENVIRONMENT = \
+	DOC_MODULE=$(DOC_MODULE) \
+	DOC_MAIN_SGML_FILE=$(DOC_MAIN_SGML_FILE) \
+	SRCDIR=$(abs_srcdir) \
+	BUILDDIR=$(abs_builddir)
+
+TESTS = $(GTKDOC_CHECK)
+endif

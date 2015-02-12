@@ -1,6 +1,9 @@
 /*.stamp
 /html
 /xml
+/*.log
+/*.test
+/*.trs
 xapian-glib-decl-list.txt
 xapian-glib-decl-list.txt.bak
 xapian-glib-decl.txt
