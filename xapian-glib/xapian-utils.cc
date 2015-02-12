@@ -22,8 +22,10 @@
 
 /**
  * SECTION:xapian-utils
- * @Title: Utility API
+ * @Title: Utilities
+ * @Short_description: Utility API
  *
+ * Utility functions.
  */
 
 /**
