@@ -15,6 +15,7 @@ Homepage: http://www.endlessm.com
 Package: gir1.2-xapian-1.0
 Section: non-free/libdevel
 Architecture: any
+Pre-Depends: ${misc:Pre-Depends}
 Depends: ${misc:Depends},
          ${shlibs:Depends}
 Description: GObject/C bindings for the Xapian API
