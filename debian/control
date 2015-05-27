@@ -3,6 +3,7 @@ Priority: standard
 Maintainer: Emmanuele Bassi <emmanuele@endlessm.com>
 Build-Depends: autotools-dev,
                debhelper (>= 9.0.0),
+               libglib2.0-dev (>= 2.40.0),
                gir1.2-glib-2.0,
                gobject-introspection (>= 0.9.7),
                gtk-doc-tools (>= 1.18),
@@ -18,7 +19,8 @@ Architecture: any
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-         ${gir:Depends}
+         ${gir:Depends},
+         libglib2.0-dev
 Description: GObject/C bindings for the Xapian API
  Xapian-GLib is a wrapper library that offers a C API and GObject types for the
  Xapian database. Xapian-GLib allows accessing the Xapian API in various
