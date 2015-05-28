@@ -2,22 +2,63 @@ Source: xapian-glib
 Priority: standard
 Maintainer: Emmanuele Bassi <emmanuele@endlessm.com>
 Build-Depends: autotools-dev,
-               debhelper (>= 8.0.0),
+               debhelper (>= 9.0.0),
+               libglib2.0-dev (>= 2.40.0),
                gir1.2-glib-2.0,
                gobject-introspection (>= 0.9.7),
                gtk-doc-tools (>= 1.18),
                libgirepository1.0-dev,
                libxapian-dev
-Standards-Version: 3.9.4
+Standards-Version: 3.9.6
 Section: non-free/libs
 Homepage: http://www.endlessm.com
 
-Package: gir1.2-xapian-1.0
-Section: non-free/libdevel
+Package: libxapian-glib-1.0-0
 Architecture: any
+Pre-Depends: ${misc:Pre-Depends}
 Depends: ${misc:Depends},
          ${shlibs:Depends}
 Description: GObject/C bindings for the Xapian API
- Xapian-GLib is a wrapper library that offers a C API and GObject types for the
- Xapian database. Xapian-GLib allows accessing the Xapian API in various
- languages, through the GObject Introspection API.
+ Xapian-GLib is a wrapper library that offers a C API and GObject types
+ for the Xapian database. Xapian-GLib allows accessing the Xapian API in
+ various languages, through the GObject Introspection API.
+
+Package: gir1.2-xapian-1.0
+Section: non-free/introspection
+Architecture: any
+Depends: ${misc:Depends},
+         ${gir:Depends}
+Description: GObject Introspection typelib for Xapian-GLib
+ Xapian-GLib is a wrapper library that offers a C API and GObject types
+ for the Xapian database. Xapian-GLib allows accessing the Xapian API in
+ various languages, through the GObject Introspection API.
+ .
+ This package provides the Xapian-GLib GObject Introspection type
+ library.
+
+Package: libxapian-glib-1.0-dev
+Section: non-free/libdevel
+Architecture: any
+Depends: ${misc:Depends},
+         libxapian-glib-1.0-0 (= ${binary:Version}),
+         gir1.2-xapian-1.0 (= ${binary:Version}),
+         libglib2.0-dev
+Description: GObject/C bindings for the Xapian API - development files
+ Xapian-GLib is a wrapper library that offers a C API and GObject types
+ for the Xapian database. Xapian-GLib allows accessing the Xapian API in
+ various languages, through the GObject Introspection API.
+ .
+ This package provides the Xapian-GLib development files.
+
+Package: libxapian-glib-1.0-dbg
+Section: non-free/debug
+Priority: extra
+Architecture: any
+Depends: ${misc:Depends},
+         libxapian-glib-1.0-0 (= ${binary:Version})
+Description: GObject/C bindings for the Xapian API - debugging symbols
+ Xapian-GLib is a wrapper library that offers a C API and GObject types
+ for the Xapian database. Xapian-GLib allows accessing the Xapian API in
+ various languages, through the GObject Introspection API.
+ .
+ This package provides the Xapian-GLib debugging symbols.

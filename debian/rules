@@ -10,4 +10,7 @@
 #export DH_VERBOSE=1
 
 %:
-	dh $@
+	dh $@ --with gir
+
+override_dh_strip:
+	dh_strip --dbg-package=libxapian-glib-1.0-dbg
