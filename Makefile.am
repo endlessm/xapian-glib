@@ -10,7 +10,7 @@ EXTRA_DIST = \
 	README.md \
 	COPYING
 
-DISTCHECK_CONFIGURE_FLAGS = --enable-maintainer-flags
+AM_DISTCHECK_CONFIGURE_FLAGS = --enable-maintainer-flags
 
 if ENABLE_GCOV
 # use recursive makes in order to ignore errors during check/perf
