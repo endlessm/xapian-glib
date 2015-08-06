@@ -599,3 +599,29 @@ xapian_writable_database_remove_spelling_full (XapianWritableDatabase *self,
 
   write_db->remove_spelling (word, freqdec);
 }
+
+/**
+ * xapian_writable_database_set_metadata:
+ * @self: a #XapianWritableDatabase
+ * @key: A key in the database's metadata
+ * @value: The value to set for @key
+ * 
+ * Set the user-specified metadata associated with a given key.
+ *
+ * This method sets the metadata value associated with a given key. If there is
+ * already a metadata value stored in the database with the same key, the old
+ * value is replaced. If you want to delete an existing item of metadata, just
+ * set its value to the empty string.
+ *
+ * Since: 1.4
+ */
+void
+xapian_writable_database_set_metadata (XapianWritableDatabase *self,
+                                       const char             *key,
+                                       const char             *value)
+{
+  g_return_if_fail (XAPIAN_IS_WRITABLE_DATABASE (self));
+  Xapian::WritableDatabase *write_db = xapian_writable_database_get_internal (self);
+
+  write_db->set_metadata (key, value);
+}

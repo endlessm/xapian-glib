@@ -99,6 +99,10 @@ XAPIAN_GLIB_AVAILABLE_IN_1_2
 void                            xapian_writable_database_remove_spelling_full   (XapianWritableDatabase *self,
                                                                                  const char             *word,
                                                                                  unsigned int            freqdec);
+XAPIAN_GLIB_AVAILABLE_IN_1_4
+void                             xapian_writable_database_set_metadata          (XapianWritableDatabase *self,
+                                                                                 const char             *key,
+                                                                                 const char             *value);
 
 G_END_DECLS
 

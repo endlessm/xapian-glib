@@ -33,6 +33,7 @@
 #include "xapian-enums.h"
 #include "xapian-error-private.h"
 #include "xapian-stem-private.h"
+#include "xapian-stopper-private.h"
 #include "xapian-writable-database.h"
 
 #define XAPIAN_TERM_GENERATOR_GET_PRIVATE(obj) \
@@ -46,6 +47,8 @@ typedef struct {
   XapianStem *stemmer;
   XapianStemStrategy stemming_strategy;
 
+  XapianStopper *stopper;
+
   XapianDocument *document;
 } XapianTermGeneratorPrivate;
 
@@ -54,6 +57,7 @@ enum {
 
   PROP_STEMMER,
   PROP_STEMMING_STRATEGY,
+  PROP_STOPPER,
   PROP_DATABASE,
   PROP_DOCUMENT,
   PROP_FLAGS,
@@ -81,6 +85,7 @@ xapian_term_generator_dispose (GObject *gobject)
   XapianTermGeneratorPrivate *priv = XAPIAN_TERM_GENERATOR_GET_PRIVATE (gobject);
 
   g_clear_object (&priv->stemmer);
+  g_clear_object (&priv->stopper);
   g_clear_object (&priv->database);
   g_clear_object (&priv->document);
 
@@ -103,6 +108,10 @@ xapian_term_generator_set_property (GObject      *gobject,
 
     case PROP_STEMMING_STRATEGY:
       xapian_term_generator_set_stemming_strategy (self, (XapianStemStrategy) g_value_get_enum (value));
+      break;
+
+    case PROP_STOPPER:
+      xapian_term_generator_set_stopper (self, (XapianStopper *) g_value_get_object (value));
       break;
 
     case PROP_DATABASE:
@@ -138,6 +147,10 @@ xapian_term_generator_get_property (GObject    *gobject,
 
     case PROP_STEMMING_STRATEGY:
       g_value_set_enum (value, priv->stemming_strategy);
+      break;
+
+    case PROP_STOPPER:
+      g_value_set_object (value, priv->stopper);
       break;
 
     case PROP_DATABASE:
@@ -189,6 +202,21 @@ xapian_term_generator_class_init (XapianTermGeneratorClass *klass)
                        XAPIAN_STEM_STRATEGY_STEM_NONE,
                        (GParamFlags) (G_PARAM_READWRITE |
                                       G_PARAM_STATIC_STRINGS));
+
+  /**
+   * XapianTermGenerator:stopper:
+   *
+   * The stopper to be used when filtering stop-words.
+   *
+   * Since: 1.4
+   */
+  obj_props[PROP_STOPPER] =
+    g_param_spec_object ("stopper",
+                         "Stopper",
+                         "The XapianStopper instance",
+                         XAPIAN_TYPE_STOPPER,
+                         (GParamFlags) (G_PARAM_READWRITE |
+                                        G_PARAM_STATIC_STRINGS));
 
   /**
    * XapianTermGenerator:database:
@@ -338,6 +366,35 @@ xapian_term_generator_set_stemming_strategy (XapianTermGenerator *generator,
   priv->mGenerator->set_stemming_strategy (stem_strategy);
 
   g_object_notify_by_pspec (G_OBJECT (generator), obj_props[PROP_STEMMING_STRATEGY]);
+}
+
+/**
+ * xapian_term_generator_set_stopper:
+ * @generator: a #XapianTermGenerator
+ * @stopper: a #XapianStopper
+ *
+ * Sets the stopper for @generator.
+ *
+ * Since: 1.4
+ */
+void
+xapian_term_generator_set_stopper (XapianTermGenerator *generator,
+                                   XapianStopper       *stopper)
+{
+  g_return_if_fail (XAPIAN_IS_TERM_GENERATOR (generator));
+  g_return_if_fail (XAPIAN_IS_STOPPER (stopper));
+
+  XapianTermGeneratorPrivate *priv = XAPIAN_TERM_GENERATOR_GET_PRIVATE (generator);
+
+  if (priv->stopper == stopper)
+    return;
+
+  g_clear_object (&priv->stopper);
+  priv->stopper = static_cast<XapianStopper *> (g_object_ref (stopper));
+
+  priv->mGenerator->set_stopper(xapian_stopper_get_internal (stopper));
+
+  g_object_notify_by_pspec (G_OBJECT (generator), obj_props[PROP_STOPPER]);
 }
 
 /**

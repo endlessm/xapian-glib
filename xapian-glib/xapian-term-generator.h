@@ -60,6 +60,9 @@ void                    xapian_term_generator_set_stemmer               (XapianT
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_term_generator_set_stemming_strategy     (XapianTermGenerator    *generator,
                                                                          XapianStemStrategy      strategy);
+XAPIAN_GLIB_AVAILABLE_IN_1_4
+void                    xapian_term_generator_set_stopper               (XapianTermGenerator    *generator,
+                                                                         XapianStopper          *stopper);
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_term_generator_set_document              (XapianTermGenerator    *generator,
                                                                          XapianDocument         *document);
