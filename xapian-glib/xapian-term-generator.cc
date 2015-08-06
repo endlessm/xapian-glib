@@ -461,6 +461,9 @@ xapian_term_generator_index_text_full (XapianTermGenerator *generator,
   g_return_if_fail (XAPIAN_IS_TERM_GENERATOR (generator));
   g_return_if_fail (data != NULL);
 
+  if (prefix == NULL)
+    prefix = "";
+
   XapianTermGeneratorPrivate *priv = XAPIAN_TERM_GENERATOR_GET_PRIVATE (generator);
 
   priv->mGenerator->index_text (std::string (data), wdf_inc, std::string (prefix));
