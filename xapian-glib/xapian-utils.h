@@ -38,6 +38,10 @@ XAPIAN_GLIB_AVAILABLE_IN_1_0
 int             xapian_minor_version            (void);
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 int             xapian_revision                 (void);
+XAPIAN_GLIB_AVAILABLE_IN_1_4
+char *          xapian_sortable_serialise       (double value);
+XAPIAN_GLIB_AVAILABLE_IN_1_4
+double          xapian_sortable_unserialise     (const char *value);
 
 G_END_DECLS
 
