@@ -114,7 +114,7 @@ AM_CONDITIONAL(HAVE_GCC, test "x$GCC" = "xyes")
 
 dnl === Dependencies ==========================================================
 
-AC_CHECK_PROG([XAPIAN_CONFIG], [xapian-config], [xapian-config])
+AC_CHECK_PROG([XAPIAN_CONFIG], [xapian-config-1.3], [xapian-config-1.3])
 AS_IF([test "$XAPIAN_CONFIG"],
       [ found_xapian=yes ],
       [ AC_MSG_ERROR(["*** No Xapian headers found; you need to install xapian-config ***"]) ])
