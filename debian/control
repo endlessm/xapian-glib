@@ -8,7 +8,7 @@ Build-Depends: autotools-dev,
                gobject-introspection (>= 0.9.7),
                gtk-doc-tools (>= 1.18),
                libgirepository1.0-dev,
-               libxapian-dev
+               libxapian-1.3-dev
 Standards-Version: 3.9.6
 Section: non-free/libs
 Homepage: http://www.endlessm.com
