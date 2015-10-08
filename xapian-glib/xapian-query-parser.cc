@@ -557,6 +557,24 @@ xapian_query_parser_parse_query_full (XapianQueryParser        *parser,
 }
 
 /**
+ * xapian_query_parser_get_stopper
+ * @parser: a #XapianQueryParser
+ *
+ * Returns: (transfer none): the #XapianStopper used by @parser
+ *
+ * Since: 1.2
+ */
+XapianStopper *
+xapian_query_parser_get_stopper (XapianQueryParser *parser)
+{
+  g_return_val_if_fail (XAPIAN_IS_QUERY_PARSER (parser), NULL);
+
+  XapianQueryParserPrivate *priv = XAPIAN_QUERY_PARSER_GET_PRIVATE (parser);
+
+  return priv->stopper;
+}
+
+/**
  * xapian_query_parser_get_corrected_query_string
  * @parser: a #XapianQueryParser
  *
