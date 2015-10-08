@@ -76,6 +76,9 @@ XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianQuery *           xapian_query_parser_parse_query                 (XapianQueryParser        *parser,
                                                                          const char               *query_string,
                                                                          GError                  **error);
+XAPIAN_GLIB_AVAILABLE_IN_1_2
+XapianStopper *           xapian_query_parser_get_stopper               (XapianQueryParser        *parser);
+
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianQuery *           xapian_query_parser_parse_query_full            (XapianQueryParser        *parser,
                                                                          const char               *query_string,
