@@ -80,6 +80,16 @@ XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_database_add_database    (XapianDatabase *db,
                                                          XapianDatabase *new_db);
 
+XAPIAN_GLIB_AVAILABLE_IN_1_4
+void                    xapian_database_compact_to_path (XapianDatabase             *self,
+                                                         const char                 *path,
+                                                         XapianDatabaseCompactFlags  flags);
+
+XAPIAN_GLIB_AVAILABLE_IN_1_4
+void                    xapian_database_compact_to_fd   (XapianDatabase             *self,
+                                                         int                         fd,
+                                                         XapianDatabaseCompactFlags  flags);
+
 G_END_DECLS
 
 #endif /* __XAPIAN_GLIB_DATABASE_H__ */

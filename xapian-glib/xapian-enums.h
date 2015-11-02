@@ -248,6 +248,12 @@ typedef enum {
 XAPIAN_GLIB_AVAILABLE_IN_1_2
 GType xapian_term_generator_feature_get_type (void);
 
+typedef enum {
+  XAPIAN_DB_COMPACT_NO_RENUMBER = 4,
+  XAPIAN_DB_COMPACT_MULTIPASS = 8,
+  XAPIAN_DB_COMPACT_SINGLE_FILE = 16,
+} XapianDatabaseCompactFlags;
+
 G_END_DECLS
 
 #endif /* __XAPIAN_ENUMS_H__ */

@@ -582,3 +582,43 @@ xapian_database_add_database (XapianDatabase *db,
    */
   g_hash_table_add (priv->databases, g_object_ref (new_db));
 }
+
+/**
+ * xapian_database_compact_to_path:
+ * @self: A #XapianDatabase
+ * @path: The path to write the compacted database to.
+ * @flags: Flags to compact the database with.
+ *
+ * Compacts the database, and writes the result to the given path.
+ *
+ * Since: 1.4
+ */
+void
+xapian_database_compact_to_path (XapianDatabase             *self,
+                                 const char                 *path,
+                                 XapianDatabaseCompactFlags  flags)
+{
+  Xapian::Database *real_db = xapian_database_get_internal (self);
+
+  const std::string output (path);
+  real_db->compact (output, flags);
+}
+
+/**
+ * xapian_database_compact_to_fd:
+ * @self: A #XapianDatabase
+ * @fd: The fd to write the compacted database.
+ * @flags: Flags to compact the database with.
+ *
+ * Compacts the database, and writes the result to the given fd.
+ *
+ * Since: 1.4
+ */
+void
+xapian_database_compact_to_fd (XapianDatabase             *self,
+                               int                         fd,
+                               XapianDatabaseCompactFlags  flags)
+{
+  Xapian::Database *real_db = xapian_database_get_internal (self);
+  real_db->compact (fd, flags);
+}
