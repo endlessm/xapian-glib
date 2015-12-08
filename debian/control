@@ -3,6 +3,7 @@ Priority: standard
 Maintainer: Emmanuele Bassi <emmanuele@endlessm.com>
 Build-Depends: autotools-dev,
                debhelper (>= 9.0.0),
+               dh-autoreconf,
                libglib2.0-dev (>= 2.40.0),
                gir1.2-glib-2.0,
                gobject-introspection (>= 0.9.7),
