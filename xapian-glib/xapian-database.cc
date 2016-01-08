@@ -47,6 +47,7 @@ struct _XapianDatabasePrivate
   char *path;
   off_t offset;
   int fd;
+  XapianDatabaseFlags flags;
 
   Xapian::Database *mDB;
 
@@ -61,6 +62,7 @@ enum
 
   PROP_PATH,
   PROP_OFFSET,
+  PROP_FLAGS,
 
   LAST_PROP
 };
@@ -171,13 +173,13 @@ open_database (XapianDatabase *self)
    * what to do with the path... */
   if (priv->offset == 0)
     {
-      return new Xapian::Database (priv->path);
+      return new Xapian::Database (priv->path, priv->flags);
     }
   else
     {
       priv->fd = open (priv->path, O_RDONLY | O_CLOEXEC);
       lseek (priv->fd, priv->offset, SEEK_SET);
-      return new Xapian::Database (priv->fd);
+      return new Xapian::Database (priv->fd, priv->flags);
     }
 }
 
@@ -251,6 +253,10 @@ xapian_database_set_property (GObject      *gobject,
       priv->offset = g_value_get_int (value);
       break;
 
+    case PROP_FLAGS:
+      priv->flags = (XapianDatabaseFlags) g_value_get_flags (value);
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, prop_id, pspec);
     }
@@ -272,6 +278,10 @@ xapian_database_get_property (GObject    *gobject,
 
     case PROP_OFFSET:
       g_value_set_int (value, priv->offset);
+      break;
+
+    case PROP_FLAGS:
+      g_value_set_flags (value, (int) priv->flags);
       break;
 
     default:
@@ -314,6 +324,21 @@ xapian_database_class_init (XapianDatabaseClass *klass)
                       (GParamFlags) (G_PARAM_READWRITE |
                                      G_PARAM_CONSTRUCT_ONLY |
                                      G_PARAM_STATIC_STRINGS));
+
+  /**
+   * XapianDatabase:flags:
+   *
+   * The flags to open the database with.
+   *
+   * Since: 1.4
+   */
+  obj_props[PROP_FLAGS] =
+    g_param_spec_flags ("flags", "", "",
+                        XAPIAN_TYPE_DATABASE_FLAGS,
+                        0,
+                        (GParamFlags) (G_PARAM_READWRITE |
+                                       G_PARAM_CONSTRUCT_ONLY |
+                                       G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (gobject_class, LAST_PROP, obj_props);
 }
@@ -619,4 +644,11 @@ xapian_database_compact_to_fd (XapianDatabase             *self,
 {
   Xapian::Database *real_db = xapian_database_get_internal (self);
   real_db->compact (fd, flags);
+}
+
+XapianDatabaseFlags
+xapian_database_get_flags (XapianDatabase *self)
+{
+  XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
+  return priv->flags;
 }
