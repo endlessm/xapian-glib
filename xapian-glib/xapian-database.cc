@@ -190,10 +190,8 @@ xapian_database_init_internal (GInitable    *self,
 
   try
     {
-      if (priv->path != NULL)
-        priv->mDB = open_database (XAPIAN_DATABASE (self));
-      else
-        priv->mDB = new Xapian::Database ();
+      g_assert (priv->path != NULL);
+      priv->mDB = open_database (XAPIAN_DATABASE (self));
     }
   catch (const Xapian::Error &err)
     {

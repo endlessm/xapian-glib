@@ -85,15 +85,10 @@ xapian_writable_database_init_internal (GInitable    *initable,
   try
     {
       const char *path = xapian_database_get_path (database);
+      g_assert (path != NULL);
 
-      if (path == NULL)
-        db = new Xapian::WritableDatabase ();
-      else
-        {
-          std::string file (path);
-
-          db = new Xapian::WritableDatabase (file, (int) priv->action);
-        }
+      std::string file (path);
+      db = new Xapian::WritableDatabase (file, (int) priv->action);
 
       xapian_database_set_internal (database, db);
       xapian_database_set_is_writable (database, TRUE);
