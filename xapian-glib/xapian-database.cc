@@ -28,6 +28,9 @@
 
 #include "config.h"
 
+#include <sys/types.h>
+#include <fcntl.h>
+
 #include <xapian.h>
 
 #include "xapian-database-private.h"
@@ -42,6 +45,9 @@ typedef struct _XapianDatabasePrivate   XapianDatabasePrivate;
 struct _XapianDatabasePrivate
 {
   char *path;
+  off_t offset;
+  int fd;
+  XapianDatabaseFlags flags;
 
   Xapian::Database *mDB;
 
@@ -55,6 +61,8 @@ enum
   PROP_0,
 
   PROP_PATH,
+  PROP_OFFSET,
+  PROP_FLAGS,
 
   LAST_PROP
 };
@@ -156,6 +164,25 @@ xapian_database_get_path (XapianDatabase *self)
   return priv->path;
 }
 
+static Xapian::Database *
+open_database (XapianDatabase *self)
+{
+  XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
+
+  /* If we don't specify an offset, then let Xapian figure out
+   * what to do with the path... */
+  if (priv->offset == 0)
+    {
+      return new Xapian::Database (priv->path, priv->flags);
+    }
+  else
+    {
+      priv->fd = open (priv->path, O_RDONLY | O_CLOEXEC);
+      lseek (priv->fd, priv->offset, SEEK_SET);
+      return new Xapian::Database (priv->fd, priv->flags);
+    }
+}
+
 static gboolean
 xapian_database_init_internal (GInitable    *self,
                                GCancellable *cancellable,
@@ -165,14 +192,8 @@ xapian_database_init_internal (GInitable    *self,
 
   try
     {
-      if (priv->path != NULL)
-        {
-          std::string path (priv->path);
-
-          priv->mDB = new Xapian::Database (path);
-        }
-      else
-        priv->mDB = new Xapian::Database ();
+      g_assert (priv->path != NULL);
+      priv->mDB = open_database (XAPIAN_DATABASE (self));
     }
   catch (const Xapian::Error &err)
     {
@@ -202,6 +223,9 @@ xapian_database_finalize (GObject *self)
 
   delete priv->mDB;
 
+  if (priv->fd != 0)
+    close (priv->fd);
+
   g_free (priv->path);
 
   if (priv->databases != NULL)
@@ -225,6 +249,14 @@ xapian_database_set_property (GObject      *gobject,
       priv->path = g_value_dup_string (value);
       break;
 
+    case PROP_OFFSET:
+      priv->offset = g_value_get_int (value);
+      break;
+
+    case PROP_FLAGS:
+      priv->flags = (XapianDatabaseFlags) g_value_get_flags (value);
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, prop_id, pspec);
     }
@@ -242,6 +274,14 @@ xapian_database_get_property (GObject    *gobject,
     {
     case PROP_PATH:
       g_value_set_string (value, priv->path);
+      break;
+
+    case PROP_OFFSET:
+      g_value_set_int (value, priv->offset);
+      break;
+
+    case PROP_FLAGS:
+      g_value_set_flags (value, (int) priv->flags);
       break;
 
     default:
@@ -271,6 +311,34 @@ xapian_database_class_init (XapianDatabaseClass *klass)
                          (GParamFlags) (G_PARAM_READWRITE |
                                         G_PARAM_CONSTRUCT_ONLY |
                                         G_PARAM_STATIC_STRINGS));
+
+  /**
+   * XapianDatabase:offset:
+   *
+   * The offset inside the database file.
+   *
+   * Since: 1.4
+   */
+  obj_props[PROP_OFFSET] =
+    g_param_spec_int ("offset", "", "", 0, G_MAXINT, 0,
+                      (GParamFlags) (G_PARAM_READWRITE |
+                                     G_PARAM_CONSTRUCT_ONLY |
+                                     G_PARAM_STATIC_STRINGS));
+
+  /**
+   * XapianDatabase:flags:
+   *
+   * The flags to open the database with.
+   *
+   * Since: 1.4
+   */
+  obj_props[PROP_FLAGS] =
+    g_param_spec_flags ("flags", "", "",
+                        XAPIAN_TYPE_DATABASE_FLAGS,
+                        0,
+                        (GParamFlags) (G_PARAM_READWRITE |
+                                       G_PARAM_CONSTRUCT_ONLY |
+                                       G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (gobject_class, LAST_PROP, obj_props);
 }
@@ -536,4 +604,51 @@ xapian_database_add_database (XapianDatabase *db,
    * unclear
    */
   g_hash_table_add (priv->databases, g_object_ref (new_db));
+}
+
+/**
+ * xapian_database_compact_to_path:
+ * @self: A #XapianDatabase
+ * @path: The path to write the compacted database to.
+ * @flags: Flags to compact the database with.
+ *
+ * Compacts the database, and writes the result to the given path.
+ *
+ * Since: 1.4
+ */
+void
+xapian_database_compact_to_path (XapianDatabase             *self,
+                                 const char                 *path,
+                                 XapianDatabaseCompactFlags  flags)
+{
+  Xapian::Database *real_db = xapian_database_get_internal (self);
+
+  const std::string output (path);
+  real_db->compact (output, flags);
+}
+
+/**
+ * xapian_database_compact_to_fd:
+ * @self: A #XapianDatabase
+ * @fd: The fd to write the compacted database.
+ * @flags: Flags to compact the database with.
+ *
+ * Compacts the database, and writes the result to the given fd.
+ *
+ * Since: 1.4
+ */
+void
+xapian_database_compact_to_fd (XapianDatabase             *self,
+                               int                         fd,
+                               XapianDatabaseCompactFlags  flags)
+{
+  Xapian::Database *real_db = xapian_database_get_internal (self);
+  real_db->compact (fd, flags);
+}
+
+XapianDatabaseFlags
+xapian_database_get_flags (XapianDatabase *self)
+{
+  XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
+  return priv->flags;
 }

@@ -248,6 +248,27 @@ typedef enum {
 XAPIAN_GLIB_AVAILABLE_IN_1_2
 GType xapian_term_generator_feature_get_type (void);
 
+typedef enum {
+  XAPIAN_DB_COMPACT_NO_RENUMBER = 4,
+  XAPIAN_DB_COMPACT_MULTIPASS = 8,
+  XAPIAN_DB_COMPACT_SINGLE_FILE = 16,
+} XapianDatabaseCompactFlags;
+
+#define XAPIAN_TYPE_DATABASE_FLAGS             (xapian_database_flags_get_type ())
+
+typedef enum {
+  XAPIAN_DB_NO_SYNC = 0x04,
+  XAPIAN_DB_FULL_SYNC = 0x08,
+  XAPIAN_DB_DANGEROUS = 0x20,
+  XAPIAN_DB_RETRY_LOCK = 0x40,
+  XAPIAN_DB_BACKEND_GLASS = 0x100,
+  XAPIAN_DB_BACKEND_CHERT = 0x200,
+  XAPIAN_DB_BACKEND_STUB = 0x300,
+} XapianDatabaseFlags;
+
+XAPIAN_GLIB_AVAILABLE_IN_1_4
+GType xapian_database_flags_get_type (void);
+
 G_END_DECLS
 
 #endif /* __XAPIAN_ENUMS_H__ */
