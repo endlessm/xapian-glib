@@ -19,12 +19,25 @@ database_new_empty (void)
   g_assert_null (db);
 }
 
+static void
+database_new_nonexistent (void)
+{
+  GError *error = NULL;
+  XapianDatabase *db = xapian_database_new_with_path ("doesnotexist", &error);
+
+  g_assert_null (db);
+  g_assert_error (error, XAPIAN_ERROR, XAPIAN_ERROR_DATABASE_OPENING);
+
+  g_error_free (error);
+}
+
 int
 main (int argc, char *argv[])
 {
   g_test_init (&argc, &argv, NULL);
 
-  g_test_add_func ("/database/new-empty", database_new_empty);
+  g_test_add_func ("/database/new/empty", database_new_empty);
+  g_test_add_func ("/database/new/non-existent", database_new_nonexistent);
 
   return g_test_run ();
 }
