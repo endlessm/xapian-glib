@@ -44,10 +44,11 @@ source_h_private = \
 	xapian-error-private.h \
 	xapian-mset-private.h \
 	xapian-posting-source-private.h \
-	xapian-value-posting-source-private.h \
+	xapian-private.h \
 	xapian-query-private.h \
 	xapian-stem-private.h \
 	xapian-stopper-private.h \
+	xapian-value-posting-source-private.h \
 	$(NULL)
 
 source_c_public = \
