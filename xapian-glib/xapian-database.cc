@@ -349,6 +349,25 @@ xapian_database_init (XapianDatabase *self)
 }
 
 /**
+ * xapian_database_new:
+ * @error: return location for a #GError, or %NULL
+ *
+ * Creates and initializes a new, empty #XapianDatabase instance.
+ *
+ * If the initialization was not successful, @error is set.
+ *
+ * Returns: (transfer full): the newly created #XapianDatabase instance,
+ *   or %NULL if the initialization failed
+ */
+XapianDatabase *
+xapian_database_new (GError **error)
+{
+  g_return_val_if_fail (error == NULL || *error == NULL, NULL);
+
+  return static_cast<XapianDatabase *> (g_initable_new (XAPIAN_TYPE_DATABASE, NULL, error, NULL));
+}
+
+/**
  * xapian_database_new_with_path:
  * @path: the path to the database
  * @error: return location for a #GError, or %NULL

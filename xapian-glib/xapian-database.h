@@ -49,6 +49,8 @@ XAPIAN_GLIB_AVAILABLE_IN_1_0
 GType xapian_database_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0
+XapianDatabase *        xapian_database_new             (GError        **error);
+XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianDatabase *        xapian_database_new_with_path   (const char     *path,
                                                          GError        **error);
 XAPIAN_GLIB_AVAILABLE_IN_1_0
