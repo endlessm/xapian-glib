@@ -192,7 +192,7 @@ xapian_writable_database_init (XapianWritableDatabase *self)
 
 /**
  * xapian_writable_database_new:
- * @path: the path of the database
+ * @path: (not nullable): the path of the database
  * @action: the action to perform
  * @error: return location for a #GError
  *
@@ -210,6 +210,8 @@ xapian_writable_database_new (const char            *path,
                               XapianDatabaseAction   action,
                               GError               **error)
 {
+  g_return_val_if_fail (path != NULL, NULL);
+
   return static_cast<XapianWritableDatabase *> (g_initable_new (XAPIAN_TYPE_WRITABLE_DATABASE,
                                                                 NULL, error,
                                                                 "path", path,
