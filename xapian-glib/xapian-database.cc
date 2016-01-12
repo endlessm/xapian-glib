@@ -169,18 +169,22 @@ open_database (XapianDatabase *self)
 {
   XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
 
-  /* If we don't specify an offset, then let Xapian figure out
-   * what to do with the path... */
-  if (priv->offset == 0)
+  if (priv->path != NULL && priv->path[0] != '\0')
     {
+      /* If we're given an offset, open the database at that location */
+      if (priv->offset != 0)
+        {
+          priv->fd = open (priv->path, O_RDONLY | O_CLOEXEC);
+          lseek (priv->fd, priv->offset, SEEK_SET);
+          return new Xapian::Database (priv->fd, priv->flags);
+        }
+
+      /* Otherwise just open the given path */
       return new Xapian::Database (priv->path, priv->flags);
     }
-  else
-    {
-      priv->fd = open (priv->path, O_RDONLY | O_CLOEXEC);
-      lseek (priv->fd, priv->offset, SEEK_SET);
-      return new Xapian::Database (priv->fd, priv->flags);
-    }
+
+  /* If no path nor offset is provided, we create an empty database */
+  return new Xapian::Database ();
 }
 
 static gboolean
@@ -192,7 +196,6 @@ xapian_database_init_internal (GInitable    *self,
 
   try
     {
-      g_assert (priv->path != NULL);
       priv->mDB = open_database (XAPIAN_DATABASE (self));
     }
   catch (const Xapian::Error &err)
