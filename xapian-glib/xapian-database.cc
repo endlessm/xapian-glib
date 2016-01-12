@@ -36,6 +36,7 @@
 #include "xapian-database-private.h"
 #include "xapian-document-private.h"
 #include "xapian-error-private.h"
+#include "xapian-private.h"
 
 #define XAPIAN_DATABASE_GET_PRIVATE(obj) \
   ((XapianDatabasePrivate *) xapian_database_get_instance_private ((XapianDatabase *) (obj)))
@@ -624,10 +625,12 @@ xapian_database_compact_to_path (XapianDatabase             *self,
                                  const char                 *path,
                                  XapianDatabaseCompactFlags  flags)
 {
+#if XAPIAN_CHECK_VERSION_INTERNAL (1, 3, 4)
   Xapian::Database *real_db = xapian_database_get_internal (self);
 
   const std::string output (path);
   real_db->compact (output, flags);
+#endif
 }
 
 /**
@@ -645,8 +648,11 @@ xapian_database_compact_to_fd (XapianDatabase             *self,
                                int                         fd,
                                XapianDatabaseCompactFlags  flags)
 {
+#if XAPIAN_CHECK_VERSION_INTERNAL (1, 3, 4)
   Xapian::Database *real_db = xapian_database_get_internal (self);
+
   real_db->compact (fd, flags);
+#endif
 }
 
 XapianDatabaseFlags
