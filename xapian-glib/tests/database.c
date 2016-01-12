@@ -12,16 +12,8 @@ database_new_empty (void)
 
   g_assert (XAPIAN_IS_DATABASE (db));
 
-  if (g_test_verbose ())
-    {
-      char *desc = xapian_database_get_description (db);
-      char *uuid = xapian_database_get_uuid (db);
-
-      g_test_message ("Opened database '%s' with UUID: '%s'", desc, uuid);
-
-      g_free (desc);
-      g_free (uuid);
-    }
+  g_assert_nonnull (xapian_database_get_uuid (db));
+  g_assert_cmpstr (xapian_database_get_uuid (db), ==, "");
 
   g_object_unref (db);
   g_assert_null (db);
