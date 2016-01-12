@@ -80,13 +80,18 @@ xapian_writable_database_init_internal (GInitable    *initable,
   
   priv = XAPIAN_WRITABLE_DATABASE_GET_PRIVATE (initable);
 
+  const char *path = xapian_database_get_path (database);
+  if (path == NULL || *path == '\0')
+    {
+      g_set_error_literal (error, XAPIAN_ERROR, XAPIAN_ERROR_INVALID_ARGUMENT,
+                           "Writable databases require a path");
+      return FALSE;
+    }
+
   Xapian::WritableDatabase *db;
 
   try
     {
-      const char *path = xapian_database_get_path (database);
-      g_assert (path != NULL);
-
       std::string file (path);
       db = new Xapian::WritableDatabase (file, (int) priv->action | xapian_database_get_flags (database));
 
