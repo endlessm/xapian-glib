@@ -33,7 +33,7 @@ init_error_types (void)
 
   XAPIAN_SET_ERROR_TYPE (ASSERTION, AssertionError);
   XAPIAN_SET_ERROR_TYPE (INVALID_ARGUMENT, InvalidArgumentError);
-  XAPIAN_SET_ERROR_TYPE (INVALID_OPERATION, InvalidOperationErrror);
+  XAPIAN_SET_ERROR_TYPE (INVALID_OPERATION, InvalidOperationError);
   XAPIAN_SET_ERROR_TYPE (UNIMPLEMENTED, UnimplementedError);
   XAPIAN_SET_ERROR_TYPE (DATABASE, DatabaseError);
   XAPIAN_SET_ERROR_TYPE (DATABASE_CORRUPT, DatabaseCorruptError);
@@ -79,7 +79,8 @@ xapian_error_to_gerror (const Xapian::Error  &src,
   /* unknown error in the bindings */
   if (error_type == XAPIAN_ERROR_LAST)
     {
-      g_critical ("Unknown error type %d.", error_type);
+      const std::string desc = src.get_description();
+      g_critical ("Unknown error type %d: %s", error_type, desc.c_str());
       return;
     }
 
