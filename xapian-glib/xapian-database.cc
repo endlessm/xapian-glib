@@ -254,7 +254,7 @@ xapian_database_set_property (GObject      *gobject,
       break;
 
     case PROP_OFFSET:
-      priv->offset = g_value_get_int (value);
+      priv->offset = g_value_get_uint64 (value);
       break;
 
     case PROP_FLAGS:
@@ -281,7 +281,7 @@ xapian_database_get_property (GObject    *gobject,
       break;
 
     case PROP_OFFSET:
-      g_value_set_int (value, priv->offset);
+      g_value_set_uint64 (value, priv->offset);
       break;
 
     case PROP_FLAGS:
@@ -324,10 +324,10 @@ xapian_database_class_init (XapianDatabaseClass *klass)
    * Since: 1.4
    */
   obj_props[PROP_OFFSET] =
-    g_param_spec_int ("offset", "", "", 0, G_MAXINT, 0,
-                      (GParamFlags) (G_PARAM_READWRITE |
-                                     G_PARAM_CONSTRUCT_ONLY |
-                                     G_PARAM_STATIC_STRINGS));
+    g_param_spec_uint64 ("offset", "", "", 0, G_MAXUINT64, 0,
+                         (GParamFlags) (G_PARAM_READWRITE |
+                                        G_PARAM_CONSTRUCT_ONLY |
+                                        G_PARAM_STATIC_STRINGS));
 
   /**
    * XapianDatabase:flags:
