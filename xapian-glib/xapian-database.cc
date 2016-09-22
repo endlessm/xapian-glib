@@ -176,7 +176,14 @@ open_database (XapianDatabase *self)
       if (priv->offset != 0)
         {
           priv->fd = open (priv->path, O_RDONLY | O_CLOEXEC);
-          lseek (priv->fd, priv->offset, SEEK_SET);
+          if (priv->fd < 0)
+            {
+              std::string errmsg ("Invalid database path ");
+              errmsg += priv->path;
+              throw Xapian::DatabaseOpeningError (errmsg, errno);
+            }
+          if (lseek (priv->fd, priv->offset, SEEK_SET) < 0)
+            throw Xapian::DatabaseOpeningError ("Can't seek to offset", errno);
           return new Xapian::Database (priv->fd, priv->flags);
         }
 
