@@ -48,7 +48,6 @@ struct _XapianDatabasePrivate
 {
   char *path;
   off_t offset;
-  int fd;
   XapianDatabaseFlags flags;
 
   Xapian::Database *mDB;
@@ -176,16 +175,17 @@ open_database (XapianDatabase *self)
       /* If we're given an offset, open the database at that location */
       if (priv->offset != 0)
         {
-          priv->fd = open (priv->path, O_RDONLY | O_CLOEXEC);
-          if (priv->fd < 0)
+          int fd = open (priv->path, O_RDONLY | O_CLOEXEC);
+          if (fd < 0)
             {
               std::string errmsg ("Invalid database path ");
               errmsg += priv->path;
               throw Xapian::DatabaseOpeningError (errmsg, errno);
             }
-          if (lseek (priv->fd, priv->offset, SEEK_SET) < 0)
+          if (lseek (fd, priv->offset, SEEK_SET) < 0)
             throw Xapian::DatabaseOpeningError ("Can't seek to offset", errno);
-          return new Xapian::Database (priv->fd, priv->flags);
+          /* Takes ownership of fd */
+          return new Xapian::Database (fd, priv->flags);
         }
 
       /* Otherwise just open the given path */
@@ -234,9 +234,6 @@ xapian_database_finalize (GObject *self)
   XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
 
   delete priv->mDB;
-
-  if (priv->fd != 0)
-    close (priv->fd);
 
   g_free (priv->path);
 
@@ -638,6 +635,8 @@ xapian_database_compact_to_path (XapianDatabase             *self,
 
   const std::string output (path);
   real_db->compact (output, flags);
+#else
+  g_warning ("Compaction not supported by this version of Xapian.");
 #endif
 }
 
@@ -660,6 +659,8 @@ xapian_database_compact_to_fd (XapianDatabase             *self,
   Xapian::Database *real_db = xapian_database_get_internal (self);
 
   real_db->compact (fd, flags);
+#else
+  g_warning ("Compaction not supported by this version of Xapian.");
 #endif
 }
 
