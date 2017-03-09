@@ -133,7 +133,7 @@ xapian_revision (void)
 }
 
 /**
- * xapian_sortable_serialize:
+ * xapian_sortable_serialise:
  * @value: The numeric value to serialize
  *
  * Convert a floating point number to a string, preserving sort order.
@@ -141,7 +141,7 @@ xapian_revision (void)
  * This method converts a floating point number to a string, suitable for using
  * as a value for numeric range restriction, or for use as a sort key.
  *
- * Returns: (transfer full): the serialised value
+ * Returns: (transfer full) (array zero-terminated=1) (element-type guint8): the serialised value
  *
  * Since: 1.4
  */
@@ -152,8 +152,8 @@ xapian_sortable_serialise (double value)
 }
 
 /**
- * xapian_sortable_unserialize:
- * @value: The serialized value to be converted
+ * xapian_sortable_unserialise:
+ * @value: (array zero-terminated=1) (element-type guint8): The serialized value to be converted
  *
  * Convert a string encoded using sortable_serialise back to a floating point
  * number.
