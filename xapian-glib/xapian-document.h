@@ -53,10 +53,17 @@ XapianDocument *        xapian_document_new                     (void);
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 char *                  xapian_document_get_value               (XapianDocument *document,
                                                                  unsigned int    slot);
+XAPIAN_GLIB_AVAILABLE_IN_1_4
+double                  xapian_document_get_numeric_value       (XapianDocument *document,
+                                                                 unsigned int    slot);
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_document_add_value               (XapianDocument *document,
                                                                  unsigned int    slot,
                                                                  const char     *value);
+XAPIAN_GLIB_AVAILABLE_IN_1_4
+void                    xapian_document_add_numeric_value       (XapianDocument *document,
+                                                                 unsigned int    slot,
+                                                                 double          value);
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_document_remove_value            (XapianDocument *document,
                                                                  unsigned int    slot);
