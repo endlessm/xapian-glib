@@ -172,6 +172,23 @@ open_database (XapianDatabase *self)
 
   if (priv->path != NULL && priv->path[0] != '\0')
     {
+      int db_flags = 0;
+
+      if (priv->flags & XAPIAN_DB_NO_SYNC)
+        db_flags |= Xapian::DB_NO_SYNC;
+      if (priv->flags & XAPIAN_DB_FULL_SYNC)
+        db_flags |= Xapian::DB_FULL_SYNC;
+      if (priv->flags & XAPIAN_DB_DANGEROUS)
+        db_flags |= Xapian::DB_DANGEROUS;
+      if (priv->flags & XAPIAN_DB_RETRY_LOCK)
+        db_flags |= Xapian::DB_RETRY_LOCK;
+      if (priv->flags & XAPIAN_DB_BACKEND_GLASS)
+        db_flags |= Xapian::DB_BACKEND_GLASS;
+      if (priv->flags & XAPIAN_DB_BACKEND_CHERT)
+        db_flags |= Xapian::DB_BACKEND_CHERT;
+      if (priv->flags & XAPIAN_DB_BACKEND_STUB)
+        db_flags |= Xapian::DB_BACKEND_STUB;
+
       /* If we're given an offset, open the database at that location */
       if (priv->offset != 0)
         {
@@ -184,12 +201,13 @@ open_database (XapianDatabase *self)
             }
           if (lseek (fd, priv->offset, SEEK_SET) < 0)
             throw Xapian::DatabaseOpeningError ("Can't seek to offset", errno);
+
           /* Takes ownership of fd */
-          return new Xapian::Database (fd, priv->flags);
+          return new Xapian::Database (fd, db_flags);
         }
 
       /* Otherwise just open the given path */
-      return new Xapian::Database (priv->path, priv->flags);
+      return new Xapian::Database (priv->path, db_flags);
     }
 
   /* If no path nor offset is provided, we create an empty database */
@@ -633,8 +651,17 @@ xapian_database_compact_to_path (XapianDatabase             *self,
 #if XAPIAN_CHECK_VERSION_INTERNAL (1, 3, 4)
   Xapian::Database *real_db = xapian_database_get_internal (self);
 
+  int real_flags = 0;
+
+  if (flags & XAPIAN_DB_COMPACT_NO_RENUMBER)
+    real_flags |= Xapian::DBCOMPACT_NO_RENUMBER;
+  if (flags & XAPIAN_DB_COMPACT_MULTIPASS)
+    real_flags |= Xapian::DBCOMPACT_MULTIPASS;
+  if (flags & XAPIAN_DB_COMPACT_SINGLE_FILE)
+    real_flags |= Xapian::DBCOMPACT_SINGLE_FILE;
+
   const std::string output (path);
-  real_db->compact (output, flags);
+  real_db->compact (output, real_flags);
 #else
   g_warning ("Compaction not supported by this version of Xapian.");
 #endif
@@ -657,6 +684,15 @@ xapian_database_compact_to_fd (XapianDatabase             *self,
 {
 #if XAPIAN_CHECK_VERSION_INTERNAL (1, 3, 4)
   Xapian::Database *real_db = xapian_database_get_internal (self);
+
+  int real_flags = 0;
+
+  if (flags & XAPIAN_DB_COMPACT_NO_RENUMBER)
+    real_flags |= Xapian::DBCOMPACT_NO_RENUMBER;
+  if (flags & XAPIAN_DB_COMPACT_MULTIPASS)
+    real_flags |= Xapian::DBCOMPACT_MULTIPASS;
+  if (flags & XAPIAN_DB_COMPACT_SINGLE_FILE)
+    real_flags |= Xapian::DBCOMPACT_SINGLE_FILE;
 
   real_db->compact (fd, flags);
 #else

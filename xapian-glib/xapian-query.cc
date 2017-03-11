@@ -59,7 +59,6 @@ xapian_query_op_internal (XapianQueryOp op)
 {
   Xapian::Query::op query_op = Xapian::Query::OP_AND;
 
-#ifdef XAPIAN_GLIB_ENABLE_DEBUG
   switch (op)
     {
     case XAPIAN_QUERY_OP_AND:
@@ -121,10 +120,6 @@ xapian_query_op_internal (XapianQueryOp op)
     default:
       g_assert_not_reached ();
     }
-#else
-  /* we keep XapianQueryOP and Xapian::Query::op in sync */
-  query_op = (Xapian::Query::op) op;
-#endif /* XAPIAN_GLIB_ENABLE_DEBUG */
 
   return query_op;
 }

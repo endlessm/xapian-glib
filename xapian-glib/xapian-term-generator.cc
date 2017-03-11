@@ -337,7 +337,6 @@ xapian_term_generator_set_stemming_strategy (XapianTermGenerator *generator,
 
   Xapian::TermGenerator::stem_strategy stem_strategy;
 
-#ifdef XAPIAN_GLIB_ENABLE_DEBUG
   switch (priv->stemming_strategy)
     {
     case XAPIAN_STEM_STRATEGY_STEM_NONE:
@@ -359,9 +358,6 @@ xapian_term_generator_set_stemming_strategy (XapianTermGenerator *generator,
     default:
       g_assert_not_reached ();
     }
-#else
-  stem_strategy = (Xapian::TermGenerator::stem_strategy) priv->stemming_strategy;
-#endif
 
   priv->mGenerator->set_stemming_strategy (stem_strategy);
 
