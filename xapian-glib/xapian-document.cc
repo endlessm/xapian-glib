@@ -119,6 +119,26 @@ xapian_document_get_internal (XapianDocument *self)
 }
 
 /**
+ * xapian_document_get_numeric_value:
+ * @document: a #XapianDocument
+ * @slot: a slot number
+ *
+ * Retrieves the numeric value associated to the @slot number inside @document.
+ *
+ * Returns: the numeric value
+ */
+double
+xapian_document_get_numeric_value (XapianDocument *document,
+                                   unsigned int    slot)
+{
+  g_return_val_if_fail (XAPIAN_IS_DOCUMENT (document), Xapian::sortable_unserialise (NULL));
+
+  std::string value = xapian_document_get_internal (document)->get_value (slot);
+
+  return Xapian::sortable_unserialise (value);
+}
+
+/**
  * xapian_document_get_value:
  * @document: a #XapianDocument
  * @slot: a slot number
@@ -136,6 +156,29 @@ xapian_document_get_value (XapianDocument *document,
   std::string value = xapian_document_get_internal (document)->get_value (slot);
 
   return g_strdup (value.c_str ());
+}
+
+/**
+ * xapian_document_add_numeric_value:
+ * @document: a #XapianDocument
+ * @slot: a slot number
+ * @value: the value to associate to the @slot number
+ *
+ * Sets (or replaces) a @value at the given @slot number
+ * inside the @document.
+ *
+ * @value will be serialised internally using sortable_serialise()
+ */
+void
+xapian_document_add_numeric_value (XapianDocument *document,
+                                   unsigned int    slot,
+                                   double          value)
+{
+  g_return_if_fail (XAPIAN_IS_DOCUMENT (document));
+
+  std::string serialised_value = Xapian::sortable_serialise (value);
+
+  xapian_document_get_internal (document)->add_value (slot, serialised_value);
 }
 
 /**
