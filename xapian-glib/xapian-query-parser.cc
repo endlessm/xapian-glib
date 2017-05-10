@@ -228,6 +228,7 @@ xapian_query_parser_class_init (XapianQueryParserClass *klass)
    *
    * The #XapianQueryOp used to combine non-filter query items when no
    * explicit operator is used.
+   * Since: 1.4
    */
   obj_props[PROP_DEFAULT_OP] =
     g_param_spec_enum ("default-op",
@@ -411,7 +412,7 @@ xapian_query_parser_set_stopper (XapianQueryParser *parser,
  *
  * Set the operator to use to combine non-filter query items when no explicit
  * operator is used.
- * Since 1.4
+ * Since: 1.4
  */
 void
 xapian_query_parser_set_default_op (XapianQueryParser *parser,
