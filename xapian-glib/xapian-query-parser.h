@@ -61,6 +61,9 @@ void                    xapian_query_parser_set_stopper                 (XapianQ
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_query_parser_set_database                (XapianQueryParser        *parser,
                                                                          XapianDatabase           *database);
+XAPIAN_GLIB_AVAILABLE_IN_1_4
+void                    xapian_query_parser_set_default_op              (XapianQueryParser        *parser,
+                                                                         XapianQueryOp             op);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_query_parser_add_prefix                  (XapianQueryParser        *parser,

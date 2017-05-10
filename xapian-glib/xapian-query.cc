@@ -54,7 +54,7 @@ xapian_query_get_internal (XapianQuery *self)
   return priv->mQuery;
 }
 
-static Xapian::Query::op
+Xapian::Query::op
 xapian_query_op_internal (XapianQueryOp op)
 {
   Xapian::Query::op query_op = Xapian::Query::OP_AND;

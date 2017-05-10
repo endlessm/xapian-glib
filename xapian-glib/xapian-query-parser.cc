@@ -51,6 +51,8 @@ typedef struct {
   XapianDatabase *database;
 
   XapianStopper *stopper;
+
+  XapianQueryOp default_op;
 } XapianQueryParserPrivate;
 
 enum {
@@ -60,6 +62,7 @@ enum {
   PROP_STEMMING_STRATEGY,
   PROP_DATABASE,
   PROP_STOPPER,
+  PROP_DEFAULT_OP,
 
   LAST_PROP
 };
@@ -116,6 +119,10 @@ xapian_query_parser_set_property (GObject      *gobject,
       xapian_query_parser_set_stopper (self, (XapianStopper *) g_value_get_object (value));
       break;
 
+    case PROP_DEFAULT_OP:
+      xapian_query_parser_set_default_op (self, (XapianQueryOp) g_value_get_enum (value));
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, prop_id, pspec);
     }
@@ -145,6 +152,10 @@ xapian_query_parser_get_property (GObject    *gobject,
 
     case PROP_STOPPER:
       g_value_set_object (value, priv->stopper);
+      break;
+
+    case PROP_DEFAULT_OP:
+      g_value_set_enum (value, priv->default_op);
       break;
 
     default:
@@ -211,6 +222,22 @@ xapian_query_parser_class_init (XapianQueryParserClass *klass)
                          XAPIAN_TYPE_STOPPER,
                          (GParamFlags) (G_PARAM_READWRITE |
                                         G_PARAM_STATIC_STRINGS));
+
+  /**
+   * XapianQueryParser:default_op:
+   *
+   * The #XapianQueryOp used to combine non-filter query items when no
+   * explicit operator is used.
+   * Since: 1.4
+   */
+  obj_props[PROP_DEFAULT_OP] =
+    g_param_spec_enum ("default-op",
+                       "Default Op",
+                       "The query operator used to combine non-filter query items when no explicit operator is used",
+                       XAPIAN_TYPE_QUERY_OP,
+                       XAPIAN_QUERY_OP_OR,
+                       (GParamFlags) (G_PARAM_READWRITE |
+                                      G_PARAM_STATIC_STRINGS));
 
   gobject_class->set_property = xapian_query_parser_set_property;
   gobject_class->get_property = xapian_query_parser_get_property;
@@ -376,6 +403,35 @@ xapian_query_parser_set_stopper (XapianQueryParser *parser,
   priv->mQueryParser->set_stopper (xapian_stopper_get_internal (stopper));
 
   g_object_notify_by_pspec (G_OBJECT (parser), obj_props[PROP_STOPPER]);
+}
+
+/**
+ * xapian_query_parser_set_default_op:
+ * @parser: a #XapianQueryParser
+ * @op: a #XapianQueryOp value
+ *
+ * Set the operator to use to combine non-filter query items when no explicit
+ * operator is used.
+ * Since: 1.4
+ */
+void
+xapian_query_parser_set_default_op (XapianQueryParser *parser,
+                                    XapianQueryOp      op)
+{
+  g_return_if_fail (XAPIAN_IS_QUERY_PARSER (parser));
+
+  XapianQueryParserPrivate *priv = XAPIAN_QUERY_PARSER_GET_PRIVATE (parser);
+
+  if (priv->default_op == op)
+    return;
+
+  priv->default_op = op;
+
+  Xapian::Query::op query_op = xapian_query_op_internal (op);
+
+  priv->mQueryParser->set_default_op (query_op);
+
+  g_object_notify_by_pspec (G_OBJECT (parser), obj_props[PROP_DEFAULT_OP]);
 }
 
 /**

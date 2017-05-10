@@ -1,4 +1,5 @@
 database
 document
+query-parser
 stem
 writable-database
