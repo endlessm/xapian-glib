@@ -22,5 +22,6 @@
 
 Xapian::Query * xapian_query_get_internal       (XapianQuery         *self);
 XapianQuery *   xapian_query_new_from_query     (const Xapian::Query &aQuery);
+Xapian::Query::op xapian_query_op_internal      (XapianQueryOp        op);
 
 #endif /* __XAPIAN_GLIB_QUERY_PRIVATE_H__ */

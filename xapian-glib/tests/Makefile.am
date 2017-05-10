@@ -11,4 +11,5 @@ DEFS = -DG_LOG_DOMAIN=\"Xapian-GLib\" -DEXEEXT=\"$(EXEEXT)\"
 test_programs = \
 	database \
 	document \
+	query-parser \
 	stem
