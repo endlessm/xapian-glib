@@ -116,13 +116,14 @@ AM_CONDITIONAL(HAVE_GCC, test "x$GCC" = "xyes")
 
 dnl === Dependencies ==========================================================
 
-AC_ARG_WITH([xapian-config], [AS_HELP_STRING([--with-xapian-config], [The xapian-config binary])],
+AC_ARG_WITH([xapian-config], [AS_HELP_STRING([--with-xapian-config], [The xapian-config binary or 'pkgconfig'])],
             [xapian_config=$withval],
-            [xapian_config=auto])
+            [xapian_config=pkgconfig])
 
-AS_IF([test "x$xapian_config" = xauto], [
+AS_IF([test "x$xapian_config" = xpkgconfig], [
   PKG_CHECK_MODULES(XAPIAN, [xapian-core])
   BUILD_CXXFLAGS="$BUILD_CXXFLAGS $XAPIAN_CFLAGS"
+  XAPIAN_VERSION="`$PKG_CONFIG --modversion xapian-core`"
 ], [
   AC_CHECK_PROG([XAPIAN_CONFIG], $xapian_config, $xapian_config, no)
   AS_IF([test "x$XAPIAN_CONFIG" = xno], [
@@ -130,6 +131,7 @@ AS_IF([test "x$xapian_config" = xauto], [
   ])
   BUILD_CXXFLAGS="$BUILD_CXXFLAGS `$XAPIAN_CONFIG --cxxflags`"
   XAPIAN_LIBS="`$XAPIAN_CONFIG --ltlibs`"
+  XAPIAN_VERSION="`$XAPIAN_CONFIG --version`"
 ])
 
 PKG_CHECK_MODULES(XAPIAN_GLIB, [gobject-2.0 >= glib_req_version gio-2.0])
@@ -284,7 +286,7 @@ Build configuration:
 
   • Prefix: ${prefix}
   • Debug level: ${enable_debug}
-  • Xapian configuration: ${xapian_config}
+  • Xapian version: ${XAPIAN_VERSION} (${xapian_config})
   • Compiler flags: ${BUILD_CXXFLAGS} ${BUILD_LDFLAGS}
   • Introspection: ${have_introspection}
 ])
