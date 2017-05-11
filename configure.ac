@@ -282,6 +282,7 @@ Build configuration:
 
   • Prefix: ${prefix}
   • Debug level: ${enable_debug}
+  • Xapian configuration: ${xapian_config}
   • Compiler flags: ${CXXFLAGS}
   • Introspection: ${have_introspection}
 ])
