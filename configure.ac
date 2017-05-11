@@ -36,6 +36,7 @@ AC_CONFIG_SRCDIR([xapian-glib/xapian-glib.h])
 
 AM_INIT_AUTOMAKE([1.11.2 no-define foreign -Wno-portability dist-xz no-dist-gzip tar-ustar])
 AM_SILENT_RULES([yes])
+AM_MAINTAINER_MODE([enable])
 
 LT_PREREQ([2.2.6])
 LT_INIT([disable-static])
@@ -115,14 +116,21 @@ AM_CONDITIONAL(HAVE_GCC, test "x$GCC" = "xyes")
 
 dnl === Dependencies ==========================================================
 
-AC_CHECK_PROG([XAPIAN_CONFIG], [xapian-config-1.3], [xapian-config-1.3])
-AS_IF([test "$XAPIAN_CONFIG"],
-      [ found_xapian=yes ],
-      [ AC_MSG_ERROR(["*** No Xapian headers found; you need to install xapian-config ***"]) ])
+AC_ARG_WITH([xapian-config], [AS_HELP_STRING([--with-xapian-config], [The xapian-config binary])],
+            [xapian_config=$withval],
+            [xapian_config=auto])
 
-CXXFLAGS="$CXXFLAGS `$XAPIAN_CONFIG --cxxflags`"
-
-XAPIAN_LIBS="`$XAPIAN_CONFIG --ltlibs`"
+AS_IF([test "x$xapian_config" = xauto], [
+  PKG_CHECK_MODULES(XAPIAN, [xapian-core])
+  CXXFLAGS="$CXXFLAGS $XAPIAN_CFLAGS"
+], [
+  AC_CHECK_PROG([XAPIAN_CONFIG], $xapian_config, $xapian_config, no)
+  AS_IF([test "x$XAPIAN_CONFIG" = xno], [
+    AC_MSG_ERROR("*** No Xapian headers found. You need to install xapian-core ***")
+  ])
+  CXXFLAGS="$CXXFLAGS `$XAPIAN_CONFIG --cxxflags`"
+  XAPIAN_LIBS="`$XAPIAN_CONFIG --ltlibs`"
+])
 
 PKG_CHECK_MODULES(XAPIAN_GLIB, [gobject-2.0 >= glib_req_version gio-2.0])
 
