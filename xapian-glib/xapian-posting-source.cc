@@ -69,7 +69,7 @@ class GenericPostingSource : public Xapian::PostingSource {
         return -1;
     }
 
-    virtual void next(Xapian::weight min_wt) {
+    virtual void next(double min_wt) {
     }
 
     virtual bool at_end() const {
