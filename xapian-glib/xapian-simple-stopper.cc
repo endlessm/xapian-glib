@@ -59,7 +59,7 @@ xapian_simple_stopper_init (XapianSimpleStopper *self)
  *
  * Adds a single stop word.
  *
- * Since 1.2
+ * Since: 1.2
  */
 void
 xapian_simple_stopper_add (XapianSimpleStopper *stopper,
@@ -79,7 +79,7 @@ xapian_simple_stopper_add (XapianSimpleStopper *stopper,
  *
  * Returns: (transfer full): the newly created #XapianSimpleStopper instance
  *
- * Since 1.2
+ * Since: 1.2
  */
 XapianSimpleStopper *
 xapian_simple_stopper_new ()
