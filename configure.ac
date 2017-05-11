@@ -71,17 +71,17 @@ AC_CANONICAL_HOST
 AS_IF([test "x$GCC" = "xyes"],
       [
         # make symbols link locally
-        LDFLAGS="$LDFLAGS -Bsymbolic-functions"
+        BUILD_LDFLAGS="$BUILD_LDFLAGS -Bsymbolic-functions"
 
         # assorted compiler errors
-        CXXFLAGS="$CXXFLAGS -Wall -ansi"
-        CXXFLAGS="$CXXFLAGS -Werror=cast-align"
-        CXXFLAGS="$CXXFLAGS -Werror=shadow"
-        CXXFLAGS="$CXXFLAGS -Werror=format"
-        CXXFLAGS="$CXXFLAGS -Werror=format-security"
-        CXXFLAGS="$CXXFLAGS -Werror=format-nonliteral"
-        CXXFLAGS="$CXXFLAGS -Werror=init-self"
-        CXXFLAGS="$CXXFLAGS -Werror=empty-body"
+        BUILD_CXXFLAGS="$BUILD_CXXFLAGS -Wall -ansi"
+        BUILD_CXXFLAGS="$BUILD_CXXFLAGS -Werror=cast-align"
+        BUILD_CXXFLAGS="$BUILD_CXXFLAGS -Werror=shadow"
+        BUILD_CXXFLAGS="$BUILD_CXXFLAGS -Werror=format"
+        BUILD_CXXFLAGS="$BUILD_CXXFLAGS -Werror=format-security"
+        BUILD_CXXFLAGS="$BUILD_CXXFLAGS -Werror=format-nonliteral"
+        BUILD_CXXFLAGS="$BUILD_CXXFLAGS -Werror=init-self"
+        BUILD_CXXFLAGS="$BUILD_CXXFLAGS -Werror=empty-body"
 
         AS_CASE(["$host"],
                 [*-*-mingw*],
@@ -90,8 +90,8 @@ AS_IF([test "x$GCC" = "xyes"],
                   AC_DEFINE([_XAPIAN_GLIB_EXTERN],
                             [__attribute__((visibility("default"))) __declspec(dllexport) extern],
                             [defines how to decorate public symbols while building])
-                  CXXFLAGS="$CXXFLAGS -fvisibility=hidden"
-                  LDFLAGS="$LDFLAGS -no-undefined"
+                  BUILD_CXXFLAGS="$BUILD_CXXFLAGS -fvisibility=hidden"
+                  BUILD_LDFLAGS="$BUILD_LDFLAGS -no-undefined"
                 ],
 
                 [
@@ -99,15 +99,15 @@ AS_IF([test "x$GCC" = "xyes"],
                   AC_DEFINE([_XAPIAN_GLIB_EXTERN],
                             [__attribute__((visibility("default"))) extern],
                             [defines how to decorate public symbols while building])
-                  CXXFLAGS="$CXXFLAGS -fvisibility-inlines-hidden"
-                  CXXFLAGS="$CXXFLAGS -fvisibility=hidden"
+                  BUILD_CXXFLAGS="$BUILD_CXXFLAGS -fvisibility-inlines-hidden"
+                  BUILD_CXXFLAGS="$BUILD_CXXFLAGS -fvisibility=hidden"
                 ])
 
         AS_CASE(["$host"],
                 [arm-*-*],
                 [
                   # request byte alignment on ARM
-                  CXXFLAGS="$CXXFLAGS -mstructure-size-boundary=8"
+                  BUILD_CXXFLAGS="$BUILD_CXXFLAGS -mstructure-size-boundary=8"
                 ])
       ]
 )
@@ -122,13 +122,13 @@ AC_ARG_WITH([xapian-config], [AS_HELP_STRING([--with-xapian-config], [The xapian
 
 AS_IF([test "x$xapian_config" = xauto], [
   PKG_CHECK_MODULES(XAPIAN, [xapian-core])
-  CXXFLAGS="$CXXFLAGS $XAPIAN_CFLAGS"
+  BUILD_CXXFLAGS="$BUILD_CXXFLAGS $XAPIAN_CFLAGS"
 ], [
   AC_CHECK_PROG([XAPIAN_CONFIG], $xapian_config, $xapian_config, no)
   AS_IF([test "x$XAPIAN_CONFIG" = xno], [
     AC_MSG_ERROR("*** No Xapian headers found. You need to install xapian-core ***")
   ])
-  CXXFLAGS="$CXXFLAGS `$XAPIAN_CONFIG --cxxflags`"
+  BUILD_CXXFLAGS="$BUILD_CXXFLAGS `$XAPIAN_CONFIG --cxxflags`"
   XAPIAN_LIBS="`$XAPIAN_CONFIG --ltlibs`"
 ])
 
@@ -227,11 +227,11 @@ AS_IF([test "x$use_gcov" = "xyes"],
 
         dnl Remove all optimization flags from CFLAGS
         m4_changequote({,})
-        CXXFLAGS=`echo "$CXXFLAGS" | $SED -e 's/-O[0-9]*//g'`
+        BUILD_CXXFLAGS=`echo "$BUILD_CXXFLAGS" | $SED -e 's/-O[0-9]*//g'`
         m4_changequote([,])
 
         dnl Define the special gcc flags
-        CXXFLAGS="$CXXFLAGS -O0 -fprofile-arcs -ftest-coverage"
+        BUILD_CXXFLAGS="$BUILD_CXXFLAGS -O0 -fprofile-arcs -ftest-coverage"
         XAPIAN_GLIB_LIBS="$XAPIAN_GLIB_LIBS -lgcov"
       ])
 
@@ -256,6 +256,8 @@ AC_SUBST(XAPIAN_GLIB_CFLAGS)
 AC_SUBST(XAPIAN_GLIB_DEBUG_CFLAGS)
 AC_SUBST(XAPIAN_GLIB_LIBS)
 AC_SUBST(XAPIAN_LIBS)
+AC_SUBST(BUILD_CXXFLAGS)
+AC_SUBST(BUILD_LDFLAGS)
 
 AC_CONFIG_FILES([
         Makefile
@@ -283,6 +285,6 @@ Build configuration:
   • Prefix: ${prefix}
   • Debug level: ${enable_debug}
   • Xapian configuration: ${xapian_config}
-  • Compiler flags: ${CXXFLAGS}
+  • Compiler flags: ${BUILD_CXXFLAGS} ${BUILD_LDFLAGS}
   • Introspection: ${have_introspection}
 ])

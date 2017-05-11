@@ -3,6 +3,7 @@
 NULL =
 
 AM_CPPFLAGS =
+AM_CXXFLAGS =
 AM_CFLAGS =
 BUILT_SOURCES =
 
@@ -95,8 +96,9 @@ libxapian_glib_1_0_la_CPPFLAGS = \
 	$(XAPIAN_GLIB_CFLAGS) \
 	$(NULL)
 
+libxapian_glib_1_0_la_CXXFLAGS = $(BUILD_CXXFLAGS)
 libxapian_glib_1_0_la_LIBADD = $(XAPIAN_GLIB_LIBS) $(XAPIAN_LIBS)
-libxapian_glib_1_0_la_LDFLAGS = $(XAPIAN_GLIB_LDFLAGS) -export-dynamic
+libxapian_glib_1_0_la_LDFLAGS = $(XAPIAN_GLIB_LDFLAGS) $(BUILD_LDFLAGS) -export-dynamic
 libxapian_glib_1_0_la_SOURCES = $(source_h_public) $(source_h_private) $(source_c_public) $(source_c_private)
 
 # Use a C linker for GCC, not C++; Don't link to libstdc++
