@@ -36,6 +36,7 @@ AC_CONFIG_SRCDIR([xapian-glib/xapian-glib.h])
 
 AM_INIT_AUTOMAKE([1.11.2 no-define foreign -Wno-portability dist-xz no-dist-gzip tar-ustar])
 AM_SILENT_RULES([yes])
+AM_MAINTAINER_MODE([enable])
 
 LT_PREREQ([2.2.6])
 LT_INIT([disable-static])
@@ -70,17 +71,17 @@ AC_CANONICAL_HOST
 AS_IF([test "x$GCC" = "xyes"],
       [
         # make symbols link locally
-        LDFLAGS="$LDFLAGS -Bsymbolic-functions"
+        BUILD_LDFLAGS="$BUILD_LDFLAGS -Bsymbolic-functions"
 
         # assorted compiler errors
-        CXXFLAGS="$CXXFLAGS -Wall -ansi"
-        CXXFLAGS="$CXXFLAGS -Werror=cast-align"
-        CXXFLAGS="$CXXFLAGS -Werror=shadow"
-        CXXFLAGS="$CXXFLAGS -Werror=format"
-        CXXFLAGS="$CXXFLAGS -Werror=format-security"
-        CXXFLAGS="$CXXFLAGS -Werror=format-nonliteral"
-        CXXFLAGS="$CXXFLAGS -Werror=init-self"
-        CXXFLAGS="$CXXFLAGS -Werror=empty-body"
+        BUILD_CXXFLAGS="$BUILD_CXXFLAGS -Wall -ansi"
+        BUILD_CXXFLAGS="$BUILD_CXXFLAGS -Werror=cast-align"
+        BUILD_CXXFLAGS="$BUILD_CXXFLAGS -Werror=shadow"
+        BUILD_CXXFLAGS="$BUILD_CXXFLAGS -Werror=format"
+        BUILD_CXXFLAGS="$BUILD_CXXFLAGS -Werror=format-security"
+        BUILD_CXXFLAGS="$BUILD_CXXFLAGS -Werror=format-nonliteral"
+        BUILD_CXXFLAGS="$BUILD_CXXFLAGS -Werror=init-self"
+        BUILD_CXXFLAGS="$BUILD_CXXFLAGS -Werror=empty-body"
 
         AS_CASE(["$host"],
                 [*-*-mingw*],
@@ -89,8 +90,8 @@ AS_IF([test "x$GCC" = "xyes"],
                   AC_DEFINE([_XAPIAN_GLIB_EXTERN],
                             [__attribute__((visibility("default"))) __declspec(dllexport) extern],
                             [defines how to decorate public symbols while building])
-                  CXXFLAGS="$CXXFLAGS -fvisibility=hidden"
-                  LDFLAGS="$LDFLAGS -no-undefined"
+                  BUILD_CXXFLAGS="$BUILD_CXXFLAGS -fvisibility=hidden"
+                  BUILD_LDFLAGS="$BUILD_LDFLAGS -no-undefined"
                 ],
 
                 [
@@ -98,15 +99,15 @@ AS_IF([test "x$GCC" = "xyes"],
                   AC_DEFINE([_XAPIAN_GLIB_EXTERN],
                             [__attribute__((visibility("default"))) extern],
                             [defines how to decorate public symbols while building])
-                  CXXFLAGS="$CXXFLAGS -fvisibility-inlines-hidden"
-                  CXXFLAGS="$CXXFLAGS -fvisibility=hidden"
+                  BUILD_CXXFLAGS="$BUILD_CXXFLAGS -fvisibility-inlines-hidden"
+                  BUILD_CXXFLAGS="$BUILD_CXXFLAGS -fvisibility=hidden"
                 ])
 
         AS_CASE(["$host"],
                 [arm-*-*],
                 [
                   # request byte alignment on ARM
-                  CXXFLAGS="$CXXFLAGS -mstructure-size-boundary=8"
+                  BUILD_CXXFLAGS="$BUILD_CXXFLAGS -mstructure-size-boundary=8"
                 ])
       ]
 )
@@ -115,14 +116,23 @@ AM_CONDITIONAL(HAVE_GCC, test "x$GCC" = "xyes")
 
 dnl === Dependencies ==========================================================
 
-AC_CHECK_PROG([XAPIAN_CONFIG], [xapian-config-1.3], [xapian-config-1.3])
-AS_IF([test "$XAPIAN_CONFIG"],
-      [ found_xapian=yes ],
-      [ AC_MSG_ERROR(["*** No Xapian headers found; you need to install xapian-config ***"]) ])
+AC_ARG_WITH([xapian-config], [AS_HELP_STRING([--with-xapian-config], [The xapian-config binary or 'pkgconfig'])],
+            [xapian_config=$withval],
+            [xapian_config=pkgconfig])
 
-CXXFLAGS="$CXXFLAGS `$XAPIAN_CONFIG --cxxflags`"
-
-XAPIAN_LIBS="`$XAPIAN_CONFIG --ltlibs`"
+AS_IF([test "x$xapian_config" = xpkgconfig], [
+  PKG_CHECK_MODULES(XAPIAN, [xapian-core])
+  BUILD_CXXFLAGS="$BUILD_CXXFLAGS $XAPIAN_CFLAGS"
+  XAPIAN_VERSION="`$PKG_CONFIG --modversion xapian-core`"
+], [
+  AC_CHECK_PROG([XAPIAN_CONFIG], $xapian_config, $xapian_config, no)
+  AS_IF([test "x$XAPIAN_CONFIG" = xno], [
+    AC_MSG_ERROR("*** No Xapian headers found. You need to install xapian-core ***")
+  ])
+  BUILD_CXXFLAGS="$BUILD_CXXFLAGS `$XAPIAN_CONFIG --cxxflags`"
+  XAPIAN_LIBS="`$XAPIAN_CONFIG --ltlibs`"
+  XAPIAN_VERSION="`$XAPIAN_CONFIG --version`"
+])
 
 PKG_CHECK_MODULES(XAPIAN_GLIB, [gobject-2.0 >= glib_req_version gio-2.0])
 
@@ -219,11 +229,11 @@ AS_IF([test "x$use_gcov" = "xyes"],
 
         dnl Remove all optimization flags from CFLAGS
         m4_changequote({,})
-        CXXFLAGS=`echo "$CXXFLAGS" | $SED -e 's/-O[0-9]*//g'`
+        BUILD_CXXFLAGS=`echo "$BUILD_CXXFLAGS" | $SED -e 's/-O[0-9]*//g'`
         m4_changequote([,])
 
         dnl Define the special gcc flags
-        CXXFLAGS="$CXXFLAGS -O0 -fprofile-arcs -ftest-coverage"
+        BUILD_CXXFLAGS="$BUILD_CXXFLAGS -O0 -fprofile-arcs -ftest-coverage"
         XAPIAN_GLIB_LIBS="$XAPIAN_GLIB_LIBS -lgcov"
       ])
 
@@ -248,6 +258,8 @@ AC_SUBST(XAPIAN_GLIB_CFLAGS)
 AC_SUBST(XAPIAN_GLIB_DEBUG_CFLAGS)
 AC_SUBST(XAPIAN_GLIB_LIBS)
 AC_SUBST(XAPIAN_LIBS)
+AC_SUBST(BUILD_CXXFLAGS)
+AC_SUBST(BUILD_LDFLAGS)
 
 AC_CONFIG_FILES([
         Makefile
@@ -274,6 +286,7 @@ Build configuration:
 
   • Prefix: ${prefix}
   • Debug level: ${enable_debug}
-  • Compiler flags: ${CXXFLAGS}
+  • Xapian version: ${XAPIAN_VERSION} (${xapian_config})
+  • Compiler flags: ${BUILD_CXXFLAGS} ${BUILD_LDFLAGS}
   • Introspection: ${have_introspection}
 ])

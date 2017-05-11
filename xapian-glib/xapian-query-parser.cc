@@ -319,7 +319,6 @@ xapian_query_parser_set_stemming_strategy (XapianQueryParser  *parser,
 
   Xapian::QueryParser::stem_strategy stem_strategy;
 
-#ifdef XAPIAN_GLIB_ENABLE_DEBUG
   switch (priv->stemming_strategy)
     {
     case XAPIAN_STEM_STRATEGY_STEM_NONE:
@@ -341,9 +340,6 @@ xapian_query_parser_set_stemming_strategy (XapianQueryParser  *parser,
     default:
       g_assert_not_reached ();
     }
-#else
-  stem_strategy = static_cast<Xapian::QueryParser::stem_strategy> (priv->stemming_strategy);
-#endif
 
   priv->mQueryParser->set_stemming_strategy (stem_strategy);
 
@@ -564,8 +560,6 @@ xapian_query_parser_parse_query_full (XapianQueryParser        *parser,
     {
       unsigned int real_flags = 0;
 
-#ifdef XAPIAN_GLIB_ENABLE_DEBUG
-      /* overzealous flag conversion */
       if (flags & XAPIAN_QUERY_PARSER_FEATURE_BOOLEAN)
         real_flags |= Xapian::QueryParser::FLAG_BOOLEAN;
       if (flags & XAPIAN_QUERY_PARSER_FEATURE_PHRASE)
@@ -588,12 +582,6 @@ xapian_query_parser_parse_query_full (XapianQueryParser        *parser,
         real_flags |= Xapian::QueryParser::FLAG_AUTO_SYNONYMS;
       if (flags & XAPIAN_QUERY_PARSER_FEATURE_AUTO_MULTIWORD_SYNONYMS)
         real_flags |= Xapian::QueryParser::FLAG_AUTO_MULTIWORD_SYNONYMS;
-#else
-      /* the XapianQueryParserFeature enumeration values match
-       * the Xapian::QueryParser::feature_flag enumeration
-       */
-      real_flags = flags;
-#endif
 
       Xapian::Query query = priv->mQueryParser->parse_query (std::string (query_string),
                                                              real_flags,

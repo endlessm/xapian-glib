@@ -93,7 +93,23 @@ xapian_writable_database_init_internal (GInitable    *initable,
   try
     {
       std::string file (path);
-      db = new Xapian::WritableDatabase (file, (int) priv->action | xapian_database_get_flags (database));
+
+      /* Xapian >= 1.3 changed the values of these flags; in order to work
+       * with Xapian 1.2 we need to do a manual translation of every value
+       * into the equivalent Xapian constant
+       */
+      int flags = xapian_database_get_flags (database);
+
+      if ((priv->action & XAPIAN_DATABASE_ACTION_CREATE_OR_OPEN) != 0)
+        flags |= Xapian::DB_CREATE_OR_OPEN;
+      if ((priv->action & XAPIAN_DATABASE_ACTION_CREATE_OR_OVERWRITE) != 0)
+        flags |= Xapian::DB_CREATE_OR_OVERWRITE;
+      if ((priv->action & XAPIAN_DATABASE_ACTION_CREATE) != 0)
+        flags |= Xapian::DB_CREATE;
+      if ((priv->action & XAPIAN_DATABASE_ACTION_OPEN) != 0)
+        flags |= Xapian::DB_OPEN;
+
+      db = new Xapian::WritableDatabase (file, flags);
 
       xapian_database_set_internal (database, db);
       xapian_database_set_is_writable (database, TRUE);
