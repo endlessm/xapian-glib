@@ -28,6 +28,6 @@ void			xapian_database_set_is_writable	(XapianDatabase   *self,
 							 gboolean          is_writable);
 gboolean                xapian_database_get_is_writable (XapianDatabase   *self);
 const char *            xapian_database_get_path        (XapianDatabase   *self);
-XapianDatabaseFlags     xapian_database_get_flags       (XapianDatabase   *self);
+int                     xapian_database_get_flags       (XapianDatabase   *self);
 
 #endif /* __XAPIAN_GLIB_DATABASE_PRIVATE_H__ */

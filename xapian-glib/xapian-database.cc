@@ -172,22 +172,7 @@ open_database (XapianDatabase *self)
 
   if (priv->path != NULL && priv->path[0] != '\0')
     {
-      int db_flags = 0;
-
-      if (priv->flags & XAPIAN_DB_NO_SYNC)
-        db_flags |= Xapian::DB_NO_SYNC;
-      if (priv->flags & XAPIAN_DB_FULL_SYNC)
-        db_flags |= Xapian::DB_FULL_SYNC;
-      if (priv->flags & XAPIAN_DB_DANGEROUS)
-        db_flags |= Xapian::DB_DANGEROUS;
-      if (priv->flags & XAPIAN_DB_RETRY_LOCK)
-        db_flags |= Xapian::DB_RETRY_LOCK;
-      if (priv->flags & XAPIAN_DB_BACKEND_GLASS)
-        db_flags |= Xapian::DB_BACKEND_GLASS;
-      if (priv->flags & XAPIAN_DB_BACKEND_CHERT)
-        db_flags |= Xapian::DB_BACKEND_CHERT;
-      if (priv->flags & XAPIAN_DB_BACKEND_STUB)
-        db_flags |= Xapian::DB_BACKEND_STUB;
+      int db_flags = xapian_database_get_flags (self);
 
       /* If we're given an offset, open the database at that location */
       if (priv->offset != 0)
@@ -700,9 +685,26 @@ xapian_database_compact_to_fd (XapianDatabase             *self,
 #endif
 }
 
-XapianDatabaseFlags
+int
 xapian_database_get_flags (XapianDatabase *self)
 {
   XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
-  return priv->flags;
+  int db_flags = 0;
+
+  if (priv->flags & XAPIAN_DB_NO_SYNC)
+    db_flags |= Xapian::DB_NO_SYNC;
+  if (priv->flags & XAPIAN_DB_FULL_SYNC)
+    db_flags |= Xapian::DB_FULL_SYNC;
+  if (priv->flags & XAPIAN_DB_DANGEROUS)
+    db_flags |= Xapian::DB_DANGEROUS;
+  if (priv->flags & XAPIAN_DB_RETRY_LOCK)
+    db_flags |= Xapian::DB_RETRY_LOCK;
+  if (priv->flags & XAPIAN_DB_BACKEND_GLASS)
+    db_flags |= Xapian::DB_BACKEND_GLASS;
+  if (priv->flags & XAPIAN_DB_BACKEND_CHERT)
+    db_flags |= Xapian::DB_BACKEND_CHERT;
+  if (priv->flags & XAPIAN_DB_BACKEND_STUB)
+    db_flags |= Xapian::DB_BACKEND_STUB;
+
+  return db_flags; 
 }
