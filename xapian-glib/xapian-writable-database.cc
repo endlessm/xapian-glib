@@ -98,18 +98,18 @@ xapian_writable_database_init_internal (GInitable    *initable,
        * with Xapian 1.2 we need to do a manual translation of every value
        * into the equivalent Xapian constant
        */
-      int flags = xapian_database_get_flags (database);
+      int db_flags = xapian_database_get_flags (database);
 
       if ((priv->action & XAPIAN_DATABASE_ACTION_CREATE_OR_OPEN) != 0)
-        flags |= Xapian::DB_CREATE_OR_OPEN;
+        db_flags |= Xapian::DB_CREATE_OR_OPEN;
       if ((priv->action & XAPIAN_DATABASE_ACTION_CREATE_OR_OVERWRITE) != 0)
-        flags |= Xapian::DB_CREATE_OR_OVERWRITE;
+        db_flags |= Xapian::DB_CREATE_OR_OVERWRITE;
       if ((priv->action & XAPIAN_DATABASE_ACTION_CREATE) != 0)
-        flags |= Xapian::DB_CREATE;
+        db_flags |= Xapian::DB_CREATE;
       if ((priv->action & XAPIAN_DATABASE_ACTION_OPEN) != 0)
-        flags |= Xapian::DB_OPEN;
+        db_flags |= Xapian::DB_OPEN;
 
-      db = new Xapian::WritableDatabase (file, flags);
+      db = new Xapian::WritableDatabase (file, db_flags);
 
       xapian_database_set_internal (database, db);
       xapian_database_set_is_writable (database, TRUE);
