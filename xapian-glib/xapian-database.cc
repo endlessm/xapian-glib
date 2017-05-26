@@ -638,11 +638,11 @@ xapian_database_compact_to_path (XapianDatabase             *self,
 
   int real_flags = 0;
 
-  if (flags & XAPIAN_DB_COMPACT_NO_RENUMBER)
+  if ((flags & XAPIAN_DB_COMPACT_NO_RENUMBER) == XAPIAN_DB_COMPACT_NO_RENUMBER)
     real_flags |= Xapian::DBCOMPACT_NO_RENUMBER;
-  if (flags & XAPIAN_DB_COMPACT_MULTIPASS)
+  if ((flags & XAPIAN_DB_COMPACT_MULTIPASS) == XAPIAN_DB_COMPACT_MULTIPASS)
     real_flags |= Xapian::DBCOMPACT_MULTIPASS;
-  if (flags & XAPIAN_DB_COMPACT_SINGLE_FILE)
+  if ((flags & XAPIAN_DB_COMPACT_SINGLE_FILE) == XAPIAN_DB_COMPACT_SINGLE_FILE)
     real_flags |= Xapian::DBCOMPACT_SINGLE_FILE;
 
   const std::string output (path);
@@ -672,11 +672,11 @@ xapian_database_compact_to_fd (XapianDatabase             *self,
 
   int real_flags = 0;
 
-  if (flags & XAPIAN_DB_COMPACT_NO_RENUMBER)
+  if ((flags & XAPIAN_DB_COMPACT_NO_RENUMBER) == XAPIAN_DB_COMPACT_NO_RENUMBER)
     real_flags |= Xapian::DBCOMPACT_NO_RENUMBER;
-  if (flags & XAPIAN_DB_COMPACT_MULTIPASS)
+  if ((flags & XAPIAN_DB_COMPACT_MULTIPASS) == XAPIAN_DB_COMPACT_MULTIPASS)
     real_flags |= Xapian::DBCOMPACT_MULTIPASS;
-  if (flags & XAPIAN_DB_COMPACT_SINGLE_FILE)
+  if ((flags & XAPIAN_DB_COMPACT_SINGLE_FILE) == XAPIAN_DB_COMPACT_SINGLE_FILE)
     real_flags |= Xapian::DBCOMPACT_SINGLE_FILE;
 
   real_db->compact (fd, flags);
@@ -691,19 +691,19 @@ xapian_database_get_flags (XapianDatabase *self)
   XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
   int db_flags = 0;
 
-  if (priv->flags & XAPIAN_DB_NO_SYNC)
+  if ((priv->flags & XAPIAN_DB_NO_SYNC) == XAPIAN_DB_NO_SYNC)
     db_flags |= Xapian::DB_NO_SYNC;
-  if (priv->flags & XAPIAN_DB_FULL_SYNC)
+  if ((priv->flags & XAPIAN_DB_FULL_SYNC) == XAPIAN_DB_FULL_SYNC)
     db_flags |= Xapian::DB_FULL_SYNC;
-  if (priv->flags & XAPIAN_DB_DANGEROUS)
+  if ((priv->flags & XAPIAN_DB_DANGEROUS) == XAPIAN_DB_DANGEROUS)
     db_flags |= Xapian::DB_DANGEROUS;
-  if (priv->flags & XAPIAN_DB_RETRY_LOCK)
+  if ((priv->flags & XAPIAN_DB_RETRY_LOCK) == XAPIAN_DB_RETRY_LOCK)
     db_flags |= Xapian::DB_RETRY_LOCK;
-  if (priv->flags & XAPIAN_DB_BACKEND_GLASS)
+  if ((priv->flags & XAPIAN_DB_BACKEND_GLASS) == XAPIAN_DB_BACKEND_GLASS)
     db_flags |= Xapian::DB_BACKEND_GLASS;
-  if (priv->flags & XAPIAN_DB_BACKEND_CHERT)
+  if ((priv->flags & XAPIAN_DB_BACKEND_CHERT) == XAPIAN_DB_BACKEND_CHERT)
     db_flags |= Xapian::DB_BACKEND_CHERT;
-  if (priv->flags & XAPIAN_DB_BACKEND_STUB)
+  if ((priv->flags & XAPIAN_DB_BACKEND_STUB) == XAPIAN_DB_BACKEND_STUB)
     db_flags |= Xapian::DB_BACKEND_STUB;
 
   return db_flags; 

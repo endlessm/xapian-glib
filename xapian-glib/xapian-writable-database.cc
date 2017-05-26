@@ -100,13 +100,13 @@ xapian_writable_database_init_internal (GInitable    *initable,
        */
       int db_flags = xapian_database_get_flags (database);
 
-      if ((priv->action & XAPIAN_DATABASE_ACTION_CREATE_OR_OPEN) != 0)
+      if ((priv->action & XAPIAN_DATABASE_ACTION_CREATE_OR_OPEN) == XAPIAN_DATABASE_ACTION_CREATE_OR_OPEN)
         db_flags |= Xapian::DB_CREATE_OR_OPEN;
-      if ((priv->action & XAPIAN_DATABASE_ACTION_CREATE_OR_OVERWRITE) != 0)
+      if ((priv->action & XAPIAN_DATABASE_ACTION_CREATE_OR_OVERWRITE) == XAPIAN_DATABASE_ACTION_CREATE_OR_OVERWRITE)
         db_flags |= Xapian::DB_CREATE_OR_OVERWRITE;
-      if ((priv->action & XAPIAN_DATABASE_ACTION_CREATE) != 0)
+      if ((priv->action & XAPIAN_DATABASE_ACTION_CREATE) == XAPIAN_DATABASE_ACTION_CREATE)
         db_flags |= Xapian::DB_CREATE;
-      if ((priv->action & XAPIAN_DATABASE_ACTION_OPEN) != 0)
+      if ((priv->action & XAPIAN_DATABASE_ACTION_OPEN) == XAPIAN_DATABASE_ACTION_OPEN)
         db_flags |= Xapian::DB_OPEN;
 
       db = new Xapian::WritableDatabase (file, db_flags);
