@@ -236,6 +236,73 @@ xapian_writable_database_new (const char            *path,
 }
 
 /**
+ * xapian_writable_database_new_with_backend:
+ * @path: (not nullable): the path of the database
+ * @action: the action to perform
+ * @backend: the backend to use
+ * @error: return location for a #GError
+ *
+ * Creates and initialises a #XapianWritableDatabase for the
+ * given @path.
+ *
+ * If the initialization was not successful, this function
+ * returns %NULL and sets @error.
+ *
+ * Returns: (transfer full): the newly created #XapianWritableDatabase
+ *   instance
+ */
+XapianWritableDatabase *
+xapian_writable_database_new_with_backend (const char             *path,
+                                           XapianDatabaseAction    action,
+                                           XapianDatabaseBackend   backend,
+                                           GError                **error)
+{
+  g_return_val_if_fail (path != NULL, NULL);
+
+  return static_cast<XapianWritableDatabase *> (g_initable_new (XAPIAN_TYPE_WRITABLE_DATABASE,
+                                                                NULL, error,
+                                                                "path", path,
+                                                                "action", action,
+                                                                "backend", backend,
+                                                                NULL));
+}
+
+/**
+ * xapian_writable_database_new_full:
+ * @path: (not nullable): the path of the database
+ * @action: the action to perform
+ * @backend: the backend to use
+ * @flags: flags to be used when opening the database
+ * @error: return location for a #GError
+ *
+ * Creates and initialises a #XapianWritableDatabase for the
+ * given @path.
+ *
+ * If the initialization was not successful, this function
+ * returns %NULL and sets @error.
+ *
+ * Returns: (transfer full): the newly created #XapianWritableDatabase
+ *   instance
+ */
+XapianWritableDatabase *
+xapian_writable_database_new_full (const char             *path,
+                                   XapianDatabaseAction    action,
+                                   XapianDatabaseBackend   backend,
+                                   XapianDatabaseFlags     flags,
+                                   GError                **error)
+{
+  g_return_val_if_fail (path != NULL, NULL);
+
+  return static_cast<XapianWritableDatabase *> (g_initable_new (XAPIAN_TYPE_WRITABLE_DATABASE,
+                                                                NULL, error,
+                                                                "path", path,
+                                                                "action", action,
+                                                                "backend", backend,
+                                                                "flags", flags,
+                                                                NULL));
+}
+
+/**
  * xapian_writable_database_commit:
  * @self: a #XapianWritableDatabase
  * @error: return location for a #GError

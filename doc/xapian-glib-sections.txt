@@ -364,6 +364,8 @@ xapian_error_get_type
 <TITLE>XapianWritableDatabase</TITLE>
 XapianDatabaseAction
 xapian_writable_database_new
+xapian_writable_database_new_with_backend
+xapian_writable_database_new_full
 xapian_writable_database_commit
 xapian_writable_database_begin_transaction
 xapian_writable_database_commit_transaction
