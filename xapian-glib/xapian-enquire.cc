@@ -19,7 +19,7 @@
  * @Title: XapianEnquire
  * @short_description: Query a database for matching documents
  *
- * #XapianEnquire is class used to perform queries on #XapianDatabases.
+ * #XapianEnquire is a class used to perform queries on #XapianDatabase.
  *
  * Typically, you create a new #XapianEnquire instance for a specific
  * #XapianDatabase (which may contain multiple groups of databases),

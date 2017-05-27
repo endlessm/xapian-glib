@@ -601,8 +601,10 @@ xapian_query_parser_parse_query_full (XapianQueryParser        *parser,
 }
 
 /**
- * xapian_query_parser_get_stopper
+ * xapian_query_parser_get_stopper:
  * @parser: a #XapianQueryParser
+ *
+ * Retrieves the stopper set using xapian_query_parser_set_stopper().
  *
  * Returns: (transfer none): the #XapianStopper used by @parser
  *
@@ -619,7 +621,7 @@ xapian_query_parser_get_stopper (XapianQueryParser *parser)
 }
 
 /**
- * xapian_query_parser_get_corrected_query_string
+ * xapian_query_parser_get_corrected_query_string:
  * @parser: a #XapianQueryParser
  *
  * Get the spelling-corrected query string.
