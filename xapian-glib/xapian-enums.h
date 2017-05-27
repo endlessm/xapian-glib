@@ -248,11 +248,26 @@ typedef enum {
 XAPIAN_GLIB_AVAILABLE_IN_1_2
 GType xapian_term_generator_feature_get_type (void);
 
+#define XAPIAN_TYPE_DATABASE_COMPACT            (xapian_database_compact_get_type ())
+
+/**
+ * XapianDatabaseCompactFlags:
+ * @XAPIAN_DATABASE_COMPACT_FLAGS_NO_RENUMBER: Use the same document ids
+ * @XAPIAN_DATABASE_COMPACT_FLAGS_MULTIPASS: Merge postlists in multiple passes
+ * @XAPIAN_DATABASE_COMPACT_FLAGS_SINGLE_FILE: Create a single-file database
+ *
+ * Compacting policies for #XapianDatabase.
+ *
+ * Since: 1.4
+ */
 typedef enum {
-  XAPIAN_DB_COMPACT_NO_RENUMBER = 4,
-  XAPIAN_DB_COMPACT_MULTIPASS = 8,
-  XAPIAN_DB_COMPACT_SINGLE_FILE = 16,
+  XAPIAN_DATABASE_COMPACT_FLAGS_NO_RENUMBER   = 1 << 2,
+  XAPIAN_DATABASE_COMPACT_FLAGS_MULTIPASS     = 1 << 3,
+  XAPIAN_DATABASE_COMPACT_FLAGS_SINGLE_FILE   = 1 << 4,
 } XapianDatabaseCompactFlags;
+
+XAPIAN_GLIB_AVAILABLE_IN_1_4
+GType xapian_database_compact_flags_get_type (void);
 
 #define XAPIAN_TYPE_DATABASE_FLAGS             (xapian_database_flags_get_type ())
 
