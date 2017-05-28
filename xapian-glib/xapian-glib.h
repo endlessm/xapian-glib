@@ -29,6 +29,7 @@
 #include "xapian-enquire.h"
 #include "xapian-enums.h"
 #include "xapian-mset.h"
+#include "xapian-posting-source.h"
 #include "xapian-query.h"
 #include "xapian-query-parser.h"
 #include "xapian-simple-stopper.h"
@@ -37,6 +38,8 @@
 #include "xapian-term-generator.h"
 #include "xapian-term-iterator.h"
 #include "xapian-utils.h"
+#include "xapian-value-posting-source.h"
+#include "xapian-value-weight-posting-source.h"
 #include "xapian-writable-database.h"
 
 #undef XAPIAN_GLIB_H_INSIDE
