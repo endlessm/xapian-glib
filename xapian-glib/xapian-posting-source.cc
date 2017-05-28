@@ -130,11 +130,12 @@ xapian_posting_source_set_internal (XapianPostingSource   *self,
  * Returns: (transfer full): a description of the posting source
  * Since: 1.2
  */
-char*
+char *
 xapian_posting_source_get_description (XapianPostingSource *self)
 {
-  Xapian::PostingSource *posting_source = xapian_posting_source_get_internal(self);
-  std::string desc = posting_source->get_description();
+  XapianPostingSourcePrivate *priv = XAPIAN_POSTING_SOURCE_GET_PRIVATE (self);
+
+  std::string desc = priv->mPostingSource->get_description();
 
   return g_strdup (desc.c_str ());
 }
