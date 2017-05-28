@@ -48,7 +48,7 @@ XAPIAN_GLIB_AVAILABLE_IN_1_2
 GType xapian_posting_source_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_2
-char* xapian_posting_source_get_description (XapianPostingSource self);
+char *xapian_posting_source_get_description (XapianPostingSource *self);
 
 G_END_DECLS
 
