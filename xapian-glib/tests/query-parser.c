@@ -15,7 +15,6 @@ query_parser_default (void)
 static void
 query_parser_set_default_op (void)
 {
-  GError *error = NULL;
   XapianQueryParser *query_parser = xapian_query_parser_new ();
 
   xapian_query_parser_set_default_op (query_parser, XAPIAN_QUERY_OP_AND);
