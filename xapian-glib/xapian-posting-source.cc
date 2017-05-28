@@ -28,7 +28,6 @@
 
 #include "config.h"
 
-#include "xapian-posting-source.h"
 #include "xapian-posting-source-private.h"
 #include "xapian-error-private.h"
 
