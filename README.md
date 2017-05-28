@@ -15,24 +15,37 @@ Xapian-GLib, unsurprisingly, requires:
  * Xapian ≥ 1.3.4
  * GObject ≥ 2.40
 
+You will also need [Meson](http://mesonbuild.com) in order to build
+Xapian-GLib.
+
 ## Building
 
 In order to build Xapian-GLib you will need to clone the Git repository:
 
-    $ git clone git://github.com/endlessm/xapian-glib.git
-    $ cd xapian-glib
+```sh
+$ git clone git://github.com/endlessm/xapian-glib.git
+$ cd xapian-glib
+```
 
-Then run the `autogen.sh` script and `make`:
+Then run:
 
-    $ ./autogen.sh
-    $ make
+```sh
+$ meson _build .
+$ ninja -C _build
+$ meson test -C _build		# Run the test suite
+```
+
+To build the library.
 
 You can install to the default location of `/usr/local` by using:
 
-    # make install
+```sh
+$ sudo ninja -C _build install
+```
 
-If you want to use an alternative location, use the `--prefix` configuration
-switch with the `configure` script.
+If you want to use an alternative location for the installation, use the
+`--prefix` configuration switch with Meson. See `meson --help` for
+additional configuration options.
 
 ## License
 
