@@ -13,6 +13,8 @@ typedef struct {
   XapianStopperClass parent_class;
 } SimpleStopperClass;
 
+GType simple_stopper_get_type (void);
+
 G_DEFINE_TYPE (SimpleStopper, simple_stopper, XAPIAN_TYPE_STOPPER)
 
 static gboolean
