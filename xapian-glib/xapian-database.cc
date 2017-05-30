@@ -735,14 +735,20 @@ xapian_database_get_flags (XapianDatabase *self)
   if ((priv->flags & XAPIAN_DATABASE_FLAGS_RETRY_LOCK) != 0)
     db_flags |= Xapian::DB_RETRY_LOCK;
 
-  if (priv->backend == XAPIAN_DATABASE_BACKEND_GLASS)
-    db_flags |= Xapian::DB_BACKEND_GLASS;
-  if (priv->backend == XAPIAN_DATABASE_BACKEND_CHERT)
-    db_flags |= Xapian::DB_BACKEND_CHERT;
   if (priv->backend == XAPIAN_DATABASE_BACKEND_STUB)
     db_flags |= Xapian::DB_BACKEND_STUB;
+#ifdef XAPIAN_HAS_GLASS_BACKEND
+  if (priv->backend == XAPIAN_DATABASE_BACKEND_GLASS)
+    db_flags |= Xapian::DB_BACKEND_GLASS;
+#endif
+#ifdef XAPIAN_HAS_CHERT_BACKEND
+  if (priv->backend == XAPIAN_DATABASE_BACKEND_CHERT)
+    db_flags |= Xapian::DB_BACKEND_CHERT;
+#endif
+#ifdef XAPIAN_HAS_INMEMORY_BACKEND
   if (priv->backend == XAPIAN_DATABASE_BACKEND_INMEMORY)
     db_flags |= Xapian::DB_BACKEND_INMEMORY;
+#endif
 
   return db_flags;
 }
