@@ -673,7 +673,10 @@ xapian_database_compact_to_path (XapianDatabase             *self,
   const std::string output (path);
   real_db->compact (output, real_flags);
 #else
-  g_warning ("Compaction not supported by this version of Xapian.");
+  g_warning ("Compaction not supported by this version of Xapian (current: %d.%d.%d).",
+             XAPIAN_MAJOR_VERSION,
+             XAPIAN_MINOR_VERSION,
+             XAPIAN_REVISION);
 #endif
 }
 
@@ -706,7 +709,10 @@ xapian_database_compact_to_fd (XapianDatabase             *self,
 
   real_db->compact (fd, flags);
 #else
-  g_warning ("Compaction not supported by this version of Xapian.");
+  g_warning ("Compaction not supported by this version of Xapian (current: %d.%d.%d).",
+             XAPIAN_MAJOR_VERSION,
+             XAPIAN_MINOR_VERSION,
+             XAPIAN_REVISION);
 #endif
 }
 
