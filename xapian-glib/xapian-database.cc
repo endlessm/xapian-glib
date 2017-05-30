@@ -673,7 +673,10 @@ xapian_database_compact_to_path (XapianDatabase             *self,
   const std::string output (path);
   real_db->compact (output, real_flags);
 #else
-  g_warning ("Compaction not supported by this version of Xapian.");
+  g_warning ("Compaction not supported by this version of Xapian (current: %d.%d.%d).",
+             XAPIAN_MAJOR_VERSION,
+             XAPIAN_MINOR_VERSION,
+             XAPIAN_REVISION);
 #endif
 }
 
@@ -706,7 +709,10 @@ xapian_database_compact_to_fd (XapianDatabase             *self,
 
   real_db->compact (fd, flags);
 #else
-  g_warning ("Compaction not supported by this version of Xapian.");
+  g_warning ("Compaction not supported by this version of Xapian (current: %d.%d.%d).",
+             XAPIAN_MAJOR_VERSION,
+             XAPIAN_MINOR_VERSION,
+             XAPIAN_REVISION);
 #endif
 }
 
@@ -737,13 +743,23 @@ xapian_database_get_flags (XapianDatabase *self)
 
   if (priv->backend == XAPIAN_DATABASE_BACKEND_STUB)
     db_flags |= Xapian::DB_BACKEND_STUB;
-#ifdef XAPIAN_HAS_GLASS_BACKEND
   if (priv->backend == XAPIAN_DATABASE_BACKEND_GLASS)
+#ifdef XAPIAN_HAS_GLASS_BACKEND
     db_flags |= Xapian::DB_BACKEND_GLASS;
+#else
+    g_warning ("Glass backend not supported by Xapian");
 #endif
-#ifdef XAPIAN_HAS_CHERT_BACKEND
   if (priv->backend == XAPIAN_DATABASE_BACKEND_CHERT)
+#ifdef XAPIAN_HAS_CHERT_BACKEND
     db_flags |= Xapian::DB_BACKEND_CHERT;
+#else
+    g_warning ("Chert backend not supported by Xapian");
+#endif
+  if (priv->backend == XAPIAN_DATABASE_BACKEND_INMEMORY)
+#if XAPIAN_CHECK_VERSION_INTERNAL (1, 3, 5) && defined(XAPIAN_HAS_INMEMORY_BACKEND)
+    db_flags |= Xapian::DB_BACKEND_INMEMORY;
+#else
+    g_warning ("In-memory backend not supported by Xapian");
 #endif
 
   return db_flags;
