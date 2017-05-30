@@ -82,6 +82,7 @@ AS_IF([test "x$GCC" = "xyes"],
         BUILD_CXXFLAGS="$BUILD_CXXFLAGS -Werror=format-nonliteral"
         BUILD_CXXFLAGS="$BUILD_CXXFLAGS -Werror=init-self"
         BUILD_CXXFLAGS="$BUILD_CXXFLAGS -Werror=empty-body"
+        BUILD_CXXFLAGS="$BUILD_CXXFLAGS -Werror=undef"
 
         AS_CASE(["$host"],
                 [*-*-mingw*],
