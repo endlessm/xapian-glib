@@ -745,7 +745,7 @@ xapian_database_get_flags (XapianDatabase *self)
   if (priv->backend == XAPIAN_DATABASE_BACKEND_CHERT)
     db_flags |= Xapian::DB_BACKEND_CHERT;
 #endif
-#ifdef XAPIAN_HAS_INMEMORY_BACKEND
+#if XAPIAN_CHECK_VERSION_INTERNAL (1, 3, 5) && defined(XAPIAN_HAS_INMEMORY_BACKEND)
   if (priv->backend == XAPIAN_DATABASE_BACKEND_INMEMORY)
     db_flags |= Xapian::DB_BACKEND_INMEMORY;
 #endif
