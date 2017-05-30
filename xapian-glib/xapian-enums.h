@@ -36,10 +36,10 @@ G_BEGIN_DECLS
  * Actions for #XapianWritableDatabase.
  */
 typedef enum {
-  XAPIAN_DATABASE_ACTION_CREATE_OR_OPEN = 0,
-  XAPIAN_DATABASE_ACTION_CREATE_OR_OVERWRITE = 1,
-  XAPIAN_DATABASE_ACTION_CREATE = 2,
-  XAPIAN_DATABASE_ACTION_OPEN = 3
+  XAPIAN_DATABASE_ACTION_CREATE_OR_OPEN,
+  XAPIAN_DATABASE_ACTION_CREATE_OR_OVERWRITE,
+  XAPIAN_DATABASE_ACTION_CREATE,
+  XAPIAN_DATABASE_ACTION_OPEN
 } XapianDatabaseAction;
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0
@@ -248,26 +248,76 @@ typedef enum {
 XAPIAN_GLIB_AVAILABLE_IN_1_2
 GType xapian_term_generator_feature_get_type (void);
 
+#define XAPIAN_TYPE_DATABASE_COMPACT            (xapian_database_compact_get_type ())
+
+/**
+ * XapianDatabaseCompactFlags:
+ * @XAPIAN_DATABASE_COMPACT_FLAGS_NO_RENUMBER: Use the same document ids
+ * @XAPIAN_DATABASE_COMPACT_FLAGS_MULTIPASS: Merge postlists in multiple passes
+ * @XAPIAN_DATABASE_COMPACT_FLAGS_SINGLE_FILE: Create a single-file database
+ *
+ * Compacting policies for #XapianDatabase.
+ *
+ * Since: 1.4
+ */
 typedef enum {
-  XAPIAN_DB_COMPACT_NO_RENUMBER = 4,
-  XAPIAN_DB_COMPACT_MULTIPASS = 8,
-  XAPIAN_DB_COMPACT_SINGLE_FILE = 16,
+  XAPIAN_DATABASE_COMPACT_FLAGS_NO_RENUMBER   = 1 << 2,
+  XAPIAN_DATABASE_COMPACT_FLAGS_MULTIPASS     = 1 << 3,
+  XAPIAN_DATABASE_COMPACT_FLAGS_SINGLE_FILE   = 1 << 4,
 } XapianDatabaseCompactFlags;
+
+XAPIAN_GLIB_AVAILABLE_IN_1_4
+GType xapian_database_compact_flags_get_type (void);
 
 #define XAPIAN_TYPE_DATABASE_FLAGS             (xapian_database_flags_get_type ())
 
+/**
+ * XapianDatabaseFlags:
+ * @XAPIAN_DATABASE_FLAGS_NONE: No flags
+ * @XAPIAN_DATABASE_FLAGS_NO_SYNC: Do not sync changes to disk
+ * @XAPIAN_DATABASE_FLAGS_FULL_SYNC: Attempt to fully sync changes to disk
+ * @XAPIAN_DATABASE_FLAGS_DANGEROUS: Update the database in-place
+ * @XAPIAN_DATABASE_FLAGS_NO_TERMLIST: Do not create a termlist table
+ * @XAPIAN_DATABASE_FLAGS_RETRY_LOCK: Retry the lock
+ *
+ * Flags used when opening a database
+ *
+ * Since: 1.4
+ */
 typedef enum {
-  XAPIAN_DB_NO_SYNC = 0x04,
-  XAPIAN_DB_FULL_SYNC = 0x08,
-  XAPIAN_DB_DANGEROUS = 0x20,
-  XAPIAN_DB_RETRY_LOCK = 0x40,
-  XAPIAN_DB_BACKEND_GLASS = 0x100,
-  XAPIAN_DB_BACKEND_CHERT = 0x200,
-  XAPIAN_DB_BACKEND_STUB = 0x300,
+  XAPIAN_DATABASE_FLAGS_NONE                    = 0,
+  XAPIAN_DATABASE_FLAGS_NO_SYNC                 = 1 << 0,
+  XAPIAN_DATABASE_FLAGS_FULL_SYNC               = 1 << 1,
+  XAPIAN_DATABASE_FLAGS_DANGEROUS               = 1 << 2,
+  XAPIAN_DATABASE_FLAGS_NO_TERMLIST             = 1 << 3,
+  XAPIAN_DATABASE_FLAGS_RETRY_LOCK              = 1 << 4,
 } XapianDatabaseFlags;
 
 XAPIAN_GLIB_AVAILABLE_IN_1_4
 GType xapian_database_flags_get_type (void);
+
+#define XAPIAN_TYPE_DATABASE_BACKEND            (xapian_database_backend_get_type ())
+
+/**
+ * XapianDatabaseBackend:
+ * @XAPIAN_DATABASE_BACKEND_GLASS: Use the Glass backend
+ * @XAPIAN_DATABASE_BACKEND_CHERT: Use the Chert backend
+ * @XAPIAN_DATABASE_BACKEND_STUB: Open a stub database
+ * @XAPIAN_DATABASE_BACKEND_INMEMORY: Use the "in memory" backend
+ *
+ * The Xapian database backend to use when opening a database.
+ *
+ * Since: 1.4
+ */
+typedef enum {
+  XAPIAN_DATABASE_BACKEND_GLASS,
+  XAPIAN_DATABASE_BACKEND_CHERT,
+  XAPIAN_DATABASE_BACKEND_STUB,
+  XAPIAN_DATABASE_BACKEND_INMEMORY
+} XapianDatabaseBackend;
+
+XAPIAN_GLIB_AVAILABLE_IN_1_4
+GType xapian_database_backend_get_type (void);
 
 G_END_DECLS
 

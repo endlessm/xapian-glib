@@ -1,6 +1,8 @@
 <SECTION>
 <FILE>xapian-database</FILE>
 <TITLE>XapianDatabase</TITLE>
+XapianDatabaseFlags
+XapianDatabaseBackend
 xapian_database_new
 xapian_database_new_with_path
 xapian_database_close
@@ -12,6 +14,9 @@ xapian_database_get_doc_count
 xapian_database_get_last_doc_id
 xapian_database_get_document
 xapian_database_add_database
+XapianDatabaseCompactFlags
+xapian_database_compact_to_path
+xapian_database_compact_to_fd
 <SUBSECTION Standard>
 XAPIAN_DATABASE
 XAPIAN_DATABASE_CLASS
@@ -19,9 +24,15 @@ XAPIAN_DATABASE_GET_CLASS
 XAPIAN_IS_DATABASE
 XAPIAN_IS_DATABASE_CLASS
 XAPIAN_TYPE_DATABASE
+XAPIAN_TYPE_DATABASE_BACKEND
+XAPIAN_TYPE_DATABASE_COMPACT
+XAPIAN_TYPE_DATABASE_FLAGS
 XapianDatabase
 XapianDatabaseClass
 xapian_database_get_type
+xapian_database_backend_get_type
+xapian_database_compact_flags_get_type
+xapian_database_flags_get_type
 </SECTION>
 
 <SECTION>
@@ -29,7 +40,9 @@ xapian_database_get_type
 <TITLE>XapianDocument</TITLE>
 xapian_document_new
 xapian_document_get_value
+xapian_document_get_numeric_value
 xapian_document_add_value
+xapian_document_add_numeric_value
 xapian_document_remove_value
 xapian_document_clear_values
 xapian_document_get_values_count
@@ -310,13 +323,14 @@ xapian_stem_get_type
 <FILE>xapian-term-generator</FILE>
 <TITLE>XapianTermGenerator</TITLE>
 xapian_term_generator_new
-xapian_term_generator_set_database
-xapian_term_generator_set_stemmer
-xapian_term_generator_set_stemming_strategy
-xapian_term_generator_set_document
-xapian_term_generator_set_flags
 xapian_term_generator_index_text
 xapian_term_generator_index_text_full
+xapian_term_generator_set_database
+xapian_term_generator_set_document
+xapian_term_generator_set_flags
+xapian_term_generator_set_stemmer
+xapian_term_generator_set_stemming_strategy
+xapian_term_generator_set_stopper
 XapianTermGeneratorFeature
 <SUBSECTION Standard>
 XAPIAN_IS_TERM_GENERATOR
@@ -353,10 +367,15 @@ xapian_version_string
 xapian_major_version
 xapian_minor_version
 xapian_revision
+<SUBSECTION>
+xapian_sortable_serialise
+xapian_sortable_unserialise
 <SUBSECTION Standard>
 XAPIAN_TYPE_ERROR
 xapian_error_quark
 xapian_error_get_type
+<SUBSECTION Private>
+XAPIAN_CHECK_VERSION_INTERNAL
 </SECTION>
 
 <SECTION>
@@ -364,13 +383,19 @@ xapian_error_get_type
 <TITLE>XapianWritableDatabase</TITLE>
 XapianDatabaseAction
 xapian_writable_database_new
+xapian_writable_database_new_with_backend
+xapian_writable_database_new_full
 xapian_writable_database_commit
+xapian_writable_database_set_metadata
+<SUBSECTION>
 xapian_writable_database_begin_transaction
 xapian_writable_database_commit_transaction
 xapian_writable_database_cancel_transaction
+<SUBSECTION>
 xapian_writable_database_add_document
 xapian_writable_database_delete_document
 xapian_writable_database_replace_document
+<SUBSECTION>
 xapian_writable_database_add_spelling
 xapian_writable_database_add_spelling_full
 xapian_writable_database_remove_spelling

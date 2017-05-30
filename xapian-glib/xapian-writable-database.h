@@ -51,6 +51,17 @@ XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianWritableDatabase *        xapian_writable_database_new                    (const char            *path,
                                                                                  XapianDatabaseAction   action,
                                                                                  GError               **error);
+XAPIAN_GLIB_AVAILABLE_IN_1_4
+XapianWritableDatabase *        xapian_writable_database_new_with_backend       (const char             *path,
+                                                                                 XapianDatabaseAction    action,
+                                                                                 XapianDatabaseBackend   backend,
+                                                                                 GError                **error);
+XAPIAN_GLIB_AVAILABLE_IN_1_4
+XapianWritableDatabase *        xapian_writable_database_new_full               (const char             *path,
+                                                                                 XapianDatabaseAction    action,
+                                                                                 XapianDatabaseBackend   backend,
+                                                                                 XapianDatabaseFlags     flags,
+                                                                                 GError                **error);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 gboolean                        xapian_writable_database_commit                 (XapianWritableDatabase *self,

@@ -49,6 +49,7 @@ struct _XapianDatabasePrivate
   char *path;
   off_t offset;
   XapianDatabaseFlags flags;
+  XapianDatabaseBackend backend;
 
   Xapian::Database *mDB;
 
@@ -64,6 +65,7 @@ enum
   PROP_PATH,
   PROP_OFFSET,
   PROP_FLAGS,
+  PROP_BACKEND,
 
   LAST_PROP
 };
@@ -269,6 +271,10 @@ xapian_database_set_property (GObject      *gobject,
       priv->flags = (XapianDatabaseFlags) g_value_get_flags (value);
       break;
 
+    case PROP_BACKEND:
+      priv->backend = (XapianDatabaseBackend) g_value_get_enum (value);
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, prop_id, pspec);
     }
@@ -294,6 +300,10 @@ xapian_database_get_property (GObject    *gobject,
 
     case PROP_FLAGS:
       g_value_set_flags (value, (int) priv->flags);
+      break;
+
+    case PROP_BACKEND:
+      g_value_set_enum (value, (int) priv->backend);
       break;
 
     default:
@@ -340,17 +350,32 @@ xapian_database_class_init (XapianDatabaseClass *klass)
   /**
    * XapianDatabase:flags:
    *
-   * The flags to open the database with.
+   * The flags to use when opening the database.
    *
    * Since: 1.4
    */
   obj_props[PROP_FLAGS] =
     g_param_spec_flags ("flags", "", "",
                         XAPIAN_TYPE_DATABASE_FLAGS,
-                        0,
+                        XAPIAN_DATABASE_FLAGS_NONE,
                         (GParamFlags) (G_PARAM_READWRITE |
                                        G_PARAM_CONSTRUCT_ONLY |
                                        G_PARAM_STATIC_STRINGS));
+
+  /**
+   * XapianDatabase:backend:
+   *
+   * The backend to use when opening the database.
+   *
+   * Since: 1.4
+   */
+  obj_props[PROP_BACKEND] =
+    g_param_spec_enum ("backend", "", "",
+                       XAPIAN_TYPE_DATABASE_BACKEND,
+                       XAPIAN_DATABASE_BACKEND_GLASS,
+                       (GParamFlags) (G_PARAM_READWRITE |
+                                      G_PARAM_CONSTRUCT_ONLY |
+                                      G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (gobject_class, LAST_PROP, obj_props);
 }
@@ -638,11 +663,11 @@ xapian_database_compact_to_path (XapianDatabase             *self,
 
   int real_flags = 0;
 
-  if (flags & XAPIAN_DB_COMPACT_NO_RENUMBER)
+  if ((flags & XAPIAN_DATABASE_COMPACT_FLAGS_NO_RENUMBER) != 0)
     real_flags |= Xapian::DBCOMPACT_NO_RENUMBER;
-  if (flags & XAPIAN_DB_COMPACT_MULTIPASS)
+  if ((flags & XAPIAN_DATABASE_COMPACT_FLAGS_MULTIPASS) != 0)
     real_flags |= Xapian::DBCOMPACT_MULTIPASS;
-  if (flags & XAPIAN_DB_COMPACT_SINGLE_FILE)
+  if ((flags & XAPIAN_DATABASE_COMPACT_FLAGS_SINGLE_FILE) != 0)
     real_flags |= Xapian::DBCOMPACT_SINGLE_FILE;
 
   const std::string output (path);
@@ -672,11 +697,11 @@ xapian_database_compact_to_fd (XapianDatabase             *self,
 
   int real_flags = 0;
 
-  if (flags & XAPIAN_DB_COMPACT_NO_RENUMBER)
+  if ((flags & XAPIAN_DATABASE_COMPACT_FLAGS_NO_RENUMBER) != 0)
     real_flags |= Xapian::DBCOMPACT_NO_RENUMBER;
-  if (flags & XAPIAN_DB_COMPACT_MULTIPASS)
+  if ((flags & XAPIAN_DATABASE_COMPACT_FLAGS_MULTIPASS) != 0)
     real_flags |= Xapian::DBCOMPACT_MULTIPASS;
-  if (flags & XAPIAN_DB_COMPACT_SINGLE_FILE)
+  if ((flags & XAPIAN_DATABASE_COMPACT_FLAGS_SINGLE_FILE) != 0)
     real_flags |= Xapian::DBCOMPACT_SINGLE_FILE;
 
   real_db->compact (fd, flags);
@@ -685,26 +710,39 @@ xapian_database_compact_to_fd (XapianDatabase             *self,
 #endif
 }
 
+/*< private >
+ * xapian_database_get_flags:
+ * @self: a #XapianDatabase
+ *
+ * Retrieves the flags to be used when constructing a Xapian::Database
+ * object, using the #XapianDatabase:flags and #XapianDatabase:backend
+ * properties.
+ */
 int
 xapian_database_get_flags (XapianDatabase *self)
 {
   XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
   int db_flags = 0;
 
-  if (priv->flags & XAPIAN_DB_NO_SYNC)
+  if ((priv->flags & XAPIAN_DATABASE_FLAGS_NO_SYNC) != 0)
     db_flags |= Xapian::DB_NO_SYNC;
-  if (priv->flags & XAPIAN_DB_FULL_SYNC)
+  if ((priv->flags & XAPIAN_DATABASE_FLAGS_FULL_SYNC) != 0)
     db_flags |= Xapian::DB_FULL_SYNC;
-  if (priv->flags & XAPIAN_DB_DANGEROUS)
+  if ((priv->flags & XAPIAN_DATABASE_FLAGS_DANGEROUS) != 0)
     db_flags |= Xapian::DB_DANGEROUS;
-  if (priv->flags & XAPIAN_DB_RETRY_LOCK)
+  if ((priv->flags & XAPIAN_DATABASE_FLAGS_NO_TERMLIST) != 0)
+    db_flags |= Xapian::DB_NO_TERMLIST;
+  if ((priv->flags & XAPIAN_DATABASE_FLAGS_RETRY_LOCK) != 0)
     db_flags |= Xapian::DB_RETRY_LOCK;
-  if (priv->flags & XAPIAN_DB_BACKEND_GLASS)
-    db_flags |= Xapian::DB_BACKEND_GLASS;
-  if (priv->flags & XAPIAN_DB_BACKEND_CHERT)
-    db_flags |= Xapian::DB_BACKEND_CHERT;
-  if (priv->flags & XAPIAN_DB_BACKEND_STUB)
-    db_flags |= Xapian::DB_BACKEND_STUB;
 
-  return db_flags; 
+  if (priv->backend == XAPIAN_DATABASE_BACKEND_GLASS)
+    db_flags |= Xapian::DB_BACKEND_GLASS;
+  if (priv->backend == XAPIAN_DATABASE_BACKEND_CHERT)
+    db_flags |= Xapian::DB_BACKEND_CHERT;
+  if (priv->backend == XAPIAN_DATABASE_BACKEND_STUB)
+    db_flags |= Xapian::DB_BACKEND_STUB;
+  if (priv->backend == XAPIAN_DATABASE_BACKEND_INMEMORY)
+    db_flags |= Xapian::DB_BACKEND_INMEMORY;
+
+  return db_flags;
 }

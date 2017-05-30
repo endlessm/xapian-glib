@@ -126,6 +126,8 @@ xapian_document_get_internal (XapianDocument *self)
  * Retrieves the numeric value associated to the @slot number inside @document.
  *
  * Returns: the numeric value
+ *
+ * Since: 1.4
  */
 double
 xapian_document_get_numeric_value (XapianDocument *document,
@@ -167,7 +169,9 @@ xapian_document_get_value (XapianDocument *document,
  * Sets (or replaces) a @value at the given @slot number
  * inside the @document.
  *
- * @value will be serialised internally using sortable_serialise()
+ * The given @value will be serialised internally using xapian_sortable_serialise().
+ *
+ * Since: 1.4
  */
 void
 xapian_document_add_numeric_value (XapianDocument *document,
