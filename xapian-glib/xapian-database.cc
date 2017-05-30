@@ -372,7 +372,7 @@ xapian_database_class_init (XapianDatabaseClass *klass)
   obj_props[PROP_BACKEND] =
     g_param_spec_enum ("backend", "", "",
                        XAPIAN_TYPE_DATABASE_BACKEND,
-                       XAPIAN_DATABASE_BACKEND_GLASS,
+                       XAPIAN_DATABASE_BACKEND_DEFAULT,
                        (GParamFlags) (G_PARAM_READWRITE |
                                       G_PARAM_CONSTRUCT_ONLY |
                                       G_PARAM_STATIC_STRINGS));

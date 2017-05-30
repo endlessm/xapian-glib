@@ -300,6 +300,7 @@ GType xapian_database_flags_get_type (void);
 
 /**
  * XapianDatabaseBackend:
+ * @XAPIAN_DATABASE_BACKEND_DEFAULT: Use the default backend
  * @XAPIAN_DATABASE_BACKEND_GLASS: Use the Glass backend
  * @XAPIAN_DATABASE_BACKEND_CHERT: Use the Chert backend
  * @XAPIAN_DATABASE_BACKEND_STUB: Open a stub database
@@ -310,6 +311,7 @@ GType xapian_database_flags_get_type (void);
  * Since: 1.4
  */
 typedef enum {
+  XAPIAN_DATABASE_BACKEND_DEFAULT,
   XAPIAN_DATABASE_BACKEND_GLASS,
   XAPIAN_DATABASE_BACKEND_CHERT,
   XAPIAN_DATABASE_BACKEND_STUB,
