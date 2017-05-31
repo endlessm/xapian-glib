@@ -11,6 +11,6 @@
 
 /* This is an internal version check macro for the Xapian version */
 #define XAPIAN_CHECK_VERSION_INTERNAL(maj,min,rev) \
-   (_XAPIAN_CUR_VERSION > _XAPIAN_VERSION_ENCODE_INTERNAL(maj,min,rev))
+   (_XAPIAN_CUR_VERSION >= _XAPIAN_VERSION_ENCODE_INTERNAL(maj,min,rev))
 
 #endif
