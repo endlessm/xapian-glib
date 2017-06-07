@@ -184,6 +184,8 @@ GType xapian_query_op_get_type (void);
  *   synonyms for single terms
  * @XAPIAN_QUERY_PARSER_FEATURE_AUTO_MULTIWORD_SYNONYMS: enable automatic
  *   use of synonyms for single terms and groups of terms
+ * @XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM: enable generation of n-grams from
+ *   CJK text.
  * @XAPIAN_QUERY_PARSER_FEATURE_DEFAULT: default flags
  *
  * Flags for xapian_query_parser_parse_query_full().
@@ -200,10 +202,15 @@ typedef enum {
   XAPIAN_QUERY_PARSER_FEATURE_SYNONYM = 1 << 8,
   XAPIAN_QUERY_PARSER_FEATURE_AUTO_SYNONYMS = 1 << 9,
   XAPIAN_QUERY_PARSER_FEATURE_AUTO_MULTIWORD_SYNONYMS = 1 << 10 | XAPIAN_QUERY_PARSER_FEATURE_AUTO_SYNONYMS,
+  XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM = 1 << 11,
   XAPIAN_QUERY_PARSER_FEATURE_DEFAULT = XAPIAN_QUERY_PARSER_FEATURE_BOOLEAN |
                                         XAPIAN_QUERY_PARSER_FEATURE_PHRASE |
                                         XAPIAN_QUERY_PARSER_FEATURE_LOVEHATE
 } XapianQueryParserFeature;
+
+/* Allow #ifdef XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM to test for
+ * more recently added enum value. */
+#define XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 GType xapian_query_parser_feature_get_type (void);

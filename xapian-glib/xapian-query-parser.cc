@@ -582,6 +582,8 @@ xapian_query_parser_parse_query_full (XapianQueryParser        *parser,
         real_flags |= Xapian::QueryParser::FLAG_AUTO_SYNONYMS;
       if (flags & XAPIAN_QUERY_PARSER_FEATURE_AUTO_MULTIWORD_SYNONYMS)
         real_flags |= Xapian::QueryParser::FLAG_AUTO_MULTIWORD_SYNONYMS;
+      if (flags & XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM)
+        real_flags |= Xapian::QueryParser::FLAG_CJK_NGRAM;
 
       Xapian::Query query = priv->mQueryParser->parse_query (std::string (query_string),
                                                              real_flags,
