@@ -137,6 +137,8 @@ GQuark xapian_error_quark (void);
  * @XAPIAN_QUERY_OP_VALUE_LE: filters a document value using a
  *   less than or equal test
  * @XAPIAN_QUERY_OP_SYNONYM: treats a set of sub-queries as synonyms
+ * @XAPIAN_QUERY_OP_MAX: pick the maximum weight of any subquery
+ * @XAPIAN_QUERY_OP_WILDCARD: wildcard expansion
  *
  * Operators for #XapianQuery.
  */
@@ -155,10 +157,16 @@ typedef enum {
   XAPIAN_QUERY_OP_VALUE_GE,
   XAPIAN_QUERY_OP_VALUE_LE,
   XAPIAN_QUERY_OP_SYNONYM,
+  XAPIAN_QUERY_OP_MAX,
+  XAPIAN_QUERY_OP_WILDCARD,
 
   /*< private >*/
   XAPIAN_QUERY_OP_LAST
 } XapianQueryOp;
+
+/* Allow #ifdef checks for more recently added enum values. */
+#define XAPIAN_QUERY_OP_MAX XAPIAN_QUERY_OP_MAX
+#define XAPIAN_QUERY_OP_WILDCARD XAPIAN_QUERY_OP_WILDCARD
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 GType xapian_query_op_get_type (void);
