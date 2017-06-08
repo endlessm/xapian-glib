@@ -117,6 +117,14 @@ xapian_query_op_internal (XapianQueryOp op)
       query_op = Xapian::Query::OP_SYNONYM;
       break;
 
+    case XAPIAN_QUERY_OP_MAX:
+      query_op = Xapian::Query::OP_MAX;
+      break;
+
+    case XAPIAN_QUERY_OP_WILDCARD:
+      query_op = Xapian::Query::OP_WILDCARD;
+      break;
+
     default:
       g_assert_not_reached ();
     }
