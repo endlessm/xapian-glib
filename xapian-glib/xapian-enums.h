@@ -137,6 +137,8 @@ GQuark xapian_error_quark (void);
  * @XAPIAN_QUERY_OP_VALUE_LE: filters a document value using a
  *   less than or equal test
  * @XAPIAN_QUERY_OP_SYNONYM: treats a set of sub-queries as synonyms
+ * @XAPIAN_QUERY_OP_MAX: pick the maximum weight of any subquery
+ * @XAPIAN_QUERY_OP_WILDCARD: wildcard expansion
  *
  * Operators for #XapianQuery.
  */
@@ -155,10 +157,16 @@ typedef enum {
   XAPIAN_QUERY_OP_VALUE_GE,
   XAPIAN_QUERY_OP_VALUE_LE,
   XAPIAN_QUERY_OP_SYNONYM,
+  XAPIAN_QUERY_OP_MAX,
+  XAPIAN_QUERY_OP_WILDCARD,
 
   /*< private >*/
   XAPIAN_QUERY_OP_LAST
 } XapianQueryOp;
+
+/* Allow #ifdef checks for more recently added enum values. */
+#define XAPIAN_QUERY_OP_MAX XAPIAN_QUERY_OP_MAX
+#define XAPIAN_QUERY_OP_WILDCARD XAPIAN_QUERY_OP_WILDCARD
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 GType xapian_query_op_get_type (void);
@@ -184,6 +192,8 @@ GType xapian_query_op_get_type (void);
  *   synonyms for single terms
  * @XAPIAN_QUERY_PARSER_FEATURE_AUTO_MULTIWORD_SYNONYMS: enable automatic
  *   use of synonyms for single terms and groups of terms
+ * @XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM: enable generation of n-grams from
+ *   CJK text.
  * @XAPIAN_QUERY_PARSER_FEATURE_DEFAULT: default flags
  *
  * Flags for xapian_query_parser_parse_query_full().
@@ -200,10 +210,15 @@ typedef enum {
   XAPIAN_QUERY_PARSER_FEATURE_SYNONYM = 1 << 8,
   XAPIAN_QUERY_PARSER_FEATURE_AUTO_SYNONYMS = 1 << 9,
   XAPIAN_QUERY_PARSER_FEATURE_AUTO_MULTIWORD_SYNONYMS = 1 << 10 | XAPIAN_QUERY_PARSER_FEATURE_AUTO_SYNONYMS,
+  XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM = 1 << 11,
   XAPIAN_QUERY_PARSER_FEATURE_DEFAULT = XAPIAN_QUERY_PARSER_FEATURE_BOOLEAN |
                                         XAPIAN_QUERY_PARSER_FEATURE_PHRASE |
                                         XAPIAN_QUERY_PARSER_FEATURE_LOVEHATE
 } XapianQueryParserFeature;
+
+/* Allow #ifdef XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM to test for
+ * more recently added enum value. */
+#define XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 GType xapian_query_parser_feature_get_type (void);
