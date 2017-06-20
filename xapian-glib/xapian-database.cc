@@ -53,8 +53,6 @@ struct _XapianDatabasePrivate
 
   Xapian::Database *mDB;
 
-  GHashTable *databases;
-
   guint is_writable : 1;
 };
 
@@ -241,9 +239,6 @@ xapian_database_finalize (GObject *self)
   delete priv->mDB;
 
   g_free (priv->path);
-
-  if (priv->databases != NULL)
-    g_hash_table_unref (priv->databases);
 
   G_OBJECT_CLASS (xapian_database_parent_class)->finalize (self);
 }
@@ -625,22 +620,9 @@ xapian_database_add_database (XapianDatabase *db,
   g_return_if_fail (XAPIAN_IS_DATABASE (db));
   g_return_if_fail (XAPIAN_IS_DATABASE (new_db));
 
-  XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (db);
-  if (priv->databases == NULL)
-    priv->databases = g_hash_table_new_full (NULL, NULL, g_object_unref, NULL);
-
-  if (g_hash_table_lookup (priv->databases, new_db) != NULL)
-    return;
-
   Xapian::Database *real_db = xapian_database_get_internal (db);
 
   real_db->add_database (*xapian_database_get_internal (new_db));
-
-  /* we tie the lifetime of the child database to the parent's because
-   * the transfer rules of Xapian::Database::add_database() are a bit
-   * unclear
-   */
-  g_hash_table_add (priv->databases, g_object_ref (new_db));
 }
 
 /**
