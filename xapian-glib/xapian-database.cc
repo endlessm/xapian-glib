@@ -155,7 +155,7 @@ xapian_database_get_is_writable (XapianDatabase *self)
  * Internal accessor for the #XapianDatabase:path property that
  * avoids a copy.
  *
- * Returs: (transfer none): the path of the database
+ * Returns: (transfer none): the path of the database
  */
 const char *
 xapian_database_get_path (XapianDatabase *self)
