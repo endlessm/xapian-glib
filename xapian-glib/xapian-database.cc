@@ -567,6 +567,24 @@ xapian_database_get_last_doc_id (XapianDatabase *db)
 }
 
 /**
+ * xapian_database_get_average_length:
+ * @db: a #XapianDatabase
+ *
+ * Retrieves the average document length in the database
+ *
+ * Returns: the average document length in the database
+ *
+ * Since: 1.4
+ */
+double
+xapian_database_get_average_length (XapianDatabase *db)
+{
+  g_return_val_if_fail (XAPIAN_IS_DATABASE (db), 0);
+
+  return xapian_database_get_internal (db)->get_avlength ();
+}
+
+/**
  * xapian_database_get_document:
  * @db: a #XapianDatabase
  * @docid: the document id to retrieve
@@ -603,6 +621,50 @@ xapian_database_get_document (XapianDatabase  *db,
 
       return NULL;
     }
+}
+
+/**
+ * xapian_database_get_term_freq
+ * @db: a #XapianDatabase
+ * @term: the term
+ *
+ * Retrieves the term frequency for @term, i.e. the number of different
+ * documents that term indexes.
+ *
+ * Returns: the term frequency for @term
+ *
+ * Since: 1.4
+ */
+unsigned int
+xapian_database_get_term_freq (XapianDatabase *db,
+                               const char     *term)
+{
+  g_return_val_if_fail (XAPIAN_IS_DATABASE (db), 0);
+  g_return_val_if_fail (term == NULL, 0);
+
+  return xapian_database_get_internal (db)->get_termfreq (term);
+}
+
+/**
+ * xapian_database_get_collection_freq
+ * @db: a #XapianDatabase
+ * @term: the term
+ *
+ * Retrieves the collection frequency for @term, i.e. the total number of
+ * times that the term occurs in all documents in the collection.
+ *
+ * Returns: the collection frequency for @term
+ *
+ * Since: 1.4
+ */
+unsigned int
+xapian_database_get_collection_freq (XapianDatabase  *db,
+                                     const char      *term)
+{
+  g_return_val_if_fail (XAPIAN_IS_DATABASE (db), 0);
+  g_return_val_if_fail (term == NULL, 0);
+
+  return xapian_database_get_internal (db)->get_collection_freq (term);
 }
 
 /**
