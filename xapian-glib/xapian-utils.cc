@@ -20,6 +20,8 @@
 
 #include "xapian-utils.h"
 
+#include <cstring>
+
 /**
  * SECTION:xapian-utils
  * @Title: Utilities
@@ -135,28 +137,40 @@ xapian_revision (void)
 /**
  * xapian_sortable_serialise:
  * @value: The numeric value to serialize
+ * @len: (out): Used to return the length of the returned string
  *
- * Convert a floating point number to a string, preserving sort order.
+ * Convert a floating point number to a string, preserving sort order. The
+ * returned string may contain embedded zero bytes, so its length is also
+ * returned.
  *
  * This method converts a floating point number to a string, suitable for using
  * as a value for numeric range restriction, or for use as a sort key.
  *
- * Returns: (transfer full) (array zero-terminated=1) (element-type guint8): the serialised value
+ * Returns: (transfer full) (array length=len): the serialised value
  *
  * Since: 1.4
  */
-char *
-xapian_sortable_serialise (double value)
+guchar *
+xapian_sortable_serialise (double value, gsize *len)
 {
-  return g_strdup (Xapian::sortable_serialise (value).c_str ());
+  const std::string &result = Xapian::sortable_serialise (value);
+  gsize size = result.size ();
+  guchar *buf = static_cast<guchar *> (g_malloc (size));
+
+  *len = size;
+  std::memcpy (buf, result.data (), size);
+
+  return buf;
 }
 
 /**
  * xapian_sortable_unserialise:
- * @value: (array zero-terminated=1) (element-type guint8): The serialized value to be converted
+ * @value: (array length=len): The serialized value to be converted
+ * @len: The length of the serialized value
  *
  * Convert a string encoded using sortable_serialise back to a floating point
- * number.
+ * number. The encoded string may contain embedded zero bytes, so its length
+ * must also be passed.
  *
  * This expects the input to be a string produced by
  * xapian_sortable_serialise(). If the input is not such a string, the value
@@ -167,7 +181,8 @@ xapian_sortable_serialise (double value)
  * Since: 1.4
  */
 double
-xapian_sortable_unserialise (const char *value)
+xapian_sortable_unserialise (const guchar *value, gsize len)
 {
-  return Xapian::sortable_unserialise (value);
+  const char *p = reinterpret_cast<const char*> (value);
+  return Xapian::sortable_unserialise (std::string (p, len));
 }
