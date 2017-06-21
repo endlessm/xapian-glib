@@ -154,6 +154,8 @@ guchar *
 xapian_sortable_serialise (double  value,
                            gsize  *len)
 {
+  g_return_val_if_fail (len != NULL, NULL);
+
   const std::string &result = Xapian::sortable_serialise (value);
   gsize size = result.size ();
   guchar *buf = static_cast<guchar *> (g_malloc (size));
@@ -185,6 +187,8 @@ double
 xapian_sortable_unserialise (const guchar *value,
                              gsize         len)
 {
+  g_return_val_if_fail (value != NULL, 0.0);
+
   const char *p = reinterpret_cast<const char*> (value);
   return Xapian::sortable_unserialise (std::string (p, len));
 }
