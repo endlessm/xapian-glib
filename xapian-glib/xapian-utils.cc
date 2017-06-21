@@ -151,7 +151,8 @@ xapian_revision (void)
  * Since: 1.4
  */
 guchar *
-xapian_sortable_serialise (double value, gsize *len)
+xapian_sortable_serialise (double  value,
+                           gsize  *len)
 {
   const std::string &result = Xapian::sortable_serialise (value);
   gsize size = result.size ();
@@ -181,7 +182,8 @@ xapian_sortable_serialise (double value, gsize *len)
  * Since: 1.4
  */
 double
-xapian_sortable_unserialise (const guchar *value, gsize len)
+xapian_sortable_unserialise (const guchar *value,
+                             gsize         len)
 {
   const char *p = reinterpret_cast<const char*> (value);
   return Xapian::sortable_unserialise (std::string (p, len));
