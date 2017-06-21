@@ -23,8 +23,10 @@
 
 Xapian::PostingSource *      xapian_posting_source_get_internal    (XapianPostingSource   *self);
 
-void                         xapian_posting_source_set_internal    (XapianPostingSource   *self, Xapian::PostingSource *aPostingSource);
+void                         xapian_posting_source_set_internal    (XapianPostingSource   *self,
+                                                                    Xapian::PostingSource *aPostingSource);
 
-void                         xapian_posting_source_set_max_weight  (XapianPostingSource   *self, double max_weight);
+void                         xapian_posting_source_set_max_weight  (XapianPostingSource   *self,
+                                                                    double                 max_weight);
 
 #endif /* __XAPIAN_GLIB_POSTING_SOURCE_PRIVATE_H__ */
