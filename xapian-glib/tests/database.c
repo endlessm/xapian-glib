@@ -134,6 +134,73 @@ database_writable_flags_no_termlist (void)
   delete_database ("glass-db");
 }
 
+static void
+database_writable_allterms (void)
+{
+  GError *error = NULL;
+  XapianWritableDatabase *wdb =
+    xapian_writable_database_new_full ("glass-db",
+                                       XAPIAN_DATABASE_ACTION_CREATE,
+                                       XAPIAN_DATABASE_BACKEND_GLASS,
+                                       0,
+                                       &error);
+
+  g_assert_nonnull (wdb);
+
+  g_object_add_weak_pointer (G_OBJECT (wdb), (gpointer *) &wdb);
+
+  XapianDocument *doc = xapian_document_new ();
+
+  g_object_add_weak_pointer (G_OBJECT (doc), (gpointer *) &doc);
+
+  xapian_document_add_term (doc, "one");
+  xapian_document_add_term (doc, "two");
+
+  xapian_writable_database_add_document (wdb, doc, NULL, &error);
+  g_object_unref (wdb);
+
+  g_object_unref (doc);
+
+  XapianDatabase *db =
+    xapian_database_new_with_path ("glass-db", &error);
+
+  g_object_add_weak_pointer (G_OBJECT (db), (gpointer *) &db);
+
+  // Test with NULL for the prefix.
+  XapianTermIterator *it = xapian_database_allterms (db, NULL);
+  g_assert_true (xapian_term_iterator_next (it));
+  g_assert_cmpstr (xapian_term_iterator_get_term_name (it), ==, "one");
+  g_assert_true (xapian_term_iterator_next (it));
+  g_assert_cmpstr (xapian_term_iterator_get_term_name (it), ==, "two");
+  g_assert_false (xapian_term_iterator_next (it));
+  g_object_unref (it);
+
+  // Test with explicitly empty prefix.
+  it = xapian_database_allterms (db, "");
+  g_assert_true (xapian_term_iterator_next (it));
+  g_assert_cmpstr (xapian_term_iterator_get_term_name (it), ==, "one");
+  g_assert_true (xapian_term_iterator_next (it));
+  g_assert_cmpstr (xapian_term_iterator_get_term_name (it), ==, "two");
+  g_assert_false (xapian_term_iterator_next (it));
+  g_object_unref (it);
+
+  // Test with prefix.
+  it = xapian_database_allterms (db, "t");
+  g_assert_true (xapian_term_iterator_next (it));
+  g_assert_cmpstr (xapian_term_iterator_get_term_name (it), ==, "two");
+  g_assert_false (xapian_term_iterator_next (it));
+  g_object_unref (it);
+
+  // Test with prefix which doesn't match anything.
+  it = xapian_database_allterms (db, "x");
+  g_assert_false (xapian_term_iterator_next (it));
+  g_object_unref (it);
+
+  g_object_unref (db);
+
+  delete_database ("glass-db");
+}
+
 int
 main (int   argc,
       char *argv[])
@@ -145,6 +212,7 @@ main (int   argc,
   g_test_add_func ("/database/writable/new", database_writable_new);
   g_test_add_func ("/database/writable/backend/glass", database_writable_backend_glass);
   g_test_add_func ("/database/writable/flags/no-termlist", database_writable_flags_no_termlist);
+  g_test_add_func ("/database/writable/allterms", database_writable_allterms);
 
   return g_test_run ();
 }

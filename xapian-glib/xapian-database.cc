@@ -38,6 +38,7 @@
 #include "xapian-document-private.h"
 #include "xapian-error-private.h"
 #include "xapian-private.h"
+#include "xapian-term-iterator-private.h"
 
 #define XAPIAN_DATABASE_GET_PRIVATE(obj) \
   ((XapianDatabasePrivate *) xapian_database_get_instance_private ((XapianDatabase *) (obj)))
@@ -807,4 +808,26 @@ xapian_database_get_flags (XapianDatabase *self)
 #endif
 
   return db_flags;
+}
+
+/**
+ * xapian_database_allterms:
+ * @self: A #XapianDatabase
+ * @prefix: (nullable): Prefix to iterate over
+ *
+ * Start iterating over all terms in the database, optionally restricted to
+ * terms with the specified prefix.
+ *
+ * Returns: (transfer full): a #XapianTermIterator instance
+ *
+ * Since: 1.4
+ */
+XapianTermIterator *
+xapian_database_allterms (XapianDatabase *self,
+                          const char *prefix)
+{
+  XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
+
+  std::string string_prefix (prefix ? prefix : "");
+  return xapian_term_iterator_new (priv->mDB->allterms_begin (string_prefix));
 }

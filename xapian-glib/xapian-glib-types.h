@@ -38,6 +38,7 @@ G_BEGIN_DECLS
 #define XAPIAN_TYPE_SIMPLE_STOPPER              (xapian_simple_stopper_get_type ())
 #define XAPIAN_TYPE_STOPPER                     (xapian_stopper_get_type ())
 #define XAPIAN_TYPE_TERM_GENERATOR              (xapian_term_generator_get_type ())
+#define XAPIAN_TYPE_TERM_ITERATOR               (xapian_term_iterator_get_type ())
 
 typedef struct _XapianDatabase                  XapianDatabase;
 typedef struct _XapianWritableDatabase          XapianWritableDatabase;
@@ -57,6 +58,7 @@ typedef struct _XapianMSetIterator              XapianMSetIterator;
 typedef struct _XapianSimpleStopper             XapianSimpleStopper;
 typedef struct _XapianStopper                   XapianStopper;
 typedef struct _XapianTermGenerator             XapianTermGenerator;
+typedef struct _XapianTermIterator              XapianTermIterator;
 
 G_END_DECLS
 
