@@ -211,9 +211,6 @@ class IteratorData {
     }
 
     char * getDescription () {
-      if (!mCurrentInitialized)
-        return NULL;
-
       std::string desc = mCurrent.get_description ();
 
       return g_strdup (desc.c_str ());
