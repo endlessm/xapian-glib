@@ -156,7 +156,7 @@ class IteratorData {
       return mCurrent.get_weight ();
     }
 
-    double getPercent () {
+    int getPercent () {
       if (!mCurrentInitialized)
         return 0;
 
