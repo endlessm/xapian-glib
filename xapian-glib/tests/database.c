@@ -2,6 +2,31 @@
 #include <glib/gstdio.h>
 #include "xapian-glib.h"
 
+/* Remove a directory and all files directly inside it. */
+static void
+delete_database (const char *dir)
+{
+  GDir *d = g_dir_open (dir, 0, NULL);
+  const char *name;
+
+  while ((name = g_dir_read_name (d)) != NULL)
+    {
+      char *path;
+
+      if ((name[0] == '.' && name[1] == '\0') ||
+          (name[0] == '.' && name[1] == '.' && name[2] == '\0'))
+        continue;
+
+      path = g_build_filename (dir, name, NULL);
+      g_unlink (path);
+      g_free (path);
+    }
+
+  g_dir_close (d);
+
+  g_rmdir (dir);
+}
+
 static void
 database_new_empty (void)
 {
@@ -53,27 +78,7 @@ database_writable_new (void)
 
   g_assert_true (g_file_test ("doesexist", G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR));
 
-  {
-    GDir *d = g_dir_open ("doesexist", 0, NULL);
-    const char *name;
-
-    while ((name = g_dir_read_name (d)) != NULL)
-      {
-        char *path;
-
-        if ((name[0] == '.' && name[1] == '\0') ||
-            (name[0] == '.' && name[1] == '.' && name[2] == '\0'))
-          continue;
-
-        path = g_build_filename ("doesexist", name, NULL);
-        g_unlink (path);
-        g_free (path);
-      }
-
-    g_dir_close (d);
-
-    g_rmdir ("doesexist");
-  }
+  delete_database ("doesexist");
 }
 
 static void
@@ -99,27 +104,7 @@ database_writable_backend_glass (void)
   g_assert_true (g_file_test ("glass-db", G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR));
   g_assert_true (g_file_test ("glass-db/termlist.glass", G_FILE_TEST_EXISTS));
 
-  {
-    GDir *d = g_dir_open ("glass-db", 0, NULL);
-    const char *name;
-
-    while ((name = g_dir_read_name (d)) != NULL)
-      {
-        char *path;
-
-        if ((name[0] == '.' && name[1] == '\0') ||
-            (name[0] == '.' && name[1] == '.' && name[2] == '\0'))
-          continue;
-
-        path = g_build_filename ("glass-db", name, NULL);
-        g_unlink (path);
-        g_free (path);
-      }
-
-    g_dir_close (d);
-
-    g_rmdir ("glass-db");
-  }
+  delete_database ("glass-db");
 }
 
 static void
@@ -146,27 +131,7 @@ database_writable_flags_no_termlist (void)
   g_assert_true (g_file_test ("glass-db", G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR));
   g_assert_false (g_file_test ("glass-db/termlist.glass", G_FILE_TEST_EXISTS));
 
-  {
-    GDir *d = g_dir_open ("glass-db", 0, NULL);
-    const char *name;
-
-    while ((name = g_dir_read_name (d)) != NULL)
-      {
-        char *path;
-
-        if ((name[0] == '.' && name[1] == '\0') ||
-            (name[0] == '.' && name[1] == '.' && name[2] == '\0'))
-          continue;
-
-        path = g_build_filename ("glass-db", name, NULL);
-        g_unlink (path);
-        g_free (path);
-      }
-
-    g_dir_close (d);
-
-    g_rmdir ("glass-db");
-  }
+  delete_database ("glass-db");
 }
 
 int
