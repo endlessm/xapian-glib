@@ -53,8 +53,6 @@ typedef struct _XapianStem                      XapianStem;
 typedef struct _XapianQueryParser               XapianQueryParser;
 typedef struct _XapianMSet                      XapianMSet;
 typedef struct _XapianMSetIterator              XapianMSetIterator;
-typedef struct _XapianPostingSource             XapianPostingSource;
-typedef struct _XapianValuePostingSource        XapianValuePostingSource;
 
 typedef struct _XapianSimpleStopper             XapianSimpleStopper;
 typedef struct _XapianStopper                   XapianStopper;
