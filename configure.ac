@@ -1,8 +1,8 @@
 # bump micro_version to the next even number for each point release
 # bump micro_version to the next odd number after each release
 m4_define([xapian_major_version], [1])
-m4_define([xapian_minor_version], [3])
-m4_define([xapian_micro_version], [1])
+m4_define([xapian_minor_version], [4])
+m4_define([xapian_micro_version], [0])
 
 m4_define([xapian_version], [xapian_major_version.xapian_minor_version.xapian_micro_version])
 
@@ -12,7 +12,7 @@ m4_define([xapian_release_status],
 
 # bump up by 1 for every micro release with no API changes, otherwise
 # set to 0. after release, bump up by 1
-m4_define([xapian_interface_age], [1])
+m4_define([xapian_interface_age], [0])
 m4_define([xapian_binary_age], [m4_eval(100 * xapian_minor_version + xapian_micro_version)])
 
 m4_define([lt_current], [m4_eval(100 * xapian_minor_version + xapian_micro_version - xapian_interface_age)])
