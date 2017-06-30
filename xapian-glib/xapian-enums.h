@@ -282,7 +282,7 @@ GType xapian_term_generator_feature_get_type (void);
 typedef enum {
   XAPIAN_DATABASE_COMPACT_FLAGS_NO_RENUMBER   = 1 << 2,
   XAPIAN_DATABASE_COMPACT_FLAGS_MULTIPASS     = 1 << 3,
-  XAPIAN_DATABASE_COMPACT_FLAGS_SINGLE_FILE   = 1 << 4,
+  XAPIAN_DATABASE_COMPACT_FLAGS_SINGLE_FILE   = 1 << 4
 } XapianDatabaseCompactFlags;
 
 XAPIAN_GLIB_AVAILABLE_IN_1_4
@@ -309,7 +309,7 @@ typedef enum {
   XAPIAN_DATABASE_FLAGS_FULL_SYNC               = 1 << 1,
   XAPIAN_DATABASE_FLAGS_DANGEROUS               = 1 << 2,
   XAPIAN_DATABASE_FLAGS_NO_TERMLIST             = 1 << 3,
-  XAPIAN_DATABASE_FLAGS_RETRY_LOCK              = 1 << 4,
+  XAPIAN_DATABASE_FLAGS_RETRY_LOCK              = 1 << 4
 } XapianDatabaseFlags;
 
 XAPIAN_GLIB_AVAILABLE_IN_1_4
