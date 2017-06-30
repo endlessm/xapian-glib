@@ -53,8 +53,6 @@ struct _XapianDatabasePrivate
 
   Xapian::Database *mDB;
 
-  GHashTable *databases;
-
   guint is_writable : 1;
 };
 
@@ -157,7 +155,7 @@ xapian_database_get_is_writable (XapianDatabase *self)
  * Internal accessor for the #XapianDatabase:path property that
  * avoids a copy.
  *
- * Returs: (transfer none): the path of the database
+ * Returns: (transfer none): the path of the database
  */
 const char *
 xapian_database_get_path (XapianDatabase *self)
@@ -241,9 +239,6 @@ xapian_database_finalize (GObject *self)
   delete priv->mDB;
 
   g_free (priv->path);
-
-  if (priv->databases != NULL)
-    g_hash_table_unref (priv->databases);
 
   G_OBJECT_CLASS (xapian_database_parent_class)->finalize (self);
 }
@@ -572,6 +567,24 @@ xapian_database_get_last_doc_id (XapianDatabase *db)
 }
 
 /**
+ * xapian_database_get_average_length:
+ * @db: a #XapianDatabase
+ *
+ * Retrieves the average document length in the database
+ *
+ * Returns: the average document length in the database
+ *
+ * Since: 1.4
+ */
+double
+xapian_database_get_average_length (XapianDatabase *db)
+{
+  g_return_val_if_fail (XAPIAN_IS_DATABASE (db), 0);
+
+  return xapian_database_get_internal (db)->get_avlength ();
+}
+
+/**
  * xapian_database_get_document:
  * @db: a #XapianDatabase
  * @docid: the document id to retrieve
@@ -611,6 +624,50 @@ xapian_database_get_document (XapianDatabase  *db,
 }
 
 /**
+ * xapian_database_get_term_freq
+ * @db: a #XapianDatabase
+ * @term: the term
+ *
+ * Retrieves the term frequency for @term, i.e. the number of different
+ * documents that term indexes.
+ *
+ * Returns: the term frequency for @term
+ *
+ * Since: 1.4
+ */
+unsigned int
+xapian_database_get_term_freq (XapianDatabase *db,
+                               const char     *term)
+{
+  g_return_val_if_fail (XAPIAN_IS_DATABASE (db), 0);
+  g_return_val_if_fail (term == NULL, 0);
+
+  return xapian_database_get_internal (db)->get_termfreq (term);
+}
+
+/**
+ * xapian_database_get_collection_freq
+ * @db: a #XapianDatabase
+ * @term: the term
+ *
+ * Retrieves the collection frequency for @term, i.e. the total number of
+ * times that the term occurs in all documents in the collection.
+ *
+ * Returns: the collection frequency for @term
+ *
+ * Since: 1.4
+ */
+unsigned int
+xapian_database_get_collection_freq (XapianDatabase  *db,
+                                     const char      *term)
+{
+  g_return_val_if_fail (XAPIAN_IS_DATABASE (db), 0);
+  g_return_val_if_fail (term == NULL, 0);
+
+  return xapian_database_get_internal (db)->get_collection_freq (term);
+}
+
+/**
  * xapian_database_add_database:
  * @db: a #XapianDatabase
  * @new_db: a #XapianDatabase
@@ -625,22 +682,9 @@ xapian_database_add_database (XapianDatabase *db,
   g_return_if_fail (XAPIAN_IS_DATABASE (db));
   g_return_if_fail (XAPIAN_IS_DATABASE (new_db));
 
-  XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (db);
-  if (priv->databases == NULL)
-    priv->databases = g_hash_table_new_full (NULL, NULL, g_object_unref, NULL);
-
-  if (g_hash_table_lookup (priv->databases, new_db) != NULL)
-    return;
-
   Xapian::Database *real_db = xapian_database_get_internal (db);
 
   real_db->add_database (*xapian_database_get_internal (new_db));
-
-  /* we tie the lifetime of the child database to the parent's because
-   * the transfer rules of Xapian::Database::add_database() are a bit
-   * unclear
-   */
-  g_hash_table_add (priv->databases, g_object_ref (new_db));
 }
 
 /**

@@ -12,4 +12,5 @@ test_programs = \
 	database \
 	document \
 	query-parser \
+	sortable-serialise \
 	stem

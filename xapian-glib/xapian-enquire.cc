@@ -24,7 +24,7 @@
  * Typically, you create a new #XapianEnquire instance for a specific
  * #XapianDatabase (which may contain multiple groups of databases),
  * and assign a #XapianQuery to the #XapianEnquire instance; then you
- * retrive the set of matching documents through #XapianMSet.
+ * retrieve the set of matching documents through #XapianMSet.
  */
 
 #include "config.h"

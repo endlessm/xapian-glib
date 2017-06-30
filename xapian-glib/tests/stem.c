@@ -54,7 +54,8 @@ stem_get_available_languages (void)
 }
 
 int
-main (int argc, char *argv[])
+main (int   argc,
+      char *argv[])
 {
   g_test_init (&argc, &argv, NULL);
 

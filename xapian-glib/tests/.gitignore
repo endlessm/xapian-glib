@@ -1,5 +1,6 @@
 database
 document
 query-parser
+sortable-serialise
 stem
 writable-database

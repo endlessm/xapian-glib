@@ -6,7 +6,8 @@
 static gboolean show_version = FALSE;
 
 int
-main (int argc, char *argv[])
+main (int   argc,
+      char *argv[])
 {
   static GOptionEntry options[] = {
     { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, "Show version and exit", NULL },

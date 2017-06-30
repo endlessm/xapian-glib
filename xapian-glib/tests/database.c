@@ -170,7 +170,8 @@ database_writable_flags_no_termlist (void)
 }
 
 int
-main (int argc, char *argv[])
+main (int   argc,
+      char *argv[])
 {
   g_test_init (&argc, &argv, NULL);
 

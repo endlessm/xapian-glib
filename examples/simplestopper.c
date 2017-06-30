@@ -66,7 +66,8 @@ simple_stopper_add_term (SimpleStopper *self,
 }
 
 int
-main (int argc, char *argv[])
+main (int   argc,
+      char *argv[])
 {
   SimpleStopper *stopper;
   int i;

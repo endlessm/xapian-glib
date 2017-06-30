@@ -71,10 +71,21 @@ unsigned int            xapian_database_get_doc_count   (XapianDatabase *db);
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 unsigned int            xapian_database_get_last_doc_id (XapianDatabase *db);
 
+XAPIAN_GLIB_AVAILABLE_IN_1_4
+double                  xapian_database_get_average_length (XapianDatabase *db);
+
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianDocument *        xapian_database_get_document    (XapianDatabase *db,
                                                          unsigned int    docid,
                                                          GError        **error);
+
+XAPIAN_GLIB_AVAILABLE_IN_1_4
+unsigned int            xapian_database_get_term_freq   (XapianDatabase *db,
+                                                         const char     *term);
+XAPIAN_GLIB_AVAILABLE_IN_1_4
+unsigned int            xapian_database_get_collection_freq (XapianDatabase *db,
+                                                             const char     *term);
+
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 void                    xapian_database_add_database    (XapianDatabase *db,
