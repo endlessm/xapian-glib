@@ -714,8 +714,17 @@ xapian_database_compact_to_path (XapianDatabase             *self,
   if ((flags & XAPIAN_DATABASE_COMPACT_FLAGS_SINGLE_FILE) != 0)
     real_flags |= Xapian::DBCOMPACT_SINGLE_FILE;
 
-  const std::string output (path);
-  real_db->compact (output, real_flags);
+  try
+    {
+      const std::string output (path);
+      real_db->compact (output, real_flags);
+    }
+  catch (const Xapian::Error &err)
+    {
+      const std::string src_msg = err.get_msg();
+
+      g_critical ("%s", src_msg.c_str());
+    }
 #else
   g_warning ("Compaction not supported by this version of Xapian (current: %d.%d.%d).",
              XAPIAN_MAJOR_VERSION,
@@ -751,7 +760,16 @@ xapian_database_compact_to_fd (XapianDatabase             *self,
   if ((flags & XAPIAN_DATABASE_COMPACT_FLAGS_SINGLE_FILE) != 0)
     real_flags |= Xapian::DBCOMPACT_SINGLE_FILE;
 
-  real_db->compact (fd, flags);
+  try
+    {
+      real_db->compact (fd, real_flags);
+    }
+  catch (const Xapian::Error &err)
+    {
+      const std::string src_msg = err.get_msg();
+
+      g_critical ("%s", src_msg.c_str());
+    }
 #else
   g_warning ("Compaction not supported by this version of Xapian (current: %d.%d.%d).",
              XAPIAN_MAJOR_VERSION,
