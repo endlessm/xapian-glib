@@ -751,7 +751,7 @@ xapian_database_compact_to_fd (XapianDatabase             *self,
   if ((flags & XAPIAN_DATABASE_COMPACT_FLAGS_SINGLE_FILE) != 0)
     real_flags |= Xapian::DBCOMPACT_SINGLE_FILE;
 
-  real_db->compact (fd, flags);
+  real_db->compact (fd, real_flags);
 #else
   g_warning ("Compaction not supported by this version of Xapian (current: %d.%d.%d).",
              XAPIAN_MAJOR_VERSION,
