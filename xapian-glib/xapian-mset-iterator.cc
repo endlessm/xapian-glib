@@ -129,7 +129,17 @@ class IteratorData {
            * constructor, so we just need to add on the size to point it
            * to just after the end.
            */
+#if XAPIAN_MAJOR_VERSION == 1 && XAPIAN_MINOR_VERSION <= 3
+          // MSet::operator+= was added in xapian-core 1.3.7 - to support older
+          // versions we just loop and call operator++.  At least with g++ -O2
+          // this won't be O(n) as the operator++ code inlines to ++index and
+          // the compiler unrolls the loop and squashes this down to
+          // effectively: if (size) index += size;
+          Xapian::doccount size = xapian_mset_get_internal (mMSet)->size ();
+          while (size--) ++mCurrent;
+#else
           mCurrent += xapian_mset_get_internal (mMSet)->size ();
+#endif
           mCurrentInitialized = true;
         }
       else
