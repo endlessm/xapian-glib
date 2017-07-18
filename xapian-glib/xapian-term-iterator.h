@@ -61,7 +61,8 @@ XAPIAN_GLIB_AVAILABLE_IN_1_4
 unsigned int            xapian_term_iterator_get_wdf            (XapianTermIterator *iter,
                                                                  GError            **error);
 XAPIAN_GLIB_AVAILABLE_IN_1_4
-unsigned int            xapian_term_iterator_get_term_freq      (XapianTermIterator *iter,
+gboolean                xapian_term_iterator_get_term_freq      (XapianTermIterator *iter,
+                                                                 unsigned int       *res,
                                                                  GError            **error);
 XAPIAN_GLIB_AVAILABLE_IN_1_4
 char *                  xapian_term_iterator_get_description    (XapianTermIterator *iter);

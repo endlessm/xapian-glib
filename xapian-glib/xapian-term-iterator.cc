@@ -259,28 +259,32 @@ xapian_term_iterator_get_wdf (XapianTermIterator *iter,
 /**
  * xapian_term_iterator_get_term_freq:
  * @iter: a #XapianTermIterator
+ * @res (out): Used to return the term frequency
  * @error: return location for a #GError
  *
  * Retrieves the term frequency of the current item pointed by @iter.
  *
- * Returns: the term frequency
+ * Returns: %TRUE if the term frequency was successfully returned
  *
  * Since: 1.4
  */
-unsigned int
+gboolean
 xapian_term_iterator_get_term_freq (XapianTermIterator *iter,
+                                    unsigned int       *res,
                                     GError            **error)
 {
-  g_return_val_if_fail (XAPIAN_IS_TERM_ITERATOR (iter), 0);
+  g_return_val_if_fail (XAPIAN_IS_TERM_ITERATOR (iter), FALSE);
+  g_return_val_if_fail (res != NULL, FALSE);
 
   XapianTermIteratorPrivate *priv = XAPIAN_TERM_ITERATOR_GET_PRIVATE (iter);
 
   if (priv->data == NULL)
-    return 0;
+    return FALSE;
 
   try
     {
-      return priv->data->getTermFreq ();
+      *res = priv->data->getTermFreq ();
+      return TRUE;
     }
   catch (const Xapian::Error &err)
     {
@@ -289,7 +293,7 @@ xapian_term_iterator_get_term_freq (XapianTermIterator *iter,
       xapian_error_to_gerror (err, &internal_error);
       g_propagate_error (error, internal_error);
 
-      return 0;
+      return FALSE;
     }
 }
 
