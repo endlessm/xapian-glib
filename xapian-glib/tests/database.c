@@ -158,8 +158,10 @@ database_writable_allterms (void)
 
   xapian_writable_database_add_document (wdb, doc, NULL, &error);
   g_object_unref (wdb);
+  g_assert_null (wdb);
 
   g_object_unref (doc);
+  g_assert_null (doc);
 
   XapianDatabase *db =
     xapian_database_new_with_path ("glass-db", &error);
@@ -197,6 +199,7 @@ database_writable_allterms (void)
   g_object_unref (it);
 
   g_object_unref (db);
+  g_assert_null (db);
 
   delete_database ("glass-db");
 }
