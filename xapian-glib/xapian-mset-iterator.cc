@@ -20,6 +20,8 @@
 #include "xapian-document-private.h"
 #include "xapian-error-private.h"
 
+#include <xapian/iterator.h>
+
 /**
  * SECTION:xapian-mset-iterator
  * @Title: XapianMSetIterator
@@ -55,20 +57,15 @@
 
 class IteratorData {
   public:
-    IteratorData (const IteratorData &aData) {
+    IteratorData (const IteratorData &aData)
+        : mCurrent (aData.mCurrent)
+    {
       if (aData.mMSet)
         mMSet = static_cast<XapianMSet *> (g_object_ref (aData.mMSet));
       else
         mMSet = NULL;
 
-      mBegin = new Xapian::MSetIterator (*aData.mBegin);
-      mEnd = new Xapian::MSetIterator (*aData.mEnd);
-
       mCurrentInitialized = aData.mCurrentInitialized;
-      if (mCurrentInitialized)
-        mCurrent = new Xapian::MSetIterator (*aData.mCurrent);
-      else
-        mCurrent = NULL;
 
       if (aData.mDocument)
         mDocument = static_cast<XapianDocument *> (g_object_ref (aData.mDocument));
@@ -76,24 +73,17 @@ class IteratorData {
         mDocument = NULL;
     }
 
-    IteratorData (XapianMSet *aMset) {
+    IteratorData (XapianMSet *aMset)
+        : mCurrent (xapian_mset_get_internal (aMset)->begin ())
+    {
       mMSet = static_cast<XapianMSet *> (g_object_ref (aMset));
 
-      Xapian::MSet *realMSet = xapian_mset_get_internal (aMset);
-
-      mBegin = new Xapian::MSetIterator (realMSet->begin ());
-      mEnd = new Xapian::MSetIterator (realMSet->end ());
-      mCurrent = NULL;
       mCurrentInitialized = false;
 
       mDocument = NULL;
     }
 
     ~IteratorData () {
-      delete mBegin;
-      delete mEnd;
-      delete mCurrent;
-
       if (mMSet)
         g_object_unref (mMSet);
 
@@ -105,71 +95,72 @@ class IteratorData {
       if (!mCurrentInitialized)
         return false;
 
-      return *mCurrent == *mBegin;
+      return mCurrent == xapian_mset_get_internal (mMSet)->begin ();
     }
 
     bool isEnd () {
       if (!mCurrentInitialized)
         return false;
 
-      return *mCurrent == *mEnd;
+      return !Xapian::iterator_valid (mCurrent);
     }
 
     bool next () {
       if (!mCurrentInitialized)
         {
-          mCurrent = new Xapian::MSetIterator (*mBegin);
+          /* mCurrent was already initialised to the first element by the
+           * constructor. */
           mCurrentInitialized = true;
-          return *mCurrent != *mEnd;
+        }
+      else
+        {
+          g_clear_object (&mDocument);
+
+          ++mCurrent;
         }
 
-      g_clear_object (&mDocument);
-
-      ++(*mCurrent);
-
-      if (*mCurrent == *mEnd)
-        return false;
-
-      return true;
+      return Xapian::iterator_valid (mCurrent);
     }
 
     bool prev () {
       if (!mCurrentInitialized)
         {
-          mCurrent = new Xapian::MSetIterator (*mEnd);
+          /* mCurrent was already initialised to the first element by the
+           * constructor, so we just need to add on the size to point it
+           * to just after the end.
+           */
+          mCurrent += xapian_mset_get_internal (mMSet)->size ();
           mCurrentInitialized = true;
-          return *mCurrent != *mBegin;
+        }
+      else
+        {
+          g_clear_object (&mDocument);
+
+          --mCurrent;
         }
 
-      g_clear_object (&mDocument);
-
-      --(*mCurrent);
-
-      if (*mCurrent == *mBegin)
-        return false;
-
-      return true;
+      return mCurrent != xapian_mset_get_internal (mMSet)->begin ();
     }
 
     unsigned int getRank () {
       if (!mCurrentInitialized)
         return 0;
 
-      return mCurrent->get_rank ();
+      return mCurrent.get_rank ();
     }
 
     double getWeight () {
       if (!mCurrentInitialized)
         return 0;
 
-      return mCurrent->get_weight ();
+      return mCurrent.get_weight ();
     }
 
-    double getPercent () {
+    int getPercent () {
       if (!mCurrentInitialized)
         return 0;
 
-      return mCurrent->get_percent ();
+      return mCurrent.get_percent ();
     }
 
     XapianDocument * getDocument (GError **error) {
@@ -186,7 +177,7 @@ class IteratorData {
        */
       try
         {
-          Xapian::Document realDoc = mCurrent->get_document ();
+          Xapian::Document realDoc = mCurrent.get_document ();
 
           mDocument = xapian_document_new_from_document (realDoc);
         }
@@ -216,14 +207,11 @@ class IteratorData {
       if (!mCurrentInitialized)
         return 0;
 
-      return mCurrent->get_collapse_count ();
+      return mCurrent.get_collapse_count ();
     }
 
     char * getDescription () {
-      if (!mCurrentInitialized)
-        return NULL;
-
-      std::string desc = mCurrent->get_description ();
+      std::string desc = mCurrent.get_description ();
 
       return g_strdup (desc.c_str ());
     }
@@ -235,9 +223,7 @@ class IteratorData {
   private:
     XapianMSet *mMSet;
 
-    Xapian::MSetIterator *mBegin;
-    Xapian::MSetIterator *mEnd;
-    Xapian::MSetIterator *mCurrent;
+    Xapian::MSetIterator mCurrent;
 
     bool mCurrentInitialized;
 
