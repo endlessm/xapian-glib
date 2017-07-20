@@ -39,18 +39,18 @@
  */
 
 class IteratorData {
+    IteratorData (const IteratorData &aData);
+
+    void operator= (const IteratorData &aData);
+
   public:
-    IteratorData (const IteratorData &aData) {
-      mCurrentInitialized = aData.mCurrentInitialized;
-      mCurrent = aData.mCurrent;
+    IteratorData ()
+      : mCurrentInitialized(false)
+    {
     }
 
-    IteratorData (const Xapian::TermIterator &it) {
-      mCurrentInitialized = false;
+    void set_iterator (const Xapian::TermIterator &it) {
       mCurrent = it;
-    }
-
-    ~IteratorData () {
     }
 
     bool next () {
@@ -92,7 +92,6 @@ class IteratorData {
     }
 
   private:
-
     Xapian::TermIterator mCurrent;
 
     bool mCurrentInitialized;
@@ -126,6 +125,8 @@ xapian_term_iterator_class_init (XapianTermIteratorClass *klass)
 static void
 xapian_term_iterator_init (XapianTermIterator *self)
 {
+  XapianTermIteratorPrivate *priv = XAPIAN_TERM_ITERATOR_GET_PRIVATE (self);
+  priv->data = new IteratorData ();
 }
 
 /*< private >
@@ -146,7 +147,7 @@ xapian_term_iterator_new (const Xapian::TermIterator &it)
 
   iter = static_cast<XapianTermIterator *> (g_object_new (XAPIAN_TYPE_TERM_ITERATOR, NULL));
   priv = XAPIAN_TERM_ITERATOR_GET_PRIVATE (iter);
-  priv->data = new IteratorData (it);
+  priv->data->set_iterator (it);
 
   return iter;
 }
@@ -190,9 +191,6 @@ xapian_term_iterator_next (XapianTermIterator *iter)
 
   XapianTermIteratorPrivate *priv = XAPIAN_TERM_ITERATOR_GET_PRIVATE (iter);
 
-  if (priv->data == NULL)
-    return FALSE;
-
   return priv->data->next ();
 }
 
@@ -212,9 +210,6 @@ xapian_term_iterator_get_term_name (XapianTermIterator *iter)
   g_return_val_if_fail (XAPIAN_IS_TERM_ITERATOR (iter), 0);
 
   XapianTermIteratorPrivate *priv = XAPIAN_TERM_ITERATOR_GET_PRIVATE (iter);
-
-  if (priv->data == NULL)
-    return NULL;
 
   return priv->data->getTermName ();
 }
@@ -237,9 +232,6 @@ xapian_term_iterator_get_wdf (XapianTermIterator *iter,
   g_return_val_if_fail (XAPIAN_IS_TERM_ITERATOR (iter), 0);
 
   XapianTermIteratorPrivate *priv = XAPIAN_TERM_ITERATOR_GET_PRIVATE (iter);
-
-  if (priv->data == NULL)
-    return 0;
 
   try
     {
@@ -278,9 +270,6 @@ xapian_term_iterator_get_term_freq (XapianTermIterator *iter,
 
   XapianTermIteratorPrivate *priv = XAPIAN_TERM_ITERATOR_GET_PRIVATE (iter);
 
-  if (priv->data == NULL)
-    return FALSE;
-
   try
     {
       *res = priv->data->getTermFreq ();
@@ -313,9 +302,6 @@ xapian_term_iterator_get_description (XapianTermIterator *iter)
   g_return_val_if_fail (XAPIAN_IS_TERM_ITERATOR (iter), NULL);
 
   XapianTermIteratorPrivate *priv = XAPIAN_TERM_ITERATOR_GET_PRIVATE (iter);
-
-  if (priv->data == NULL)
-    return NULL;
 
   return priv->data->getDescription ();
 }
