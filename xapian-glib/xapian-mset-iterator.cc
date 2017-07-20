@@ -136,7 +136,8 @@ class IteratorData {
           // the compiler unrolls the loop and squashes this down to
           // effectively: if (size) index += size;
           Xapian::doccount size = xapian_mset_get_internal (mMSet)->size ();
-          while (size--) ++mCurrent;
+          while (size--)
+            ++mCurrent;
 #else
           mCurrent += xapian_mset_get_internal (mMSet)->size ();
 #endif
