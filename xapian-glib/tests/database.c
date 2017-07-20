@@ -138,6 +138,7 @@ static void
 database_writable_allterms (void)
 {
   GError *error = NULL;
+  char *term;
   XapianWritableDatabase *wdb =
     xapian_writable_database_new_full ("glass-db",
                                        XAPIAN_DATABASE_ACTION_CREATE,
@@ -171,25 +172,35 @@ database_writable_allterms (void)
   // Test with NULL for the prefix.
   XapianTermIterator *it = xapian_database_allterms (db, NULL);
   g_assert_true (xapian_term_iterator_next (it));
-  g_assert_cmpstr (xapian_term_iterator_get_term_name (it), ==, "one");
+  term = xapian_term_iterator_get_term_name (it);
+  g_assert_cmpstr (term, ==, "one");
+  g_free (term);
   g_assert_true (xapian_term_iterator_next (it));
-  g_assert_cmpstr (xapian_term_iterator_get_term_name (it), ==, "two");
+  term = xapian_term_iterator_get_term_name (it);
+  g_assert_cmpstr (term, ==, "two");
+  g_free (term);
   g_assert_false (xapian_term_iterator_next (it));
   g_object_unref (it);
 
   // Test with explicitly empty prefix.
   it = xapian_database_allterms (db, "");
   g_assert_true (xapian_term_iterator_next (it));
-  g_assert_cmpstr (xapian_term_iterator_get_term_name (it), ==, "one");
+  term = xapian_term_iterator_get_term_name (it);
+  g_assert_cmpstr (term, ==, "one");
+  g_free (term);
   g_assert_true (xapian_term_iterator_next (it));
-  g_assert_cmpstr (xapian_term_iterator_get_term_name (it), ==, "two");
+  term = xapian_term_iterator_get_term_name (it);
+  g_assert_cmpstr (term, ==, "two");
+  g_free (term);
   g_assert_false (xapian_term_iterator_next (it));
   g_object_unref (it);
 
   // Test with prefix.
   it = xapian_database_allterms (db, "t");
   g_assert_true (xapian_term_iterator_next (it));
-  g_assert_cmpstr (xapian_term_iterator_get_term_name (it), ==, "two");
+  term = xapian_term_iterator_get_term_name (it);
+  g_assert_cmpstr (term, ==, "two");
+  g_free (term);
   g_assert_false (xapian_term_iterator_next (it));
   g_object_unref (it);
 
