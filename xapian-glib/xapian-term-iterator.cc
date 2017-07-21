@@ -233,7 +233,7 @@ xapian_term_iterator_get_wdf (XapianTermIterator *iter,
 /**
  * xapian_term_iterator_get_term_freq:
  * @iter: a #XapianTermIterator
- * @res (out): Used to return the term frequency
+ * @res: (out): Used to return the term frequency
  * @error: return location for a #GError
  *
  * Retrieves the term frequency of the current item pointed by @iter.
