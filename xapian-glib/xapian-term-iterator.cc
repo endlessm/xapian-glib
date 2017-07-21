@@ -137,7 +137,7 @@ xapian_term_iterator_init (XapianTermIterator *self)
  *
  * Returns: (transfer full): the newly created #XapianTermIterator
  *
- * Since: 1.4
+ * Since: 1.6
  */
 XapianTermIterator *
 xapian_term_iterator_new (const Xapian::TermIterator &it)
@@ -164,7 +164,7 @@ xapian_term_iterator_new (const Xapian::TermIterator &it)
  *
  * Returns: %TRUE if the iterator was advanced, and %FALSE otherwise
  *
- * Since: 1.4
+ * Since: 1.6
  */
 gboolean
 xapian_term_iterator_next (XapianTermIterator *iter)
@@ -184,7 +184,7 @@ xapian_term_iterator_next (XapianTermIterator *iter)
  *
  * Returns: (transfer full): the term name
  *
- * Since: 1.4
+ * Since: 1.6
  */
 char *
 xapian_term_iterator_get_term_name (XapianTermIterator *iter)
@@ -205,7 +205,7 @@ xapian_term_iterator_get_term_name (XapianTermIterator *iter)
  *
  * Returns: the WDF
  *
- * Since: 1.4
+ * Since: 1.6
  */
 unsigned int
 xapian_term_iterator_get_wdf (XapianTermIterator *iter,
@@ -240,7 +240,7 @@ xapian_term_iterator_get_wdf (XapianTermIterator *iter,
  *
  * Returns: %TRUE if the term frequency was successfully returned
  *
- * Since: 1.4
+ * Since: 1.6
  */
 gboolean
 xapian_term_iterator_get_term_freq (XapianTermIterator *iter,
@@ -276,7 +276,7 @@ xapian_term_iterator_get_term_freq (XapianTermIterator *iter,
  *
  * Returns: (transfer full): a description of the iterator
  *
- * Since: 1.4
+ * Since: 1.6
  */
 char *
 xapian_term_iterator_get_description (XapianTermIterator *iter)

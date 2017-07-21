@@ -47,22 +47,22 @@ struct _XapianTermIteratorClass
   GObjectClass parent_instance;
 };
 
-XAPIAN_GLIB_AVAILABLE_IN_1_4
+XAPIAN_GLIB_AVAILABLE_IN_1_6
 GType xapian_term_iterator_get_type (void);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_4
+XAPIAN_GLIB_AVAILABLE_IN_1_6
 gboolean                xapian_term_iterator_next               (XapianTermIterator *iter);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_4
+XAPIAN_GLIB_AVAILABLE_IN_1_6
 char *                  xapian_term_iterator_get_term_name      (XapianTermIterator *iter);
-XAPIAN_GLIB_AVAILABLE_IN_1_4
+XAPIAN_GLIB_AVAILABLE_IN_1_6
 unsigned int            xapian_term_iterator_get_wdf            (XapianTermIterator *iter,
                                                                  GError            **error);
-XAPIAN_GLIB_AVAILABLE_IN_1_4
+XAPIAN_GLIB_AVAILABLE_IN_1_6
 gboolean                xapian_term_iterator_get_term_freq      (XapianTermIterator *iter,
                                                                  unsigned int       *res,
                                                                  GError            **error);
-XAPIAN_GLIB_AVAILABLE_IN_1_4
+XAPIAN_GLIB_AVAILABLE_IN_1_6
 char *                  xapian_term_iterator_get_description    (XapianTermIterator *iter);
 
 G_END_DECLS
