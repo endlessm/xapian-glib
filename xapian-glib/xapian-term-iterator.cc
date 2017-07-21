@@ -31,7 +31,7 @@
  * A typical example is:
  *
  * |[<!-- language="C" -->
- *   XapianTermIterator *iter = xapian_database_allterms (db);
+ *   XapianTermIterator *iter = xapian_database_enumerate_all_terms (db);
  *
  *   while (xapian_term_iterator_next (iter))
  *     g_print ("%s", xapian_term_iterator_get_term (iter));

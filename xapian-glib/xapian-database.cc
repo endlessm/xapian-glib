@@ -812,7 +812,7 @@ xapian_database_get_flags (XapianDatabase *self)
 }
 
 /**
- * xapian_database_allterms:
+ * xapian_database_enumerate_all_terms:
  * @self: A #XapianDatabase
  * @prefix: (nullable): Prefix to iterate over
  *
@@ -824,8 +824,8 @@ xapian_database_get_flags (XapianDatabase *self)
  * Since: 1.4
  */
 XapianTermIterator *
-xapian_database_allterms (XapianDatabase *self,
-                          const char *prefix)
+xapian_database_enumerate_all_terms (XapianDatabase *self,
+                                     const char *prefix)
 {
   XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
 

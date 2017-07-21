@@ -135,7 +135,7 @@ database_writable_flags_no_termlist (void)
 }
 
 static void
-database_writable_allterms (void)
+database_writable_all_terms (void)
 {
   GError *error = NULL;
   char *term;
@@ -170,7 +170,7 @@ database_writable_allterms (void)
   g_object_add_weak_pointer (G_OBJECT (db), (gpointer *) &db);
 
   // Test with NULL for the prefix.
-  XapianTermIterator *it = xapian_database_allterms (db, NULL);
+  XapianTermIterator *it = xapian_database_enumerate_all_terms (db, NULL);
   g_assert_true (xapian_term_iterator_next (it));
   term = xapian_term_iterator_get_term_name (it);
   g_assert_cmpstr (term, ==, "one");
@@ -183,7 +183,7 @@ database_writable_allterms (void)
   g_object_unref (it);
 
   // Test with explicitly empty prefix.
-  it = xapian_database_allterms (db, "");
+  it = xapian_database_enumerate_all_terms (db, "");
   g_assert_true (xapian_term_iterator_next (it));
   term = xapian_term_iterator_get_term_name (it);
   g_assert_cmpstr (term, ==, "one");
@@ -196,7 +196,7 @@ database_writable_allterms (void)
   g_object_unref (it);
 
   // Test with prefix.
-  it = xapian_database_allterms (db, "t");
+  it = xapian_database_enumerate_all_terms (db, "t");
   g_assert_true (xapian_term_iterator_next (it));
   term = xapian_term_iterator_get_term_name (it);
   g_assert_cmpstr (term, ==, "two");
@@ -205,7 +205,7 @@ database_writable_allterms (void)
   g_object_unref (it);
 
   // Test with prefix which doesn't match anything.
-  it = xapian_database_allterms (db, "x");
+  it = xapian_database_enumerate_all_terms (db, "x");
   g_assert_false (xapian_term_iterator_next (it));
   g_object_unref (it);
 
@@ -226,7 +226,7 @@ main (int   argc,
   g_test_add_func ("/database/writable/new", database_writable_new);
   g_test_add_func ("/database/writable/backend/glass", database_writable_backend_glass);
   g_test_add_func ("/database/writable/flags/no-termlist", database_writable_flags_no_termlist);
-  g_test_add_func ("/database/writable/allterms", database_writable_allterms);
+  g_test_add_func ("/database/writable/all_terms", database_writable_all_terms);
 
   return g_test_run ();
 }

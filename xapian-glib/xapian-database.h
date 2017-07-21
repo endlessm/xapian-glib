@@ -103,8 +103,8 @@ void                    xapian_database_compact_to_fd   (XapianDatabase         
                                                          XapianDatabaseCompactFlags  flags);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_4
-XapianTermIterator *    xapian_database_allterms        (XapianDatabase *self,
-                                                         const char     *prefix);
+XapianTermIterator *    xapian_database_enumerate_all_terms (XapianDatabase *self,
+                                                             const char     *prefix);
 
 G_END_DECLS
 
