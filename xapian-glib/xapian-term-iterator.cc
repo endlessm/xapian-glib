@@ -16,7 +16,7 @@
 
 #include <config.h>
 
-#include "xapian-term-iterator.h"
+#include "xapian-term-iterator-private.h"
 #include "xapian-error-private.h"
 
 #include <xapian/iterator.h>
