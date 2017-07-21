@@ -2,6 +2,31 @@
 #include <glib/gstdio.h>
 #include "xapian-glib.h"
 
+/* Remove a directory and all files directly inside it. */
+static void
+delete_database (const char *dir)
+{
+  GDir *d = g_dir_open (dir, 0, NULL);
+  const char *name;
+
+  while ((name = g_dir_read_name (d)) != NULL)
+    {
+      char *path;
+
+      if ((name[0] == '.' && name[1] == '\0') ||
+          (name[0] == '.' && name[1] == '.' && name[2] == '\0'))
+        continue;
+
+      path = g_build_filename (dir, name, NULL);
+      g_unlink (path);
+      g_free (path);
+    }
+
+  g_dir_close (d);
+
+  g_rmdir (dir);
+}
+
 static void
 database_new_empty (void)
 {
@@ -53,27 +78,7 @@ database_writable_new (void)
 
   g_assert_true (g_file_test ("doesexist", G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR));
 
-  {
-    GDir *d = g_dir_open ("doesexist", 0, NULL);
-    const char *name;
-
-    while ((name = g_dir_read_name (d)) != NULL)
-      {
-        char *path;
-
-        if ((name[0] == '.' && name[1] == '\0') ||
-            (name[0] == '.' && name[1] == '.' && name[2] == '\0'))
-          continue;
-
-        path = g_build_filename ("doesexist", name, NULL);
-        g_unlink (path);
-        g_free (path);
-      }
-
-    g_dir_close (d);
-
-    g_rmdir ("doesexist");
-  }
+  delete_database ("doesexist");
 }
 
 static void
@@ -99,27 +104,7 @@ database_writable_backend_glass (void)
   g_assert_true (g_file_test ("glass-db", G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR));
   g_assert_true (g_file_test ("glass-db/termlist.glass", G_FILE_TEST_EXISTS));
 
-  {
-    GDir *d = g_dir_open ("glass-db", 0, NULL);
-    const char *name;
-
-    while ((name = g_dir_read_name (d)) != NULL)
-      {
-        char *path;
-
-        if ((name[0] == '.' && name[1] == '\0') ||
-            (name[0] == '.' && name[1] == '.' && name[2] == '\0'))
-          continue;
-
-        path = g_build_filename ("glass-db", name, NULL);
-        g_unlink (path);
-        g_free (path);
-      }
-
-    g_dir_close (d);
-
-    g_rmdir ("glass-db");
-  }
+  delete_database ("glass-db");
 }
 
 static void
@@ -146,27 +131,88 @@ database_writable_flags_no_termlist (void)
   g_assert_true (g_file_test ("glass-db", G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR));
   g_assert_false (g_file_test ("glass-db/termlist.glass", G_FILE_TEST_EXISTS));
 
-  {
-    GDir *d = g_dir_open ("glass-db", 0, NULL);
-    const char *name;
+  delete_database ("glass-db");
+}
 
-    while ((name = g_dir_read_name (d)) != NULL)
-      {
-        char *path;
+static void
+database_writable_all_terms (void)
+{
+  GError *error = NULL;
+  char *term;
+  XapianWritableDatabase *wdb =
+    xapian_writable_database_new_full ("glass-db",
+                                       XAPIAN_DATABASE_ACTION_CREATE,
+                                       XAPIAN_DATABASE_BACKEND_GLASS,
+                                       0,
+                                       &error);
 
-        if ((name[0] == '.' && name[1] == '\0') ||
-            (name[0] == '.' && name[1] == '.' && name[2] == '\0'))
-          continue;
+  g_assert_nonnull (wdb);
 
-        path = g_build_filename ("glass-db", name, NULL);
-        g_unlink (path);
-        g_free (path);
-      }
+  g_object_add_weak_pointer (G_OBJECT (wdb), (gpointer *) &wdb);
 
-    g_dir_close (d);
+  XapianDocument *doc = xapian_document_new ();
 
-    g_rmdir ("glass-db");
-  }
+  g_object_add_weak_pointer (G_OBJECT (doc), (gpointer *) &doc);
+
+  xapian_document_add_term (doc, "one");
+  xapian_document_add_term (doc, "two");
+
+  xapian_writable_database_add_document (wdb, doc, NULL, &error);
+  g_object_unref (wdb);
+  g_assert_null (wdb);
+
+  g_object_unref (doc);
+  g_assert_null (doc);
+
+  XapianDatabase *db =
+    xapian_database_new_with_path ("glass-db", &error);
+
+  g_object_add_weak_pointer (G_OBJECT (db), (gpointer *) &db);
+
+  // Test with NULL for the prefix.
+  XapianTermIterator *it = xapian_database_enumerate_all_terms (db, NULL);
+  g_assert_true (xapian_term_iterator_next (it));
+  term = xapian_term_iterator_get_term_name (it);
+  g_assert_cmpstr (term, ==, "one");
+  g_free (term);
+  g_assert_true (xapian_term_iterator_next (it));
+  term = xapian_term_iterator_get_term_name (it);
+  g_assert_cmpstr (term, ==, "two");
+  g_free (term);
+  g_assert_false (xapian_term_iterator_next (it));
+  g_object_unref (it);
+
+  // Test with explicitly empty prefix.
+  it = xapian_database_enumerate_all_terms (db, "");
+  g_assert_true (xapian_term_iterator_next (it));
+  term = xapian_term_iterator_get_term_name (it);
+  g_assert_cmpstr (term, ==, "one");
+  g_free (term);
+  g_assert_true (xapian_term_iterator_next (it));
+  term = xapian_term_iterator_get_term_name (it);
+  g_assert_cmpstr (term, ==, "two");
+  g_free (term);
+  g_assert_false (xapian_term_iterator_next (it));
+  g_object_unref (it);
+
+  // Test with prefix.
+  it = xapian_database_enumerate_all_terms (db, "t");
+  g_assert_true (xapian_term_iterator_next (it));
+  term = xapian_term_iterator_get_term_name (it);
+  g_assert_cmpstr (term, ==, "two");
+  g_free (term);
+  g_assert_false (xapian_term_iterator_next (it));
+  g_object_unref (it);
+
+  // Test with prefix which doesn't match anything.
+  it = xapian_database_enumerate_all_terms (db, "x");
+  g_assert_false (xapian_term_iterator_next (it));
+  g_object_unref (it);
+
+  g_object_unref (db);
+  g_assert_null (db);
+
+  delete_database ("glass-db");
 }
 
 int
@@ -180,6 +226,7 @@ main (int   argc,
   g_test_add_func ("/database/writable/new", database_writable_new);
   g_test_add_func ("/database/writable/backend/glass", database_writable_backend_glass);
   g_test_add_func ("/database/writable/flags/no-termlist", database_writable_flags_no_termlist);
+  g_test_add_func ("/database/writable/all_terms", database_writable_all_terms);
 
   return g_test_run ();
 }

@@ -1,4 +1,5 @@
 /* Copyright 2014  Endless Mobile
+ * Copyright 2017  Olly Betts
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -100,6 +101,10 @@ XAPIAN_GLIB_AVAILABLE_IN_1_4
 void                    xapian_database_compact_to_fd   (XapianDatabase             *self,
                                                          int                         fd,
                                                          XapianDatabaseCompactFlags  flags);
+
+XAPIAN_GLIB_AVAILABLE_IN_1_4
+XapianTermIterator *    xapian_database_enumerate_all_terms (XapianDatabase *self,
+                                                             const char     *prefix);
 
 G_END_DECLS
 

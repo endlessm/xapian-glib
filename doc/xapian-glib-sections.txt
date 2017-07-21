@@ -20,6 +20,7 @@ xapian_database_add_database
 XapianDatabaseCompactFlags
 xapian_database_compact_to_path
 xapian_database_compact_to_fd
+xapian_database_enumerate_all_terms
 <SUBSECTION Standard>
 XAPIAN_DATABASE
 XAPIAN_DATABASE_CLASS
@@ -348,6 +349,26 @@ XapianTermGenerator
 XapianTermGeneratorClass
 xapian_term_generator_get_type
 xapian_term_generator_feature_get_type
+</SECTION>
+
+<SECTION>
+<FILE>xapian-term-iterator</FILE>
+<TITLE>XapianTermIterator</TITLE>
+xapian_term_iterator_next
+xapian_term_iterator_get_term_name
+xapian_term_iterator_get_wdf
+xapian_term_iterator_get_term_freq
+xapian_term_iterator_get_description
+<SUBSECTION Standard>
+XAPIAN_IS_TERM_ITERATOR
+XAPIAN_IS_TERM_ITERATOR_CLASS
+XAPIAN_TERM_ITERATOR
+XAPIAN_TERM_ITERATOR_CLASS
+XAPIAN_TERM_ITERATOR_GET_CLASS
+XAPIAN_TYPE_TERM_ITERATOR
+XapianTermIterator
+XapianTermIteratorClass
+xapian_term_iterator_get_type
 </SECTION>
 
 <SECTION>

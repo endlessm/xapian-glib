@@ -35,6 +35,7 @@ source_h_public = \
 	xapian-simple-stopper.h \
 	xapian-stopper.h \
 	xapian-term-generator.h \
+	xapian-term-iterator.h \
 	xapian-utils.h \
 	xapian-writable-database.h \
 	$(NULL)
@@ -49,6 +50,7 @@ source_h_private = \
 	xapian-query-private.h \
 	xapian-stem-private.h \
 	xapian-stopper-private.h \
+	xapian-term-iterator-private.h \
 	xapian-value-posting-source-private.h \
 	$(NULL)
 
@@ -69,6 +71,7 @@ source_c_public = \
 	xapian-simple-stopper.cc \
 	xapian-stopper.cc \
 	xapian-term-generator.cc \
+	xapian-term-iterator.cc \
 	xapian-utils.cc \
 	xapian-writable-database.cc \
 	$(NULL)

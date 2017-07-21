@@ -1,5 +1,4 @@
-/* Copyright 2014  Endless Mobile
- * Copyright 2017  Olly Betts
+/* Copyright 2017  Olly Betts
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -15,30 +14,12 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __XAPIAN_GLIB_H__
-#define __XAPIAN_GLIB_H__
+#ifndef __XAPIAN_GLIB_TERM_ITERATOR_PRIVATE_H__
+#define __XAPIAN_GLIB_TERM_ITERATOR_PRIVATE_H__
 
-#define XAPIAN_GLIB_H_INSIDE
-
-#include "xapian-glib-types.h"
-#include "xapian-glib-version.h"
-#include "xapian-glib-macros.h"
-
-#include "xapian-database.h"
-#include "xapian-document.h"
-#include "xapian-enquire.h"
-#include "xapian-enums.h"
-#include "xapian-mset.h"
-#include "xapian-query.h"
-#include "xapian-query-parser.h"
-#include "xapian-simple-stopper.h"
-#include "xapian-stem.h"
-#include "xapian-stopper.h"
-#include "xapian-term-generator.h"
+#include <xapian.h>
 #include "xapian-term-iterator.h"
-#include "xapian-utils.h"
-#include "xapian-writable-database.h"
 
-#undef XAPIAN_GLIB_H_INSIDE
+XapianTermIterator *    xapian_term_iterator_new        (const Xapian::TermIterator &it);
 
-#endif /* __XAPIAN_GLIB_H__ */
+#endif /* __XAPIAN_GLIB_TERM_ITERATOR_PRIVATE_H__ */
