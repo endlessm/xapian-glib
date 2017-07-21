@@ -153,24 +153,6 @@ xapian_term_iterator_new (const Xapian::TermIterator &it)
 }
 
 /**
- * xapian_term_iterator_is_valid:
- * @iter: a #XapianTermIterator
- *
- * Checks whether @iter is valid.
- *
- * Returns: %TRUE if the iterator is valid
- *
- * Since: 1.4
- */
-gboolean
-xapian_term_iterator_is_valid (XapianTermIterator *iter)
-{
-  g_return_val_if_fail (XAPIAN_IS_TERM_ITERATOR (iter), FALSE);
-
-  return XAPIAN_TERM_ITERATOR_GET_PRIVATE (iter)->data != NULL;
-}
-
-/**
  * xapian_term_iterator_next:
  * @iter: a #XapianTermIterator
  *

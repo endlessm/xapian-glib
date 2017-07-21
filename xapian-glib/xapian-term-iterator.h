@@ -52,8 +52,6 @@ GType xapian_term_iterator_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_4
 gboolean                xapian_term_iterator_next               (XapianTermIterator *iter);
-XAPIAN_GLIB_AVAILABLE_IN_1_4
-gboolean                xapian_term_iterator_is_valid           (XapianTermIterator *iter);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_4
 char *                  xapian_term_iterator_get_term_name      (XapianTermIterator *iter);
