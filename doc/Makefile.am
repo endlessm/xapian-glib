@@ -21,6 +21,7 @@ IGNORE_HFILES = \
 	xapian-query-private.h \
 	xapian-stem-private.h \
 	xapian-stopper-private.h \
+	xapian-term-iterator-private.h \
 	xapian-glib-macros.h \
 	xapian-glib.h
 
