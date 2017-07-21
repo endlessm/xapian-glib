@@ -31,6 +31,7 @@ static void
 database_new_empty (void)
 {
   XapianDatabase *db = xapian_database_new (NULL);
+  char * uuid;
 
   g_assert_nonnull (db);
 
@@ -38,8 +39,10 @@ database_new_empty (void)
 
   g_assert (XAPIAN_IS_DATABASE (db));
 
-  g_assert_nonnull (xapian_database_get_uuid (db));
-  g_assert_cmpstr (xapian_database_get_uuid (db), ==, "");
+  uuid = xapian_database_get_uuid (db);
+  g_assert_nonnull (uuid);
+  g_assert_cmpstr (uuid, ==, "");
+  g_free (uuid);
 
   g_object_unref (db);
   g_assert_null (db);
