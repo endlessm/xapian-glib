@@ -48,7 +48,9 @@ document_remove_value (void)
 
   xapian_document_remove_value (doc, 42);
   g_assert_cmpint (xapian_document_get_values_count (doc), ==, 0);
-  g_assert_cmpstr (xapian_document_get_value (doc, 42), ==, "");
+  val = xapian_document_get_value (doc, 42);
+  g_assert_cmpstr (val, ==, "");
+  g_free (val);
 
   g_object_unref (doc);
   g_assert_null (doc);
@@ -71,7 +73,9 @@ document_clear_values (void)
 
   xapian_document_clear_values (doc);
   g_assert_cmpint (xapian_document_get_values_count (doc), ==, 0);
-  g_assert_cmpstr (xapian_document_get_value (doc, 42), ==, "");
+  val = xapian_document_get_value (doc, 42);
+  g_assert_cmpstr (val, ==, "");
+  g_free (val);
 
   g_object_unref (doc);
   g_assert_null (doc);
