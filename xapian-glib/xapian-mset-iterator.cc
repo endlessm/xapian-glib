@@ -56,31 +56,23 @@
  */
 
 class IteratorData {
+    IteratorData (const IteratorData &aData);
+
+    void operator= (const IteratorData &aData);
+
   public:
-    IteratorData (const IteratorData &aData)
-        : mCurrent (aData.mCurrent)
+    IteratorData ()
+      : mMSet (NULL),
+        mCurrentInitialized (false),
+        mDocument (NULL)
     {
-      if (aData.mMSet)
-        mMSet = static_cast<XapianMSet *> (g_object_ref (aData.mMSet));
-      else
-        mMSet = NULL;
-
-      mCurrentInitialized = aData.mCurrentInitialized;
-
-      if (aData.mDocument)
-        mDocument = static_cast<XapianDocument *> (g_object_ref (aData.mDocument));
-      else
-        mDocument = NULL;
     }
 
-    IteratorData (XapianMSet *aMset)
-        : mCurrent (xapian_mset_get_internal (aMset)->begin ())
+    void set_mset (XapianMSet *aMset)
     {
+      mCurrent = xapian_mset_get_internal (aMset)->begin ();
+
       mMSet = static_cast<XapianMSet *> (g_object_ref (aMset));
-
-      mCurrentInitialized = false;
-
-      mDocument = NULL;
     }
 
     ~IteratorData () {
@@ -123,6 +115,9 @@ class IteratorData {
     }
 
     bool prev () {
+      if (mMSet == NULL)
+        return FALSE;
+
       if (!mCurrentInitialized)
         {
           /* mCurrent was already initialised to the first element by the
@@ -269,6 +264,8 @@ xapian_mset_iterator_class_init (XapianMSetIteratorClass *klass)
 static void
 xapian_mset_iterator_init (XapianMSetIterator *self)
 {
+  XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (self);
+  priv->data = new IteratorData ();
 }
 
 XapianMSetIterator *
@@ -279,7 +276,7 @@ xapian_mset_iterator_new (XapianMSet *mset)
 
   iter = static_cast<XapianMSetIterator *> (g_object_new (XAPIAN_TYPE_MSET_ITERATOR, NULL));
   priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
-  priv->data = new IteratorData (mset);
+  priv->data->set_mset (mset);
 
   return iter;
 }
@@ -288,16 +285,21 @@ xapian_mset_iterator_new (XapianMSet *mset)
  * xapian_mset_iterator_is_valid:
  * @iter: a #XapianMSetIterator
  *
- * Checks whether @iter is valid.
+ * Prior to 1.6, this function would check whether @iter was valid.  However
+ * #XapianMSetIterator objects are now always valid, and this function always
+ * returns %TRUE.
  *
- * Returns: %TRUE if the iterator is valid
+ * Returns: %TRUE
+ *
+ * Deprecated: 1.6: The iterator is now always valid, so checks using this
+ * function can be eliminated.
  */
 gboolean
 xapian_mset_iterator_is_valid (XapianMSetIterator *iter)
 {
   g_return_val_if_fail (XAPIAN_IS_MSET_ITERATOR (iter), FALSE);
 
-  return XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter)->data != NULL;
+  return TRUE;
 }
 
 /**
@@ -314,9 +316,6 @@ xapian_mset_iterator_is_begin (XapianMSetIterator *iter)
   g_return_val_if_fail (XAPIAN_IS_MSET_ITERATOR (iter), FALSE);
 
   XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
-
-  if (priv->data == NULL)
-    return FALSE;
 
   return priv->data->isBegin ();
 }
@@ -335,9 +334,6 @@ xapian_mset_iterator_is_end (XapianMSetIterator *iter)
   g_return_val_if_fail (XAPIAN_IS_MSET_ITERATOR (iter), FALSE);
 
   XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
-
-  if (priv->data == NULL)
-    return FALSE;
 
   return priv->data->isEnd ();
 }
@@ -361,9 +357,6 @@ xapian_mset_iterator_next (XapianMSetIterator *iter)
 
   XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
 
-  if (priv->data == NULL)
-    return FALSE;
-
   return priv->data->next ();
 }
 
@@ -386,9 +379,6 @@ xapian_mset_iterator_prev (XapianMSetIterator *iter)
 
   XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
 
-  if (priv->data == NULL)
-    return FALSE;
-
   return priv->data->prev ();
 }
 
@@ -410,9 +400,6 @@ xapian_mset_iterator_get_rank (XapianMSetIterator *iter)
 
   XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
 
-  if (priv->data == NULL)
-    return 0;
-
   return priv->data->getRank ();
 }
 
@@ -430,9 +417,6 @@ xapian_mset_iterator_get_weight (XapianMSetIterator *iter)
   g_return_val_if_fail (XAPIAN_IS_MSET_ITERATOR (iter), 0);
 
   XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
-
-  if (priv->data == NULL)
-    return 0;
 
   return priv->data->getWeight ();
 }
@@ -453,9 +437,6 @@ xapian_mset_iterator_get_percent (XapianMSetIterator *iter)
 
   XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
 
-  if (priv->data == NULL)
-    return 0;
-
   return priv->data->getPercent ();
 }
 
@@ -475,9 +456,6 @@ xapian_mset_iterator_get_collapse_count (XapianMSetIterator *iter)
 
   XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
 
-  if (priv->data == NULL)
-    return 0;
-
   return priv->data->getCollapseCount ();
 }
 
@@ -495,9 +473,6 @@ xapian_mset_iterator_get_description (XapianMSetIterator *iter)
   g_return_val_if_fail (XAPIAN_IS_MSET_ITERATOR (iter), NULL);
 
   XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
-
-  if (priv->data == NULL)
-    return NULL;
 
   return priv->data->getDescription ();
 }
@@ -520,9 +495,6 @@ xapian_mset_iterator_get_document (XapianMSetIterator *iter,
 
   XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
 
-  if (priv->data == NULL)
-    return NULL;
-
   return priv->data->getDocument (error);
 }
 
@@ -544,9 +516,6 @@ xapian_mset_iterator_get_doc_id (XapianMSetIterator *iter,
 
   XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
 
-  if (priv->data == NULL)
-    return 0;
-
   return priv->data->getDocId (error);
 }
 
@@ -564,9 +533,6 @@ xapian_mset_iterator_get_mset (XapianMSetIterator *iter)
   g_return_val_if_fail (XAPIAN_IS_MSET_ITERATOR (iter), NULL);
 
   XapianMSetIteratorPrivate *priv = XAPIAN_MSET_ITERATOR_GET_PRIVATE (iter);
-
-  if (priv->data == NULL)
-    return NULL;
 
   return priv->data->getMSet ();
 }
