@@ -22,29 +22,19 @@
 #endif
 
 #include "xapian-glib-types.h"
+#include "xapian-posting-source.h"
 
 G_BEGIN_DECLS
 
-#define XAPIAN_QUERY(obj)               (G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_QUERY, XapianQuery))
-#define XAPIAN_IS_QUERY(obj)            (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_QUERY))
-#define XAPIAN_QUERY_CLASS(klass)       (G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_QUERY, XapianQueryClass))
-#define XAPIAN_IS_QUERY_CLASS(klass)    (G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_QUERY))
-#define XAPIAN_QUERY_GET_CLASS(obj)     (G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_QUERY, XapianQueryClass))
+#define XAPIAN_TYPE_QUERY       (xapian_query_get_type())
 
-typedef struct _XapianQueryClass     XapianQueryClass;
-
-struct _XapianQuery
-{
-  GObject parent_instance;
-};
+XAPIAN_GLIB_AVAILABLE_IN_1_0
+G_DECLARE_DERIVABLE_TYPE (XapianQuery, xapian_query, XAPIAN, QUERY, GObject)
 
 struct _XapianQueryClass
 {
   GObjectClass parent_instance;
 };
-
-XAPIAN_GLIB_AVAILABLE_IN_1_0
-GType xapian_query_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianQuery *   xapian_query_new                (void);

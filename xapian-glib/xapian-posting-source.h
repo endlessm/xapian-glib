@@ -25,27 +25,15 @@
 
 G_BEGIN_DECLS
 
-#define XAPIAN_POSTING_SOURCE(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_POSTING_SOURCE, XapianPostingSource))
-#define XAPIAN_IS_POSTING_SOURCE(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_POSTING_SOURCE))
-#define XAPIAN_POSTING_SOURCE_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_POSTING_SOURCE, XapianPostingSourceClass))
-#define XAPIAN_IS_POSTING_SOURCE_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_POSTING_SOURCE))
-#define XAPIAN_POSTING_SOURCE_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_POSTING_SOURCE, XapianPostingSourceClass))
+#define XAPIAN_TYPE_POSTING_SOURCE      (xapian_posting_source_get_type())
 
-typedef struct _XapianPostingSource           XapianPostingSource;
-typedef struct _XapianPostingSourceClass      XapianPostingSourceClass;
-
-struct _XapianPostingSource
-{
-  GObject parent_instance;
-};
+XAPIAN_GLIB_AVAILABLE_IN_1_2
+G_DECLARE_DERIVABLE_TYPE (XapianPostingSource, xapian_posting_source, XAPIAN, POSTING_SOURCE, GObject)
 
 struct _XapianPostingSourceClass
 {
   GObjectClass parent_instance;
 };
-
-XAPIAN_GLIB_AVAILABLE_IN_1_2
-GType xapian_posting_source_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_2
 char *xapian_posting_source_get_description (XapianPostingSource *self);

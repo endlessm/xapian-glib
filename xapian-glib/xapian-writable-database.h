@@ -26,26 +26,16 @@
 
 G_BEGIN_DECLS
 
-#define XAPIAN_WRITABLE_DATABASE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_WRITABLE_DATABASE, XapianWritableDatabase))
-#define XAPIAN_IS_WRITABLE_DATABASE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_WRITABLE_DATABASE))
-#define XAPIAN_WRITABLE_DATABASE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_WRITABLE_DATABASE, XapianWritableDatabaseClass))
-#define XAPIAN_IS_WRITABLE_DATABASE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_WRITABLE_DATABASE))
-#define XAPIAN_WRITABLE_DATABASE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_WRITABLE_DATABASE, XapianWritableDatabaseClass))
+#define XAPIAN_TYPE_WRITABLE_DATABASE   (xapian_writable_database_get_type())
 
-typedef struct _XapianWritableDatabaseClass     XapianWritableDatabaseClass;
-
-struct _XapianWritableDatabase
-{
-  XapianDatabase parent_instance;
-};
+XAPIAN_GLIB_AVAILABLE_IN_1_0
+G_DECLARE_DERIVABLE_TYPE (XapianWritableDatabase, xapian_writable_database, XAPIAN, WRITABLE_DATABASE, XapianDatabase)
 
 struct _XapianWritableDatabaseClass
 {
-  XapianDatabaseClass parent_instance;
+  /*< private >*/
+  XapianDatabaseClass parent_class;
 };
-
-XAPIAN_GLIB_AVAILABLE_IN_1_0
-GType xapian_writable_database_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianWritableDatabase *        xapian_writable_database_new                    (const char            *path,

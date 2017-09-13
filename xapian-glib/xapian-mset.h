@@ -22,33 +22,26 @@
 #endif
 
 #include "xapian-glib-types.h"
+#include "xapian-document.h"
 
 G_BEGIN_DECLS
 
+#define XAPIAN_TYPE_MSET                (xapian_mset_get_type())
+#define XAPIAN_TYPE_MSET_ITERATOR       (xapian_mset_iterator_get_type())
+
+XAPIAN_GLIB_AVAILABLE_IN_1_0
+G_DECLARE_DERIVABLE_TYPE (XapianMSet, xapian_mset, XAPIAN, MSET, GObject)
+
+XAPIAN_GLIB_AVAILABLE_IN_1_0
+G_DECLARE_DERIVABLE_TYPE (XapianMSetIterator, xapian_mset_iterator, XAPIAN, MSET_ITERATOR, GObject)
+
 /* MSet */
-
-#define XAPIAN_MSET(obj)                (G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_MSET, XapianMSet))
-#define XAPIAN_IS_MSET(obj)             (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_MSET))
-#define XAPIAN_MSET_CLASS(klass)        (G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_MSET, XapianMSetClass))
-#define XAPIAN_IS_MSET_CLASS(klass)     (G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_MSET))
-#define XAPIAN_MSET_GET_CLASS(obj)      (G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_MSET, XapianMSetClass))
-
-typedef struct _XapianMSetClass         XapianMSetClass;
-
-struct _XapianMSet
-{
-  /*< private >*/
-  GObject parent_instance;
-};
 
 struct _XapianMSetClass
 {
   /*< private >*/
   GObjectClass parent_instance;
 };
-
-XAPIAN_GLIB_AVAILABLE_IN_1_0
-GType xapian_mset_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 unsigned int            xapian_mset_get_firstitem                               (XapianMSet *mset);
@@ -86,31 +79,13 @@ XapianMSetIterator *    xapian_mset_get_begin                                   
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianMSetIterator *    xapian_mset_get_end                                     (XapianMSet *mset);
 
-
 /* Iterator */
-
-#define XAPIAN_MSET_ITERATOR(obj)                (G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_MSET_ITERATOR, XapianMSetIterator))
-#define XAPIAN_IS_MSET_ITERATOR(obj)             (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_MSET_ITERATOR))
-#define XAPIAN_MSET_ITERATOR_CLASS(klass)        (G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_MSET_ITERATOR, XapianMSetIteratorClass))
-#define XAPIAN_IS_MSET_ITERATOR_CLASS(klass)     (G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_MSET_ITERATOR))
-#define XAPIAN_MSET_ITERATOR_GET_CLASS(obj)      (G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_MSET_ITERATOR, XapianMSetIteratorClass))
-
-typedef struct _XapianMSetIteratorClass XapianMSetIteratorClass;
-
-struct _XapianMSetIterator
-{
-  /*< private >*/
-  GObject parent_instance;
-};
 
 struct _XapianMSetIteratorClass
 {
   /*< private >*/
   GObjectClass parent_instance;
 };
-
-XAPIAN_GLIB_AVAILABLE_IN_1_0
-GType xapian_mset_iterator_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 gboolean                xapian_mset_iterator_next               (XapianMSetIterator *iter);

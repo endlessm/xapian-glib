@@ -23,31 +23,21 @@
 #endif
 
 #include "xapian-glib-types.h"
+#include "xapian-document.h"
+#include "xapian-term-iterator.h"
 
 G_BEGIN_DECLS
 
-#define XAPIAN_DATABASE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_DATABASE, XapianDatabase))
-#define XAPIAN_IS_DATABASE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_DATABASE))
-#define XAPIAN_DATABASE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_DATABASE, XapianDatabaseClass))
-#define XAPIAN_IS_DATABASE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_DATABASE))
-#define XAPIAN_DATABASE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_DATABASE, XapianDatabaseClass))
+#define XAPIAN_TYPE_DATABASE    (xapian_database_get_type())
 
-typedef struct _XapianDatabaseClass     XapianDatabaseClass;
-
-struct _XapianDatabase
-{
-  /*< private >*/
-  GObject parent_instance;
-};
+XAPIAN_GLIB_AVAILABLE_IN_1_0
+G_DECLARE_DERIVABLE_TYPE (XapianDatabase, xapian_database, XAPIAN, DATABASE, GObject)
 
 struct _XapianDatabaseClass
 {
   /*< private >*/
-  GObjectClass parent_instance;
+  GObjectClass parent_class;
 };
-
-XAPIAN_GLIB_AVAILABLE_IN_1_0
-GType xapian_database_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianDatabase *        xapian_database_new             (GError        **error);
