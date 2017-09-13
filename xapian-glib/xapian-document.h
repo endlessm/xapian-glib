@@ -25,26 +25,16 @@
 
 G_BEGIN_DECLS
 
-#define XAPIAN_DOCUMENT(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_DOCUMENT, XapianDocument))
-#define XAPIAN_IS_DOCUMENT(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_DOCUMENT))
-#define XAPIAN_DOCUMENT_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_DOCUMENT, XapianDocumentClass))
-#define XAPIAN_IS_DOCUMENT_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_DOCUMENT))
-#define XAPIAN_DOCUMENT_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_DOCUMENT, XapianDocumentClass))
+#define XAPIAN_TYPE_DOCUMENT    (xapian_document_get_type())
 
-typedef struct _XapianDocumentClass     XapianDocumentClass;
-
-struct _XapianDocument
-{
-  GObject parent_instance;
-};
+XAPIAN_GLIB_AVAILABLE_IN_1_0
+G_DECLARE_DERIVABLE_TYPE (XapianDocument, xapian_document, XAPIAN, DOCUMENT, GObject)
 
 struct _XapianDocumentClass
 {
-  GObjectClass parent_instance;
+  /*< private >*/
+  GObjectClass parent_class;
 };
-
-XAPIAN_GLIB_AVAILABLE_IN_1_0
-GType xapian_document_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianDocument *        xapian_document_new                     (void);

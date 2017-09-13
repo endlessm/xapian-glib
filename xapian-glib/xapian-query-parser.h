@@ -22,29 +22,22 @@
 #endif
 
 #include "xapian-glib-types.h"
+#include "xapian-database.h"
+#include "xapian-query.h"
+#include "xapian-stem.h"
+#include "xapian-stopper.h"
 
 G_BEGIN_DECLS
 
-#define XAPIAN_QUERY_PARSER(obj)                (G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_QUERY_PARSER, XapianQueryParser))
-#define XAPIAN_IS_QUERY_PARSER(obj)             (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_QUERY_PARSER))
-#define XAPIAN_QUERY_PARSER_CLASS(klass)        (G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_QUERY_PARSER, XapianQueryParserClass))
-#define XAPIAN_IS_QUERY_PARSER_CLASS(klass)     (G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_QUERY_PARSER))
-#define XAPIAN_QUERY_PARSER_GET_CLASS(obj)      (G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_QUERY_PARSER, XapianQueryParserClass))
+#define XAPIAN_TYPE_QUERY_PARSER        (xapian_query_parser_get_type())
 
-typedef struct _XapianQueryParserClass     XapianQueryParserClass;
-
-struct _XapianQueryParser
-{
-  GObject parent_instance;
-};
+XAPIAN_GLIB_AVAILABLE_IN_1_0
+G_DECLARE_DERIVABLE_TYPE (XapianQueryParser, xapian_query_parser, XAPIAN, QUERY_PARSER, GObject)
 
 struct _XapianQueryParserClass
 {
   GObjectClass parent_instance;
 };
-
-XAPIAN_GLIB_AVAILABLE_IN_1_0
-GType xapian_query_parser_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianQueryParser *     xapian_query_parser_new                         (void);

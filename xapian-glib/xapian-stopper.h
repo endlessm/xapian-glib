@@ -25,19 +25,10 @@
 
 G_BEGIN_DECLS
 
-#define XAPIAN_STOPPER(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_STOPPER, XapianStopper))
-#define XAPIAN_IS_STOPPER(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_STOPPER))
-#define XAPIAN_STOPPER_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_STOPPER, XapianStopperClass))
-#define XAPIAN_IS_STOPPER_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_STOPPER))
-#define XAPIAN_STOPPER_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_STOPPER, XapianStopperClass))
+#define XAPIAN_TYPE_STOPPER     (xapian_stopper_get_type())
 
-typedef struct _XapianStopper           XapianStopper;
-typedef struct _XapianStopperClass      XapianStopperClass;
-
-struct _XapianStopper
-{
-  GObject parent_instance;
-};
+XAPIAN_GLIB_AVAILABLE_IN_1_2
+G_DECLARE_DERIVABLE_TYPE (XapianStopper, xapian_stopper, XAPIAN, STOPPER, GObject)
 
 /**
  * XapianStopperClass:
@@ -63,9 +54,6 @@ struct _XapianStopperClass
   /*< private >*/
   gpointer _padding[8];
 };
-
-XAPIAN_GLIB_AVAILABLE_IN_1_2
-GType xapian_stopper_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_2
 gchar *         xapian_stopper_get_description  (XapianStopper *self);

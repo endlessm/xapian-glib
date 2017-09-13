@@ -25,12 +25,6 @@
 
 G_BEGIN_DECLS
 
-#define XAPIAN_STEM(obj)                (G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_STEM, XapianStem))
-#define XAPIAN_IS_STEM(obj)             (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_STEM))
-#define XAPIAN_STEM_CLASS(klass)        (G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_STEM, XapianStemClass))
-#define XAPIAN_IS_STEM_CLASS(klass)     (G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_STEM))
-#define XAPIAN_STEM_GET_CLASS(obj)      (G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_STEM, XapianStemClass))
-
 /**
  * XAPIAN_STEM_LANGUAGE_NONE:
  *
@@ -38,20 +32,15 @@ G_BEGIN_DECLS
  */
 #define XAPIAN_STEM_LANGUAGE_NONE       "none"
 
-typedef struct _XapianStemClass         XapianStemClass;
+#define XAPIAN_TYPE_STEM        (xapian_stem_get_type())
 
-struct _XapianStem
-{
-  GObject parent_instance;
-};
+XAPIAN_GLIB_AVAILABLE_IN_1_0
+G_DECLARE_DERIVABLE_TYPE (XapianStem, xapian_stem, XAPIAN, STEM, GObject)
 
 struct _XapianStemClass
 {
   GObjectClass parent_instance;
 };
-
-XAPIAN_GLIB_AVAILABLE_IN_1_0
-GType xapian_stem_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianStem *    xapian_stem_new                         (void);

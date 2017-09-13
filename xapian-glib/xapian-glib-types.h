@@ -22,45 +22,4 @@
 #include "xapian-glib-macros.h"
 #include "xapian-enums.h"
 
-G_BEGIN_DECLS
-
-#define XAPIAN_TYPE_DATABASE                    (xapian_database_get_type ())
-#define XAPIAN_TYPE_WRITABLE_DATABASE           (xapian_writable_database_get_type ())
-#define XAPIAN_TYPE_DOCUMENT                    (xapian_document_get_type ())
-#define XAPIAN_TYPE_ENQUIRE                     (xapian_enquire_get_type ())
-#define XAPIAN_TYPE_POSTING_SOURCE              (xapian_posting_source_get_type ())
-#define XAPIAN_TYPE_VALUE_POSTING_SOURCE        (xapian_value_posting_source_get_type ())
-#define XAPIAN_TYPE_VALUE_WEIGHT_POSTING_SOURCE (xapian_value_weight_posting_source_get_type ())
-#define XAPIAN_TYPE_QUERY                       (xapian_query_get_type ())
-#define XAPIAN_TYPE_STEM                        (xapian_stem_get_type ())
-#define XAPIAN_TYPE_QUERY_PARSER                (xapian_query_parser_get_type ())
-#define XAPIAN_TYPE_MSET                        (xapian_mset_get_type ())
-#define XAPIAN_TYPE_MSET_ITERATOR               (xapian_mset_iterator_get_type ())
-#define XAPIAN_TYPE_SIMPLE_STOPPER              (xapian_simple_stopper_get_type ())
-#define XAPIAN_TYPE_STOPPER                     (xapian_stopper_get_type ())
-#define XAPIAN_TYPE_TERM_GENERATOR              (xapian_term_generator_get_type ())
-#define XAPIAN_TYPE_TERM_ITERATOR               (xapian_term_iterator_get_type ())
-
-typedef struct _XapianDatabase                  XapianDatabase;
-typedef struct _XapianWritableDatabase          XapianWritableDatabase;
-
-typedef struct _XapianDocument                  XapianDocument;
-
-typedef struct _XapianEnquire                   XapianEnquire;
-typedef struct _XapianPostingSource             XapianPostingSource;
-typedef struct _XapianValuePostingSource        XapianValuePostingSource;
-typedef struct _XapianValueWeightPostingSource  XapianValueWeightPostingSource;
-typedef struct _XapianQuery                     XapianQuery;
-typedef struct _XapianStem                      XapianStem;
-typedef struct _XapianQueryParser               XapianQueryParser;
-typedef struct _XapianMSet                      XapianMSet;
-typedef struct _XapianMSetIterator              XapianMSetIterator;
-
-typedef struct _XapianSimpleStopper             XapianSimpleStopper;
-typedef struct _XapianStopper                   XapianStopper;
-typedef struct _XapianTermGenerator             XapianTermGenerator;
-typedef struct _XapianTermIterator              XapianTermIterator;
-
-G_END_DECLS
-
 #endif /* __XAPIAN_GLIB_TYPES_H__ */

@@ -26,27 +26,15 @@
 
 G_BEGIN_DECLS
 
-#define XAPIAN_VALUE_POSTING_SOURCE(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_VALUE_POSTING_SOURCE, XapianValuePostingSource))
-#define XAPIAN_IS_VALUE_POSTING_SOURCE(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_VALUE_POSTING_SOURCE))
-#define XAPIAN_VALUE_POSTING_SOURCE_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_VALUE_POSTING_SOURCE, XapianValuePostingSourceClass))
-#define XAPIAN_IS_VALUE_POSTING_SOURCE_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_VALUE_POSTING_SOURCE))
-#define XAPIAN_VALUE_POSTING_SOURCE_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_VALUE_POSTING_SOURCE, XapianValuePostingSourceClass))
+#define XAPIAN_TYPE_VALUE_POSTING_SOURCE        (xapian_value_posting_source_get_type())
 
-typedef struct _XapianValuePostingSource           XapianValuePostingSource;
-typedef struct _XapianValuePostingSourceClass      XapianValuePostingSourceClass;
-
-struct _XapianValuePostingSource
-{
-  XapianPostingSource parent_instance;
-};
+XAPIAN_GLIB_AVAILABLE_IN_1_2
+G_DECLARE_DERIVABLE_TYPE (XapianValuePostingSource, xapian_value_posting_source, XAPIAN, VALUE_POSTING_SOURCE, XapianPostingSource)
 
 struct _XapianValuePostingSourceClass
 {
   XapianPostingSourceClass parent_instance;
 };
-
-XAPIAN_GLIB_AVAILABLE_IN_1_2
-GType xapian_value_posting_source_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_2
 XapianValuePostingSource * xapian_value_posting_source_new (unsigned int   slot,

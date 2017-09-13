@@ -25,30 +25,16 @@
 
 G_BEGIN_DECLS
 
-/* Iterator */
+#define XAPIAN_TYPE_TERM_ITERATOR               (xapian_term_iterator_get_type ())
 
-#define XAPIAN_TERM_ITERATOR(obj)                (G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_TERM_ITERATOR, XapianTermIterator))
-#define XAPIAN_IS_TERM_ITERATOR(obj)             (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_TERM_ITERATOR))
-#define XAPIAN_TERM_ITERATOR_CLASS(klass)        (G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_TERM_ITERATOR, XapianTermIteratorClass))
-#define XAPIAN_IS_TERM_ITERATOR_CLASS(klass)     (G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_TERM_ITERATOR))
-#define XAPIAN_TERM_ITERATOR_GET_CLASS(obj)      (G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_TERM_ITERATOR, XapianTermIteratorClass))
-
-typedef struct _XapianTermIteratorClass XapianTermIteratorClass;
-
-struct _XapianTermIterator
-{
-  /*< private >*/
-  GObject parent_instance;
-};
+XAPIAN_GLIB_AVAILABLE_IN_1_6
+G_DECLARE_DERIVABLE_TYPE (XapianTermIterator, xapian_term_iterator, XAPIAN, TERM_ITERATOR, GObject)
 
 struct _XapianTermIteratorClass
 {
   /*< private >*/
   GObjectClass parent_instance;
 };
-
-XAPIAN_GLIB_AVAILABLE_IN_1_6
-GType xapian_term_iterator_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_6
 gboolean                xapian_term_iterator_next               (XapianTermIterator *iter);

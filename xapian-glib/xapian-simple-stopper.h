@@ -26,19 +26,10 @@
 
 G_BEGIN_DECLS
 
-#define XAPIAN_SIMPLE_STOPPER(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_SIMPLE_STOPPER, XapianSimpleStopper))
-#define XAPIAN_IS_SIMPLE_STOPPER(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_SIMPLE_STOPPER))
-#define XAPIAN_SIMPLE_STOPPER_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_SIMPLE_STOPPER, XapianSimpleStopperClass))
-#define XAPIAN_IS_SIMPLE_STOPPER_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_SIMPLE_STOPPER))
-#define XAPIAN_SIMPLE_STOPPER_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_SIMPLE_STOPPER, XapianSimpleStopperClass))
+#define XAPIAN_TYPE_SIMPLE_STOPPER      (xapian_simple_stopper_get_type())
 
-typedef struct _XapianSimpleStopper           XapianSimpleStopper;
-typedef struct _XapianSimpleStopperClass      XapianSimpleStopperClass;
-
-struct _XapianSimpleStopper
-{
-  XapianStopper parent_instance;
-};
+XAPIAN_GLIB_AVAILABLE_IN_1_2
+G_DECLARE_DERIVABLE_TYPE (XapianSimpleStopper, xapian_simple_stopper, XAPIAN, SIMPLE_STOPPER, XapianStopper)
 
 struct _XapianSimpleStopperClass
 {
@@ -46,10 +37,7 @@ struct _XapianSimpleStopperClass
 };
 
 XAPIAN_GLIB_AVAILABLE_IN_1_2
-GType xapian_simple_stopper_get_type (void);
-
-XAPIAN_GLIB_AVAILABLE_IN_1_2
-XapianSimpleStopper * xapian_simple_stopper_new ();
+XapianSimpleStopper * xapian_simple_stopper_new (void);
 
 
 XAPIAN_GLIB_AVAILABLE_IN_1_2

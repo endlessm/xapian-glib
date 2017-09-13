@@ -22,29 +22,21 @@
 #endif
 
 #include "xapian-glib-types.h"
+#include "xapian-database.h"
+#include "xapian-query.h"
+#include "xapian-mset.h"
 
 G_BEGIN_DECLS
 
-#define XAPIAN_ENQUIRE(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_ENQUIRE, XapianEnquire))
-#define XAPIAN_IS_ENQUIRE(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_ENQUIRE))
-#define XAPIAN_ENQUIRE_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_ENQUIRE, XapianEnquireClass))
-#define XAPIAN_IS_ENQUIRE_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_ENQUIRE))
-#define XAPIAN_ENQUIRE_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_ENQUIRE, XapianEnquireClass))
+#define XAPIAN_TYPE_ENQUIRE     (xapian_enquire_get_type())
 
-typedef struct _XapianEnquireClass      XapianEnquireClass;
-
-struct _XapianEnquire
-{
-  GObject parent_instance;
-};
+XAPIAN_GLIB_AVAILABLE_IN_1_0
+G_DECLARE_DERIVABLE_TYPE (XapianEnquire, xapian_enquire, XAPIAN, ENQUIRE, GObject)
 
 struct _XapianEnquireClass
 {
   GObjectClass parent_instance;
 };
-
-XAPIAN_GLIB_AVAILABLE_IN_1_0
-GType xapian_enquire_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianEnquire * xapian_enquire_new                    (XapianDatabase *db,

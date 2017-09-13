@@ -22,29 +22,21 @@
 #endif
 
 #include "xapian-glib-types.h"
+#include "xapian-stem.h"
+#include "xapian-stopper.h"
+#include "xapian-writable-database.h"
 
 G_BEGIN_DECLS
 
-#define XAPIAN_TERM_GENERATOR(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), XAPIAN_TYPE_TERM_GENERATOR, XapianTermGenerator))
-#define XAPIAN_IS_TERM_GENERATOR(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XAPIAN_TYPE_TERM_GENERATOR))
-#define XAPIAN_TERM_GENERATOR_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), XAPIAN_TYPE_TERM_GENERATOR, XapianTermGeneratorClass))
-#define XAPIAN_IS_TERM_GENERATOR_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), XAPIAN_TYPE_TERM_GENERATOR))
-#define XAPIAN_TERM_GENERATOR_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), XAPIAN_TYPE_TERM_GENERATOR, XapianTermGeneratorClass))
+#define XAPIAN_TYPE_TERM_GENERATOR      (xapian_term_generator_get_type())
 
-typedef struct _XapianTermGeneratorClass     XapianTermGeneratorClass;
-
-struct _XapianTermGenerator
-{
-  GObject parent_instance;
-};
+XAPIAN_GLIB_AVAILABLE_IN_1_0
+G_DECLARE_DERIVABLE_TYPE (XapianTermGenerator, xapian_term_generator, XAPIAN, TERM_GENERATOR, GObject)
 
 struct _XapianTermGeneratorClass
 {
   GObjectClass parent_instance;
 };
-
-XAPIAN_GLIB_AVAILABLE_IN_1_0
-GType xapian_term_generator_get_type (void);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianTermGenerator *   xapian_term_generator_new       (void);
