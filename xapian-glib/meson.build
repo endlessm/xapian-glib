@@ -87,7 +87,7 @@ pkg.generate(libraries: xapian_glib,
              version: meson.project_version(),
              filebase: xapian_glib_api_name,
              subdirs: xapian_glib_api_name,
-             requires: [ 'gobject-2.0', 'gio-2.0', 'xapian-core' ])
+             requires: [ 'gobject-2.0', 'gio-2.0', xapian_pc_dep ])
 
 if not meson.is_cross_build()
   gnome.generate_gir(xapian_glib,

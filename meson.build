@@ -135,9 +135,11 @@ xapian_req_version = '>= 1.3.3'
 gobject_dep = dependency('gobject-2.0', version: glib_req_version)
 gio_dep = dependency('gio-2.0')
 xapian_dep = dependency('xapian-core', version: xapian_req_version, required: false)
+xapian_pc_dep = 'xapian-core'
 if not xapian_dep.found()
   # Xapian 1.3 has a versioned xapian-core pkg-config file
   xapian_dep = dependency('xapian-core-1.3', version: xapian_req_version)
+  xapian_pc_dep = 'xapian-core-1.3'
 endif
 
 # Modules
