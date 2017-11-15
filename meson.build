@@ -1,5 +1,5 @@
 project('xapian-glib', 'c', 'cpp',
-        version: '1.5.1',
+        version: '1.6.0',
         license: 'GPLv2.0+',
         meson_version: '>= 0.42.0',
         default_options: [
