@@ -34,7 +34,6 @@ gnome.gtkdoc('xapian-glib',
                '--ignore-headers=' + ' '.join(ignored_headers),
              ],
              mkdb_args: [
-               '--namespace=xapian',
                '--source-suffixes=c,h,cc',
              ],
              fixxref_args: [
