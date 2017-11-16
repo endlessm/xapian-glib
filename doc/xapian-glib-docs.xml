@@ -3,13 +3,22 @@
                "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
 [
   <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
+  <!ENTITY % gtkdocentities SYSTEM "gtkdocentities.ent">
+  %gtkdocentities;
 ]>
+
 <book id="index">
   <bookinfo>
-    <title>Xapian-GLib Reference Manual</title>
+    <title>&package; &package_api_version; Reference Manual</title>
+
+    <releaseinfo>
+      for &package; &package_version;. The latest version of this
+      document can be found online at <ulink role="online-location"
+      url="https://endlessm.github.io/xapian-glib/docs">here</ulink>.
+    </releaseinfo>
 
     <copyright>
-      <year>2014</year>
+      <year>2014, 2015, 2016, 2017</year>
       <holder>Endless Mobile</holder>
     </copyright>
 
@@ -17,6 +26,18 @@
 
   <chapter>
     <title>Xapian-GLib</title>
+
+    <refsect2 id="overview">
+      <para>
+        Xapian-GLib is a library providing a C API to the
+        Xapian library, using GObject to map to Xapian classes.
+        Using Xapian-GLib makes it possible to access, create, and
+        query Xapian databases with C and other various other
+        programming languages that can consume the GObject
+        introspection data.
+      </para>
+    </refsect2>
+
     <xi:include href="xml/xapian-database.xml"/>
     <xi:include href="xml/xapian-writable-database.xml"/>
     <xi:include href="xml/xapian-document.xml"/>
