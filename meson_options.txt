@@ -1,4 +1,8 @@
 option('build_docs',
-       description: 'Generate the API reference documentation (requires GTK-Doc)',
+       description: 'Generate the API reference documentation (requires gtk-doc)',
        type: 'boolean',
        value: false)
+option('build_gir',
+       description: 'Generate the GObject introspection data (requires gobject-introspection)',
+       type: 'boolean',
+       value: true)
