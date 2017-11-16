@@ -1,3 +1,14 @@
+ent_conf = configuration_data()
+ent_conf.set('PACKAGE', 'Xapian-GLib')
+ent_conf.set('PACKAGE_BUGREPORT', 'https://github.com/endlessm/xapian-glib/issues')
+ent_conf.set('PACKAGE_NAME', meson.project_name())
+ent_conf.set('PACKAGE_STRING', meson.project_name())
+ent_conf.set('PACKAGE_TARNAME', meson.project_name() + '-' + meson.project_version())
+ent_conf.set('PACKAGE_URL', 'http://endlessm.github.io/xapian-glib')
+ent_conf.set('PACKAGE_VERSION', meson.project_version())
+ent_conf.set('PACKAGE_API_VERSION', xapian_glib_api_version)
+configure_file(input: 'gtkdocentities.ent.in', output: 'gtkdocentities.ent', configuration: ent_conf)
+
 ignored_headers = [
   'config.h',
 
