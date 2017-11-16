@@ -60,24 +60,44 @@ xapian_glib_sources = [
   'xapian-writable-database.cc',
 ]
 
-xapian_glib = shared_library(xapian_glib_api_name, xapian_glib_sources,
-                             soversion: soversion,
-                             version: libversion,
-                             include_directories: root_inc,
-                             dependencies: [ xapian_dep, gobject_dep, gio_dep ],
-                             cpp_args: common_cflags + visibility_cflags + xapian_glib_debug_cflags + [
-                               '-DG_LOG_DOMAIN="XapianGlib"',
-                               '-DG_LOG_USE_STRUCTURED=1',
-                               '-DXAPIAN_GLIB_COMPILATION=1',
-                             ],
-                             link_args: common_ldflags,
-                             install: true)
+xapian_glib = library(xapian_glib_api_name, xapian_glib_sources,
+                      soversion: soversion,
+                      version: libversion,
+                      include_directories: root_inc,
+                      dependencies: [ xapian_dep, gobject_dep, gio_dep ],
+                      cpp_args: common_cflags + visibility_cflags + xapian_glib_debug_cflags + [
+                        '-DG_LOG_DOMAIN="XapianGlib"',
+                        '-DG_LOG_USE_STRUCTURED=1',
+                        '-DXAPIAN_GLIB_COMPILATION=1',
+                      ],
+                      link_args: common_ldflags,
+                      install: true)
+
+if get_option('build_gir')
+  xapian_glib_gir = gnome.generate_gir(xapian_glib,
+                                       sources: xapian_glib_headers + xapian_glib_sources,
+                                       namespace: 'Xapian',
+                                       nsversion: xapian_glib_api_version,
+                                       identifier_prefix: 'Xapian',
+                                       symbol_prefix: 'xapian',
+                                       export_packages: xapian_glib_api_name,
+                                       includes: [ 'GObject-2.0', 'Gio-2.0' ],
+                                       header: 'xapian-glib.h',
+                                       extra_args: [
+                                         '--quiet',
+                                         '-DXAPIAN_GLIB_COMPILATION',
+                                       ],
+                                       install: true)
+else
+  xapian_glib_gir_dep = []
+endif
 
 xapian_glib_dep = declare_dependency(link_with: xapian_glib,
                                      include_directories: [
                                        root_inc,
                                        include_directories('.')
                                      ],
+                                     sources: [ xapian_glib_gir ],
                                      dependencies: [ xapian_dep, gobject_dep, gio_dep ])
 
 pkg = import('pkgconfig')
@@ -88,22 +108,5 @@ pkg.generate(libraries: xapian_glib,
              filebase: xapian_glib_api_name,
              subdirs: xapian_glib_api_name,
              requires: [ 'gobject-2.0', 'gio-2.0', xapian_pc_dep ])
-
-if not meson.is_cross_build()
-  gnome.generate_gir(xapian_glib,
-                     sources: xapian_glib_headers + xapian_glib_sources,
-                     namespace: 'Xapian',
-                     nsversion: xapian_glib_api_version,
-                     identifier_prefix: 'Xapian',
-                     symbol_prefix: 'xapian',
-                     export_packages: xapian_glib_api_name,
-                     includes: [ 'GObject-2.0', 'Gio-2.0' ],
-                     extra_args: [
-                       '--quiet',
-                       '--c-include="xapian-glib.h"',
-                       '-DXAPIAN_GLIB_COMPILATION',
-                     ],
-                     install: true)
-endif
 
 subdir('tests')
