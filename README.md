@@ -47,6 +47,11 @@ If you want to use an alternative location for the installation, use the
 `--prefix` configuration switch with Meson. See `meson --help` for
 additional configuration options.
 
+## Documentation
+
+The API reference for the latest version of Xapian-GLib is available
+[online](http://endlessm.github.io/xapian-glib/docs/).
+
 ## License
 
 Like Xapian, Xapian-GLib is released under the terms of the GNU General
