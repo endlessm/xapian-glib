@@ -23,7 +23,6 @@ ignored_headers = [
   'xapian-term-iterator-private.h',
   'xapian-value-posting-source-private.h',
 
-  'xapian-glib-macros.h',
   'xapian-glib.h',
 ]
 
