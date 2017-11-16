@@ -1,0 +1,869 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>XapianDocument: Xapian-GLib Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Xapian-GLib Reference Manual">
+<link rel="up" href="ch01.html" title="Xapian-GLib">
+<link rel="prev" href="XapianWritableDatabase.html" title="XapianWritableDatabase">
+<link rel="next" href="XapianEnquire.html" title="XapianEnquire">
+<meta name="generator" content="GTK-Doc V1.26 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#XapianDocument.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#XapianDocument.object-hierarchy" class="shortcut">Object Hierarchy</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="XapianWritableDatabase.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="XapianEnquire.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="XapianDocument"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="XapianDocument.top_of_page"></a>XapianDocument</span></h2>
+<p>XapianDocument — A document inside a database</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="XapianDocument.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianDocument.html" title="XapianDocument"><span class="returnvalue">XapianDocument</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianDocument.html#xapian-document-new" title="xapian_document_new ()">xapian_document_new</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">char</span> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianDocument.html#xapian-document-get-value" title="xapian_document_get_value ()">xapian_document_get_value</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">double</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDocument.html#xapian-document-get-numeric-value" title="xapian_document_get_numeric_value ()">xapian_document_get_numeric_value</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDocument.html#xapian-document-add-value" title="xapian_document_add_value ()">xapian_document_add_value</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDocument.html#xapian-document-add-numeric-value" title="xapian_document_add_numeric_value ()">xapian_document_add_numeric_value</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDocument.html#xapian-document-remove-value" title="xapian_document_remove_value ()">xapian_document_remove_value</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDocument.html#xapian-document-clear-values" title="xapian_document_clear_values ()">xapian_document_clear_values</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">unsigned <span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDocument.html#xapian-document-get-values-count" title="xapian_document_get_values_count ()">xapian_document_get_values_count</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">char</span> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianDocument.html#xapian-document-get-data" title="xapian_document_get_data ()">xapian_document_get_data</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDocument.html#xapian-document-set-data" title="xapian_document_set_data ()">xapian_document_set_data</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">unsigned <span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDocument.html#xapian-document-get-doc-id" title="xapian_document_get_doc_id ()">xapian_document_get_doc_id</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">char</span> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianDocument.html#xapian-document-get-description" title="xapian_document_get_description ()">xapian_document_get_description</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDocument.html#xapian-document-add-posting" title="xapian_document_add_posting ()">xapian_document_add_posting</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDocument.html#xapian-document-remove-posting" title="xapian_document_remove_posting ()">xapian_document_remove_posting</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDocument.html#xapian-document-add-term" title="xapian_document_add_term ()">xapian_document_add_term</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDocument.html#xapian-document-add-term-full" title="xapian_document_add_term_full ()">xapian_document_add_term_full</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDocument.html#xapian-document-add-boolean-term" title="xapian_document_add_boolean_term ()">xapian_document_add_boolean_term</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDocument.html#xapian-document-remove-term" title="xapian_document_remove_term ()">xapian_document_remove_term</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDocument.html#xapian-document-clear-terms" title="xapian_document_clear_terms ()">xapian_document_clear_terms</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">unsigned <span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDocument.html#xapian-document-get-termlist-count" title="xapian_document_get_termlist_count ()">xapian_document_get_termlist_count</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="XapianDocument.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="screen">    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+    <span class="lineart">╰──</span> XapianDocument
+</pre>
+</div>
+<div class="refsect1">
+<a name="XapianDocument.description"></a><h2>Description</h2>
+<p><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> is a class representing a document inside a
+Xapian database.</p>
+</div>
+<div class="refsect1">
+<a name="XapianDocument.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="xapian-document-new"></a><h3>xapian_document_new ()</h3>
+<pre class="programlisting"><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="returnvalue">XapianDocument</span></a> *
+xapian_document_new (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>Creates a new, empty document.</p>
+<div class="refsect3">
+<a name="xapian-document-new.returns"></a><h4>Returns</h4>
+<p>the newly created <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-document-get-value"></a><h3>xapian_document_get_value ()</h3>
+<pre class="programlisting"><span class="returnvalue">char</span> *
+xapian_document_get_value (<em class="parameter"><code><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *document</code></em>,
+                           <em class="parameter"><code>unsigned <span class="type">int</span> slot</code></em>);</pre>
+<p>Retrieves the value associated to the <em class="parameter"><code>slot</code></em>
+ number inside <em class="parameter"><code>document</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-document-get-value.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>document</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>slot</p></td>
+<td class="parameter_description"><p>a slot number</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-document-get-value.returns"></a><h4>Returns</h4>
+<p>the value, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-document-get-numeric-value"></a><h3>xapian_document_get_numeric_value ()</h3>
+<pre class="programlisting"><span class="returnvalue">double</span>
+xapian_document_get_numeric_value (<em class="parameter"><code><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *document</code></em>,
+                                   <em class="parameter"><code>unsigned <span class="type">int</span> slot</code></em>);</pre>
+<p>Retrieves the numeric value associated to the <em class="parameter"><code>slot</code></em>
+ number inside <em class="parameter"><code>document</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-document-get-numeric-value.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>document</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>slot</p></td>
+<td class="parameter_description"><p>a slot number</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-document-get-numeric-value.returns"></a><h4>Returns</h4>
+<p> the numeric value</p>
+</div>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-document-add-value"></a><h3>xapian_document_add_value ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_document_add_value (<em class="parameter"><code><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *document</code></em>,
+                           <em class="parameter"><code>unsigned <span class="type">int</span> slot</code></em>,
+                           <em class="parameter"><code>const <span class="type">char</span> *value</code></em>);</pre>
+<p>Sets (or replaces) <em class="parameter"><code>value</code></em>
+ at the given <em class="parameter"><code>slot</code></em>
+ number inside
+the <em class="parameter"><code>document</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-document-add-value.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>document</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>slot</p></td>
+<td class="parameter_description"><p>a slot number</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>value</p></td>
+<td class="parameter_description"><p>the value to associate to the <em class="parameter"><code>slot</code></em>
+number</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-document-add-numeric-value"></a><h3>xapian_document_add_numeric_value ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_document_add_numeric_value (<em class="parameter"><code><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *document</code></em>,
+                                   <em class="parameter"><code>unsigned <span class="type">int</span> slot</code></em>,
+                                   <em class="parameter"><code><span class="type">double</span> value</code></em>);</pre>
+<p>Sets (or replaces) a <em class="parameter"><code>value</code></em>
+ at the given <em class="parameter"><code>slot</code></em>
+ number
+inside the <em class="parameter"><code>document</code></em>
+.</p>
+<p>The given <em class="parameter"><code>value</code></em>
+ will be serialised internally using <a class="link" href="xapian-glib-Utilities.html#xapian-sortable-serialise" title="xapian_sortable_serialise ()"><code class="function">xapian_sortable_serialise()</code></a>.</p>
+<div class="refsect3">
+<a name="xapian-document-add-numeric-value.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>document</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>slot</p></td>
+<td class="parameter_description"><p>a slot number</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>value</p></td>
+<td class="parameter_description"><p>the value to associate to the <em class="parameter"><code>slot</code></em>
+number</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-document-remove-value"></a><h3>xapian_document_remove_value ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_document_remove_value (<em class="parameter"><code><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *document</code></em>,
+                              <em class="parameter"><code>unsigned <span class="type">int</span> slot</code></em>);</pre>
+<p>Removes any value associated with the <em class="parameter"><code>slot</code></em>
+ number.</p>
+<div class="refsect3">
+<a name="xapian-document-remove-value.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>document</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>slot</p></td>
+<td class="parameter_description"><p>a slot number</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-document-clear-values"></a><h3>xapian_document_clear_values ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_document_clear_values (<em class="parameter"><code><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *document</code></em>);</pre>
+<p>Removes all values from <em class="parameter"><code>document</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-document-clear-values.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>document</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-document-get-values-count"></a><h3>xapian_document_get_values_count ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">int</span>
+xapian_document_get_values_count (<em class="parameter"><code><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *document</code></em>);</pre>
+<p>Retrieves the number of values in the <em class="parameter"><code>document</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-document-get-values-count.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>document</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-document-get-values-count.returns"></a><h4>Returns</h4>
+<p> the number of values</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-document-get-data"></a><h3>xapian_document_get_data ()</h3>
+<pre class="programlisting"><span class="returnvalue">char</span> *
+xapian_document_get_data (<em class="parameter"><code><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *document</code></em>);</pre>
+<p>Retrieves the content of <em class="parameter"><code>document</code></em>
+.</p>
+<p>This is a potentially expensive operation, so it should not be
+used when matching a document; typically, you should use the
+values API (<a class="link" href="XapianDocument.html#xapian-document-add-value" title="xapian_document_add_value ()"><code class="function">xapian_document_add_value()</code></a> and <a class="link" href="XapianDocument.html#xapian-document-get-value" title="xapian_document_get_value ()"><code class="function">xapian_document_get_value()</code></a>)
+for fast access to matching terms or data.</p>
+<div class="refsect3">
+<a name="xapian-document-get-data.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>document</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-document-get-data.returns"></a><h4>Returns</h4>
+<p>a string containing the contents
+of the document. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-document-set-data"></a><h3>xapian_document_set_data ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_document_set_data (<em class="parameter"><code><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *document</code></em>,
+                          <em class="parameter"><code>const <span class="type">char</span> *data</code></em>);</pre>
+<p>Sets the contents of the <em class="parameter"><code>document</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-document-set-data.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>document</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>data</p></td>
+<td class="parameter_description"><p>the content of the document</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-document-get-doc-id"></a><h3>xapian_document_get_doc_id ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">int</span>
+xapian_document_get_doc_id (<em class="parameter"><code><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *document</code></em>);</pre>
+<p>Retrieves the document id of <em class="parameter"><code>document</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-document-get-doc-id.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>document</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-document-get-doc-id.returns"></a><h4>Returns</h4>
+<p> the document id</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-document-get-description"></a><h3>xapian_document_get_description ()</h3>
+<pre class="programlisting"><span class="returnvalue">char</span> *
+xapian_document_get_description (<em class="parameter"><code><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *document</code></em>);</pre>
+<p>Retrieves a description of <em class="parameter"><code>document</code></em>
+, typically used when
+debugging.</p>
+<div class="refsect3">
+<a name="xapian-document-get-description.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>document</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-document-get-description.returns"></a><h4>Returns</h4>
+<p>a description of the document. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-document-add-posting"></a><h3>xapian_document_add_posting ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_document_add_posting (<em class="parameter"><code><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *document</code></em>,
+                             <em class="parameter"><code>const <span class="type">char</span> *tname</code></em>,
+                             <em class="parameter"><code>unsigned <span class="type">int</span> term_pos</code></em>,
+                             <em class="parameter"><code>unsigned <span class="type">int</span> wdf_increment</code></em>);</pre>
+<p>Adds a term to the document, with positional information.</p>
+<p>See also: <a class="link" href="XapianDocument.html#xapian-document-add-term" title="xapian_document_add_term ()"><code class="function">xapian_document_add_term()</code></a>, <a class="link" href="XapianDocument.html#xapian-document-add-term-full" title="xapian_document_add_term_full ()"><code class="function">xapian_document_add_term_full()</code></a></p>
+<div class="refsect3">
+<a name="xapian-document-add-posting.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>document</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>tname</p></td>
+<td class="parameter_description"><p>the term to add</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>term_pos</p></td>
+<td class="parameter_description"><p>the position of <em class="parameter"><code>tname</code></em>
+</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>wdf_increment</p></td>
+<td class="parameter_description"><p>the increment to be applied to the WDF</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-document-remove-posting"></a><h3>xapian_document_remove_posting ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_document_remove_posting (<em class="parameter"><code><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *document</code></em>,
+                                <em class="parameter"><code>const <span class="type">char</span> *tname</code></em>,
+                                <em class="parameter"><code>unsigned <span class="type">int</span> term_pos</code></em>,
+                                <em class="parameter"><code>unsigned <span class="type">int</span> wdf_decrement</code></em>);</pre>
+<p>Removes a posting of a term inside <em class="parameter"><code>document</code></em>
+.</p>
+<p>Note that the term will still index the document, even if all the
+occurrences have been removed. To completely remove <em class="parameter"><code>tname</code></em>
+ from
+the <em class="parameter"><code>document</code></em>
+, use <a class="link" href="XapianDocument.html#xapian-document-remove-term" title="xapian_document_remove_term ()"><code class="function">xapian_document_remove_term()</code></a> instead.</p>
+<div class="refsect3">
+<a name="xapian-document-remove-posting.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>document</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>tname</p></td>
+<td class="parameter_description"><p>the term to remove</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>term_pos</p></td>
+<td class="parameter_description"><p>the position of the term</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>wdf_decrement</p></td>
+<td class="parameter_description"><p>the decrement to be applied to the WDF when
+removing the term</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-document-add-term"></a><h3>xapian_document_add_term ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_document_add_term (<em class="parameter"><code><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *document</code></em>,
+                          <em class="parameter"><code>const <span class="type">char</span> *tname</code></em>);</pre>
+<p>Adds a term to the document, without positional information,
+and with a default WDF increment of 1.</p>
+<div class="refsect3">
+<a name="xapian-document-add-term.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>document</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>tname</p></td>
+<td class="parameter_description"><p>the term to add</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-document-add-term-full"></a><h3>xapian_document_add_term_full ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_document_add_term_full (<em class="parameter"><code><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *document</code></em>,
+                               <em class="parameter"><code>const <span class="type">char</span> *tname</code></em>,
+                               <em class="parameter"><code>unsigned <span class="type">int</span> wdf_increment</code></em>);</pre>
+<p>Adds a term to the document, without positional information.</p>
+<div class="refsect3">
+<a name="xapian-document-add-term-full.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>document</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>tname</p></td>
+<td class="parameter_description"><p>the term to add</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>wdf_increment</p></td>
+<td class="parameter_description"><p>the increment to be applied to the WDF</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-document-add-boolean-term"></a><h3>xapian_document_add_boolean_term ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_document_add_boolean_term (<em class="parameter"><code><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *document</code></em>,
+                                  <em class="parameter"><code>const <span class="type">char</span> *tname</code></em>);</pre>
+<p>Adds a term to the document without incrementing the WDF.</p>
+<p>This function is the equivalent of <a class="link" href="XapianDocument.html#xapian-document-add-term-full" title="xapian_document_add_term_full ()"><code class="function">xapian_document_add_term_full()</code></a>
+with a WDF increment set to 0.</p>
+<div class="refsect3">
+<a name="xapian-document-add-boolean-term.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>document</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>tname</p></td>
+<td class="parameter_description"><p>the term to add</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-document-remove-term"></a><h3>xapian_document_remove_term ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_document_remove_term (<em class="parameter"><code><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *document</code></em>,
+                             <em class="parameter"><code>const <span class="type">char</span> *tname</code></em>);</pre>
+<p>Removes <em class="parameter"><code>tname</code></em>
+ from the list of terms stored inside <em class="parameter"><code>document</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-document-remove-term.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>document</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>tname</p></td>
+<td class="parameter_description"><p>the term to remove</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-document-clear-terms"></a><h3>xapian_document_clear_terms ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_document_clear_terms (<em class="parameter"><code><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *document</code></em>);</pre>
+<p>Clears all the terms stored in the <em class="parameter"><code>document</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-document-clear-terms.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>document</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-document-get-termlist-count"></a><h3>xapian_document_get_termlist_count ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">int</span>
+xapian_document_get_termlist_count (<em class="parameter"><code><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *document</code></em>);</pre>
+<p>Retrieves the number of terms registered in the <em class="parameter"><code>document</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-document-get-termlist-count.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>document</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-document-get-termlist-count.returns"></a><h4>Returns</h4>
+<p> the number of terms</p>
+</div>
+</div>
+</div>
+<div class="refsect1">
+<a name="XapianDocument.other_details"></a><h2>Types and Values</h2>
+</div>
+</div>
+<div class="footer">
+<hr>Generated by GTK-Doc V1.26</div>
+</body>
+</html>

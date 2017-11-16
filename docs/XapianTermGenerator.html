@@ -1,0 +1,557 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>XapianTermGenerator: Xapian-GLib Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Xapian-GLib Reference Manual">
+<link rel="up" href="ch01.html" title="Xapian-GLib">
+<link rel="prev" href="XapianSimpleStopper.html" title="XapianSimpleStopper">
+<link rel="next" href="XapianTermIterator.html" title="XapianTermIterator">
+<meta name="generator" content="GTK-Doc V1.26 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#XapianTermGenerator.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#XapianTermGenerator.object-hierarchy" class="shortcut">Object Hierarchy</a></span><span id="nav_properties">  <span class="dim">|</span> 
+                  <a href="#XapianTermGenerator.properties" class="shortcut">Properties</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="XapianSimpleStopper.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="XapianTermIterator.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="XapianTermGenerator"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="XapianTermGenerator.top_of_page"></a>XapianTermGenerator</span></h2>
+<p>XapianTermGenerator — Document indexer</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="XapianTermGenerator.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianTermGenerator.html" title="XapianTermGenerator"><span class="returnvalue">XapianTermGenerator</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianTermGenerator.html#xapian-term-generator-new" title="xapian_term_generator_new ()">xapian_term_generator_new</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianTermGenerator.html#xapian-term-generator-index-text" title="xapian_term_generator_index_text ()">xapian_term_generator_index_text</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianTermGenerator.html#xapian-term-generator-index-text-full" title="xapian_term_generator_index_text_full ()">xapian_term_generator_index_text_full</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianTermGenerator.html#xapian-term-generator-set-database" title="xapian_term_generator_set_database ()">xapian_term_generator_set_database</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianTermGenerator.html#xapian-term-generator-set-document" title="xapian_term_generator_set_document ()">xapian_term_generator_set_document</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianTermGenerator.html#xapian-term-generator-set-flags" title="xapian_term_generator_set_flags ()">xapian_term_generator_set_flags</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianTermGenerator.html#xapian-term-generator-set-stemmer" title="xapian_term_generator_set_stemmer ()">xapian_term_generator_set_stemmer</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianTermGenerator.html#xapian-term-generator-set-stemming-strategy" title="xapian_term_generator_set_stemming_strategy ()">xapian_term_generator_set_stemming_strategy</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianTermGenerator.html#xapian-term-generator-set-stopper" title="xapian_term_generator_set_stopper ()">xapian_term_generator_set_stopper</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="XapianTermGenerator.properties"></a><h2>Properties</h2>
+<div class="informaltable"><table class="informaltable" border="0">
+<colgroup>
+<col width="150px" class="properties_type">
+<col width="300px" class="properties_name">
+<col width="200px" class="properties_flags">
+</colgroup>
+<tbody>
+<tr>
+<td class="property_type">
+<a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a> *</td>
+<td class="property_name"><a class="link" href="XapianTermGenerator.html#XapianTermGenerator--database" title="The “database” property">database</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+<tr>
+<td class="property_type">
+<a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *</td>
+<td class="property_name"><a class="link" href="XapianTermGenerator.html#XapianTermGenerator--document" title="The “document” property">document</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+<tr>
+<td class="property_type"><a class="link" href="XapianTermGenerator.html#XapianTermGeneratorFeature" title="enum XapianTermGeneratorFeature"><span class="type">XapianTermGeneratorFeature</span></a></td>
+<td class="property_name"><a class="link" href="XapianTermGenerator.html#XapianTermGenerator--flags" title="The “flags” property">flags</a></td>
+<td class="property_flags">Write</td>
+</tr>
+<tr>
+<td class="property_type">
+<a class="link" href="XapianStem.html" title="XapianStem"><span class="type">XapianStem</span></a> *</td>
+<td class="property_name"><a class="link" href="XapianTermGenerator.html#XapianTermGenerator--stemmer" title="The “stemmer” property">stemmer</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+<tr>
+<td class="property_type"><a class="link" href="XapianQueryParser.html#XapianStemStrategy" title="enum XapianStemStrategy"><span class="type">XapianStemStrategy</span></a></td>
+<td class="property_name"><a class="link" href="XapianTermGenerator.html#XapianTermGenerator--stemming-strategy" title="The “stemming-strategy” property">stemming-strategy</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+<tr>
+<td class="property_type">
+<a class="link" href="XapianStopper.html" title="XapianStopper"><span class="type">XapianStopper</span></a> *</td>
+<td class="property_name"><a class="link" href="XapianTermGenerator.html#XapianTermGenerator--stopper" title="The “stopper” property">stopper</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="XapianTermGenerator.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody><tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="XapianTermGenerator.html#XapianTermGeneratorFeature" title="enum XapianTermGeneratorFeature">XapianTermGeneratorFeature</a></td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="XapianTermGenerator.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="screen">    <a href="/usr/share/gtk-doc/html/gobject/gobject-Enumeration-and-Flag-Types.html">GFlags</a>
+    <span class="lineart">╰──</span> XapianTermGeneratorFeature
+    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+    <span class="lineart">╰──</span> XapianTermGenerator
+</pre>
+</div>
+<div class="refsect1">
+<a name="XapianTermGenerator.description"></a><h2>Description</h2>
+<p><a class="link" href="XapianTermGenerator.html" title="XapianTermGenerator"><span class="type">XapianTermGenerator</span></a> is a class used to index document data.</p>
+</div>
+<div class="refsect1">
+<a name="XapianTermGenerator.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="xapian-term-generator-new"></a><h3>xapian_term_generator_new ()</h3>
+<pre class="programlisting"><a class="link" href="XapianTermGenerator.html" title="XapianTermGenerator"><span class="returnvalue">XapianTermGenerator</span></a> *
+xapian_term_generator_new (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>Creates a new <a class="link" href="XapianTermGenerator.html" title="XapianTermGenerator"><span class="type">XapianTermGenerator</span></a> instance.</p>
+<div class="refsect3">
+<a name="xapian-term-generator-new.returns"></a><h4>Returns</h4>
+<p>the newly created <a class="link" href="XapianTermGenerator.html" title="XapianTermGenerator"><span class="type">XapianTermGenerator</span></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-term-generator-index-text"></a><h3>xapian_term_generator_index_text ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_term_generator_index_text (<em class="parameter"><code><a class="link" href="XapianTermGenerator.html" title="XapianTermGenerator"><span class="type">XapianTermGenerator</span></a> *generator</code></em>,
+                                  <em class="parameter"><code>const <span class="type">char</span> *data</code></em>);</pre>
+<p>Indexes <em class="parameter"><code>data</code></em>
+ into the current document.</p>
+<p>See also: <a class="link" href="XapianTermGenerator.html#xapian-term-generator-index-text-full" title="xapian_term_generator_index_text_full ()"><code class="function">xapian_term_generator_index_text_full()</code></a></p>
+<div class="refsect3">
+<a name="xapian-term-generator-index-text.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>generator</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianTermGenerator.html" title="XapianTermGenerator"><span class="type">XapianTermGenerator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>data</p></td>
+<td class="parameter_description"><p>the data to be indexed</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-term-generator-index-text-full"></a><h3>xapian_term_generator_index_text_full ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_term_generator_index_text_full (<em class="parameter"><code><a class="link" href="XapianTermGenerator.html" title="XapianTermGenerator"><span class="type">XapianTermGenerator</span></a> *generator</code></em>,
+                                       <em class="parameter"><code>const <span class="type">char</span> *data</code></em>,
+                                       <em class="parameter"><code>unsigned <span class="type">int</span> wdf_inc</code></em>,
+                                       <em class="parameter"><code>const <span class="type">char</span> *prefix</code></em>);</pre>
+<p>Indexes <em class="parameter"><code>data</code></em>
+ into the current document.</p>
+<p>Unlike <a class="link" href="XapianTermGenerator.html#xapian-term-generator-index-text" title="xapian_term_generator_index_text ()"><code class="function">xapian_term_generator_index_text()</code></a>, this function also
+allows setting the WDF increment and the default prefix for
+the indexed data.</p>
+<div class="refsect3">
+<a name="xapian-term-generator-index-text-full.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>generator</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianTermGenerator.html" title="XapianTermGenerator"><span class="type">XapianTermGenerator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>data</p></td>
+<td class="parameter_description"><p>the data to be indexed</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>wdf_inc</p></td>
+<td class="parameter_description"><p>the increment of the WDF</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>prefix</p></td>
+<td class="parameter_description"><p>the default prefix for the indexed data</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-term-generator-set-database"></a><h3>xapian_term_generator_set_database ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_term_generator_set_database (<em class="parameter"><code><a class="link" href="XapianTermGenerator.html" title="XapianTermGenerator"><span class="type">XapianTermGenerator</span></a> *generator</code></em>,
+                                    <em class="parameter"><code><a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a> *database</code></em>);</pre>
+<p>Sets the database used to store the indexed data.</p>
+<div class="refsect3">
+<a name="xapian-term-generator-set-database.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>generator</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianTermGenerator.html" title="XapianTermGenerator"><span class="type">XapianTermGenerator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>database</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-term-generator-set-document"></a><h3>xapian_term_generator_set_document ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_term_generator_set_document (<em class="parameter"><code><a class="link" href="XapianTermGenerator.html" title="XapianTermGenerator"><span class="type">XapianTermGenerator</span></a> *generator</code></em>,
+                                    <em class="parameter"><code><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *document</code></em>);</pre>
+<p>Sets the current document.</p>
+<div class="refsect3">
+<a name="xapian-term-generator-set-document.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>generator</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianTermGenerator.html" title="XapianTermGenerator"><span class="type">XapianTermGenerator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>document</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-term-generator-set-flags"></a><h3>xapian_term_generator_set_flags ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_term_generator_set_flags (<em class="parameter"><code><a class="link" href="XapianTermGenerator.html" title="XapianTermGenerator"><span class="type">XapianTermGenerator</span></a> *generator</code></em>,
+                                 <em class="parameter"><code><a class="link" href="XapianTermGenerator.html#XapianTermGeneratorFeature" title="enum XapianTermGeneratorFeature"><span class="type">XapianTermGeneratorFeature</span></a> flags</code></em>);</pre>
+<p>Sets the generator's flags</p>
+<div class="refsect3">
+<a name="xapian-term-generator-set-flags.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>generator</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianTermGenerator.html" title="XapianTermGenerator"><span class="type">XapianTermGenerator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>flags</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianTermGenerator.html#XapianTermGeneratorFeature" title="enum XapianTermGeneratorFeature"><span class="type">XapianTermGeneratorFeature</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix02.html#api-index-1.2">1.2</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-term-generator-set-stemmer"></a><h3>xapian_term_generator_set_stemmer ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_term_generator_set_stemmer (<em class="parameter"><code><a class="link" href="XapianTermGenerator.html" title="XapianTermGenerator"><span class="type">XapianTermGenerator</span></a> *generator</code></em>,
+                                   <em class="parameter"><code><a class="link" href="XapianStem.html" title="XapianStem"><span class="type">XapianStem</span></a> *stemmer</code></em>);</pre>
+<p>Sets the stemmer for <em class="parameter"><code>generator</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-term-generator-set-stemmer.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>generator</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianTermGenerator.html" title="XapianTermGenerator"><span class="type">XapianTermGenerator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>stemmer</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianStem.html" title="XapianStem"><span class="type">XapianStem</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-term-generator-set-stemming-strategy"></a><h3>xapian_term_generator_set_stemming_strategy ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_term_generator_set_stemming_strategy
+                               (<em class="parameter"><code><a class="link" href="XapianTermGenerator.html" title="XapianTermGenerator"><span class="type">XapianTermGenerator</span></a> *generator</code></em>,
+                                <em class="parameter"><code><a class="link" href="XapianQueryParser.html#XapianStemStrategy" title="enum XapianStemStrategy"><span class="type">XapianStemStrategy</span></a> strategy</code></em>);</pre>
+<p>Sets the stemming strategy for <em class="parameter"><code>generator</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-term-generator-set-stemming-strategy.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>generator</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianTermGenerator.html" title="XapianTermGenerator"><span class="type">XapianTermGenerator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>strategy</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQueryParser.html#XapianStemStrategy" title="enum XapianStemStrategy"><span class="type">XapianStemStrategy</span></a> value</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-term-generator-set-stopper"></a><h3>xapian_term_generator_set_stopper ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_term_generator_set_stopper (<em class="parameter"><code><a class="link" href="XapianTermGenerator.html" title="XapianTermGenerator"><span class="type">XapianTermGenerator</span></a> *generator</code></em>,
+                                   <em class="parameter"><code><a class="link" href="XapianStopper.html" title="XapianStopper"><span class="type">XapianStopper</span></a> *stopper</code></em>);</pre>
+<p>Sets the stopper for <em class="parameter"><code>generator</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-term-generator-set-stopper.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>generator</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianTermGenerator.html" title="XapianTermGenerator"><span class="type">XapianTermGenerator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>stopper</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianStopper.html" title="XapianStopper"><span class="type">XapianStopper</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.4">1.4</a></p>
+</div>
+</div>
+<div class="refsect1">
+<a name="XapianTermGenerator.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="XapianTermGeneratorFeature"></a><h3>enum XapianTermGeneratorFeature</h3>
+<p>TermGenerator flags</p>
+<div class="refsect3">
+<a name="XapianTermGeneratorFeature.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-TERM-GENERATOR-FEATURE-NONE:CAPS"></a>XAPIAN_TERM_GENERATOR_FEATURE_NONE</p></td>
+<td class="enum_member_description">
+<p>No features</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-TERM-GENERATOR-FEATURE-SPELLING:CAPS"></a>XAPIAN_TERM_GENERATOR_FEATURE_SPELLING</p></td>
+<td class="enum_member_description">
+<p>Index data required for spelling correction</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix02.html#api-index-1.2">1.2</a></p>
+</div>
+</div>
+<div class="refsect1">
+<a name="XapianTermGenerator.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="XapianTermGenerator--database"></a><h3>The <code class="literal">“database”</code> property</h3>
+<pre class="programlisting">  “database”                 <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a> *</pre>
+<p>The <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a> instance used to store the indexed
+data.</p>
+<p>Flags: Read / Write</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="XapianTermGenerator--document"></a><h3>The <code class="literal">“document”</code> property</h3>
+<pre class="programlisting">  “document”                 <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *</pre>
+<p>The currently indexed document.</p>
+<p>Flags: Read / Write</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="XapianTermGenerator--flags"></a><h3>The <code class="literal">“flags”</code> property</h3>
+<pre class="programlisting">  “flags”                    <a class="link" href="XapianTermGenerator.html#XapianTermGeneratorFeature" title="enum XapianTermGeneratorFeature"><span class="type">XapianTermGeneratorFeature</span></a></pre>
+<p>Flags affecting this object's behaviour; see <a class="link" href="XapianTermGenerator.html#XapianTermGeneratorFeature" title="enum XapianTermGeneratorFeature"><span class="type">XapianTermGeneratorFeature</span></a>.</p>
+<p>Flags: Write</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="XapianTermGenerator--stemmer"></a><h3>The <code class="literal">“stemmer”</code> property</h3>
+<pre class="programlisting">  “stemmer”                  <a class="link" href="XapianStem.html" title="XapianStem"><span class="type">XapianStem</span></a> *</pre>
+<p>The <a class="link" href="XapianStem.html" title="XapianStem"><span class="type">XapianStem</span></a> instance used for stemming the indexed data.</p>
+<p>The value of this property is only used when the
+<a class="link" href="XapianTermGenerator.html#XapianTermGenerator--stemming-strategy" title="The “stemming-strategy” property"><span class="type">“stemming-strategy”</span></a> property is set
+to a value different than <a class="link" href="XapianQueryParser.html#XAPIAN-STEM-STRATEGY-STEM-NONE:CAPS"><code class="literal">XAPIAN_STEM_STRATEGY_STEM_NONE</code></a>.</p>
+<p>Flags: Read / Write</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="XapianTermGenerator--stemming-strategy"></a><h3>The <code class="literal">“stemming-strategy”</code> property</h3>
+<pre class="programlisting">  “stemming-strategy”        <a class="link" href="XapianQueryParser.html#XapianStemStrategy" title="enum XapianStemStrategy"><span class="type">XapianStemStrategy</span></a></pre>
+<p>The stemming strategy to use when the <a class="link" href="XapianTermGenerator.html#XapianTermGenerator--stemmer" title="The “stemmer” property"><span class="type">“stemmer”</span></a>
+property is set.</p>
+<p>Flags: Read / Write</p>
+<p>Default value: XAPIAN_STEM_STRATEGY_STEM_NONE</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="XapianTermGenerator--stopper"></a><h3>The <code class="literal">“stopper”</code> property</h3>
+<pre class="programlisting">  “stopper”                  <a class="link" href="XapianStopper.html" title="XapianStopper"><span class="type">XapianStopper</span></a> *</pre>
+<p>The stopper to be used when filtering stop-words.</p>
+<p>Flags: Read / Write</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.4">1.4</a></p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>Generated by GTK-Doc V1.26</div>
+</body>
+</html>

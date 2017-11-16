@@ -1,0 +1,607 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Utilities: Xapian-GLib Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Xapian-GLib Reference Manual">
+<link rel="up" href="ch01.html" title="Xapian-GLib">
+<link rel="prev" href="XapianTermIterator.html" title="XapianTermIterator">
+<link rel="next" href="object-tree.html" title="Object Hierarchy">
+<meta name="generator" content="GTK-Doc V1.26 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#xapian-glib-Utilities.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#xapian-glib-Utilities.object-hierarchy" class="shortcut">Object Hierarchy</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="XapianTermIterator.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="object-tree.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="xapian-glib-Utilities"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="xapian-glib-Utilities.top_of_page"></a>Utilities</span></h2>
+<p>Utilities — Utility API</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="xapian-glib-Utilities.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="define_keyword">#define</td>
+<td class="function_name">
+<a class="link" href="xapian-glib-Utilities.html#XAPIAN-GLIB-ENCODE-VERSION:CAPS" title="XAPIAN_GLIB_ENCODE_VERSION()">XAPIAN_GLIB_ENCODE_VERSION</a><span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <span class="returnvalue">char</span> *
+</td>
+<td class="function_name">
+<a class="link" href="xapian-glib-Utilities.html#xapian-glib-version-string" title="xapian_glib_version_string ()">xapian_glib_version_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="xapian-glib-Utilities.html#xapian-glib-major-version" title="xapian_glib_major_version ()">xapian_glib_major_version</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="xapian-glib-Utilities.html#xapian-glib-minor-version" title="xapian_glib_minor_version ()">xapian_glib_minor_version</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="xapian-glib-Utilities.html#xapian-glib-micro-version" title="xapian_glib_micro_version ()">xapian_glib_micro_version</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <span class="returnvalue">char</span> *
+</td>
+<td class="function_name">
+<a class="link" href="xapian-glib-Utilities.html#xapian-version-string" title="xapian_version_string ()">xapian_version_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="xapian-glib-Utilities.html#xapian-major-version" title="xapian_major_version ()">xapian_major_version</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="xapian-glib-Utilities.html#xapian-minor-version" title="xapian_minor_version ()">xapian_minor_version</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="xapian-glib-Utilities.html#xapian-revision" title="xapian_revision ()">xapian_revision</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="../glib/glib-Basic-Types.html#guchar"><span class="returnvalue">guchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="xapian-glib-Utilities.html#xapian-sortable-serialise" title="xapian_sortable_serialise ()">xapian_sortable_serialise</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">double</span>
+</td>
+<td class="function_name">
+<a class="link" href="xapian-glib-Utilities.html#xapian-sortable-unserialise" title="xapian_sortable_unserialise ()">xapian_sortable_unserialise</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="xapian-glib-Utilities.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody>
+<tr>
+<td class="define_keyword">#define</td>
+<td class="function_name"><a class="link" href="xapian-glib-Utilities.html#XAPIAN-ERROR:CAPS" title="XAPIAN_ERROR">XAPIAN_ERROR</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="xapian-glib-Utilities.html#XapianError" title="enum XapianError">XapianError</a></td>
+</tr>
+<tr>
+<td class="define_keyword">#define</td>
+<td class="function_name"><a class="link" href="xapian-glib-Utilities.html#XAPIAN-GLIB-MAJOR-VERSION:CAPS" title="XAPIAN_GLIB_MAJOR_VERSION">XAPIAN_GLIB_MAJOR_VERSION</a></td>
+</tr>
+<tr>
+<td class="define_keyword">#define</td>
+<td class="function_name"><a class="link" href="xapian-glib-Utilities.html#XAPIAN-GLIB-MINOR-VERSION:CAPS" title="XAPIAN_GLIB_MINOR_VERSION">XAPIAN_GLIB_MINOR_VERSION</a></td>
+</tr>
+<tr>
+<td class="define_keyword">#define</td>
+<td class="function_name"><a class="link" href="xapian-glib-Utilities.html#XAPIAN-GLIB-MICRO-VERSION:CAPS" title="XAPIAN_GLIB_MICRO_VERSION">XAPIAN_GLIB_MICRO_VERSION</a></td>
+</tr>
+<tr>
+<td class="define_keyword">#define</td>
+<td class="function_name"><a class="link" href="xapian-glib-Utilities.html#XAPIAN-GLIB-VERSION-S:CAPS" title="XAPIAN_GLIB_VERSION_S">XAPIAN_GLIB_VERSION_S</a></td>
+</tr>
+<tr>
+<td class="define_keyword">#define</td>
+<td class="function_name"><a class="link" href="xapian-glib-Utilities.html#XAPIAN-GLIB-VERSION:CAPS" title="XAPIAN_GLIB_VERSION">XAPIAN_GLIB_VERSION</a></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="xapian-glib-Utilities.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="screen">    <a href="/usr/share/gtk-doc/html/gobject/gobject-Enumeration-and-Flag-Types.html">GEnum</a>
+    <span class="lineart">╰──</span> XapianError
+</pre>
+</div>
+<div class="refsect1">
+<a name="xapian-glib-Utilities.description"></a><h2>Description</h2>
+<p>Utility functions.</p>
+</div>
+<div class="refsect1">
+<a name="xapian-glib-Utilities.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="XAPIAN-GLIB-ENCODE-VERSION:CAPS"></a><h3>XAPIAN_GLIB_ENCODE_VERSION()</h3>
+<pre class="programlisting">#define             XAPIAN_GLIB_ENCODE_VERSION(major,minor,micro)</pre>
+<p>Generates an integer encoded representation of a Xapian-GLib version,
+useful for compile-time comparisons with <a class="link" href="xapian-glib-Utilities.html#XAPIAN-GLIB-VERSION:CAPS" title="XAPIAN_GLIB_VERSION"><code class="literal">XAPIAN_GLIB_VERSION</code></a>.</p>
+<div class="refsect3">
+<a name="XAPIAN-GLIB-ENCODE-VERSION.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>major</p></td>
+<td class="parameter_description"><p>the major version number, e.g. 1</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>minor</p></td>
+<td class="parameter_description"><p>the minor version number, e.g. 2</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>micro</p></td>
+<td class="parameter_description"><p>the micro version number, e.g. 3</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-glib-version-string"></a><h3>xapian_glib_version_string ()</h3>
+<pre class="programlisting">const <span class="returnvalue">char</span> *
+xapian_glib_version_string (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>The version string of the Xapian GLib bindings,
+e.g. "1.2.3"</p>
+<div class="refsect3">
+<a name="xapian-glib-version-string.returns"></a><h4>Returns</h4>
+<p>the version string. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-glib-major-version"></a><h3>xapian_glib_major_version ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>
+xapian_glib_major_version (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>The major version of the Xapian GLib bindings,
+e.g. 1 in 1.2.3</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-glib-minor-version"></a><h3>xapian_glib_minor_version ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>
+xapian_glib_minor_version (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>The minor version of the Xapian GLib bindings,
+e.g. 2 in 1.2.3</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-glib-micro-version"></a><h3>xapian_glib_micro_version ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>
+xapian_glib_micro_version (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>The micro version of the Xapian GLib bindings,
+e.g. 3 in 1.2.3</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-version-string"></a><h3>xapian_version_string ()</h3>
+<pre class="programlisting">const <span class="returnvalue">char</span> *
+xapian_version_string (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>The version string of the underlying Xapian library,
+e.g. "1.2.17".</p>
+<div class="refsect3">
+<a name="xapian-version-string.returns"></a><h4>Returns</h4>
+<p>the version string. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-major-version"></a><h3>xapian_major_version ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>
+xapian_major_version (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>The major version of the underlying Xapian library,
+e.g 1 in 1.2.17.</p>
+<div class="refsect3">
+<a name="xapian-major-version.returns"></a><h4>Returns</h4>
+<p> the major version</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-minor-version"></a><h3>xapian_minor_version ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>
+xapian_minor_version (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>The minor version of the underlying Xapian library,
+e.g. 2 in 1.2.17.</p>
+<div class="refsect3">
+<a name="xapian-minor-version.returns"></a><h4>Returns</h4>
+<p> the minor version</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-revision"></a><h3>xapian_revision ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>
+xapian_revision (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>The revision number of the underlying Xapian library,
+e.g. 17 in 1.2.17</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-sortable-serialise"></a><h3>xapian_sortable_serialise ()</h3>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#guchar"><span class="returnvalue">guchar</span></a> *
+xapian_sortable_serialise (<em class="parameter"><code><span class="type">double</span> value</code></em>,
+                           <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gsize"><span class="type">gsize</span></a> *len</code></em>);</pre>
+<p>Convert a floating point number to a string, preserving sort order. The
+returned string may contain embedded zero bytes, so its length is also
+returned.</p>
+<p>This method converts a floating point number to a string, suitable for using
+as a value for numeric range restriction, or for use as a sort key.</p>
+<div class="refsect3">
+<a name="xapian-sortable-serialise.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>value</p></td>
+<td class="parameter_description"><p>The numeric value to serialize</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>len</p></td>
+<td class="parameter_description"><p>Used to return the length of the returned string. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-sortable-serialise.returns"></a><h4>Returns</h4>
+<p>the serialised value. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>][<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> length=len]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-sortable-unserialise"></a><h3>xapian_sortable_unserialise ()</h3>
+<pre class="programlisting"><span class="returnvalue">double</span>
+xapian_sortable_unserialise (<em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#guchar"><span class="type">guchar</span></a> *value</code></em>,
+                             <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gsize"><span class="type">gsize</span></a> len</code></em>);</pre>
+<p>Convert a string encoded using sortable_serialise back to a floating point
+number. The encoded string may contain embedded zero bytes, so its length
+must also be passed.</p>
+<p>This expects the input to be a string produced by
+<a class="link" href="xapian-glib-Utilities.html#xapian-sortable-serialise" title="xapian_sortable_serialise ()"><code class="function">xapian_sortable_serialise()</code></a>. If the input is not such a string, the value
+returned is undefined (but no error will be thrown).</p>
+<div class="refsect3">
+<a name="xapian-sortable-unserialise.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>value</p></td>
+<td class="parameter_description"><p>The serialized value to be converted. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> length=len]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>len</p></td>
+<td class="parameter_description"><p>The length of the serialized value</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-sortable-unserialise.returns"></a><h4>Returns</h4>
+<p> the unserialised numeric value</p>
+</div>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.4">1.4</a></p>
+</div>
+</div>
+<div class="refsect1">
+<a name="xapian-glib-Utilities.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="XAPIAN-ERROR:CAPS"></a><h3>XAPIAN_ERROR</h3>
+<pre class="programlisting">#define XAPIAN_ERROR                            (xapian_error_quark ())
+</pre>
+<p>Error domain for Xapian.</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="XapianError"></a><h3>enum XapianError</h3>
+<p>Error codes for the <a class="link" href="xapian-glib-Utilities.html#XAPIAN-ERROR:CAPS" title="XAPIAN_ERROR"><code class="literal">XAPIAN_ERROR</code></a> error domain.</p>
+<div class="refsect3">
+<a name="XapianError.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-ERROR-ASSERTION:CAPS"></a>XAPIAN_ERROR_ASSERTION</p></td>
+<td class="enum_member_description">
+<p>Assertion failure</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-ERROR-INVALID-ARGUMENT:CAPS"></a>XAPIAN_ERROR_INVALID_ARGUMENT</p></td>
+<td class="enum_member_description">
+<p>Invalid argument</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-ERROR-INVALID-OPERATION:CAPS"></a>XAPIAN_ERROR_INVALID_OPERATION</p></td>
+<td class="enum_member_description">
+<p>Invalid operation</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-ERROR-UNIMPLEMENTED:CAPS"></a>XAPIAN_ERROR_UNIMPLEMENTED</p></td>
+<td class="enum_member_description">
+<p>Operation not implemented</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-ERROR-DATABASE:CAPS"></a>XAPIAN_ERROR_DATABASE</p></td>
+<td class="enum_member_description">
+<p>Database error</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-ERROR-DATABASE-CORRUPT:CAPS"></a>XAPIAN_ERROR_DATABASE_CORRUPT</p></td>
+<td class="enum_member_description">
+<p>Database is corrupt</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-ERROR-DATABASE-CREATE:CAPS"></a>XAPIAN_ERROR_DATABASE_CREATE</p></td>
+<td class="enum_member_description">
+<p>Failed to create a database</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-ERROR-DATABASE-LOCK:CAPS"></a>XAPIAN_ERROR_DATABASE_LOCK</p></td>
+<td class="enum_member_description">
+<p>Failed to acquire the lock on a database</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-ERROR-DATABASE-MODIFIED:CAPS"></a>XAPIAN_ERROR_DATABASE_MODIFIED</p></td>
+<td class="enum_member_description">
+<p>Database modified after opening</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-ERROR-DATABASE-OPENING:CAPS"></a>XAPIAN_ERROR_DATABASE_OPENING</p></td>
+<td class="enum_member_description">
+<p>Unable to open the database</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-ERROR-DATABASE-VERSION:CAPS"></a>XAPIAN_ERROR_DATABASE_VERSION</p></td>
+<td class="enum_member_description">
+<p>Version mismatch when opening the database</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-ERROR-DOC-NOT-FOUND:CAPS"></a>XAPIAN_ERROR_DOC_NOT_FOUND</p></td>
+<td class="enum_member_description">
+<p>Document not found</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-ERROR-FEATURE-UNAVAILABLE:CAPS"></a>XAPIAN_ERROR_FEATURE_UNAVAILABLE</p></td>
+<td class="enum_member_description">
+<p>Feature not available with the current backend</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-ERROR-INTERNAL:CAPS"></a>XAPIAN_ERROR_INTERNAL</p></td>
+<td class="enum_member_description">
+<p>Internal state error</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-ERROR-NETWORK:CAPS"></a>XAPIAN_ERROR_NETWORK</p></td>
+<td class="enum_member_description">
+<p>Network error</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-ERROR-NETWORK-TIMEOUT:CAPS"></a>XAPIAN_ERROR_NETWORK_TIMEOUT</p></td>
+<td class="enum_member_description">
+<p>Network timeout error</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-ERROR-QUERY-PARSER:CAPS"></a>XAPIAN_ERROR_QUERY_PARSER</p></td>
+<td class="enum_member_description">
+<p>Error when parsing a query string</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-ERROR-SERIALISATION:CAPS"></a>XAPIAN_ERROR_SERIALISATION</p></td>
+<td class="enum_member_description">
+<p>Error when serialising or deserialising data</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-ERROR-RANGE:CAPS"></a>XAPIAN_ERROR_RANGE</p></td>
+<td class="enum_member_description">
+<p>Out of bounds access</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="XAPIAN-GLIB-MAJOR-VERSION:CAPS"></a><h3>XAPIAN_GLIB_MAJOR_VERSION</h3>
+<pre class="programlisting">#define XAPIAN_GLIB_MAJOR_VERSION            (1)
+</pre>
+<p>Evaluates to the major version of the Xapian-GLib version,
+e.g. 1 if the version is 1.2.3.</p>
+<p>Use this macro for compile-time checks.</p>
+<p>For run-time checks, use <a class="link" href="xapian-glib-Utilities.html#xapian-glib-major-version" title="xapian_glib_major_version ()"><code class="function">xapian_glib_major_version()</code></a> instead.</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="XAPIAN-GLIB-MINOR-VERSION:CAPS"></a><h3>XAPIAN_GLIB_MINOR_VERSION</h3>
+<pre class="programlisting">#define XAPIAN_GLIB_MINOR_VERSION            (6)
+</pre>
+<p>Evaluates to the minor version of the Xapian-GLib version,
+e.g. 2 if the version is 1.2.3.</p>
+<p>Use this macro for compile-time checks.</p>
+<p>For run-time checks, use <a class="link" href="xapian-glib-Utilities.html#xapian-glib-minor-version" title="xapian_glib_minor_version ()"><code class="function">xapian_glib_minor_version()</code></a> instead.</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="XAPIAN-GLIB-MICRO-VERSION:CAPS"></a><h3>XAPIAN_GLIB_MICRO_VERSION</h3>
+<pre class="programlisting">#define XAPIAN_GLIB_MICRO_VERSION            (1)
+</pre>
+<p>Evaluates to the micro version of the Xapian-GLib version,
+e.g. 3 if the version is 1.2.3.</p>
+<p>Use this macro for compile-time checks.</p>
+<p>For run-time checks, use <a class="link" href="xapian-glib-Utilities.html#xapian-glib-micro-version" title="xapian_glib_micro_version ()"><code class="function">xapian_glib_micro_version()</code></a> instead.</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="XAPIAN-GLIB-VERSION-S:CAPS"></a><h3>XAPIAN_GLIB_VERSION_S</h3>
+<pre class="programlisting">#define XAPIAN_GLIB_VERSION_S                "1.6.1"
+</pre>
+<p>Evaluates to a string with the version of Xapian-GLib, useful
+for concatenating or for printing.</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="XAPIAN-GLIB-VERSION:CAPS"></a><h3>XAPIAN_GLIB_VERSION</h3>
+<pre class="programlisting">#define             XAPIAN_GLIB_VERSION</pre>
+<p>Evaluates to an encoded integer representation of the Xapian-GLib
+version, useful for compile-time version comparisons.</p>
+<p>Use <a class="link" href="xapian-glib-Utilities.html#XAPIAN-GLIB-ENCODE-VERSION:CAPS" title="XAPIAN_GLIB_ENCODE_VERSION()"><code class="literal">XAPIAN_GLIB_ENCODE_VERSION</code></a> to generate an integer representation
+that can be compared to the result of this macro, e.g.:</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="preproc">#if</span><span class="normal"> <a href="xapian-glib-Utilities.html#XAPIAN-GLIB-VERSION:CAPS">XAPIAN_GLIB_VERSION</a> </span><span class="symbol">&gt;=</span><span class="normal"> </span><span class="function"><a href="xapian-glib-Utilities.html#XAPIAN-GLIB-ENCODE-VERSION:CAPS">XAPIAN_GLIB_ENCODE_VERSION</a></span><span class="normal"> </span><span class="symbol">(</span><span class="number">1</span><span class="symbol">,</span><span class="normal"> </span><span class="number">2</span><span class="symbol">,</span><span class="normal"> </span><span class="number">3</span><span class="symbol">)</span>
+<span class="normal">  </span><span class="comment">// code that can be used with Xapian-GLib 1.2.3 or later</span>
+<span class="preproc">#elif</span>
+<span class="normal">  </span><span class="comment">// code that can be used with earlier versions of Xapian-GLib</span>
+<span class="preproc">#endif</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>Generated by GTK-Doc V1.26</div>
+</body>
+</html>

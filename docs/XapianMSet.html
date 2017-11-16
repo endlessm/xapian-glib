@@ -1,0 +1,713 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>XapianMSet: Xapian-GLib Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Xapian-GLib Reference Manual">
+<link rel="up" href="ch01.html" title="Xapian-GLib">
+<link rel="prev" href="XapianQueryParser.html" title="XapianQueryParser">
+<link rel="next" href="XapianMSetIterator.html" title="XapianMSetIterator">
+<meta name="generator" content="GTK-Doc V1.26 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#XapianMSet.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#XapianMSet.object-hierarchy" class="shortcut">Object Hierarchy</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="XapianQueryParser.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="XapianMSetIterator.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="XapianMSet"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="XapianMSet.top_of_page"></a>XapianMSet</span></h2>
+<p>XapianMSet — Set of matching documents</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="XapianMSet.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">unsigned <span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSet.html#xapian-mset-get-firstitem" title="xapian_mset_get_firstitem ()">xapian_mset_get_firstitem</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">unsigned <span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSet.html#xapian-mset-get-termfreq" title="xapian_mset_get_termfreq ()">xapian_mset_get_termfreq</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">double</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSet.html#xapian-mset-get-termweight" title="xapian_mset_get_termweight ()">xapian_mset_get_termweight</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">unsigned <span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSet.html#xapian-mset-get-matches-lower-bound" title="xapian_mset_get_matches_lower_bound ()">xapian_mset_get_matches_lower_bound</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">unsigned <span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSet.html#xapian-mset-get-matches-estimated" title="xapian_mset_get_matches_estimated ()">xapian_mset_get_matches_estimated</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">unsigned <span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSet.html#xapian-mset-get-matches-upper-bound" title="xapian_mset_get_matches_upper_bound ()">xapian_mset_get_matches_upper_bound</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">unsigned <span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSet.html#xapian-mset-get-uncollapsed-matches-lower-bound" title="xapian_mset_get_uncollapsed_matches_lower_bound ()">xapian_mset_get_uncollapsed_matches_lower_bound</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">unsigned <span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSet.html#xapian-mset-get-uncollapsed-matches-estimated" title="xapian_mset_get_uncollapsed_matches_estimated ()">xapian_mset_get_uncollapsed_matches_estimated</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">unsigned <span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSet.html#xapian-mset-get-uncollapsed-matches-upper-bound" title="xapian_mset_get_uncollapsed_matches_upper_bound ()">xapian_mset_get_uncollapsed_matches_upper_bound</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">double</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSet.html#xapian-mset-get-max-possible" title="xapian_mset_get_max_possible ()">xapian_mset_get_max_possible</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">double</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSet.html#xapian-mset-get-max-attained" title="xapian_mset_get_max_attained ()">xapian_mset_get_max_attained</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">unsigned <span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSet.html#xapian-mset-get-size" title="xapian_mset_get_size ()">xapian_mset_get_size</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSet.html#xapian-mset-is-empty" title="xapian_mset_is_empty ()">xapian_mset_is_empty</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSet.html#xapian-mset-convert-to-percent" title="xapian_mset_convert_to_percent ()">xapian_mset_convert_to_percent</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="returnvalue">XapianMSetIterator</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSet.html#xapian-mset-get-begin" title="xapian_mset_get_begin ()">xapian_mset_get_begin</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="returnvalue">XapianMSetIterator</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSet.html#xapian-mset-get-end" title="xapian_mset_get_end ()">xapian_mset_get_end</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="XapianMSet.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="screen">    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+    <span class="lineart">╰──</span> XapianMSet
+</pre>
+</div>
+<div class="refsect1">
+<a name="XapianMSet.description"></a><h2>Description</h2>
+<p><a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a> represents a set of documents in a <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a>
+matching a specific <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> performed by a <a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a>
+instance.</p>
+<p>You can query the whole set for information on the results, but
+typically you will iterate over the <a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a> using an instance
+of the <a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a> class.</p>
+</div>
+<div class="refsect1">
+<a name="XapianMSet.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="xapian-mset-get-firstitem"></a><h3>xapian_mset_get_firstitem ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">int</span>
+xapian_mset_get_firstitem (<em class="parameter"><code><a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a> *mset</code></em>);</pre>
+<p>Retrieves the index of the first item in the <em class="parameter"><code>mset</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-mset-get-firstitem.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>mset</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-get-firstitem.returns"></a><h4>Returns</h4>
+<p> the index of the first item</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-get-termfreq"></a><h3>xapian_mset_get_termfreq ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">int</span>
+xapian_mset_get_termfreq (<em class="parameter"><code><a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a> *mset</code></em>,
+                          <em class="parameter"><code>const <span class="type">char</span> *term</code></em>);</pre>
+<p>Retrieves the frequency of the given <em class="parameter"><code>term</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-mset-get-termfreq.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>mset</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>term</p></td>
+<td class="parameter_description"><p>a term</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-get-termfreq.returns"></a><h4>Returns</h4>
+<p> the frequency of the term</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-get-termweight"></a><h3>xapian_mset_get_termweight ()</h3>
+<pre class="programlisting"><span class="returnvalue">double</span>
+xapian_mset_get_termweight (<em class="parameter"><code><a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a> *mset</code></em>,
+                            <em class="parameter"><code>const <span class="type">char</span> *term</code></em>);</pre>
+<p>Retrieves the weight of the given <em class="parameter"><code>term</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-mset-get-termweight.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>mset</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>term</p></td>
+<td class="parameter_description"><p>the term to use</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-get-termweight.returns"></a><h4>Returns</h4>
+<p> the weight of the term</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-get-matches-lower-bound"></a><h3>xapian_mset_get_matches_lower_bound ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">int</span>
+xapian_mset_get_matches_lower_bound (<em class="parameter"><code><a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a> *mset</code></em>);</pre>
+<p>Retrieves the lower bound of the matching documents in the database.</p>
+<div class="refsect3">
+<a name="xapian-mset-get-matches-lower-bound.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>mset</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-get-matches-lower-bound.returns"></a><h4>Returns</h4>
+<p> a lower bound of documents</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-get-matches-estimated"></a><h3>xapian_mset_get_matches_estimated ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">int</span>
+xapian_mset_get_matches_estimated (<em class="parameter"><code><a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a> *mset</code></em>);</pre>
+<p>Retrieves an estimation of the matching documents in the database.</p>
+<div class="refsect3">
+<a name="xapian-mset-get-matches-estimated.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>mset</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-get-matches-estimated.returns"></a><h4>Returns</h4>
+<p> an estimated number of documents</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-get-matches-upper-bound"></a><h3>xapian_mset_get_matches_upper_bound ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">int</span>
+xapian_mset_get_matches_upper_bound (<em class="parameter"><code><a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a> *mset</code></em>);</pre>
+<p>Retrieves the upper bound of the matching documents in the database.</p>
+<div class="refsect3">
+<a name="xapian-mset-get-matches-upper-bound.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>mset</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-get-matches-upper-bound.returns"></a><h4>Returns</h4>
+<p> an upper bound of documents</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-get-uncollapsed-matches-lower-bound"></a><h3>xapian_mset_get_uncollapsed_matches_lower_bound ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">int</span>
+xapian_mset_get_uncollapsed_matches_lower_bound
+                               (<em class="parameter"><code><a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a> *mset</code></em>);</pre>
+<p>Retrieves the lower bound of the matching documents in the database if
+collapsing was not used.</p>
+<div class="refsect3">
+<a name="xapian-mset-get-uncollapsed-matches-lower-bound.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>mset</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-get-uncollapsed-matches-lower-bound.returns"></a><h4>Returns</h4>
+<p> a lower bound of documents</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-get-uncollapsed-matches-estimated"></a><h3>xapian_mset_get_uncollapsed_matches_estimated ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">int</span>
+xapian_mset_get_uncollapsed_matches_estimated
+                               (<em class="parameter"><code><a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a> *mset</code></em>);</pre>
+<p>Retrieves an estimated number of matching documents in the database if
+collapsing was not used.</p>
+<div class="refsect3">
+<a name="xapian-mset-get-uncollapsed-matches-estimated.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>mset</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-get-uncollapsed-matches-estimated.returns"></a><h4>Returns</h4>
+<p> an estimate of matching documents</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-get-uncollapsed-matches-upper-bound"></a><h3>xapian_mset_get_uncollapsed_matches_upper_bound ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">int</span>
+xapian_mset_get_uncollapsed_matches_upper_bound
+                               (<em class="parameter"><code><a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a> *mset</code></em>);</pre>
+<p>Retrieves the upper bound of the matching documents in the database if
+collapsing was not used.</p>
+<div class="refsect3">
+<a name="xapian-mset-get-uncollapsed-matches-upper-bound.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>mset</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-get-uncollapsed-matches-upper-bound.returns"></a><h4>Returns</h4>
+<p> an upper bound of matching documents</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-get-max-possible"></a><h3>xapian_mset_get_max_possible ()</h3>
+<pre class="programlisting"><span class="returnvalue">double</span>
+xapian_mset_get_max_possible (<em class="parameter"><code><a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a> *mset</code></em>);</pre>
+<p>The maximum possible weight in the <em class="parameter"><code>mset</code></em>
+.</p>
+<p>See also: <a class="link" href="XapianMSet.html#xapian-mset-get-max-attained" title="xapian_mset_get_max_attained ()"><code class="function">xapian_mset_get_max_attained()</code></a></p>
+<div class="refsect3">
+<a name="xapian-mset-get-max-possible.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>mset</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-get-max-possible.returns"></a><h4>Returns</h4>
+<p> the maximum weight in the set</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-get-max-attained"></a><h3>xapian_mset_get_max_attained ()</h3>
+<pre class="programlisting"><span class="returnvalue">double</span>
+xapian_mset_get_max_attained (<em class="parameter"><code><a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a> *mset</code></em>);</pre>
+<p>The greatest weight which is attained by any document in the
+database.</p>
+<p>If <em class="parameter"><code>mset</code></em>
+ was the result of <a class="link" href="XapianEnquire.html#xapian-enquire-get-mset" title="xapian_enquire_get_mset ()"><code class="function">xapian_enquire_get_mset()</code></a> with a
+first item set to 0, the returned value is the weight of the
+first item in the <em class="parameter"><code>mset</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-mset-get-max-attained.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>mset</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-get-max-attained.returns"></a><h4>Returns</h4>
+<p> the maximum weight in the database</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-get-size"></a><h3>xapian_mset_get_size ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">int</span>
+xapian_mset_get_size (<em class="parameter"><code><a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a> *mset</code></em>);</pre>
+<p>Retrieves the number of items in the <em class="parameter"><code>mset</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-mset-get-size.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>mset</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-get-size.returns"></a><h4>Returns</h4>
+<p> the number of items</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-is-empty"></a><h3>xapian_mset_is_empty ()</h3>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+xapian_mset_is_empty (<em class="parameter"><code><a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a> *mset</code></em>);</pre>
+<p>Checks whether the <em class="parameter"><code>mset</code></em>
+ is empty.</p>
+<div class="refsect3">
+<a name="xapian-mset-is-empty.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>mset</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-is-empty.returns"></a><h4>Returns</h4>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the set is empty, and <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-convert-to-percent"></a><h3>xapian_mset_convert_to_percent ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>
+xapian_mset_convert_to_percent (<em class="parameter"><code><a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a> *mset</code></em>,
+                                <em class="parameter"><code><span class="type">double</span> weight</code></em>);</pre>
+<p>Converts a weight, typically returned by
+<a class="link" href="XapianMSetIterator.html#xapian-mset-iterator-get-weight" title="xapian_mset_iterator_get_weight ()"><code class="function">xapian_mset_iterator_get_weight()</code></a>, into a percentage.</p>
+<div class="refsect3">
+<a name="xapian-mset-convert-to-percent.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>mset</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>weight</p></td>
+<td class="parameter_description"><p>the weight of an item</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-convert-to-percent.returns"></a><h4>Returns</h4>
+<p> the weight of an item expressed as a percentage</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-get-begin"></a><h3>xapian_mset_get_begin ()</h3>
+<pre class="programlisting"><a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="returnvalue">XapianMSetIterator</span></a> *
+xapian_mset_get_begin (<em class="parameter"><code><a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a> *mset</code></em>);</pre>
+<p>Creates an iterator placed before the beginning of the <em class="parameter"><code>mset</code></em>
+.</p>
+<p>In order to access the contents of the <em class="parameter"><code>mset</code></em>
+ through the
+<a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a> API you will have to advance the iterator
+first, e.g.:</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">XapianMSetIter</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">iter </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="XapianMSet.html#xapian-mset-get-begin">xapian_mset_get_begin</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">mset</span><span class="symbol">);</span>
+
+<span class="keyword">while</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="XapianMSetIterator.html#xapian-mset-iterator-next">xapian_mset_iterator_next</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">iter</span><span class="symbol">))</span>
+<span class="normal">  </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="comment">// ...</span>
+<span class="normal">  </span><span class="cbracket">}</span>
+
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">iter</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+<div class="refsect3">
+<a name="xapian-mset-get-begin.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>mset</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-get-begin.returns"></a><h4>Returns</h4>
+<p>the newly created <a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a> instance. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-get-end"></a><h3>xapian_mset_get_end ()</h3>
+<pre class="programlisting"><a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="returnvalue">XapianMSetIterator</span></a> *
+xapian_mset_get_end (<em class="parameter"><code><a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a> *mset</code></em>);</pre>
+<p>Creates a new <a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a> placed after the end of the <em class="parameter"><code>mset</code></em>
+.</p>
+<p>In order to access the contents of the <em class="parameter"><code>mset</code></em>
+ through the
+<a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a> API you will have to advance the iterator
+first, e.g.:</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">XapianMSetIter</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">iter </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="XapianMSet.html#xapian-mset-get-end">xapian_mset_get_end</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">mset</span><span class="symbol">);</span>
+
+<span class="keyword">while</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="XapianMSetIterator.html#xapian-mset-iterator-prev">xapian_mset_iterator_prev</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">iter</span><span class="symbol">))</span>
+<span class="normal">  </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="comment">// ...</span>
+<span class="normal">  </span><span class="cbracket">}</span>
+
+<span class="function"><a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">iter</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+<div class="refsect3">
+<a name="xapian-mset-get-end.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>mset</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-get-end.returns"></a><h4>Returns</h4>
+<p>the newly created <a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a> instance. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+</div>
+<div class="refsect1">
+<a name="XapianMSet.other_details"></a><h2>Types and Values</h2>
+</div>
+</div>
+<div class="footer">
+<hr>Generated by GTK-Doc V1.26</div>
+</body>
+</html>

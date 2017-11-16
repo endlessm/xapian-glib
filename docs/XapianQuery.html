@@ -1,0 +1,665 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>XapianQuery: Xapian-GLib Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Xapian-GLib Reference Manual">
+<link rel="up" href="ch01.html" title="Xapian-GLib">
+<link rel="prev" href="XapianEnquire.html" title="XapianEnquire">
+<link rel="next" href="XapianQueryParser.html" title="XapianQueryParser">
+<meta name="generator" content="GTK-Doc V1.26 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#XapianQuery.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#XapianQuery.object-hierarchy" class="shortcut">Object Hierarchy</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="XapianEnquire.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="XapianQueryParser.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="XapianQuery"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="XapianQuery.top_of_page"></a>XapianQuery</span></h2>
+<p>XapianQuery — A query tree</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="XapianQuery.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianQuery.html" title="XapianQuery"><span class="returnvalue">XapianQuery</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianQuery.html#xapian-query-new" title="xapian_query_new ()">xapian_query_new</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianQuery.html" title="XapianQuery"><span class="returnvalue">XapianQuery</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianQuery.html#xapian-query-new-for-term" title="xapian_query_new_for_term ()">xapian_query_new_for_term</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianQuery.html" title="XapianQuery"><span class="returnvalue">XapianQuery</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianQuery.html#xapian-query-new-for-pair" title="xapian_query_new_for_pair ()">xapian_query_new_for_pair</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianQuery.html" title="XapianQuery"><span class="returnvalue">XapianQuery</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianQuery.html#xapian-query-new-for-value" title="xapian_query_new_for_value ()">xapian_query_new_for_value</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianQuery.html" title="XapianQuery"><span class="returnvalue">XapianQuery</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianQuery.html#xapian-query-new-for-terms-pair" title="xapian_query_new_for_terms_pair ()">xapian_query_new_for_terms_pair</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianQuery.html" title="XapianQuery"><span class="returnvalue">XapianQuery</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianQuery.html#xapian-query-new-from-posting-source" title="xapian_query_new_from_posting_source ()">xapian_query_new_from_posting_source</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianQuery.html" title="XapianQuery"><span class="returnvalue">XapianQuery</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianQuery.html#xapian-query-new-from-string" title="xapian_query_new_from_string ()">xapian_query_new_from_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianQuery.html" title="XapianQuery"><span class="returnvalue">XapianQuery</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianQuery.html#xapian-query-new-match-all" title="xapian_query_new_match_all ()">xapian_query_new_match_all</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="XapianQuery.html#xapian-query-is-empty" title="xapian_query_is_empty ()">xapian_query_is_empty</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">unsigned <span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianQuery.html#xapian-query-get-length" title="xapian_query_get_length ()">xapian_query_get_length</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">char</span> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianQuery.html#xapian-query-get-description" title="xapian_query_get_description ()">xapian_query_get_description</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">char</span> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianQuery.html#xapian-query-serialise" title="xapian_query_serialise ()">xapian_query_serialise</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="XapianQuery.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody><tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="XapianQuery.html#XapianQueryOp" title="enum XapianQueryOp">XapianQueryOp</a></td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="XapianQuery.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="screen">    <a href="/usr/share/gtk-doc/html/gobject/gobject-Enumeration-and-Flag-Types.html">GEnum</a>
+    <span class="lineart">╰──</span> XapianQueryOp
+    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+    <span class="lineart">╰──</span> XapianQuery
+</pre>
+</div>
+<div class="refsect1">
+<a name="XapianQuery.description"></a><h2>Description</h2>
+<p><a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> is a class that represents a tree of terms and operations
+that is applied by <a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a> to match documents in a database.</p>
+<p>Typically, you'll want to use <a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a> instead of building
+a <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> directly.</p>
+</div>
+<div class="refsect1">
+<a name="XapianQuery.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="xapian-query-new"></a><h3>xapian_query_new ()</h3>
+<pre class="programlisting"><a class="link" href="XapianQuery.html" title="XapianQuery"><span class="returnvalue">XapianQuery</span></a> *
+xapian_query_new (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>Creates a new, empty <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> instance.</p>
+<div class="refsect3">
+<a name="xapian-query-new.returns"></a><h4>Returns</h4>
+<p>the newly created <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> instance. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-query-new-for-term"></a><h3>xapian_query_new_for_term ()</h3>
+<pre class="programlisting"><a class="link" href="XapianQuery.html" title="XapianQuery"><span class="returnvalue">XapianQuery</span></a> *
+xapian_query_new_for_term (<em class="parameter"><code>const <span class="type">char</span> *term</code></em>);</pre>
+<p>Creates a new <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> for the given <em class="parameter"><code>term</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-query-new-for-term.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>term</p></td>
+<td class="parameter_description"><p>the term to query</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-query-new-for-term.returns"></a><h4>Returns</h4>
+<p>the newly created <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> instance. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-query-new-for-pair"></a><h3>xapian_query_new_for_pair ()</h3>
+<pre class="programlisting"><a class="link" href="XapianQuery.html" title="XapianQuery"><span class="returnvalue">XapianQuery</span></a> *
+xapian_query_new_for_pair (<em class="parameter"><code><a class="link" href="XapianQuery.html#XapianQueryOp" title="enum XapianQueryOp"><span class="type">XapianQueryOp</span></a> op</code></em>,
+                           <em class="parameter"><code><a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> *a</code></em>,
+                           <em class="parameter"><code><a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> *b</code></em>);</pre>
+<p>Creates a new <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> using two <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> instances
+and an <em class="parameter"><code>op</code></em>
+ between the two.</p>
+<div class="refsect3">
+<a name="xapian-query-new-for-pair.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>op</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQuery.html#XapianQueryOp" title="enum XapianQueryOp"><span class="type">XapianQueryOp</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-query-new-for-pair.returns"></a><h4>Returns</h4>
+<p>the newly created <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> instance. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-query-new-for-value"></a><h3>xapian_query_new_for_value ()</h3>
+<pre class="programlisting"><a class="link" href="XapianQuery.html" title="XapianQuery"><span class="returnvalue">XapianQuery</span></a> *
+xapian_query_new_for_value (<em class="parameter"><code><a class="link" href="XapianQuery.html#XapianQueryOp" title="enum XapianQueryOp"><span class="type">XapianQueryOp</span></a> op</code></em>,
+                            <em class="parameter"><code>unsigned <span class="type">int</span> slot</code></em>,
+                            <em class="parameter"><code>const <span class="type">char</span> *value</code></em>);</pre>
+<p>Creates a new <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> that matches values from a document
+value slot.</p>
+<div class="refsect3">
+<a name="xapian-query-new-for-value.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>op</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQuery.html#XapianQueryOp" title="enum XapianQueryOp"><span class="type">XapianQueryOp</span></a> value, currently either <a class="link" href="XapianQuery.html#XAPIAN-QUERY-OP-VALUE-GE:CAPS"><code class="literal">XAPIAN_QUERY_OP_VALUE_GE</code></a>
+or <a class="link" href="XapianQuery.html#XAPIAN-QUERY-OP-VALUE-LE:CAPS"><code class="literal">XAPIAN_QUERY_OP_VALUE_LE</code></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>slot</p></td>
+<td class="parameter_description"><p>the slot number to get the value from</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>value</p></td>
+<td class="parameter_description"><p>the value to compare</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-query-new-for-value.returns"></a><h4>Returns</h4>
+<p>the newly creates <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-query-new-for-terms-pair"></a><h3>xapian_query_new_for_terms_pair ()</h3>
+<pre class="programlisting"><a class="link" href="XapianQuery.html" title="XapianQuery"><span class="returnvalue">XapianQuery</span></a> *
+xapian_query_new_for_terms_pair (<em class="parameter"><code><a class="link" href="XapianQuery.html#XapianQueryOp" title="enum XapianQueryOp"><span class="type">XapianQueryOp</span></a> op</code></em>,
+                                 <em class="parameter"><code>const <span class="type">char</span> *a</code></em>,
+                                 <em class="parameter"><code>const <span class="type">char</span> *b</code></em>);</pre>
+<p>Creates a new <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> for the two given terms, using the
+given operator.</p>
+<div class="refsect3">
+<a name="xapian-query-new-for-terms-pair.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>op</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQuery.html#XapianQueryOp" title="enum XapianQueryOp"><span class="type">XapianQueryOp</span></a> value</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>the left hand side term</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>the right hand side term</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-query-new-for-terms-pair.returns"></a><h4>Returns</h4>
+<p>the newly created <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-query-new-from-posting-source"></a><h3>xapian_query_new_from_posting_source ()</h3>
+<pre class="programlisting"><a class="link" href="XapianQuery.html" title="XapianQuery"><span class="returnvalue">XapianQuery</span></a> *
+xapian_query_new_from_posting_source (<em class="parameter"><code><a class="link" href="XapianPostingSource.html" title="XapianPostingSource"><span class="type">XapianPostingSource</span></a> *posting_source</code></em>);</pre>
+<p>Creates a new <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> from a posting source.</p>
+<div class="refsect3">
+<a name="xapian-query-new-from-posting-source.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>posting_source</p></td>
+<td class="parameter_description"><p>a posting source</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-query-new-from-posting-source.returns"></a><h4>Returns</h4>
+<p>the newly created <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> instance. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="ix02.html#api-index-1.2">1.2</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-query-new-from-string"></a><h3>xapian_query_new_from_string ()</h3>
+<pre class="programlisting"><a class="link" href="XapianQuery.html" title="XapianQuery"><span class="returnvalue">XapianQuery</span></a> *
+xapian_query_new_from_string (<em class="parameter"><code>const <span class="type">char</span> *data</code></em>);</pre>
+<p>Creates a new <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> from its normal form.</p>
+<div class="refsect3">
+<a name="xapian-query-new-from-string.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>data</p></td>
+<td class="parameter_description"><p>a string containing a query in normal form, as
+returned by <a class="link" href="XapianQuery.html#xapian-query-serialise" title="xapian_query_serialise ()"><code class="function">xapian_query_serialise()</code></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-query-new-from-string.returns"></a><h4>Returns</h4>
+<p>the newly created <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> instance. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-query-new-match-all"></a><h3>xapian_query_new_match_all ()</h3>
+<pre class="programlisting"><a class="link" href="XapianQuery.html" title="XapianQuery"><span class="returnvalue">XapianQuery</span></a> *
+xapian_query_new_match_all (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>Creates a new <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> that will match all documents
+in the database.</p>
+<div class="refsect3">
+<a name="xapian-query-new-match-all.returns"></a><h4>Returns</h4>
+<p>the newly created <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> instance. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="ix02.html#api-index-1.2">1.2</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-query-is-empty"></a><h3>xapian_query_is_empty ()</h3>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+xapian_query_is_empty (<em class="parameter"><code><a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> *query</code></em>);</pre>
+<p>Checks whether <em class="parameter"><code>query</code></em>
+ is empty.</p>
+<div class="refsect3">
+<a name="xapian-query-is-empty.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>query</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-query-is-empty.returns"></a><h4>Returns</h4>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> is empty</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-query-get-length"></a><h3>xapian_query_get_length ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">int</span>
+xapian_query_get_length (<em class="parameter"><code><a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> *query</code></em>);</pre>
+<p>Retrieves the length of the query.</p>
+<div class="refsect3">
+<a name="xapian-query-get-length.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>query</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-query-get-length.returns"></a><h4>Returns</h4>
+<p> the length of the query</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-query-get-description"></a><h3>xapian_query_get_description ()</h3>
+<pre class="programlisting"><span class="returnvalue">char</span> *
+xapian_query_get_description (<em class="parameter"><code><a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> *query</code></em>);</pre>
+<p>Retrieves a description of <em class="parameter"><code>query</code></em>
+, typically used for debugging.</p>
+<div class="refsect3">
+<a name="xapian-query-get-description.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>query</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-query-get-description.returns"></a><h4>Returns</h4>
+<p>a string with a description of the query. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-query-serialise"></a><h3>xapian_query_serialise ()</h3>
+<pre class="programlisting"><span class="returnvalue">char</span> *
+xapian_query_serialise (<em class="parameter"><code><a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> *query</code></em>);</pre>
+<p>Serialises <em class="parameter"><code>query</code></em>
+ into a normal form that can be used
+with <a class="link" href="XapianQuery.html#xapian-query-new-from-string" title="xapian_query_new_from_string ()"><code class="function">xapian_query_new_from_string()</code></a>.</p>
+<div class="refsect3">
+<a name="xapian-query-serialise.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>query</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-query-serialise.returns"></a><h4>Returns</h4>
+<p>the query in normal form. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+</div>
+<div class="refsect1">
+<a name="XapianQuery.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="XapianQueryOp"></a><h3>enum XapianQueryOp</h3>
+<p>Operators for <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a>.</p>
+<div class="refsect3">
+<a name="XapianQueryOp.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-OP-AND:CAPS"></a>XAPIAN_QUERY_OP_AND</p></td>
+<td class="enum_member_description">
+<p>filters if both sub-queries are satisfied</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-OP-OR:CAPS"></a>XAPIAN_QUERY_OP_OR</p></td>
+<td class="enum_member_description">
+<p>filters if either sub-queries are satisfied</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-OP-AND-NOT:CAPS"></a>XAPIAN_QUERY_OP_AND_NOT</p></td>
+<td class="enum_member_description">
+<p>filters if only the left sub-query is
+  satisfied but not the right</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-OP-XOR:CAPS"></a>XAPIAN_QUERY_OP_XOR</p></td>
+<td class="enum_member_description">
+<p>filters if either sub-query is satisfied
+  but not both</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-OP-AND-MAYBE:CAPS"></a>XAPIAN_QUERY_OP_AND_MAYBE</p></td>
+<td class="enum_member_description">
+<p>filters if left sub-query is satisfied
+  but uses the weights for both</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-OP-FILTER:CAPS"></a>XAPIAN_QUERY_OP_FILTER</p></td>
+<td class="enum_member_description">
+<p>filters as <a class="link" href="XapianQuery.html#XAPIAN-QUERY-OP-AND:CAPS"><code class="literal">XAPIAN_QUERY_OP_AND</code></a>, but
+  uses only weights from the left sub-query</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-OP-NEAR:CAPS"></a>XAPIAN_QUERY_OP_NEAR</p></td>
+<td class="enum_member_description">
+<p>filters if occurrances of a list of terms
+  appear within a specified window of positions</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-OP-PHRASE:CAPS"></a>XAPIAN_QUERY_OP_PHRASE</p></td>
+<td class="enum_member_description">
+<p>filters if occurrances of a list of terms
+  appear both within a specified window of positions and als in
+  the specified order</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-OP-VALUE-RANGE:CAPS"></a>XAPIAN_QUERY_OP_VALUE_RANGE</p></td>
+<td class="enum_member_description">
+<p>filters by a range of values</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-OP-SCALE-WEIGHT:CAPS"></a>XAPIAN_QUERY_OP_SCALE_WEIGHT</p></td>
+<td class="enum_member_description">
+<p>scales the weight of a sub-query by
+  the specified factor</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-OP-ELITE-SET:CAPS"></a>XAPIAN_QUERY_OP_ELITE_SET</p></td>
+<td class="enum_member_description">
+<p>picks the best N sub-queries and
+  combines them with <a class="link" href="XapianQuery.html#XAPIAN-QUERY-OP-OR:CAPS"><code class="literal">XAPIAN_QUERY_OP_OR</code></a></p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-OP-VALUE-GE:CAPS"></a>XAPIAN_QUERY_OP_VALUE_GE</p></td>
+<td class="enum_member_description">
+<p>filters a document value using a
+  greater than or equal test</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-OP-VALUE-LE:CAPS"></a>XAPIAN_QUERY_OP_VALUE_LE</p></td>
+<td class="enum_member_description">
+<p>filters a document value using a
+  less than or equal test</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-OP-SYNONYM:CAPS"></a>XAPIAN_QUERY_OP_SYNONYM</p></td>
+<td class="enum_member_description">
+<p>treats a set of sub-queries as synonyms</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-OP-MAX:CAPS"></a>XAPIAN_QUERY_OP_MAX</p></td>
+<td class="enum_member_description">
+<p>pick the maximum weight of any subquery (Since: 1.4.0)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-OP-WILDCARD:CAPS"></a>XAPIAN_QUERY_OP_WILDCARD</p></td>
+<td class="enum_member_description">
+<p>wildcard expansion (Since: 1.4.0)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>Generated by GTK-Doc V1.26</div>
+</body>
+</html>

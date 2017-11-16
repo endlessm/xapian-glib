@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<book xmlns="http://www.devhelp.net/book" title="Xapian-GLib Reference Manual" link="index.html" author="" name="xapian-glib" version="2" language="c">
+  <chapters>
+    <sub name="Xapian-GLib" link="ch01.html">
+      <sub name="XapianDatabase" link="XapianDatabase.html"/>
+      <sub name="XapianWritableDatabase" link="XapianWritableDatabase.html"/>
+      <sub name="XapianDocument" link="XapianDocument.html"/>
+      <sub name="XapianEnquire" link="XapianEnquire.html"/>
+      <sub name="XapianQuery" link="XapianQuery.html"/>
+      <sub name="XapianQueryParser" link="XapianQueryParser.html"/>
+      <sub name="XapianMSet" link="XapianMSet.html"/>
+      <sub name="XapianMSetIterator" link="XapianMSetIterator.html"/>
+      <sub name="XapianPostingSource" link="XapianPostingSource.html"/>
+      <sub name="XapianValuePostingSource" link="XapianValuePostingSource.html"/>
+      <sub name="XapianValueWeightPostingSource" link="XapianValueWeightPostingSource.html"/>
+      <sub name="XapianStem" link="XapianStem.html"/>
+      <sub name="XapianStopper" link="XapianStopper.html"/>
+      <sub name="XapianSimpleStopper" link="XapianSimpleStopper.html"/>
+      <sub name="XapianTermGenerator" link="XapianTermGenerator.html"/>
+      <sub name="XapianTermIterator" link="XapianTermIterator.html"/>
+      <sub name="Utilities" link="xapian-glib-Utilities.html"/>
+    </sub>
+    <sub name="Object Hierarchy" link="object-tree.html"/>
+    <sub name="API Index" link="api-index-full.html"/>
+    <sub name="Index of new symbols in 1.2" link="ix02.html"/>
+    <sub name="Index of new symbols in 1.4" link="ix03.html"/>
+    <sub name="Index of new symbols in 1.6" link="ix04.html"/>
+    <sub name="Index of deprecated API" link="deprecated-api-index.html"/>
+    <sub name="Annotation Glossary" link="annotation-glossary.html"/>
+  </chapters>
+  <functions>
+    <keyword type="function" name="xapian_database_new ()" link="XapianDatabase.html#xapian-database-new"/>
+    <keyword type="function" name="xapian_database_new_with_path ()" link="XapianDatabase.html#xapian-database-new-with-path"/>
+    <keyword type="function" name="xapian_database_close ()" link="XapianDatabase.html#xapian-database-close"/>
+    <keyword type="function" name="xapian_database_reopen ()" link="XapianDatabase.html#xapian-database-reopen" since="1.2"/>
+    <keyword type="function" name="xapian_database_get_description ()" link="XapianDatabase.html#xapian-database-get-description"/>
+    <keyword type="function" name="xapian_database_get_uuid ()" link="XapianDatabase.html#xapian-database-get-uuid"/>
+    <keyword type="function" name="xapian_database_get_metadata ()" link="XapianDatabase.html#xapian-database-get-metadata"/>
+    <keyword type="function" name="xapian_database_get_doc_count ()" link="XapianDatabase.html#xapian-database-get-doc-count"/>
+    <keyword type="function" name="xapian_database_get_last_doc_id ()" link="XapianDatabase.html#xapian-database-get-last-doc-id"/>
+    <keyword type="function" name="xapian_database_get_average_length ()" link="XapianDatabase.html#xapian-database-get-average-length" since="1.4"/>
+    <keyword type="function" name="xapian_database_get_document ()" link="XapianDatabase.html#xapian-database-get-document"/>
+    <keyword type="function" name="xapian_database_get_term_freq ()" link="XapianDatabase.html#xapian-database-get-term-freq" since="1.4"/>
+    <keyword type="function" name="xapian_database_get_collection_freq ()" link="XapianDatabase.html#xapian-database-get-collection-freq" since="1.4"/>
+    <keyword type="function" name="xapian_database_add_database ()" link="XapianDatabase.html#xapian-database-add-database"/>
+    <keyword type="function" name="xapian_database_compact_to_path ()" link="XapianDatabase.html#xapian-database-compact-to-path" since="1.4"/>
+    <keyword type="function" name="xapian_database_compact_to_fd ()" link="XapianDatabase.html#xapian-database-compact-to-fd" since="1.4"/>
+    <keyword type="function" name="xapian_database_enumerate_all_terms ()" link="XapianDatabase.html#xapian-database-enumerate-all-terms" since="1.4"/>
+    <keyword type="enum" name="enum XapianDatabaseFlags" link="XapianDatabase.html#XapianDatabaseFlags" since="1.4"/>
+    <keyword type="enum" name="enum XapianDatabaseBackend" link="XapianDatabase.html#XapianDatabaseBackend" since="1.4"/>
+    <keyword type="enum" name="enum XapianDatabaseCompactFlags" link="XapianDatabase.html#XapianDatabaseCompactFlags" since="1.4"/>
+    <keyword type="property" name="The “backend” property" link="XapianDatabase.html#XapianDatabase--backend"/>
+    <keyword type="property" name="The “flags” property" link="XapianDatabase.html#XapianDatabase--flags"/>
+    <keyword type="property" name="The “offset” property" link="XapianDatabase.html#XapianDatabase--offset"/>
+    <keyword type="property" name="The “path” property" link="XapianDatabase.html#XapianDatabase--path"/>
+    <keyword type="function" name="xapian_writable_database_new ()" link="XapianWritableDatabase.html#xapian-writable-database-new"/>
+    <keyword type="function" name="xapian_writable_database_new_with_backend ()" link="XapianWritableDatabase.html#xapian-writable-database-new-with-backend"/>
+    <keyword type="function" name="xapian_writable_database_new_full ()" link="XapianWritableDatabase.html#xapian-writable-database-new-full"/>
+    <keyword type="function" name="xapian_writable_database_commit ()" link="XapianWritableDatabase.html#xapian-writable-database-commit"/>
+    <keyword type="function" name="xapian_writable_database_set_metadata ()" link="XapianWritableDatabase.html#xapian-writable-database-set-metadata" since="1.4"/>
+    <keyword type="function" name="xapian_writable_database_begin_transaction ()" link="XapianWritableDatabase.html#xapian-writable-database-begin-transaction"/>
+    <keyword type="function" name="xapian_writable_database_commit_transaction ()" link="XapianWritableDatabase.html#xapian-writable-database-commit-transaction"/>
+    <keyword type="function" name="xapian_writable_database_cancel_transaction ()" link="XapianWritableDatabase.html#xapian-writable-database-cancel-transaction"/>
+    <keyword type="function" name="xapian_writable_database_add_document ()" link="XapianWritableDatabase.html#xapian-writable-database-add-document"/>
+    <keyword type="function" name="xapian_writable_database_delete_document ()" link="XapianWritableDatabase.html#xapian-writable-database-delete-document"/>
+    <keyword type="function" name="xapian_writable_database_replace_document ()" link="XapianWritableDatabase.html#xapian-writable-database-replace-document"/>
+    <keyword type="function" name="xapian_writable_database_add_spelling ()" link="XapianWritableDatabase.html#xapian-writable-database-add-spelling" since="1.2"/>
+    <keyword type="function" name="xapian_writable_database_add_spelling_full ()" link="XapianWritableDatabase.html#xapian-writable-database-add-spelling-full" since="1.2"/>
+    <keyword type="function" name="xapian_writable_database_remove_spelling ()" link="XapianWritableDatabase.html#xapian-writable-database-remove-spelling" since="1.2"/>
+    <keyword type="function" name="xapian_writable_database_remove_spelling_full ()" link="XapianWritableDatabase.html#xapian-writable-database-remove-spelling-full" since="1.2"/>
+    <keyword type="enum" name="enum XapianDatabaseAction" link="XapianWritableDatabase.html#XapianDatabaseAction"/>
+    <keyword type="property" name="The “action” property" link="XapianWritableDatabase.html#XapianWritableDatabase--action"/>
+    <keyword type="function" name="xapian_document_new ()" link="XapianDocument.html#xapian-document-new"/>
+    <keyword type="function" name="xapian_document_get_value ()" link="XapianDocument.html#xapian-document-get-value"/>
+    <keyword type="function" name="xapian_document_get_numeric_value ()" link="XapianDocument.html#xapian-document-get-numeric-value" since="1.4"/>
+    <keyword type="function" name="xapian_document_add_value ()" link="XapianDocument.html#xapian-document-add-value"/>
+    <keyword type="function" name="xapian_document_add_numeric_value ()" link="XapianDocument.html#xapian-document-add-numeric-value" since="1.4"/>
+    <keyword type="function" name="xapian_document_remove_value ()" link="XapianDocument.html#xapian-document-remove-value"/>
+    <keyword type="function" name="xapian_document_clear_values ()" link="XapianDocument.html#xapian-document-clear-values"/>
+    <keyword type="function" name="xapian_document_get_values_count ()" link="XapianDocument.html#xapian-document-get-values-count"/>
+    <keyword type="function" name="xapian_document_get_data ()" link="XapianDocument.html#xapian-document-get-data"/>
+    <keyword type="function" name="xapian_document_set_data ()" link="XapianDocument.html#xapian-document-set-data"/>
+    <keyword type="function" name="xapian_document_get_doc_id ()" link="XapianDocument.html#xapian-document-get-doc-id"/>
+    <keyword type="function" name="xapian_document_get_description ()" link="XapianDocument.html#xapian-document-get-description"/>
+    <keyword type="function" name="xapian_document_add_posting ()" link="XapianDocument.html#xapian-document-add-posting"/>
+    <keyword type="function" name="xapian_document_remove_posting ()" link="XapianDocument.html#xapian-document-remove-posting"/>
+    <keyword type="function" name="xapian_document_add_term ()" link="XapianDocument.html#xapian-document-add-term"/>
+    <keyword type="function" name="xapian_document_add_term_full ()" link="XapianDocument.html#xapian-document-add-term-full"/>
+    <keyword type="function" name="xapian_document_add_boolean_term ()" link="XapianDocument.html#xapian-document-add-boolean-term"/>
+    <keyword type="function" name="xapian_document_remove_term ()" link="XapianDocument.html#xapian-document-remove-term"/>
+    <keyword type="function" name="xapian_document_clear_terms ()" link="XapianDocument.html#xapian-document-clear-terms"/>
+    <keyword type="function" name="xapian_document_get_termlist_count ()" link="XapianDocument.html#xapian-document-get-termlist-count"/>
+    <keyword type="function" name="xapian_enquire_new ()" link="XapianEnquire.html#xapian-enquire-new"/>
+    <keyword type="function" name="xapian_enquire_set_query ()" link="XapianEnquire.html#xapian-enquire-set-query"/>
+    <keyword type="function" name="xapian_enquire_get_query ()" link="XapianEnquire.html#xapian-enquire-get-query"/>
+    <keyword type="function" name="xapian_enquire_set_collapse_key ()" link="XapianEnquire.html#xapian-enquire-set-collapse-key" since="1.2"/>
+    <keyword type="function" name="xapian_enquire_set_collapse_key_full ()" link="XapianEnquire.html#xapian-enquire-set-collapse-key-full" since="1.2"/>
+    <keyword type="function" name="xapian_enquire_set_cutoff ()" link="XapianEnquire.html#xapian-enquire-set-cutoff" since="1.2"/>
+    <keyword type="function" name="xapian_enquire_set_cutoff_full ()" link="XapianEnquire.html#xapian-enquire-set-cutoff-full" since="1.2"/>
+    <keyword type="function" name="xapian_enquire_set_sort_by_value ()" link="XapianEnquire.html#xapian-enquire-set-sort-by-value" since="1.2"/>
+    <keyword type="function" name="xapian_enquire_get_mset ()" link="XapianEnquire.html#xapian-enquire-get-mset"/>
+    <keyword type="property" name="The “database” property" link="XapianEnquire.html#XapianEnquire--database"/>
+    <keyword type="function" name="xapian_query_new ()" link="XapianQuery.html#xapian-query-new"/>
+    <keyword type="function" name="xapian_query_new_for_term ()" link="XapianQuery.html#xapian-query-new-for-term"/>
+    <keyword type="function" name="xapian_query_new_for_pair ()" link="XapianQuery.html#xapian-query-new-for-pair"/>
+    <keyword type="function" name="xapian_query_new_for_value ()" link="XapianQuery.html#xapian-query-new-for-value"/>
+    <keyword type="function" name="xapian_query_new_for_terms_pair ()" link="XapianQuery.html#xapian-query-new-for-terms-pair"/>
+    <keyword type="function" name="xapian_query_new_from_posting_source ()" link="XapianQuery.html#xapian-query-new-from-posting-source" since="1.2"/>
+    <keyword type="function" name="xapian_query_new_from_string ()" link="XapianQuery.html#xapian-query-new-from-string"/>
+    <keyword type="function" name="xapian_query_new_match_all ()" link="XapianQuery.html#xapian-query-new-match-all" since="1.2"/>
+    <keyword type="function" name="xapian_query_is_empty ()" link="XapianQuery.html#xapian-query-is-empty"/>
+    <keyword type="function" name="xapian_query_get_length ()" link="XapianQuery.html#xapian-query-get-length"/>
+    <keyword type="function" name="xapian_query_get_description ()" link="XapianQuery.html#xapian-query-get-description"/>
+    <keyword type="function" name="xapian_query_serialise ()" link="XapianQuery.html#xapian-query-serialise"/>
+    <keyword type="enum" name="enum XapianQueryOp" link="XapianQuery.html#XapianQueryOp"/>
+    <keyword type="function" name="xapian_query_parser_new ()" link="XapianQueryParser.html#xapian-query-parser-new"/>
+    <keyword type="function" name="xapian_query_parser_set_stemmer ()" link="XapianQueryParser.html#xapian-query-parser-set-stemmer"/>
+    <keyword type="function" name="xapian_query_parser_get_corrected_query_string ()" link="XapianQueryParser.html#xapian-query-parser-get-corrected-query-string" since="1.2"/>
+    <keyword type="function" name="xapian_query_parser_get_stopper ()" link="XapianQueryParser.html#xapian-query-parser-get-stopper" since="1.2"/>
+    <keyword type="function" name="xapian_query_parser_set_stemming_strategy ()" link="XapianQueryParser.html#xapian-query-parser-set-stemming-strategy"/>
+    <keyword type="function" name="xapian_query_parser_set_database ()" link="XapianQueryParser.html#xapian-query-parser-set-database"/>
+    <keyword type="function" name="xapian_query_parser_set_stopper ()" link="XapianQueryParser.html#xapian-query-parser-set-stopper" since="1.2"/>
+    <keyword type="function" name="xapian_query_parser_set_default_op ()" link="XapianQueryParser.html#xapian-query-parser-set-default-op" since="1.4"/>
+    <keyword type="function" name="xapian_query_parser_add_prefix ()" link="XapianQueryParser.html#xapian-query-parser-add-prefix"/>
+    <keyword type="function" name="xapian_query_parser_add_boolean_prefix ()" link="XapianQueryParser.html#xapian-query-parser-add-boolean-prefix"/>
+    <keyword type="function" name="xapian_query_parser_parse_query ()" link="XapianQueryParser.html#xapian-query-parser-parse-query"/>
+    <keyword type="function" name="xapian_query_parser_parse_query_full ()" link="XapianQueryParser.html#xapian-query-parser-parse-query-full"/>
+    <keyword type="enum" name="enum XapianStemStrategy" link="XapianQueryParser.html#XapianStemStrategy"/>
+    <keyword type="enum" name="enum XapianQueryParserFeature" link="XapianQueryParser.html#XapianQueryParserFeature"/>
+    <keyword type="property" name="The “database” property" link="XapianQueryParser.html#XapianQueryParser--database"/>
+    <keyword type="property" name="The “default-op” property" link="XapianQueryParser.html#XapianQueryParser--default-op"/>
+    <keyword type="property" name="The “stemmer” property" link="XapianQueryParser.html#XapianQueryParser--stemmer"/>
+    <keyword type="property" name="The “stemming-strategy” property" link="XapianQueryParser.html#XapianQueryParser--stemming-strategy"/>
+    <keyword type="property" name="The “stopper” property" link="XapianQueryParser.html#XapianQueryParser--stopper"/>
+    <keyword type="function" name="xapian_mset_get_firstitem ()" link="XapianMSet.html#xapian-mset-get-firstitem"/>
+    <keyword type="function" name="xapian_mset_get_termfreq ()" link="XapianMSet.html#xapian-mset-get-termfreq"/>
+    <keyword type="function" name="xapian_mset_get_termweight ()" link="XapianMSet.html#xapian-mset-get-termweight"/>
+    <keyword type="function" name="xapian_mset_get_matches_lower_bound ()" link="XapianMSet.html#xapian-mset-get-matches-lower-bound"/>
+    <keyword type="function" name="xapian_mset_get_matches_estimated ()" link="XapianMSet.html#xapian-mset-get-matches-estimated"/>
+    <keyword type="function" name="xapian_mset_get_matches_upper_bound ()" link="XapianMSet.html#xapian-mset-get-matches-upper-bound"/>
+    <keyword type="function" name="xapian_mset_get_uncollapsed_matches_lower_bound ()" link="XapianMSet.html#xapian-mset-get-uncollapsed-matches-lower-bound"/>
+    <keyword type="function" name="xapian_mset_get_uncollapsed_matches_estimated ()" link="XapianMSet.html#xapian-mset-get-uncollapsed-matches-estimated"/>
+    <keyword type="function" name="xapian_mset_get_uncollapsed_matches_upper_bound ()" link="XapianMSet.html#xapian-mset-get-uncollapsed-matches-upper-bound"/>
+    <keyword type="function" name="xapian_mset_get_max_possible ()" link="XapianMSet.html#xapian-mset-get-max-possible"/>
+    <keyword type="function" name="xapian_mset_get_max_attained ()" link="XapianMSet.html#xapian-mset-get-max-attained"/>
+    <keyword type="function" name="xapian_mset_get_size ()" link="XapianMSet.html#xapian-mset-get-size"/>
+    <keyword type="function" name="xapian_mset_is_empty ()" link="XapianMSet.html#xapian-mset-is-empty"/>
+    <keyword type="function" name="xapian_mset_convert_to_percent ()" link="XapianMSet.html#xapian-mset-convert-to-percent"/>
+    <keyword type="function" name="xapian_mset_get_begin ()" link="XapianMSet.html#xapian-mset-get-begin"/>
+    <keyword type="function" name="xapian_mset_get_end ()" link="XapianMSet.html#xapian-mset-get-end"/>
+    <keyword type="function" name="xapian_mset_iterator_next ()" link="XapianMSetIterator.html#xapian-mset-iterator-next"/>
+    <keyword type="function" name="xapian_mset_iterator_prev ()" link="XapianMSetIterator.html#xapian-mset-iterator-prev"/>
+    <keyword type="function" name="xapian_mset_iterator_is_valid ()" link="XapianMSetIterator.html#xapian-mset-iterator-is-valid" deprecated=""/>
+    <keyword type="function" name="xapian_mset_iterator_is_begin ()" link="XapianMSetIterator.html#xapian-mset-iterator-is-begin"/>
+    <keyword type="function" name="xapian_mset_iterator_is_end ()" link="XapianMSetIterator.html#xapian-mset-iterator-is-end"/>
+    <keyword type="function" name="xapian_mset_iterator_get_rank ()" link="XapianMSetIterator.html#xapian-mset-iterator-get-rank"/>
+    <keyword type="function" name="xapian_mset_iterator_get_weight ()" link="XapianMSetIterator.html#xapian-mset-iterator-get-weight"/>
+    <keyword type="function" name="xapian_mset_iterator_get_percent ()" link="XapianMSetIterator.html#xapian-mset-iterator-get-percent"/>
+    <keyword type="function" name="xapian_mset_iterator_get_document ()" link="XapianMSetIterator.html#xapian-mset-iterator-get-document"/>
+    <keyword type="function" name="xapian_mset_iterator_get_doc_id ()" link="XapianMSetIterator.html#xapian-mset-iterator-get-doc-id"/>
+    <keyword type="function" name="xapian_mset_iterator_get_collapse_count ()" link="XapianMSetIterator.html#xapian-mset-iterator-get-collapse-count"/>
+    <keyword type="function" name="xapian_mset_iterator_get_description ()" link="XapianMSetIterator.html#xapian-mset-iterator-get-description"/>
+    <keyword type="function" name="xapian_mset_iterator_get_mset ()" link="XapianMSetIterator.html#xapian-mset-iterator-get-mset"/>
+    <keyword type="function" name="xapian_posting_source_get_description ()" link="XapianPostingSource.html#xapian-posting-source-get-description" since="1.2"/>
+    <keyword type="function" name="xapian_value_posting_source_new ()" link="XapianValuePostingSource.html#xapian-value-posting-source-new" since="1.2"/>
+    <keyword type="function" name="xapian_value_posting_source_get_slot ()" link="XapianValuePostingSource.html#xapian-value-posting-source-get-slot" since="1.2"/>
+    <keyword type="property" name="The “slot” property" link="XapianValuePostingSource.html#XapianValuePostingSource--slot"/>
+    <keyword type="function" name="xapian_value_weight_posting_source_new ()" link="XapianValueWeightPostingSource.html#xapian-value-weight-posting-source-new" since="1.2"/>
+    <keyword type="function" name="xapian_stem_new ()" link="XapianStem.html#xapian-stem-new"/>
+    <keyword type="function" name="xapian_stem_new_for_language ()" link="XapianStem.html#xapian-stem-new-for-language"/>
+    <keyword type="function" name="xapian_stem_get_description ()" link="XapianStem.html#xapian-stem-get-description"/>
+    <keyword type="function" name="xapian_stem_get_available_languages ()" link="XapianStem.html#xapian-stem-get-available-languages"/>
+    <keyword type="macro" name="XAPIAN_STEM_LANGUAGE_NONE" link="XapianStem.html#XAPIAN-STEM-LANGUAGE-NONE:CAPS"/>
+    <keyword type="property" name="The “language” property" link="XapianStem.html#XapianStem--language"/>
+    <keyword type="function" name="xapian_stopper_get_description ()" link="XapianStopper.html#xapian-stopper-get-description" since="1.2"/>
+    <keyword type="function" name="xapian_stopper_is_stop_term ()" link="XapianStopper.html#xapian-stopper-is-stop-term" since="1.2"/>
+    <keyword type="function" name="xapian_simple_stopper_add ()" link="XapianSimpleStopper.html#xapian-simple-stopper-add" since="1.2"/>
+    <keyword type="function" name="xapian_simple_stopper_new ()" link="XapianSimpleStopper.html#xapian-simple-stopper-new" since="1.2"/>
+    <keyword type="function" name="xapian_term_generator_new ()" link="XapianTermGenerator.html#xapian-term-generator-new"/>
+    <keyword type="function" name="xapian_term_generator_index_text ()" link="XapianTermGenerator.html#xapian-term-generator-index-text"/>
+    <keyword type="function" name="xapian_term_generator_index_text_full ()" link="XapianTermGenerator.html#xapian-term-generator-index-text-full"/>
+    <keyword type="function" name="xapian_term_generator_set_database ()" link="XapianTermGenerator.html#xapian-term-generator-set-database"/>
+    <keyword type="function" name="xapian_term_generator_set_document ()" link="XapianTermGenerator.html#xapian-term-generator-set-document"/>
+    <keyword type="function" name="xapian_term_generator_set_flags ()" link="XapianTermGenerator.html#xapian-term-generator-set-flags" since="1.2"/>
+    <keyword type="function" name="xapian_term_generator_set_stemmer ()" link="XapianTermGenerator.html#xapian-term-generator-set-stemmer"/>
+    <keyword type="function" name="xapian_term_generator_set_stemming_strategy ()" link="XapianTermGenerator.html#xapian-term-generator-set-stemming-strategy"/>
+    <keyword type="function" name="xapian_term_generator_set_stopper ()" link="XapianTermGenerator.html#xapian-term-generator-set-stopper" since="1.4"/>
+    <keyword type="enum" name="enum XapianTermGeneratorFeature" link="XapianTermGenerator.html#XapianTermGeneratorFeature" since="1.2"/>
+    <keyword type="property" name="The “database” property" link="XapianTermGenerator.html#XapianTermGenerator--database"/>
+    <keyword type="property" name="The “document” property" link="XapianTermGenerator.html#XapianTermGenerator--document"/>
+    <keyword type="property" name="The “flags” property" link="XapianTermGenerator.html#XapianTermGenerator--flags"/>
+    <keyword type="property" name="The “stemmer” property" link="XapianTermGenerator.html#XapianTermGenerator--stemmer"/>
+    <keyword type="property" name="The “stemming-strategy” property" link="XapianTermGenerator.html#XapianTermGenerator--stemming-strategy"/>
+    <keyword type="property" name="The “stopper” property" link="XapianTermGenerator.html#XapianTermGenerator--stopper"/>
+    <keyword type="function" name="xapian_term_iterator_next ()" link="XapianTermIterator.html#xapian-term-iterator-next" since="1.6"/>
+    <keyword type="function" name="xapian_term_iterator_get_term_name ()" link="XapianTermIterator.html#xapian-term-iterator-get-term-name" since="1.6"/>
+    <keyword type="function" name="xapian_term_iterator_get_wdf ()" link="XapianTermIterator.html#xapian-term-iterator-get-wdf" since="1.6"/>
+    <keyword type="function" name="xapian_term_iterator_get_term_freq ()" link="XapianTermIterator.html#xapian-term-iterator-get-term-freq" since="1.6"/>
+    <keyword type="function" name="xapian_term_iterator_get_description ()" link="XapianTermIterator.html#xapian-term-iterator-get-description" since="1.6"/>
+    <keyword type="macro" name="XAPIAN_GLIB_ENCODE_VERSION()" link="xapian-glib-Utilities.html#XAPIAN-GLIB-ENCODE-VERSION:CAPS"/>
+    <keyword type="function" name="xapian_glib_version_string ()" link="xapian-glib-Utilities.html#xapian-glib-version-string"/>
+    <keyword type="function" name="xapian_glib_major_version ()" link="xapian-glib-Utilities.html#xapian-glib-major-version"/>
+    <keyword type="function" name="xapian_glib_minor_version ()" link="xapian-glib-Utilities.html#xapian-glib-minor-version"/>
+    <keyword type="function" name="xapian_glib_micro_version ()" link="xapian-glib-Utilities.html#xapian-glib-micro-version"/>
+    <keyword type="function" name="xapian_version_string ()" link="xapian-glib-Utilities.html#xapian-version-string"/>
+    <keyword type="function" name="xapian_major_version ()" link="xapian-glib-Utilities.html#xapian-major-version"/>
+    <keyword type="function" name="xapian_minor_version ()" link="xapian-glib-Utilities.html#xapian-minor-version"/>
+    <keyword type="function" name="xapian_revision ()" link="xapian-glib-Utilities.html#xapian-revision"/>
+    <keyword type="function" name="xapian_sortable_serialise ()" link="xapian-glib-Utilities.html#xapian-sortable-serialise" since="1.4"/>
+    <keyword type="function" name="xapian_sortable_unserialise ()" link="xapian-glib-Utilities.html#xapian-sortable-unserialise" since="1.4"/>
+    <keyword type="macro" name="XAPIAN_ERROR" link="xapian-glib-Utilities.html#XAPIAN-ERROR:CAPS"/>
+    <keyword type="enum" name="enum XapianError" link="xapian-glib-Utilities.html#XapianError"/>
+    <keyword type="macro" name="XAPIAN_GLIB_MAJOR_VERSION" link="xapian-glib-Utilities.html#XAPIAN-GLIB-MAJOR-VERSION:CAPS"/>
+    <keyword type="macro" name="XAPIAN_GLIB_MINOR_VERSION" link="xapian-glib-Utilities.html#XAPIAN-GLIB-MINOR-VERSION:CAPS"/>
+    <keyword type="macro" name="XAPIAN_GLIB_MICRO_VERSION" link="xapian-glib-Utilities.html#XAPIAN-GLIB-MICRO-VERSION:CAPS"/>
+    <keyword type="macro" name="XAPIAN_GLIB_VERSION_S" link="xapian-glib-Utilities.html#XAPIAN-GLIB-VERSION-S:CAPS"/>
+    <keyword type="macro" name="XAPIAN_GLIB_VERSION" link="xapian-glib-Utilities.html#XAPIAN-GLIB-VERSION:CAPS"/>
+    <keyword type="constant" name="XAPIAN_DATABASE_FLAGS_NONE" link="XapianDatabase.html#XAPIAN-DATABASE-FLAGS-NONE:CAPS"/>
+    <keyword type="constant" name="XAPIAN_DATABASE_FLAGS_NO_SYNC" link="XapianDatabase.html#XAPIAN-DATABASE-FLAGS-NO-SYNC:CAPS"/>
+    <keyword type="constant" name="XAPIAN_DATABASE_FLAGS_FULL_SYNC" link="XapianDatabase.html#XAPIAN-DATABASE-FLAGS-FULL-SYNC:CAPS"/>
+    <keyword type="constant" name="XAPIAN_DATABASE_FLAGS_DANGEROUS" link="XapianDatabase.html#XAPIAN-DATABASE-FLAGS-DANGEROUS:CAPS"/>
+    <keyword type="constant" name="XAPIAN_DATABASE_FLAGS_NO_TERMLIST" link="XapianDatabase.html#XAPIAN-DATABASE-FLAGS-NO-TERMLIST:CAPS"/>
+    <keyword type="constant" name="XAPIAN_DATABASE_FLAGS_RETRY_LOCK" link="XapianDatabase.html#XAPIAN-DATABASE-FLAGS-RETRY-LOCK:CAPS"/>
+    <keyword type="constant" name="XAPIAN_DATABASE_BACKEND_DEFAULT" link="XapianDatabase.html#XAPIAN-DATABASE-BACKEND-DEFAULT:CAPS"/>
+    <keyword type="constant" name="XAPIAN_DATABASE_BACKEND_GLASS" link="XapianDatabase.html#XAPIAN-DATABASE-BACKEND-GLASS:CAPS"/>
+    <keyword type="constant" name="XAPIAN_DATABASE_BACKEND_CHERT" link="XapianDatabase.html#XAPIAN-DATABASE-BACKEND-CHERT:CAPS"/>
+    <keyword type="constant" name="XAPIAN_DATABASE_BACKEND_STUB" link="XapianDatabase.html#XAPIAN-DATABASE-BACKEND-STUB:CAPS"/>
+    <keyword type="constant" name="XAPIAN_DATABASE_BACKEND_INMEMORY" link="XapianDatabase.html#XAPIAN-DATABASE-BACKEND-INMEMORY:CAPS"/>
+    <keyword type="constant" name="XAPIAN_DATABASE_COMPACT_FLAGS_NO_RENUMBER" link="XapianDatabase.html#XAPIAN-DATABASE-COMPACT-FLAGS-NO-RENUMBER:CAPS"/>
+    <keyword type="constant" name="XAPIAN_DATABASE_COMPACT_FLAGS_MULTIPASS" link="XapianDatabase.html#XAPIAN-DATABASE-COMPACT-FLAGS-MULTIPASS:CAPS"/>
+    <keyword type="constant" name="XAPIAN_DATABASE_COMPACT_FLAGS_SINGLE_FILE" link="XapianDatabase.html#XAPIAN-DATABASE-COMPACT-FLAGS-SINGLE-FILE:CAPS"/>
+    <keyword type="constant" name="XAPIAN_DATABASE_ACTION_CREATE_OR_OPEN" link="XapianWritableDatabase.html#XAPIAN-DATABASE-ACTION-CREATE-OR-OPEN:CAPS"/>
+    <keyword type="constant" name="XAPIAN_DATABASE_ACTION_CREATE_OR_OVERWRITE" link="XapianWritableDatabase.html#XAPIAN-DATABASE-ACTION-CREATE-OR-OVERWRITE:CAPS"/>
+    <keyword type="constant" name="XAPIAN_DATABASE_ACTION_CREATE" link="XapianWritableDatabase.html#XAPIAN-DATABASE-ACTION-CREATE:CAPS"/>
+    <keyword type="constant" name="XAPIAN_DATABASE_ACTION_OPEN" link="XapianWritableDatabase.html#XAPIAN-DATABASE-ACTION-OPEN:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_OP_AND" link="XapianQuery.html#XAPIAN-QUERY-OP-AND:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_OP_OR" link="XapianQuery.html#XAPIAN-QUERY-OP-OR:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_OP_AND_NOT" link="XapianQuery.html#XAPIAN-QUERY-OP-AND-NOT:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_OP_XOR" link="XapianQuery.html#XAPIAN-QUERY-OP-XOR:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_OP_AND_MAYBE" link="XapianQuery.html#XAPIAN-QUERY-OP-AND-MAYBE:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_OP_FILTER" link="XapianQuery.html#XAPIAN-QUERY-OP-FILTER:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_OP_NEAR" link="XapianQuery.html#XAPIAN-QUERY-OP-NEAR:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_OP_PHRASE" link="XapianQuery.html#XAPIAN-QUERY-OP-PHRASE:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_OP_VALUE_RANGE" link="XapianQuery.html#XAPIAN-QUERY-OP-VALUE-RANGE:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_OP_SCALE_WEIGHT" link="XapianQuery.html#XAPIAN-QUERY-OP-SCALE-WEIGHT:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_OP_ELITE_SET" link="XapianQuery.html#XAPIAN-QUERY-OP-ELITE-SET:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_OP_VALUE_GE" link="XapianQuery.html#XAPIAN-QUERY-OP-VALUE-GE:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_OP_VALUE_LE" link="XapianQuery.html#XAPIAN-QUERY-OP-VALUE-LE:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_OP_SYNONYM" link="XapianQuery.html#XAPIAN-QUERY-OP-SYNONYM:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_OP_MAX" link="XapianQuery.html#XAPIAN-QUERY-OP-MAX:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_OP_WILDCARD" link="XapianQuery.html#XAPIAN-QUERY-OP-WILDCARD:CAPS"/>
+    <keyword type="constant" name="XAPIAN_STEM_STRATEGY_STEM_NONE" link="XapianQueryParser.html#XAPIAN-STEM-STRATEGY-STEM-NONE:CAPS"/>
+    <keyword type="constant" name="XAPIAN_STEM_STRATEGY_STEM_SOME" link="XapianQueryParser.html#XAPIAN-STEM-STRATEGY-STEM-SOME:CAPS"/>
+    <keyword type="constant" name="XAPIAN_STEM_STRATEGY_STEM_ALL" link="XapianQueryParser.html#XAPIAN-STEM-STRATEGY-STEM-ALL:CAPS"/>
+    <keyword type="constant" name="XAPIAN_STEM_STRATEGY_STEM_ALL_Z" link="XapianQueryParser.html#XAPIAN-STEM-STRATEGY-STEM-ALL-Z:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_PARSER_FEATURE_BOOLEAN" link="XapianQueryParser.html#XAPIAN-QUERY-PARSER-FEATURE-BOOLEAN:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_PARSER_FEATURE_PHRASE" link="XapianQueryParser.html#XAPIAN-QUERY-PARSER-FEATURE-PHRASE:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_PARSER_FEATURE_LOVEHATE" link="XapianQueryParser.html#XAPIAN-QUERY-PARSER-FEATURE-LOVEHATE:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_PARSER_FEATURE_BOOLEAN_ANY_CASE" link="XapianQueryParser.html#XAPIAN-QUERY-PARSER-FEATURE-BOOLEAN-ANY-CASE:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_PARSER_FEATURE_WILDCARD" link="XapianQueryParser.html#XAPIAN-QUERY-PARSER-FEATURE-WILDCARD:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_PARSER_FEATURE_PURE_NOT" link="XapianQueryParser.html#XAPIAN-QUERY-PARSER-FEATURE-PURE-NOT:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_PARSER_FEATURE_PARTIAL" link="XapianQueryParser.html#XAPIAN-QUERY-PARSER-FEATURE-PARTIAL:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_PARSER_FEATURE_SPELLING_CORRECTION" link="XapianQueryParser.html#XAPIAN-QUERY-PARSER-FEATURE-SPELLING-CORRECTION:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_PARSER_FEATURE_SYNONYM" link="XapianQueryParser.html#XAPIAN-QUERY-PARSER-FEATURE-SYNONYM:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_PARSER_FEATURE_AUTO_SYNONYMS" link="XapianQueryParser.html#XAPIAN-QUERY-PARSER-FEATURE-AUTO-SYNONYMS:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_PARSER_FEATURE_AUTO_MULTIWORD_SYNONYMS" link="XapianQueryParser.html#XAPIAN-QUERY-PARSER-FEATURE-AUTO-MULTIWORD-SYNONYMS:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM" link="XapianQueryParser.html#XAPIAN-QUERY-PARSER-FEATURE-CJK-NGRAM:CAPS"/>
+    <keyword type="constant" name="XAPIAN_QUERY_PARSER_FEATURE_DEFAULT" link="XapianQueryParser.html#XAPIAN-QUERY-PARSER-FEATURE-DEFAULT:CAPS"/>
+    <keyword type="constant" name="XAPIAN_TERM_GENERATOR_FEATURE_NONE" link="XapianTermGenerator.html#XAPIAN-TERM-GENERATOR-FEATURE-NONE:CAPS"/>
+    <keyword type="constant" name="XAPIAN_TERM_GENERATOR_FEATURE_SPELLING" link="XapianTermGenerator.html#XAPIAN-TERM-GENERATOR-FEATURE-SPELLING:CAPS"/>
+    <keyword type="constant" name="XAPIAN_ERROR_ASSERTION" link="xapian-glib-Utilities.html#XAPIAN-ERROR-ASSERTION:CAPS"/>
+    <keyword type="constant" name="XAPIAN_ERROR_INVALID_ARGUMENT" link="xapian-glib-Utilities.html#XAPIAN-ERROR-INVALID-ARGUMENT:CAPS"/>
+    <keyword type="constant" name="XAPIAN_ERROR_INVALID_OPERATION" link="xapian-glib-Utilities.html#XAPIAN-ERROR-INVALID-OPERATION:CAPS"/>
+    <keyword type="constant" name="XAPIAN_ERROR_UNIMPLEMENTED" link="xapian-glib-Utilities.html#XAPIAN-ERROR-UNIMPLEMENTED:CAPS"/>
+    <keyword type="constant" name="XAPIAN_ERROR_DATABASE" link="xapian-glib-Utilities.html#XAPIAN-ERROR-DATABASE:CAPS"/>
+    <keyword type="constant" name="XAPIAN_ERROR_DATABASE_CORRUPT" link="xapian-glib-Utilities.html#XAPIAN-ERROR-DATABASE-CORRUPT:CAPS"/>
+    <keyword type="constant" name="XAPIAN_ERROR_DATABASE_CREATE" link="xapian-glib-Utilities.html#XAPIAN-ERROR-DATABASE-CREATE:CAPS"/>
+    <keyword type="constant" name="XAPIAN_ERROR_DATABASE_LOCK" link="xapian-glib-Utilities.html#XAPIAN-ERROR-DATABASE-LOCK:CAPS"/>
+    <keyword type="constant" name="XAPIAN_ERROR_DATABASE_MODIFIED" link="xapian-glib-Utilities.html#XAPIAN-ERROR-DATABASE-MODIFIED:CAPS"/>
+    <keyword type="constant" name="XAPIAN_ERROR_DATABASE_OPENING" link="xapian-glib-Utilities.html#XAPIAN-ERROR-DATABASE-OPENING:CAPS"/>
+    <keyword type="constant" name="XAPIAN_ERROR_DATABASE_VERSION" link="xapian-glib-Utilities.html#XAPIAN-ERROR-DATABASE-VERSION:CAPS"/>
+    <keyword type="constant" name="XAPIAN_ERROR_DOC_NOT_FOUND" link="xapian-glib-Utilities.html#XAPIAN-ERROR-DOC-NOT-FOUND:CAPS"/>
+    <keyword type="constant" name="XAPIAN_ERROR_FEATURE_UNAVAILABLE" link="xapian-glib-Utilities.html#XAPIAN-ERROR-FEATURE-UNAVAILABLE:CAPS"/>
+    <keyword type="constant" name="XAPIAN_ERROR_INTERNAL" link="xapian-glib-Utilities.html#XAPIAN-ERROR-INTERNAL:CAPS"/>
+    <keyword type="constant" name="XAPIAN_ERROR_NETWORK" link="xapian-glib-Utilities.html#XAPIAN-ERROR-NETWORK:CAPS"/>
+    <keyword type="constant" name="XAPIAN_ERROR_NETWORK_TIMEOUT" link="xapian-glib-Utilities.html#XAPIAN-ERROR-NETWORK-TIMEOUT:CAPS"/>
+    <keyword type="constant" name="XAPIAN_ERROR_QUERY_PARSER" link="xapian-glib-Utilities.html#XAPIAN-ERROR-QUERY-PARSER:CAPS"/>
+    <keyword type="constant" name="XAPIAN_ERROR_SERIALISATION" link="xapian-glib-Utilities.html#XAPIAN-ERROR-SERIALISATION:CAPS"/>
+    <keyword type="constant" name="XAPIAN_ERROR_RANGE" link="xapian-glib-Utilities.html#XAPIAN-ERROR-RANGE:CAPS"/>
+  </functions>
+</book>

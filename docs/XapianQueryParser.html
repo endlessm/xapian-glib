@@ -1,0 +1,862 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>XapianQueryParser: Xapian-GLib Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Xapian-GLib Reference Manual">
+<link rel="up" href="ch01.html" title="Xapian-GLib">
+<link rel="prev" href="XapianQuery.html" title="XapianQuery">
+<link rel="next" href="XapianMSet.html" title="XapianMSet">
+<meta name="generator" content="GTK-Doc V1.26 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#XapianQueryParser.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#XapianQueryParser.object-hierarchy" class="shortcut">Object Hierarchy</a></span><span id="nav_properties">  <span class="dim">|</span> 
+                  <a href="#XapianQueryParser.properties" class="shortcut">Properties</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="XapianQuery.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="XapianMSet.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="XapianQueryParser"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="XapianQueryParser.top_of_page"></a>XapianQueryParser</span></h2>
+<p>XapianQueryParser — Parse query strings</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="XapianQueryParser.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="returnvalue">XapianQueryParser</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianQueryParser.html#xapian-query-parser-new" title="xapian_query_parser_new ()">xapian_query_parser_new</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianQueryParser.html#xapian-query-parser-set-stemmer" title="xapian_query_parser_set_stemmer ()">xapian_query_parser_set_stemmer</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">char</span> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianQueryParser.html#xapian-query-parser-get-corrected-query-string" title="xapian_query_parser_get_corrected_query_string ()">xapian_query_parser_get_corrected_query_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianStopper.html" title="XapianStopper"><span class="returnvalue">XapianStopper</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianQueryParser.html#xapian-query-parser-get-stopper" title="xapian_query_parser_get_stopper ()">xapian_query_parser_get_stopper</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianQueryParser.html#xapian-query-parser-set-stemming-strategy" title="xapian_query_parser_set_stemming_strategy ()">xapian_query_parser_set_stemming_strategy</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianQueryParser.html#xapian-query-parser-set-database" title="xapian_query_parser_set_database ()">xapian_query_parser_set_database</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianQueryParser.html#xapian-query-parser-set-stopper" title="xapian_query_parser_set_stopper ()">xapian_query_parser_set_stopper</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianQueryParser.html#xapian-query-parser-set-default-op" title="xapian_query_parser_set_default_op ()">xapian_query_parser_set_default_op</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianQueryParser.html#xapian-query-parser-add-prefix" title="xapian_query_parser_add_prefix ()">xapian_query_parser_add_prefix</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianQueryParser.html#xapian-query-parser-add-boolean-prefix" title="xapian_query_parser_add_boolean_prefix ()">xapian_query_parser_add_boolean_prefix</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianQuery.html" title="XapianQuery"><span class="returnvalue">XapianQuery</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianQueryParser.html#xapian-query-parser-parse-query" title="xapian_query_parser_parse_query ()">xapian_query_parser_parse_query</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianQuery.html" title="XapianQuery"><span class="returnvalue">XapianQuery</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianQueryParser.html#xapian-query-parser-parse-query-full" title="xapian_query_parser_parse_query_full ()">xapian_query_parser_parse_query_full</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="XapianQueryParser.properties"></a><h2>Properties</h2>
+<div class="informaltable"><table class="informaltable" border="0">
+<colgroup>
+<col width="150px" class="properties_type">
+<col width="300px" class="properties_name">
+<col width="200px" class="properties_flags">
+</colgroup>
+<tbody>
+<tr>
+<td class="property_type">
+<a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> *</td>
+<td class="property_name"><a class="link" href="XapianQueryParser.html#XapianQueryParser--database" title="The “database” property">database</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+<tr>
+<td class="property_type"><a class="link" href="XapianQuery.html#XapianQueryOp" title="enum XapianQueryOp"><span class="type">XapianQueryOp</span></a></td>
+<td class="property_name"><a class="link" href="XapianQueryParser.html#XapianQueryParser--default-op" title="The “default-op” property">default-op</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+<tr>
+<td class="property_type">
+<a class="link" href="XapianStem.html" title="XapianStem"><span class="type">XapianStem</span></a> *</td>
+<td class="property_name"><a class="link" href="XapianQueryParser.html#XapianQueryParser--stemmer" title="The “stemmer” property">stemmer</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+<tr>
+<td class="property_type"><a class="link" href="XapianQueryParser.html#XapianStemStrategy" title="enum XapianStemStrategy"><span class="type">XapianStemStrategy</span></a></td>
+<td class="property_name"><a class="link" href="XapianQueryParser.html#XapianQueryParser--stemming-strategy" title="The “stemming-strategy” property">stemming-strategy</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+<tr>
+<td class="property_type">
+<a class="link" href="XapianStopper.html" title="XapianStopper"><span class="type">XapianStopper</span></a> *</td>
+<td class="property_name"><a class="link" href="XapianQueryParser.html#XapianQueryParser--stopper" title="The “stopper” property">stopper</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="XapianQueryParser.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="XapianQueryParser.html#XapianStemStrategy" title="enum XapianStemStrategy">XapianStemStrategy</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="XapianQueryParser.html#XapianQueryParserFeature" title="enum XapianQueryParserFeature">XapianQueryParserFeature</a></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="XapianQueryParser.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="screen">    <a href="/usr/share/gtk-doc/html/gobject/gobject-Enumeration-and-Flag-Types.html">GEnum</a>
+    <span class="lineart">╰──</span> XapianStemStrategy
+    <a href="/usr/share/gtk-doc/html/gobject/gobject-Enumeration-and-Flag-Types.html">GFlags</a>
+    <span class="lineart">╰──</span> XapianQueryParserFeature
+    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+    <span class="lineart">╰──</span> XapianQueryParser
+</pre>
+</div>
+<div class="refsect1">
+<a name="XapianQueryParser.description"></a><h2>Description</h2>
+<p><a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a> is a class that can parse a query string and
+generate a <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> instance from it.</p>
+<p><a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a> can use a <a class="link" href="XapianStem.html" title="XapianStem"><span class="type">XapianStem</span></a> to isolate the terms
+for the query, as well as use a database for wildcard expansion.</p>
+</div>
+<div class="refsect1">
+<a name="XapianQueryParser.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="xapian-query-parser-new"></a><h3>xapian_query_parser_new ()</h3>
+<pre class="programlisting"><a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="returnvalue">XapianQueryParser</span></a> *
+xapian_query_parser_new (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>Creates a new <a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a>.</p>
+<div class="refsect3">
+<a name="xapian-query-parser-new.returns"></a><h4>Returns</h4>
+<p>the newly created <a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a> instance. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-query-parser-set-stemmer"></a><h3>xapian_query_parser_set_stemmer ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_query_parser_set_stemmer (<em class="parameter"><code><a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a> *parser</code></em>,
+                                 <em class="parameter"><code><a class="link" href="XapianStem.html" title="XapianStem"><span class="type">XapianStem</span></a> *stemmer</code></em>);</pre>
+<p>Sets the stemmer for <em class="parameter"><code>parser</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-query-parser-set-stemmer.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>parser</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>stemmer</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianStem.html" title="XapianStem"><span class="type">XapianStem</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-query-parser-get-corrected-query-string"></a><h3>xapian_query_parser_get_corrected_query_string ()</h3>
+<pre class="programlisting"><span class="returnvalue">char</span> *
+xapian_query_parser_get_corrected_query_string
+                               (<em class="parameter"><code><a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a> *parser</code></em>);</pre>
+<p>Get the spelling-corrected query string.</p>
+<p>This will only be set if <a class="link" href="XapianQueryParser.html#XAPIAN-QUERY-PARSER-FEATURE-SPELLING-CORRECTION:CAPS"><code class="literal">XAPIAN_QUERY_PARSER_FEATURE_SPELLING_CORRECTION</code></a>
+is specified when <a class="link" href="XapianQueryParser.html#xapian-query-parser-parse-query-full" title="xapian_query_parser_parse_query_full ()"><code class="function">xapian_query_parser_parse_query_full()</code></a> was last called.</p>
+<p>If there were no corrections, an empty string is returned.</p>
+<div class="refsect3">
+<a name="xapian-query-parser-get-corrected-query-string.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>parser</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-query-parser-get-corrected-query-string.returns"></a><h4>Returns</h4>
+<p>the corrected query string. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="ix02.html#api-index-1.2">1.2</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-query-parser-get-stopper"></a><h3>xapian_query_parser_get_stopper ()</h3>
+<pre class="programlisting"><a class="link" href="XapianStopper.html" title="XapianStopper"><span class="returnvalue">XapianStopper</span></a> *
+xapian_query_parser_get_stopper (<em class="parameter"><code><a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a> *parser</code></em>);</pre>
+<p>Retrieves the stopper set using <a class="link" href="XapianQueryParser.html#xapian-query-parser-set-stopper" title="xapian_query_parser_set_stopper ()"><code class="function">xapian_query_parser_set_stopper()</code></a>.</p>
+<div class="refsect3">
+<a name="xapian-query-parser-get-stopper.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>parser</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-query-parser-get-stopper.returns"></a><h4>Returns</h4>
+<p>the <a class="link" href="XapianStopper.html" title="XapianStopper"><span class="type">XapianStopper</span></a> used by <em class="parameter"><code>parser</code></em>
+. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="ix02.html#api-index-1.2">1.2</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-query-parser-set-stemming-strategy"></a><h3>xapian_query_parser_set_stemming_strategy ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_query_parser_set_stemming_strategy
+                               (<em class="parameter"><code><a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a> *parser</code></em>,
+                                <em class="parameter"><code><a class="link" href="XapianQueryParser.html#XapianStemStrategy" title="enum XapianStemStrategy"><span class="type">XapianStemStrategy</span></a> strategy</code></em>);</pre>
+<p>Sets the stemming <em class="parameter"><code>strategy</code></em>
+ for <em class="parameter"><code>parser</code></em>
+.</p>
+<p>The stemming strategy is only used if <em class="parameter"><code>parser</code></em>
+ uses a stemmer.</p>
+<div class="refsect3">
+<a name="xapian-query-parser-set-stemming-strategy.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>parser</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>strategy</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQueryParser.html#XapianStemStrategy" title="enum XapianStemStrategy"><span class="type">XapianStemStrategy</span></a> value</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-query-parser-set-database"></a><h3>xapian_query_parser_set_database ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_query_parser_set_database (<em class="parameter"><code><a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a> *parser</code></em>,
+                                  <em class="parameter"><code><a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> *database</code></em>);</pre>
+<p>Sets the <em class="parameter"><code>database</code></em>
+ used by <em class="parameter"><code>parser</code></em>
+ for wildcard expansion.</p>
+<div class="refsect3">
+<a name="xapian-query-parser-set-database.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>parser</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>database</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-query-parser-set-stopper"></a><h3>xapian_query_parser_set_stopper ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_query_parser_set_stopper (<em class="parameter"><code><a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a> *parser</code></em>,
+                                 <em class="parameter"><code><a class="link" href="XapianStopper.html" title="XapianStopper"><span class="type">XapianStopper</span></a> *stopper</code></em>);</pre>
+<p>Sets the <em class="parameter"><code>stopper</code></em>
+ used by <em class="parameter"><code>parser</code></em>
+ stop word elimination.</p>
+<div class="refsect3">
+<a name="xapian-query-parser-set-stopper.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>parser</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>stopper</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianStopper.html" title="XapianStopper"><span class="type">XapianStopper</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix02.html#api-index-1.2">1.2</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-query-parser-set-default-op"></a><h3>xapian_query_parser_set_default_op ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_query_parser_set_default_op (<em class="parameter"><code><a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a> *parser</code></em>,
+                                    <em class="parameter"><code><a class="link" href="XapianQuery.html#XapianQueryOp" title="enum XapianQueryOp"><span class="type">XapianQueryOp</span></a> op</code></em>);</pre>
+<p>Set the operator to use to combine non-filter query items when no explicit
+operator is used.</p>
+<div class="refsect3">
+<a name="xapian-query-parser-set-default-op.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>parser</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>op</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQuery.html#XapianQueryOp" title="enum XapianQueryOp"><span class="type">XapianQueryOp</span></a> value</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-query-parser-add-prefix"></a><h3>xapian_query_parser_add_prefix ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_query_parser_add_prefix (<em class="parameter"><code><a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a> *parser</code></em>,
+                                <em class="parameter"><code>const <span class="type">char</span> *field</code></em>,
+                                <em class="parameter"><code>const <span class="type">char</span> *prefix</code></em>);</pre>
+<p>Adds a probabilistic term prefix.</p>
+<p>For instance, calling:</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="function"><a href="XapianQueryParser.html#xapian-query-parser-add-prefix">xapian_query_parser_add_prefix</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">parser</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"author"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"A"</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+<p>allows the user to search for <code class="literal">author:Orwell</code>, which will be
+converted to a search for <code class="literal">Aorwell</code>.</p>
+<p>It is possible to map multiple fields to the same prefix, for
+instance <code class="literal">title</code> and <code class="literal">subject</code>.</p>
+<p>It is possible to map the same field to multiple prefixes; the
+generated query will perform an OR operation on each term.</p>
+<div class="refsect3">
+<a name="xapian-query-parser-add-prefix.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>parser</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>field</p></td>
+<td class="parameter_description"><p>the user visible field name</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>prefix</p></td>
+<td class="parameter_description"><p>the term prefix to map the <em class="parameter"><code>field</code></em>
+to</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-query-parser-add-boolean-prefix"></a><h3>xapian_query_parser_add_boolean_prefix ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_query_parser_add_boolean_prefix
+                               (<em class="parameter"><code><a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a> *parser</code></em>,
+                                <em class="parameter"><code>const <span class="type">char</span> *field</code></em>,
+                                <em class="parameter"><code>const <span class="type">char</span> *prefix</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> exclusive</code></em>);</pre>
+<p>Adds a boolean term prefix to the query.</p>
+<div class="refsect3">
+<a name="xapian-query-parser-add-boolean-prefix.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>parser</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>field</p></td>
+<td class="parameter_description"><p>the user visible field name</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>prefix</p></td>
+<td class="parameter_description"><p>the term prefix to map the <em class="parameter"><code>field</code></em>
+to</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>exclusive</p></td>
+<td class="parameter_description"><p>if <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> each document can have at most one term
+with the given <em class="parameter"><code>prefix</code></em>
+</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-query-parser-parse-query"></a><h3>xapian_query_parser_parse_query ()</h3>
+<pre class="programlisting"><a class="link" href="XapianQuery.html" title="XapianQuery"><span class="returnvalue">XapianQuery</span></a> *
+xapian_query_parser_parse_query (<em class="parameter"><code><a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a> *parser</code></em>,
+                                 <em class="parameter"><code>const <span class="type">char</span> *query_string</code></em>,
+                                 <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Parses a query string and generates a <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> instance for it.</p>
+<p>See also: <a class="link" href="XapianQueryParser.html#xapian-query-parser-parse-query-full" title="xapian_query_parser_parse_query_full ()"><code class="function">xapian_query_parser_parse_query_full()</code></a></p>
+<div class="refsect3">
+<a name="xapian-query-parser-parse-query.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>parser</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>query_string</p></td>
+<td class="parameter_description"><p>the query string</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>return location for a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-query-parser-parse-query.returns"></a><h4>Returns</h4>
+<p>the newly created <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> instance. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-query-parser-parse-query-full"></a><h3>xapian_query_parser_parse_query_full ()</h3>
+<pre class="programlisting"><a class="link" href="XapianQuery.html" title="XapianQuery"><span class="returnvalue">XapianQuery</span></a> *
+xapian_query_parser_parse_query_full (<em class="parameter"><code><a class="link" href="XapianQueryParser.html" title="XapianQueryParser"><span class="type">XapianQueryParser</span></a> *parser</code></em>,
+                                      <em class="parameter"><code>const <span class="type">char</span> *query_string</code></em>,
+                                      <em class="parameter"><code><a class="link" href="XapianQueryParser.html#XapianQueryParserFeature" title="enum XapianQueryParserFeature"><span class="type">XapianQueryParserFeature</span></a> flags</code></em>,
+                                      <em class="parameter"><code>const <span class="type">char</span> *default_prefix</code></em>,
+                                      <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Parses <em class="parameter"><code>query_string</code></em>
+ and creates a <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> instance for it.</p>
+<div class="refsect3">
+<a name="xapian-query-parser-parse-query-full.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>parser</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>query_string</p></td>
+<td class="parameter_description"><p>the query string</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>flags</p></td>
+<td class="parameter_description"><p>a bitwise OR of <a class="link" href="XapianQueryParser.html#XapianQueryParserFeature" title="enum XapianQueryParserFeature"><span class="type">XapianQueryParserFeature</span></a> values</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>default_prefix</p></td>
+<td class="parameter_description"><p>the default prefix for terms</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>return location for a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-query-parser-parse-query-full.returns"></a><h4>Returns</h4>
+<p>the newly created <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> instance. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+</div>
+<div class="refsect1">
+<a name="XapianQueryParser.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="XapianStemStrategy"></a><h3>enum XapianStemStrategy</h3>
+<p>Stemming strategies.</p>
+<div class="refsect3">
+<a name="XapianStemStrategy.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-STEM-STRATEGY-STEM-NONE:CAPS"></a>XAPIAN_STEM_STRATEGY_STEM_NONE</p></td>
+<td class="enum_member_description">
+<p>do not perform any stemming</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-STEM-STRATEGY-STEM-SOME:CAPS"></a>XAPIAN_STEM_STRATEGY_STEM_SOME</p></td>
+<td class="enum_member_description">
+<p>generate both stemmed and unstemmed terms</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-STEM-STRATEGY-STEM-ALL:CAPS"></a>XAPIAN_STEM_STRATEGY_STEM_ALL</p></td>
+<td class="enum_member_description">
+<p>generate only stemmed terms, without the Z prefix</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-STEM-STRATEGY-STEM-ALL-Z:CAPS"></a>XAPIAN_STEM_STRATEGY_STEM_ALL_Z</p></td>
+<td class="enum_member_description">
+<p>generate only stemmed terms, with the Z prefix</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="XapianQueryParserFeature"></a><h3>enum XapianQueryParserFeature</h3>
+<p>Flags for <a class="link" href="XapianQueryParser.html#xapian-query-parser-parse-query-full" title="xapian_query_parser_parse_query_full ()"><code class="function">xapian_query_parser_parse_query_full()</code></a>.</p>
+<div class="refsect3">
+<a name="XapianQueryParserFeature.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-PARSER-FEATURE-BOOLEAN:CAPS"></a>XAPIAN_QUERY_PARSER_FEATURE_BOOLEAN</p></td>
+<td class="enum_member_description">
+<p>support AND, OR, etc as well as
+  bracketed subexpressions</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-PARSER-FEATURE-PHRASE:CAPS"></a>XAPIAN_QUERY_PARSER_FEATURE_PHRASE</p></td>
+<td class="enum_member_description">
+<p>support quoted phrases</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-PARSER-FEATURE-LOVEHATE:CAPS"></a>XAPIAN_QUERY_PARSER_FEATURE_LOVEHATE</p></td>
+<td class="enum_member_description">
+<p>support <code class="literal">+</code> and <code class="literal">-</code></p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-PARSER-FEATURE-BOOLEAN-ANY-CASE:CAPS"></a>XAPIAN_QUERY_PARSER_FEATURE_BOOLEAN_ANY_CASE</p></td>
+<td class="enum_member_description">
+<p>support AND, OR, etc.
+  even if not in upper case</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-PARSER-FEATURE-WILDCARD:CAPS"></a>XAPIAN_QUERY_PARSER_FEATURE_WILDCARD</p></td>
+<td class="enum_member_description">
+<p>support right truncation,
+  e.g. <code class="literal">Xap*</code></p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-PARSER-FEATURE-PURE-NOT:CAPS"></a>XAPIAN_QUERY_PARSER_FEATURE_PURE_NOT</p></td>
+<td class="enum_member_description">
+<p>allow queries such as <code class="literal">NOT apples</code></p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-PARSER-FEATURE-PARTIAL:CAPS"></a>XAPIAN_QUERY_PARSER_FEATURE_PARTIAL</p></td>
+<td class="enum_member_description">
+<p>enable partial matching</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-PARSER-FEATURE-SPELLING-CORRECTION:CAPS"></a>XAPIAN_QUERY_PARSER_FEATURE_SPELLING_CORRECTION</p></td>
+<td class="enum_member_description">
+<p>enable spelling
+  correction</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-PARSER-FEATURE-SYNONYM:CAPS"></a>XAPIAN_QUERY_PARSER_FEATURE_SYNONYM</p></td>
+<td class="enum_member_description">
+<p>enable synonym operator <code class="literal">~</code></p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-PARSER-FEATURE-AUTO-SYNONYMS:CAPS"></a>XAPIAN_QUERY_PARSER_FEATURE_AUTO_SYNONYMS</p></td>
+<td class="enum_member_description">
+<p>enable automatic use of
+  synonyms for single terms</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-PARSER-FEATURE-AUTO-MULTIWORD-SYNONYMS:CAPS"></a>XAPIAN_QUERY_PARSER_FEATURE_AUTO_MULTIWORD_SYNONYMS</p></td>
+<td class="enum_member_description">
+<p>enable automatic
+  use of synonyms for single terms and groups of terms</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-PARSER-FEATURE-CJK-NGRAM:CAPS"></a>XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM</p></td>
+<td class="enum_member_description">
+<p>enable generation of n-grams from
+  CJK text (Since: 1.4.0)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-QUERY-PARSER-FEATURE-DEFAULT:CAPS"></a>XAPIAN_QUERY_PARSER_FEATURE_DEFAULT</p></td>
+<td class="enum_member_description">
+<p>default flags</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="refsect1">
+<a name="XapianQueryParser.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="XapianQueryParser--database"></a><h3>The <code class="literal">“database”</code> property</h3>
+<pre class="programlisting">  “database”                 <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> *</pre>
+<p>The <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> to be used for wildcard expansion.</p>
+<p>Flags: Read / Write</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="XapianQueryParser--default-op"></a><h3>The <code class="literal">“default-op”</code> property</h3>
+<pre class="programlisting">  “default-op”               <a class="link" href="XapianQuery.html#XapianQueryOp" title="enum XapianQueryOp"><span class="type">XapianQueryOp</span></a></pre>
+<p>The query operator used to combine non-filter query items when no explicit operator is used.</p>
+<p>Flags: Read / Write</p>
+<p>Default value: XAPIAN_QUERY_OP_OR</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="XapianQueryParser--stemmer"></a><h3>The <code class="literal">“stemmer”</code> property</h3>
+<pre class="programlisting">  “stemmer”                  <a class="link" href="XapianStem.html" title="XapianStem"><span class="type">XapianStem</span></a> *</pre>
+<p>The <a class="link" href="XapianStem.html" title="XapianStem"><span class="type">XapianStem</span></a> instance to be used for stemming the query string.</p>
+<p>Flags: Read / Write</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="XapianQueryParser--stemming-strategy"></a><h3>The <code class="literal">“stemming-strategy”</code> property</h3>
+<pre class="programlisting">  “stemming-strategy”        <a class="link" href="XapianQueryParser.html#XapianStemStrategy" title="enum XapianStemStrategy"><span class="type">XapianStemStrategy</span></a></pre>
+<p>The stemming strategy to use with the <a class="link" href="XapianStem.html" title="XapianStem"><span class="type">XapianStem</span></a> set with the
+<a class="link" href="XapianQueryParser.html#XapianQueryParser--stemmer" title="The “stemmer” property"><span class="type">“stemmer”</span></a> property.</p>
+<p>Flags: Read / Write</p>
+<p>Default value: XAPIAN_STEM_STRATEGY_STEM_NONE</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="XapianQueryParser--stopper"></a><h3>The <code class="literal">“stopper”</code> property</h3>
+<pre class="programlisting">  “stopper”                  <a class="link" href="XapianStopper.html" title="XapianStopper"><span class="type">XapianStopper</span></a> *</pre>
+<p>The <a class="link" href="XapianStopper.html" title="XapianStopper"><span class="type">XapianStopper</span></a> to be used for dropping stop words</p>
+<p>Flags: Read / Write</p>
+<p class="since">Since: <a class="link" href="ix02.html#api-index-1.2">1.2</a></p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>Generated by GTK-Doc V1.26</div>
+</body>
+</html>

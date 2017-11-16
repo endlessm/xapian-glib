@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>XapianTermIterator: Xapian-GLib Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Xapian-GLib Reference Manual">
+<link rel="up" href="ch01.html" title="Xapian-GLib">
+<link rel="prev" href="XapianTermGenerator.html" title="XapianTermGenerator">
+<link rel="next" href="xapian-glib-Utilities.html" title="Utilities">
+<meta name="generator" content="GTK-Doc V1.26 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#XapianTermIterator.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#XapianTermIterator.object-hierarchy" class="shortcut">Object Hierarchy</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="XapianTermGenerator.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="xapian-glib-Utilities.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="XapianTermIterator"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="XapianTermIterator.top_of_page"></a>XapianTermIterator</span></h2>
+<p>XapianTermIterator — Iterate over terms</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="XapianTermIterator.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="XapianTermIterator.html#xapian-term-iterator-next" title="xapian_term_iterator_next ()">xapian_term_iterator_next</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">char</span> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianTermIterator.html#xapian-term-iterator-get-term-name" title="xapian_term_iterator_get_term_name ()">xapian_term_iterator_get_term_name</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">unsigned <span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianTermIterator.html#xapian-term-iterator-get-wdf" title="xapian_term_iterator_get_wdf ()">xapian_term_iterator_get_wdf</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="XapianTermIterator.html#xapian-term-iterator-get-term-freq" title="xapian_term_iterator_get_term_freq ()">xapian_term_iterator_get_term_freq</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">char</span> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianTermIterator.html#xapian-term-iterator-get-description" title="xapian_term_iterator_get_description ()">xapian_term_iterator_get_description</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="XapianTermIterator.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="screen">    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+    <span class="lineart">╰──</span> XapianTermIterator
+</pre>
+</div>
+<div class="refsect1">
+<a name="XapianTermIterator.description"></a><h2>Description</h2>
+<p><a class="link" href="XapianTermIterator.html" title="XapianTermIterator"><span class="type">XapianTermIterator</span></a> is a class that allows iterating over terms.</p>
+<p>A typical example is:</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">XapianTermIterator</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">iter </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="XapianDatabase.html#xapian-database-enumerate-all-terms">xapian_database_enumerate_all_terms</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">db</span><span class="symbol">);</span>
+
+<span class="keyword">while</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="XapianTermIterator.html#xapian-term-iterator-next">xapian_term_iterator_next</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">iter</span><span class="symbol">))</span>
+<span class="normal">  </span><span class="function"><a href="../glib/glib-Warnings-and-Assertions.html#g-print">g_print</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"%s"</span><span class="symbol">,</span><span class="normal"> </span><span class="function">xapian_term_iterator_get_term</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">iter</span><span class="symbol">));</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+</div>
+<div class="refsect1">
+<a name="XapianTermIterator.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="xapian-term-iterator-next"></a><h3>xapian_term_iterator_next ()</h3>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+xapian_term_iterator_next (<em class="parameter"><code><a class="link" href="XapianTermIterator.html" title="XapianTermIterator"><span class="type">XapianTermIterator</span></a> *iter</code></em>);</pre>
+<p>Advances the <em class="parameter"><code>iter</code></em>
+ forward.</p>
+<p>You should use the return value to check if <em class="parameter"><code>iter</code></em>
+ is still
+valid after being advanced, before using the <a class="link" href="XapianTermIterator.html" title="XapianTermIterator"><span class="type">XapianTermIterator</span></a>
+API.</p>
+<div class="refsect3">
+<a name="xapian-term-iterator-next.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>iter</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianTermIterator.html" title="XapianTermIterator"><span class="type">XapianTermIterator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-term-iterator-next.returns"></a><h4>Returns</h4>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the iterator was advanced, and <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</p>
+</div>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.6">1.6</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-term-iterator-get-term-name"></a><h3>xapian_term_iterator_get_term_name ()</h3>
+<pre class="programlisting"><span class="returnvalue">char</span> *
+xapian_term_iterator_get_term_name (<em class="parameter"><code><a class="link" href="XapianTermIterator.html" title="XapianTermIterator"><span class="type">XapianTermIterator</span></a> *iter</code></em>);</pre>
+<p>Retrieves the term name of the current item pointed by <em class="parameter"><code>iter</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-term-iterator-get-term-name.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>iter</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianTermIterator.html" title="XapianTermIterator"><span class="type">XapianTermIterator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-term-iterator-get-term-name.returns"></a><h4>Returns</h4>
+<p>the term name. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.6">1.6</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-term-iterator-get-wdf"></a><h3>xapian_term_iterator_get_wdf ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">int</span>
+xapian_term_iterator_get_wdf (<em class="parameter"><code><a class="link" href="XapianTermIterator.html" title="XapianTermIterator"><span class="type">XapianTermIterator</span></a> *iter</code></em>,
+                              <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Retrieves the WDF of the current item pointed by <em class="parameter"><code>iter</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-term-iterator-get-wdf.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>iter</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianTermIterator.html" title="XapianTermIterator"><span class="type">XapianTermIterator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>return location for a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-term-iterator-get-wdf.returns"></a><h4>Returns</h4>
+<p> the WDF</p>
+</div>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.6">1.6</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-term-iterator-get-term-freq"></a><h3>xapian_term_iterator_get_term_freq ()</h3>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+xapian_term_iterator_get_term_freq (<em class="parameter"><code><a class="link" href="XapianTermIterator.html" title="XapianTermIterator"><span class="type">XapianTermIterator</span></a> *iter</code></em>,
+                                    <em class="parameter"><code>unsigned <span class="type">int</span> *res</code></em>,
+                                    <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Retrieves the term frequency of the current item pointed by <em class="parameter"><code>iter</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-term-iterator-get-term-freq.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>iter</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianTermIterator.html" title="XapianTermIterator"><span class="type">XapianTermIterator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p>Used to return the term frequency. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>return location for a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-term-iterator-get-term-freq.returns"></a><h4>Returns</h4>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the term frequency was successfully returned</p>
+</div>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.6">1.6</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-term-iterator-get-description"></a><h3>xapian_term_iterator_get_description ()</h3>
+<pre class="programlisting"><span class="returnvalue">char</span> *
+xapian_term_iterator_get_description (<em class="parameter"><code><a class="link" href="XapianTermIterator.html" title="XapianTermIterator"><span class="type">XapianTermIterator</span></a> *iter</code></em>);</pre>
+<p>Retrieves a description of <em class="parameter"><code>iter</code></em>
+, typically used for debugging.</p>
+<div class="refsect3">
+<a name="xapian-term-iterator-get-description.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>iter</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianTermIterator.html" title="XapianTermIterator"><span class="type">XapianTermIterator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-term-iterator-get-description.returns"></a><h4>Returns</h4>
+<p>a description of the iterator. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.6">1.6</a></p>
+</div>
+</div>
+<div class="refsect1">
+<a name="XapianTermIterator.other_details"></a><h2>Types and Values</h2>
+</div>
+</div>
+<div class="footer">
+<hr>Generated by GTK-Doc V1.26</div>
+</body>
+</html>

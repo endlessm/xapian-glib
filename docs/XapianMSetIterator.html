@@ -1,0 +1,606 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>XapianMSetIterator: Xapian-GLib Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Xapian-GLib Reference Manual">
+<link rel="up" href="ch01.html" title="Xapian-GLib">
+<link rel="prev" href="XapianMSet.html" title="XapianMSet">
+<link rel="next" href="XapianPostingSource.html" title="XapianPostingSource">
+<meta name="generator" content="GTK-Doc V1.26 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#XapianMSetIterator.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#XapianMSetIterator.object-hierarchy" class="shortcut">Object Hierarchy</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="XapianMSet.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="XapianPostingSource.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="XapianMSetIterator"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="XapianMSetIterator.top_of_page"></a>XapianMSetIterator</span></h2>
+<p>XapianMSetIterator — Iterate through a XapianMSet</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="XapianMSetIterator.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSetIterator.html#xapian-mset-iterator-next" title="xapian_mset_iterator_next ()">xapian_mset_iterator_next</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSetIterator.html#xapian-mset-iterator-prev" title="xapian_mset_iterator_prev ()">xapian_mset_iterator_prev</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSetIterator.html#xapian-mset-iterator-is-valid" title="xapian_mset_iterator_is_valid ()">xapian_mset_iterator_is_valid</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSetIterator.html#xapian-mset-iterator-is-begin" title="xapian_mset_iterator_is_begin ()">xapian_mset_iterator_is_begin</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSetIterator.html#xapian-mset-iterator-is-end" title="xapian_mset_iterator_is_end ()">xapian_mset_iterator_is_end</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">unsigned <span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSetIterator.html#xapian-mset-iterator-get-rank" title="xapian_mset_iterator_get_rank ()">xapian_mset_iterator_get_rank</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">double</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSetIterator.html#xapian-mset-iterator-get-weight" title="xapian_mset_iterator_get_weight ()">xapian_mset_iterator_get_weight</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSetIterator.html#xapian-mset-iterator-get-percent" title="xapian_mset_iterator_get_percent ()">xapian_mset_iterator_get_percent</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianDocument.html" title="XapianDocument"><span class="returnvalue">XapianDocument</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSetIterator.html#xapian-mset-iterator-get-document" title="xapian_mset_iterator_get_document ()">xapian_mset_iterator_get_document</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">unsigned <span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSetIterator.html#xapian-mset-iterator-get-doc-id" title="xapian_mset_iterator_get_doc_id ()">xapian_mset_iterator_get_doc_id</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">unsigned <span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSetIterator.html#xapian-mset-iterator-get-collapse-count" title="xapian_mset_iterator_get_collapse_count ()">xapian_mset_iterator_get_collapse_count</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">char</span> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSetIterator.html#xapian-mset-iterator-get-description" title="xapian_mset_iterator_get_description ()">xapian_mset_iterator_get_description</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianMSet.html" title="XapianMSet"><span class="returnvalue">XapianMSet</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianMSetIterator.html#xapian-mset-iterator-get-mset" title="xapian_mset_iterator_get_mset ()">xapian_mset_iterator_get_mset</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="XapianMSetIterator.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="screen">    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+    <span class="lineart">╰──</span> XapianMSetIterator
+</pre>
+</div>
+<div class="refsect1">
+<a name="XapianMSetIterator.description"></a><h2>Description</h2>
+<p><a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a> is a class that allows iterating through the items
+inside a <a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a>.</p>
+<p>A typical example is:</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="comment">// retrieve the first 10 results</span>
+<span class="usertype">XapianMSet</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">mset </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="XapianEnquire.html#xapian-enquire-get-mset">xapian_enquire_get_mset</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">enquire</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">10</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
+
+<span class="type">unsigned</span><span class="normal"> </span><span class="type">int</span><span class="normal"> size </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="XapianMSet.html#xapian-mset-get-size">xapian_mset_get_size</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">mset</span><span class="symbol">);</span>
+
+<span class="usertype">XapianMSetIterator</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">iter </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="XapianMSet.html#xapian-mset-get-begin">xapian_mset_get_begin</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">mset</span><span class="symbol">);</span>
+
+<span class="keyword">while</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="XapianMSetIterator.html#xapian-mset-iterator-next">xapian_mset_iterator_next</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">iter</span><span class="symbol">))</span>
+<span class="normal">  </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="../glib/glib-Warnings-and-Assertions.html#g-print">g_print</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Result %u of %u: %.3f [docid=%u]"</span><span class="symbol">,</span>
+<span class="normal">             </span><span class="function"><a href="XapianMSetIterator.html#xapian-mset-iterator-get-rank">xapian_mset_iterator_get_rank</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">iter</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">+</span><span class="normal"> </span><span class="number">1</span><span class="symbol">,</span>
+<span class="normal">             size</span><span class="symbol">,</span>
+<span class="normal">             </span><span class="function"><a href="XapianMSetIterator.html#xapian-mset-iterator-get-weight">xapian_mset_iterator_get_weight</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">iter</span><span class="symbol">),</span>
+<span class="normal">             </span><span class="function"><a href="XapianMSetIterator.html#xapian-mset-iterator-get-doc-id">xapian_mset_iterator_get_doc_id</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">iter</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">));</span>
+
+<span class="normal">    </span><span class="usertype">XapianDocument</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">doc </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="XapianMSetIterator.html#xapian-mset-iterator-get-document">xapian_mset_iterator_get_document</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">iter</span><span class="symbol">,</span><span class="normal"> <a href="../glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
+
+<span class="normal">    </span><span class="comment">// ... use the document</span>
+<span class="normal">  </span><span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+</div>
+<div class="refsect1">
+<a name="XapianMSetIterator.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="xapian-mset-iterator-next"></a><h3>xapian_mset_iterator_next ()</h3>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+xapian_mset_iterator_next (<em class="parameter"><code><a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a> *iter</code></em>);</pre>
+<p>Advances the <em class="parameter"><code>iter</code></em>
+ forward.</p>
+<p>You should use the return value to check if <em class="parameter"><code>iter</code></em>
+ is still
+valid after being advanced, before using the <a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a>
+API.</p>
+<div class="refsect3">
+<a name="xapian-mset-iterator-next.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>iter</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-iterator-next.returns"></a><h4>Returns</h4>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the iterator was advanced, and <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-iterator-prev"></a><h3>xapian_mset_iterator_prev ()</h3>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+xapian_mset_iterator_prev (<em class="parameter"><code><a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a> *iter</code></em>);</pre>
+<p>Advances the <em class="parameter"><code>iter</code></em>
+ backward.</p>
+<p>You should use the return value to check if <em class="parameter"><code>iter</code></em>
+ is still
+valid after being advanced, before using the <a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a>
+API.</p>
+<div class="refsect3">
+<a name="xapian-mset-iterator-prev.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>iter</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-iterator-prev.returns"></a><h4>Returns</h4>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the iterator was advanced, and <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-iterator-is-valid"></a><h3>xapian_mset_iterator_is_valid ()</h3>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+xapian_mset_iterator_is_valid (<em class="parameter"><code><a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a> *iter</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">xapian_mset_iterator_is_valid</code> has been deprecated since version 1.6 and should not be used in newly-written code.</p>
+<p>The iterator is now always valid, so checks using this
+function can be eliminated.</p>
+</div>
+<p>Prior to 1.6, this function would check whether <em class="parameter"><code>iter</code></em>
+ was valid.  However
+<a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a> objects are now always valid, and this function always
+returns <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a>.</p>
+<div class="refsect3">
+<a name="xapian-mset-iterator-is-valid.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>iter</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-iterator-is-valid.returns"></a><h4>Returns</h4>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-iterator-is-begin"></a><h3>xapian_mset_iterator_is_begin ()</h3>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+xapian_mset_iterator_is_begin (<em class="parameter"><code><a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a> *iter</code></em>);</pre>
+<p>Checks if <em class="parameter"><code>iter</code></em>
+ is at the start of the set.</p>
+<div class="refsect3">
+<a name="xapian-mset-iterator-is-begin.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>iter</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-iterator-is-begin.returns"></a><h4>Returns</h4>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the iterator is at the start</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-iterator-is-end"></a><h3>xapian_mset_iterator_is_end ()</h3>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+xapian_mset_iterator_is_end (<em class="parameter"><code><a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a> *iter</code></em>);</pre>
+<p>Checks if <em class="parameter"><code>iter</code></em>
+ is at the end of the set.</p>
+<div class="refsect3">
+<a name="xapian-mset-iterator-is-end.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>iter</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-iterator-is-end.returns"></a><h4>Returns</h4>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the iterator is at the end</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-iterator-get-rank"></a><h3>xapian_mset_iterator_get_rank ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">int</span>
+xapian_mset_iterator_get_rank (<em class="parameter"><code><a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a> *iter</code></em>);</pre>
+<p>Retrieves the rank of the current item pointed by <em class="parameter"><code>iter</code></em>
+.</p>
+<p>The rank is the position of the item in the ordered list
+of results. The rank starts from zero.</p>
+<div class="refsect3">
+<a name="xapian-mset-iterator-get-rank.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>iter</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-iterator-get-rank.returns"></a><h4>Returns</h4>
+<p> the rank of the item</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-iterator-get-weight"></a><h3>xapian_mset_iterator_get_weight ()</h3>
+<pre class="programlisting"><span class="returnvalue">double</span>
+xapian_mset_iterator_get_weight (<em class="parameter"><code><a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a> *iter</code></em>);</pre>
+<p>Retrieves the weight of the current item pointed by <em class="parameter"><code>iter</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-mset-iterator-get-weight.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>iter</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-iterator-get-weight.returns"></a><h4>Returns</h4>
+<p> the weight of the item</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-iterator-get-percent"></a><h3>xapian_mset_iterator_get_percent ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>
+xapian_mset_iterator_get_percent (<em class="parameter"><code><a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a> *iter</code></em>);</pre>
+<p>Retrieves the weight of the current item pointed by <em class="parameter"><code>iter</code></em>
+
+as a percentage between 0 and 100.</p>
+<div class="refsect3">
+<a name="xapian-mset-iterator-get-percent.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>iter</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-iterator-get-percent.returns"></a><h4>Returns</h4>
+<p> the weight of the item as a percentage</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-iterator-get-document"></a><h3>xapian_mset_iterator_get_document ()</h3>
+<pre class="programlisting"><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="returnvalue">XapianDocument</span></a> *
+xapian_mset_iterator_get_document (<em class="parameter"><code><a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a> *iter</code></em>,
+                                   <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Retrieves the <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> currently pointed by the
+iterator.</p>
+<div class="refsect3">
+<a name="xapian-mset-iterator-get-document.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>iter</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>return location for a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-iterator-get-document.returns"></a><h4>Returns</h4>
+<p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-iterator-get-doc-id"></a><h3>xapian_mset_iterator_get_doc_id ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">int</span>
+xapian_mset_iterator_get_doc_id (<em class="parameter"><code><a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a> *iter</code></em>,
+                                 <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Retrieves the id of the document currently pointed by the
+iterator.</p>
+<div class="refsect3">
+<a name="xapian-mset-iterator-get-doc-id.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>iter</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>return location for a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-iterator-get-doc-id.returns"></a><h4>Returns</h4>
+<p> a document id</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-iterator-get-collapse-count"></a><h3>xapian_mset_iterator_get_collapse_count ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">int</span>
+xapian_mset_iterator_get_collapse_count
+                               (<em class="parameter"><code><a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a> *iter</code></em>);</pre>
+<p>Retrieves the estimated number of documents that have been
+collapsed into the current item pointed by <em class="parameter"><code>iter</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-mset-iterator-get-collapse-count.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>iter</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-iterator-get-collapse-count.returns"></a><h4>Returns</h4>
+<p> the number of collapsed documents</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-iterator-get-description"></a><h3>xapian_mset_iterator_get_description ()</h3>
+<pre class="programlisting"><span class="returnvalue">char</span> *
+xapian_mset_iterator_get_description (<em class="parameter"><code><a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a> *iter</code></em>);</pre>
+<p>Retrieves a description of <em class="parameter"><code>iter</code></em>
+, typically used for debugging.</p>
+<div class="refsect3">
+<a name="xapian-mset-iterator-get-description.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>iter</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-iterator-get-description.returns"></a><h4>Returns</h4>
+<p>a description of the iterator. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-mset-iterator-get-mset"></a><h3>xapian_mset_iterator_get_mset ()</h3>
+<pre class="programlisting"><a class="link" href="XapianMSet.html" title="XapianMSet"><span class="returnvalue">XapianMSet</span></a> *
+xapian_mset_iterator_get_mset (<em class="parameter"><code><a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a> *iter</code></em>);</pre>
+<p>Retrieves the <a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a> that created the <em class="parameter"><code>iter</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-mset-iterator-get-mset.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>iter</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-mset-iterator-get-mset.returns"></a><h4>Returns</h4>
+<p>a <a class="link" href="XapianMSetIterator.html" title="XapianMSetIterator"><span class="type">XapianMSetIterator</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+</div>
+</div>
+<div class="refsect1">
+<a name="XapianMSetIterator.other_details"></a><h2>Types and Values</h2>
+</div>
+</div>
+<div class="footer">
+<hr>Generated by GTK-Doc V1.26</div>
+</body>
+</html>

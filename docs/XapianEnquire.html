@@ -1,0 +1,513 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>XapianEnquire: Xapian-GLib Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Xapian-GLib Reference Manual">
+<link rel="up" href="ch01.html" title="Xapian-GLib">
+<link rel="prev" href="XapianDocument.html" title="XapianDocument">
+<link rel="next" href="XapianQuery.html" title="XapianQuery">
+<meta name="generator" content="GTK-Doc V1.26 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#XapianEnquire.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#XapianEnquire.object-hierarchy" class="shortcut">Object Hierarchy</a></span><span id="nav_properties">  <span class="dim">|</span> 
+                  <a href="#XapianEnquire.properties" class="shortcut">Properties</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="XapianDocument.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="XapianQuery.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="XapianEnquire"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="XapianEnquire.top_of_page"></a>XapianEnquire</span></h2>
+<p>XapianEnquire — Query a database for matching documents</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="XapianEnquire.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="returnvalue">XapianEnquire</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianEnquire.html#xapian-enquire-new" title="xapian_enquire_new ()">xapian_enquire_new</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianEnquire.html#xapian-enquire-set-query" title="xapian_enquire_set_query ()">xapian_enquire_set_query</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianQuery.html" title="XapianQuery"><span class="returnvalue">XapianQuery</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianEnquire.html#xapian-enquire-get-query" title="xapian_enquire_get_query ()">xapian_enquire_get_query</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianEnquire.html#xapian-enquire-set-collapse-key" title="xapian_enquire_set_collapse_key ()">xapian_enquire_set_collapse_key</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianEnquire.html#xapian-enquire-set-collapse-key-full" title="xapian_enquire_set_collapse_key_full ()">xapian_enquire_set_collapse_key_full</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianEnquire.html#xapian-enquire-set-cutoff" title="xapian_enquire_set_cutoff ()">xapian_enquire_set_cutoff</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianEnquire.html#xapian-enquire-set-cutoff-full" title="xapian_enquire_set_cutoff_full ()">xapian_enquire_set_cutoff_full</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianEnquire.html#xapian-enquire-set-sort-by-value" title="xapian_enquire_set_sort_by_value ()">xapian_enquire_set_sort_by_value</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianMSet.html" title="XapianMSet"><span class="returnvalue">XapianMSet</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianEnquire.html#xapian-enquire-get-mset" title="xapian_enquire_get_mset ()">xapian_enquire_get_mset</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="XapianEnquire.properties"></a><h2>Properties</h2>
+<div class="informaltable"><table class="informaltable" border="0">
+<colgroup>
+<col width="150px" class="properties_type">
+<col width="300px" class="properties_name">
+<col width="200px" class="properties_flags">
+</colgroup>
+<tbody><tr>
+<td class="property_type">
+<a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> *</td>
+<td class="property_name"><a class="link" href="XapianEnquire.html#XapianEnquire--database" title="The “database” property">database</a></td>
+<td class="property_flags">Read / Write / Construct Only</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="XapianEnquire.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="screen">    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+    <span class="lineart">╰──</span> XapianEnquire
+</pre>
+</div>
+<div class="refsect1">
+<a name="XapianEnquire.description"></a><h2>Description</h2>
+<p><a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a> is a class used to perform queries on <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a>.</p>
+<p>Typically, you create a new <a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a> instance for a specific
+<a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> (which may contain multiple groups of databases),
+and assign a <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> to the <a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a> instance; then you
+retrieve the set of matching documents through <a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a>.</p>
+</div>
+<div class="refsect1">
+<a name="XapianEnquire.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="xapian-enquire-new"></a><h3>xapian_enquire_new ()</h3>
+<pre class="programlisting"><a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="returnvalue">XapianEnquire</span></a> *
+xapian_enquire_new (<em class="parameter"><code><a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> *db</code></em>,
+                    <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Creates and initializes a new <a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a> instance for the
+given <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a>.</p>
+<p>If the initializion failed, <em class="parameter"><code>error</code></em>
+ is set, and this function
+will return <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</p>
+<div class="refsect3">
+<a name="xapian-enquire-new.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>db</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>return location for a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-enquire-new.returns"></a><h4>Returns</h4>
+<p>the newly created <a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a> instance. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-enquire-set-query"></a><h3>xapian_enquire_set_query ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_enquire_set_query (<em class="parameter"><code><a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a> *enquire</code></em>,
+                          <em class="parameter"><code><a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> *query</code></em>,
+                          <em class="parameter"><code>unsigned <span class="type">int</span> qlen</code></em>);</pre>
+<p>Sets the <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> for the <a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a> instance.</p>
+<div class="refsect3">
+<a name="xapian-enquire-set-query.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>enquire</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>query</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>qlen</p></td>
+<td class="parameter_description"><p>the length of the <em class="parameter"><code>query</code></em>
+</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-enquire-get-query"></a><h3>xapian_enquire_get_query ()</h3>
+<pre class="programlisting"><a class="link" href="XapianQuery.html" title="XapianQuery"><span class="returnvalue">XapianQuery</span></a> *
+xapian_enquire_get_query (<em class="parameter"><code><a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a> *enquire</code></em>);</pre>
+<p>Retrieves the <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> set using <a class="link" href="XapianEnquire.html#xapian-enquire-set-query" title="xapian_enquire_set_query ()"><code class="function">xapian_enquire_set_query()</code></a>.</p>
+<div class="refsect3">
+<a name="xapian-enquire-get-query.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>enquire</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-enquire-get-query.returns"></a><h4>Returns</h4>
+<p>a <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if none is set. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-enquire-set-collapse-key"></a><h3>xapian_enquire_set_collapse_key ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_enquire_set_collapse_key (<em class="parameter"><code><a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a> *enquire</code></em>,
+                                 <em class="parameter"><code>unsigned <span class="type">int</span> collapse_key</code></em>);</pre>
+<p>Sets the collapse key for the <a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a> instance with the default
+collapse_max value of 1.</p>
+<div class="refsect3">
+<a name="xapian-enquire-set-collapse-key.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>enquire</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>collapse_key</p></td>
+<td class="parameter_description"><p>value number to collapse on</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix02.html#api-index-1.2">1.2</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-enquire-set-collapse-key-full"></a><h3>xapian_enquire_set_collapse_key_full ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_enquire_set_collapse_key_full (<em class="parameter"><code><a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a> *enquire</code></em>,
+                                      <em class="parameter"><code>unsigned <span class="type">int</span> collapse_key</code></em>,
+                                      <em class="parameter"><code>unsigned <span class="type">int</span> collapse_max</code></em>);</pre>
+<p>Sets the collapse key for the <a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a> instance.</p>
+<div class="refsect3">
+<a name="xapian-enquire-set-collapse-key-full.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>enquire</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>collapse_key</p></td>
+<td class="parameter_description"><p>value number to collapse on</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>collapse_max</p></td>
+<td class="parameter_description"><p>Max number of items with the same key to leave after collapsing</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix02.html#api-index-1.2">1.2</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-enquire-set-cutoff"></a><h3>xapian_enquire_set_cutoff ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_enquire_set_cutoff (<em class="parameter"><code><a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a> *enquire</code></em>,
+                           <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gfloat"><span class="type">gfloat</span></a> percent_cutoff</code></em>);</pre>
+<p>Set the percentage cutoffs with no weight cutoff.</p>
+<div class="refsect3">
+<a name="xapian-enquire-set-cutoff.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>enquire</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>percent_cutoff</p></td>
+<td class="parameter_description"><p>Minimum percentage score for returned documents. If a
+document has a lower percentage score than this, it will
+not appear in the MSet.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix02.html#api-index-1.2">1.2</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-enquire-set-cutoff-full"></a><h3>xapian_enquire_set_cutoff_full ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_enquire_set_cutoff_full (<em class="parameter"><code><a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a> *enquire</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gfloat"><span class="type">gfloat</span></a> percent_cutoff</code></em>,
+                                <em class="parameter"><code>unsigned <span class="type">int</span> weight_cutoff</code></em>);</pre>
+<p>Set the percentage and weight cutoffs.</p>
+<div class="refsect3">
+<a name="xapian-enquire-set-cutoff-full.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>enquire</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>percent_cutoff</p></td>
+<td class="parameter_description"><p>Minimum percentage score for returned documents. If a
+document has a lower percentage score than this, it will
+not appear in the MSet.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>weight_cutoff</p></td>
+<td class="parameter_description"><p>Minimum weight for a document to be returned. If a document
+has a lower score that this, it will not appear in the MSet</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix02.html#api-index-1.2">1.2</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-enquire-set-sort-by-value"></a><h3>xapian_enquire_set_sort_by_value ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_enquire_set_sort_by_value (<em class="parameter"><code><a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a> *enquire</code></em>,
+                                  <em class="parameter"><code>unsigned <span class="type">int</span> sort_key</code></em>,
+                                  <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> reverse</code></em>);</pre>
+<p>Set the sorting to be by value only.
+Note that sorting by values uses a string comparison; to use this function to sort by a numeric
+value you will have to store the values in a way that sorts appropriately, for instance by padding
+the numbers using leading zeros — e.g. <code class="literal">001, 002, 003, ...</code>.</p>
+<div class="refsect3">
+<a name="xapian-enquire-set-sort-by-value.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>enquire</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>sort_key</p></td>
+<td class="parameter_description"><p>value number to sort on.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>reverse</p></td>
+<td class="parameter_description"><p>If true, reverses the sort order.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix02.html#api-index-1.2">1.2</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-enquire-get-mset"></a><h3>xapian_enquire_get_mset ()</h3>
+<pre class="programlisting"><a class="link" href="XapianMSet.html" title="XapianMSet"><span class="returnvalue">XapianMSet</span></a> *
+xapian_enquire_get_mset (<em class="parameter"><code><a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a> *enquire</code></em>,
+                         <em class="parameter"><code>unsigned <span class="type">int</span> first</code></em>,
+                         <em class="parameter"><code>unsigned <span class="type">int</span> max_items</code></em>,
+                         <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Retrieves <em class="parameter"><code>max_items</code></em>
+ items matching the <a class="link" href="XapianQuery.html" title="XapianQuery"><span class="type">XapianQuery</span></a> used with
+the <em class="parameter"><code>enquire</code></em>
+ instance.</p>
+<p>If <em class="parameter"><code>first</code></em>
+ is zero, the first item returned will be the one with
+the highest score. If non-zero, the value will be the number of
+items ignored. A combination of <em class="parameter"><code>first</code></em>
+ and <em class="parameter"><code>max_items</code></em>
+ can be used
+to paginate the matching results.</p>
+<p>In case of error, <em class="parameter"><code>error</code></em>
+ will be set, and this function will
+return <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</p>
+<div class="refsect3">
+<a name="xapian-enquire-get-mset.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>enquire</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>first</p></td>
+<td class="parameter_description"><p>the first item in the result set</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>max_items</p></td>
+<td class="parameter_description"><p>the maximum number of results to return</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>return location for a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-enquire-get-mset.returns"></a><h4>Returns</h4>
+<p>a <a class="link" href="XapianMSet.html" title="XapianMSet"><span class="type">XapianMSet</span></a> containing the matching
+documents. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+</div>
+<div class="refsect1">
+<a name="XapianEnquire.other_details"></a><h2>Types and Values</h2>
+</div>
+<div class="refsect1">
+<a name="XapianEnquire.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="XapianEnquire--database"></a><h3>The <code class="literal">“database”</code> property</h3>
+<pre class="programlisting">  “database”                 <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> *</pre>
+<p>The <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> to query.</p>
+<p>Flags: Read / Write / Construct Only</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>Generated by GTK-Doc V1.26</div>
+</body>
+</html>

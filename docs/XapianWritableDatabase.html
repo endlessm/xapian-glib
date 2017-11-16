@@ -1,0 +1,918 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>XapianWritableDatabase: Xapian-GLib Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Xapian-GLib Reference Manual">
+<link rel="up" href="ch01.html" title="Xapian-GLib">
+<link rel="prev" href="XapianDatabase.html" title="XapianDatabase">
+<link rel="next" href="XapianDocument.html" title="XapianDocument">
+<meta name="generator" content="GTK-Doc V1.26 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#XapianWritableDatabase.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#XapianWritableDatabase.object-hierarchy" class="shortcut">Object Hierarchy</a></span><span id="nav_properties">  <span class="dim">|</span> 
+                  <a href="#XapianWritableDatabase.properties" class="shortcut">Properties</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="XapianDatabase.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="XapianDocument.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="XapianWritableDatabase"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="XapianWritableDatabase.top_of_page"></a>XapianWritableDatabase</span></h2>
+<p>XapianWritableDatabase — A writable database</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="XapianWritableDatabase.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="returnvalue">XapianWritableDatabase</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianWritableDatabase.html#xapian-writable-database-new" title="xapian_writable_database_new ()">xapian_writable_database_new</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="returnvalue">XapianWritableDatabase</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianWritableDatabase.html#xapian-writable-database-new-with-backend" title="xapian_writable_database_new_with_backend ()">xapian_writable_database_new_with_backend</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="returnvalue">XapianWritableDatabase</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianWritableDatabase.html#xapian-writable-database-new-full" title="xapian_writable_database_new_full ()">xapian_writable_database_new_full</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="XapianWritableDatabase.html#xapian-writable-database-commit" title="xapian_writable_database_commit ()">xapian_writable_database_commit</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianWritableDatabase.html#xapian-writable-database-set-metadata" title="xapian_writable_database_set_metadata ()">xapian_writable_database_set_metadata</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="XapianWritableDatabase.html#xapian-writable-database-begin-transaction" title="xapian_writable_database_begin_transaction ()">xapian_writable_database_begin_transaction</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="XapianWritableDatabase.html#xapian-writable-database-commit-transaction" title="xapian_writable_database_commit_transaction ()">xapian_writable_database_commit_transaction</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="XapianWritableDatabase.html#xapian-writable-database-cancel-transaction" title="xapian_writable_database_cancel_transaction ()">xapian_writable_database_cancel_transaction</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="XapianWritableDatabase.html#xapian-writable-database-add-document" title="xapian_writable_database_add_document ()">xapian_writable_database_add_document</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="XapianWritableDatabase.html#xapian-writable-database-delete-document" title="xapian_writable_database_delete_document ()">xapian_writable_database_delete_document</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="XapianWritableDatabase.html#xapian-writable-database-replace-document" title="xapian_writable_database_replace_document ()">xapian_writable_database_replace_document</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianWritableDatabase.html#xapian-writable-database-add-spelling" title="xapian_writable_database_add_spelling ()">xapian_writable_database_add_spelling</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianWritableDatabase.html#xapian-writable-database-add-spelling-full" title="xapian_writable_database_add_spelling_full ()">xapian_writable_database_add_spelling_full</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianWritableDatabase.html#xapian-writable-database-remove-spelling" title="xapian_writable_database_remove_spelling ()">xapian_writable_database_remove_spelling</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianWritableDatabase.html#xapian-writable-database-remove-spelling-full" title="xapian_writable_database_remove_spelling_full ()">xapian_writable_database_remove_spelling_full</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="XapianWritableDatabase.properties"></a><h2>Properties</h2>
+<div class="informaltable"><table class="informaltable" border="0">
+<colgroup>
+<col width="150px" class="properties_type">
+<col width="300px" class="properties_name">
+<col width="200px" class="properties_flags">
+</colgroup>
+<tbody><tr>
+<td class="property_type"><a class="link" href="XapianWritableDatabase.html#XapianDatabaseAction" title="enum XapianDatabaseAction"><span class="type">XapianDatabaseAction</span></a></td>
+<td class="property_name"><a class="link" href="XapianWritableDatabase.html#XapianWritableDatabase--action" title="The “action” property">action</a></td>
+<td class="property_flags">Read / Write / Construct Only</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="XapianWritableDatabase.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody><tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="XapianWritableDatabase.html#XapianDatabaseAction" title="enum XapianDatabaseAction">XapianDatabaseAction</a></td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="XapianWritableDatabase.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="screen">    <a href="/usr/share/gtk-doc/html/gobject/gobject-Enumeration-and-Flag-Types.html">GEnum</a>
+    <span class="lineart">╰──</span> XapianDatabaseAction
+    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+    <span class="lineart">╰──</span> <a class="link" href="XapianDatabase.html" title="XapianDatabase">XapianDatabase</a>
+        <span class="lineart">╰──</span> XapianWritableDatabase
+</pre>
+</div>
+<div class="refsect1">
+<a name="XapianWritableDatabase.description"></a><h2>Description</h2>
+<p><a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a> is a <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> sub-class that can
+be written to.</p>
+</div>
+<div class="refsect1">
+<a name="XapianWritableDatabase.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="xapian-writable-database-new"></a><h3>xapian_writable_database_new ()</h3>
+<pre class="programlisting"><a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="returnvalue">XapianWritableDatabase</span></a> *
+xapian_writable_database_new (<em class="parameter"><code>const <span class="type">char</span> *path</code></em>,
+                              <em class="parameter"><code><a class="link" href="XapianWritableDatabase.html#XapianDatabaseAction" title="enum XapianDatabaseAction"><span class="type">XapianDatabaseAction</span></a> action</code></em>,
+                              <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Creates and initialises a <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a> for the
+given <em class="parameter"><code>path</code></em>
+.</p>
+<p>If the initialization was not successful, this function
+returns <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> and sets <em class="parameter"><code>error</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-writable-database-new.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>path</p></td>
+<td class="parameter_description"><p>the path of the database. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL must not be passed as the value in, out, in-out; or as a return value."><span class="acronym">not nullable</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>action</p></td>
+<td class="parameter_description"><p>the action to perform</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>return location for a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-writable-database-new.returns"></a><h4>Returns</h4>
+<p>the newly created <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a>
+instance. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-writable-database-new-with-backend"></a><h3>xapian_writable_database_new_with_backend ()</h3>
+<pre class="programlisting"><a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="returnvalue">XapianWritableDatabase</span></a> *
+xapian_writable_database_new_with_backend
+                               (<em class="parameter"><code>const <span class="type">char</span> *path</code></em>,
+                                <em class="parameter"><code><a class="link" href="XapianWritableDatabase.html#XapianDatabaseAction" title="enum XapianDatabaseAction"><span class="type">XapianDatabaseAction</span></a> action</code></em>,
+                                <em class="parameter"><code><a class="link" href="XapianDatabase.html#XapianDatabaseBackend" title="enum XapianDatabaseBackend"><span class="type">XapianDatabaseBackend</span></a> backend</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Creates and initialises a <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a> for the
+given <em class="parameter"><code>path</code></em>
+.</p>
+<p>If the initialization was not successful, this function
+returns <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> and sets <em class="parameter"><code>error</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-writable-database-new-with-backend.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>path</p></td>
+<td class="parameter_description"><p>the path of the database. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL must not be passed as the value in, out, in-out; or as a return value."><span class="acronym">not nullable</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>action</p></td>
+<td class="parameter_description"><p>the action to perform</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>backend</p></td>
+<td class="parameter_description"><p>the backend to use</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>return location for a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-writable-database-new-with-backend.returns"></a><h4>Returns</h4>
+<p>the newly created <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a>
+instance. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-writable-database-new-full"></a><h3>xapian_writable_database_new_full ()</h3>
+<pre class="programlisting"><a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="returnvalue">XapianWritableDatabase</span></a> *
+xapian_writable_database_new_full (<em class="parameter"><code>const <span class="type">char</span> *path</code></em>,
+                                   <em class="parameter"><code><a class="link" href="XapianWritableDatabase.html#XapianDatabaseAction" title="enum XapianDatabaseAction"><span class="type">XapianDatabaseAction</span></a> action</code></em>,
+                                   <em class="parameter"><code><a class="link" href="XapianDatabase.html#XapianDatabaseBackend" title="enum XapianDatabaseBackend"><span class="type">XapianDatabaseBackend</span></a> backend</code></em>,
+                                   <em class="parameter"><code><a class="link" href="XapianDatabase.html#XapianDatabaseFlags" title="enum XapianDatabaseFlags"><span class="type">XapianDatabaseFlags</span></a> flags</code></em>,
+                                   <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Creates and initialises a <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a> for the
+given <em class="parameter"><code>path</code></em>
+.</p>
+<p>If the initialization was not successful, this function
+returns <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> and sets <em class="parameter"><code>error</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-writable-database-new-full.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>path</p></td>
+<td class="parameter_description"><p>the path of the database. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL must not be passed as the value in, out, in-out; or as a return value."><span class="acronym">not nullable</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>action</p></td>
+<td class="parameter_description"><p>the action to perform</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>backend</p></td>
+<td class="parameter_description"><p>the backend to use</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>flags</p></td>
+<td class="parameter_description"><p>flags to be used when opening the database</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>return location for a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-writable-database-new-full.returns"></a><h4>Returns</h4>
+<p>the newly created <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a>
+instance. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-writable-database-commit"></a><h3>xapian_writable_database_commit ()</h3>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+xapian_writable_database_commit (<em class="parameter"><code><a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a> *self</code></em>,
+                                 <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Commits the pending changes of the database.</p>
+<div class="refsect3">
+<a name="xapian-writable-database-commit.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>return location for a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-writable-database-commit.returns"></a><h4>Returns</h4>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the commit was successful</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-writable-database-set-metadata"></a><h3>xapian_writable_database_set_metadata ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_writable_database_set_metadata (<em class="parameter"><code><a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a> *self</code></em>,
+                                       <em class="parameter"><code>const <span class="type">char</span> *key</code></em>,
+                                       <em class="parameter"><code>const <span class="type">char</span> *value</code></em>);</pre>
+<p>Set the user-specified metadata associated with a given key.</p>
+<p>This method sets the metadata value associated with a given key. If there is
+already a metadata value stored in the database with the same key, the old
+value is replaced. If you want to delete an existing item of metadata, just
+set its value to the empty string.</p>
+<div class="refsect3">
+<a name="xapian-writable-database-set-metadata.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>key</p></td>
+<td class="parameter_description"><p>A key in the database's metadata</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>value</p></td>
+<td class="parameter_description"><p>The value to set for <em class="parameter"><code>key</code></em>
+</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-writable-database-begin-transaction"></a><h3>xapian_writable_database_begin_transaction ()</h3>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+xapian_writable_database_begin_transaction
+                               (<em class="parameter"><code><a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a> *self</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> flushed</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Begins a transaction in the database.</p>
+<p>See also: <a class="link" href="XapianWritableDatabase.html#xapian-writable-database-commit-transaction" title="xapian_writable_database_commit_transaction ()"><code class="function">xapian_writable_database_commit_transaction()</code></a>,
+  <a class="link" href="XapianWritableDatabase.html#xapian-writable-database-cancel-transaction" title="xapian_writable_database_cancel_transaction ()"><code class="function">xapian_writable_database_cancel_transaction()</code></a></p>
+<div class="refsect3">
+<a name="xapian-writable-database-begin-transaction.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>flushed</p></td>
+<td class="parameter_description"><p>whether the transaction should be permanently stored
+in the database when committed, or if the transaction should
+only be applied to the database</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>return location for a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-writable-database-begin-transaction.returns"></a><h4>Returns</h4>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the transaction can be started, and
+<a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if the backend does not support transactions or
+if a transaction is already in progress</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-writable-database-commit-transaction"></a><h3>xapian_writable_database_commit_transaction ()</h3>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+xapian_writable_database_commit_transaction
+                               (<em class="parameter"><code><a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a> *self</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Commits the currently pending transaction.</p>
+<p>If the transaction was started by passing <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> to the <code class="literal">flushed</code>
+argument of <a class="link" href="XapianWritableDatabase.html#xapian-writable-database-begin-transaction" title="xapian_writable_database_begin_transaction ()"><code class="function">xapian_writable_database_begin_transaction()</code></a> then all
+the changes caused by the transaction will be permanently stored
+inside the database.</p>
+<p>In case of error, this function will return <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> and set <em class="parameter"><code>error</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-writable-database-commit-transaction.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>return location for a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-writable-database-commit-transaction.returns"></a><h4>Returns</h4>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the transaction was successfully committed.</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-writable-database-cancel-transaction"></a><h3>xapian_writable_database_cancel_transaction ()</h3>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+xapian_writable_database_cancel_transaction
+                               (<em class="parameter"><code><a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a> *self</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Cancels the currently pending transaction.</p>
+<div class="refsect3">
+<a name="xapian-writable-database-cancel-transaction.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>return location for a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-writable-database-cancel-transaction.returns"></a><h4>Returns</h4>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the transaction was successfully cancelled</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-writable-database-add-document"></a><h3>xapian_writable_database_add_document ()</h3>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+xapian_writable_database_add_document (<em class="parameter"><code><a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a> *self</code></em>,
+                                       <em class="parameter"><code><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *document</code></em>,
+                                       <em class="parameter"><code>unsigned <span class="type">int</span> *docid_out</code></em>,
+                                       <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Adds <em class="parameter"><code>document</code></em>
+ to a database.</p>
+<div class="refsect3">
+<a name="xapian-writable-database-add-document.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>document</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> to add</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>docid_out</p></td>
+<td class="parameter_description"><p>return location for the id of the newly
+added document. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>return location for a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-writable-database-add-document.returns"></a><h4>Returns</h4>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the document was added, and <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> on error</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-writable-database-delete-document"></a><h3>xapian_writable_database_delete_document ()</h3>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+xapian_writable_database_delete_document
+                               (<em class="parameter"><code><a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a> *self</code></em>,
+                                <em class="parameter"><code>unsigned <span class="type">int</span> docid</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Deletes the document with the given <em class="parameter"><code>docid</code></em>
+ from a database.</p>
+<div class="refsect3">
+<a name="xapian-writable-database-delete-document.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>docid</p></td>
+<td class="parameter_description"><p>the document to delete</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>return location for a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-writable-database-delete-document.returns"></a><h4>Returns</h4>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the document was successfully deleted</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-writable-database-replace-document"></a><h3>xapian_writable_database_replace_document ()</h3>
+<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+xapian_writable_database_replace_document
+                               (<em class="parameter"><code><a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a> *self</code></em>,
+                                <em class="parameter"><code>unsigned <span class="type">int</span> docid</code></em>,
+                                <em class="parameter"><code><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> *document</code></em>,
+                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Replaces the <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> with <em class="parameter"><code>docid</code></em>
+ inside a
+<a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a> with the given <em class="parameter"><code>document</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-writable-database-replace-document.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>docid</p></td>
+<td class="parameter_description"><p>the id of the document to replace</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>document</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>return location for a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-writable-database-replace-document.returns"></a><h4>Returns</h4>
+<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the document was replaced</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-writable-database-add-spelling"></a><h3>xapian_writable_database_add_spelling ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_writable_database_add_spelling (<em class="parameter"><code><a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a> *self</code></em>,
+                                       <em class="parameter"><code>const <span class="type">char</span> *word</code></em>);</pre>
+<p>Add a word to the spelling dictionary with a default frequency increase of 1.</p>
+<p>If the word is already present, its frequency is increased.</p>
+<div class="refsect3">
+<a name="xapian-writable-database-add-spelling.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>word</p></td>
+<td class="parameter_description"><p>The word to add</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix02.html#api-index-1.2">1.2</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-writable-database-add-spelling-full"></a><h3>xapian_writable_database_add_spelling_full ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_writable_database_add_spelling_full
+                               (<em class="parameter"><code><a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a> *self</code></em>,
+                                <em class="parameter"><code>const <span class="type">char</span> *word</code></em>,
+                                <em class="parameter"><code>unsigned <span class="type">int</span> freqinc</code></em>);</pre>
+<p>Add a word to the spelling dictionary.</p>
+<p>If the word is already present, its frequency is increased.</p>
+<div class="refsect3">
+<a name="xapian-writable-database-add-spelling-full.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>word</p></td>
+<td class="parameter_description"><p>The word to add</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>freqinc</p></td>
+<td class="parameter_description"><p>How much to increase its frequency by</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix02.html#api-index-1.2">1.2</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-writable-database-remove-spelling"></a><h3>xapian_writable_database_remove_spelling ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_writable_database_remove_spelling
+                               (<em class="parameter"><code><a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a> *self</code></em>,
+                                <em class="parameter"><code>const <span class="type">char</span> *word</code></em>);</pre>
+<p>Remove a word from the spelling dictionary.</p>
+<p>The word's frequency is decreased by 1, and if would become zero or less then
+the word is removed completely.</p>
+<div class="refsect3">
+<a name="xapian-writable-database-remove-spelling.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>word</p></td>
+<td class="parameter_description"><p>The word to remove</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix02.html#api-index-1.2">1.2</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-writable-database-remove-spelling-full"></a><h3>xapian_writable_database_remove_spelling_full ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_writable_database_remove_spelling_full
+                               (<em class="parameter"><code><a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a> *self</code></em>,
+                                <em class="parameter"><code>const <span class="type">char</span> *word</code></em>,
+                                <em class="parameter"><code>unsigned <span class="type">int</span> freqdec</code></em>);</pre>
+<p>Remove a word from the spelling dictionary.</p>
+<p>The word's frequency is decreased, and if would become zero or less then the
+word is removed completely.</p>
+<div class="refsect3">
+<a name="xapian-writable-database-remove-spelling-full.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>word</p></td>
+<td class="parameter_description"><p>The word to remove</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>freqdec</p></td>
+<td class="parameter_description"><p>How much to decrease its frequency by</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix02.html#api-index-1.2">1.2</a></p>
+</div>
+</div>
+<div class="refsect1">
+<a name="XapianWritableDatabase.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="XapianDatabaseAction"></a><h3>enum XapianDatabaseAction</h3>
+<p>Actions for <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase"><span class="type">XapianWritableDatabase</span></a>.</p>
+<div class="refsect3">
+<a name="XapianDatabaseAction.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-DATABASE-ACTION-CREATE-OR-OPEN:CAPS"></a>XAPIAN_DATABASE_ACTION_CREATE_OR_OPEN</p></td>
+<td class="enum_member_description">
+<p>Create a database or open if it
+  already exists</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-DATABASE-ACTION-CREATE-OR-OVERWRITE:CAPS"></a>XAPIAN_DATABASE_ACTION_CREATE_OR_OVERWRITE</p></td>
+<td class="enum_member_description">
+<p>Create a database and overwrite
+  it if one already exists</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-DATABASE-ACTION-CREATE:CAPS"></a>XAPIAN_DATABASE_ACTION_CREATE</p></td>
+<td class="enum_member_description">
+<p>Create a database</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-DATABASE-ACTION-OPEN:CAPS"></a>XAPIAN_DATABASE_ACTION_OPEN</p></td>
+<td class="enum_member_description">
+<p>Open a database</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="refsect1">
+<a name="XapianWritableDatabase.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="XapianWritableDatabase--action"></a><h3>The <code class="literal">“action”</code> property</h3>
+<pre class="programlisting">  “action”                   <a class="link" href="XapianWritableDatabase.html#XapianDatabaseAction" title="enum XapianDatabaseAction"><span class="type">XapianDatabaseAction</span></a></pre>
+<p>The action to be performed when creating a database.</p>
+<p>Flags: Read / Write / Construct Only</p>
+<p>Default value: XAPIAN_DATABASE_ACTION_CREATE_OR_OPEN</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>Generated by GTK-Doc V1.26</div>
+</body>
+</html>

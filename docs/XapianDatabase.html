@@ -1,0 +1,1012 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>XapianDatabase: Xapian-GLib Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Xapian-GLib Reference Manual">
+<link rel="up" href="ch01.html" title="Xapian-GLib">
+<link rel="prev" href="ch01.html" title="Xapian-GLib">
+<link rel="next" href="XapianWritableDatabase.html" title="XapianWritableDatabase">
+<meta name="generator" content="GTK-Doc V1.26 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#XapianDatabase.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#XapianDatabase.object-hierarchy" class="shortcut">Object Hierarchy</a></span><span id="nav_properties">  <span class="dim">|</span> 
+                  <a href="#XapianDatabase.properties" class="shortcut">Properties</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="ch01.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="XapianWritableDatabase.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="XapianDatabase"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="XapianDatabase.top_of_page"></a>XapianDatabase</span></h2>
+<p>XapianDatabase — A read-only database</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="XapianDatabase.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="returnvalue">XapianDatabase</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianDatabase.html#xapian-database-new" title="xapian_database_new ()">xapian_database_new</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="returnvalue">XapianDatabase</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianDatabase.html#xapian-database-new-with-path" title="xapian_database_new_with_path ()">xapian_database_new_with_path</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDatabase.html#xapian-database-close" title="xapian_database_close ()">xapian_database_close</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDatabase.html#xapian-database-reopen" title="xapian_database_reopen ()">xapian_database_reopen</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">char</span> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianDatabase.html#xapian-database-get-description" title="xapian_database_get_description ()">xapian_database_get_description</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">char</span> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianDatabase.html#xapian-database-get-uuid" title="xapian_database_get_uuid ()">xapian_database_get_uuid</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">char</span> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianDatabase.html#xapian-database-get-metadata" title="xapian_database_get_metadata ()">xapian_database_get_metadata</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">unsigned <span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDatabase.html#xapian-database-get-doc-count" title="xapian_database_get_doc_count ()">xapian_database_get_doc_count</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">unsigned <span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDatabase.html#xapian-database-get-last-doc-id" title="xapian_database_get_last_doc_id ()">xapian_database_get_last_doc_id</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">double</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDatabase.html#xapian-database-get-average-length" title="xapian_database_get_average_length ()">xapian_database_get_average_length</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianDocument.html" title="XapianDocument"><span class="returnvalue">XapianDocument</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianDatabase.html#xapian-database-get-document" title="xapian_database_get_document ()">xapian_database_get_document</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">unsigned <span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDatabase.html#xapian-database-get-term-freq" title="xapian_database_get_term_freq ()">xapian_database_get_term_freq</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">unsigned <span class="returnvalue">int</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDatabase.html#xapian-database-get-collection-freq" title="xapian_database_get_collection_freq ()">xapian_database_get_collection_freq</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDatabase.html#xapian-database-add-database" title="xapian_database_add_database ()">xapian_database_add_database</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDatabase.html#xapian-database-compact-to-path" title="xapian_database_compact_to_path ()">xapian_database_compact_to_path</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="XapianDatabase.html#xapian-database-compact-to-fd" title="xapian_database_compact_to_fd ()">xapian_database_compact_to_fd</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="XapianTermIterator.html" title="XapianTermIterator"><span class="returnvalue">XapianTermIterator</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="XapianDatabase.html#xapian-database-enumerate-all-terms" title="xapian_database_enumerate_all_terms ()">xapian_database_enumerate_all_terms</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="XapianDatabase.properties"></a><h2>Properties</h2>
+<div class="informaltable"><table class="informaltable" border="0">
+<colgroup>
+<col width="150px" class="properties_type">
+<col width="300px" class="properties_name">
+<col width="200px" class="properties_flags">
+</colgroup>
+<tbody>
+<tr>
+<td class="property_type"><a class="link" href="XapianDatabase.html#XapianDatabaseBackend" title="enum XapianDatabaseBackend"><span class="type">XapianDatabaseBackend</span></a></td>
+<td class="property_name"><a class="link" href="XapianDatabase.html#XapianDatabase--backend" title="The “backend” property">backend</a></td>
+<td class="property_flags">Read / Write / Construct Only</td>
+</tr>
+<tr>
+<td class="property_type"><a class="link" href="XapianDatabase.html#XapianDatabaseFlags" title="enum XapianDatabaseFlags"><span class="type">XapianDatabaseFlags</span></a></td>
+<td class="property_name"><a class="link" href="XapianDatabase.html#XapianDatabase--flags" title="The “flags” property">flags</a></td>
+<td class="property_flags">Read / Write / Construct Only</td>
+</tr>
+<tr>
+<td class="property_type"><a href="../glib/glib-Basic-Types.html#guint64"><span class="type">guint64</span></a></td>
+<td class="property_name"><a class="link" href="XapianDatabase.html#XapianDatabase--offset" title="The “offset” property">offset</a></td>
+<td class="property_flags">Read / Write / Construct Only</td>
+</tr>
+<tr>
+<td class="property_type">
+<a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
+<td class="property_name"><a class="link" href="XapianDatabase.html#XapianDatabase--path" title="The “path” property">path</a></td>
+<td class="property_flags">Read / Write / Construct Only</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="XapianDatabase.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="XapianDatabase.html#XapianDatabaseFlags" title="enum XapianDatabaseFlags">XapianDatabaseFlags</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="XapianDatabase.html#XapianDatabaseBackend" title="enum XapianDatabaseBackend">XapianDatabaseBackend</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="XapianDatabase.html#XapianDatabaseCompactFlags" title="enum XapianDatabaseCompactFlags">XapianDatabaseCompactFlags</a></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="XapianDatabase.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="screen">    <a href="/usr/share/gtk-doc/html/gobject/gobject-Enumeration-and-Flag-Types.html">GEnum</a>
+    <span class="lineart">╰──</span> XapianDatabaseBackend
+    <a href="/usr/share/gtk-doc/html/gobject/gobject-Enumeration-and-Flag-Types.html">GFlags</a>
+    <span class="lineart">├──</span> XapianDatabaseCompactFlags
+    <span class="lineart">╰──</span> XapianDatabaseFlags
+    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+    <span class="lineart">╰──</span> XapianDatabase
+        <span class="lineart">╰──</span> <a class="link" href="XapianWritableDatabase.html" title="XapianWritableDatabase">XapianWritableDatabase</a>
+</pre>
+</div>
+<div class="refsect1">
+<a name="XapianDatabase.description"></a><h2>Description</h2>
+<p><a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> is a class that allows read-only access to a
+Xapian database at a given path.</p>
+<p>Typically, you will use <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> to open a database for
+querying, by using the <a class="link" href="XapianEnquire.html" title="XapianEnquire"><span class="type">XapianEnquire</span></a> class.</p>
+</div>
+<div class="refsect1">
+<a name="XapianDatabase.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="xapian-database-new"></a><h3>xapian_database_new ()</h3>
+<pre class="programlisting"><a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="returnvalue">XapianDatabase</span></a> *
+xapian_database_new (<em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Creates and initializes a new, empty <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> instance.</p>
+<p>If the initialization was not successful, <em class="parameter"><code>error</code></em>
+ is set.</p>
+<div class="refsect3">
+<a name="xapian-database-new.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>return location for a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-database-new.returns"></a><h4>Returns</h4>
+<p>the newly created <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> instance,
+or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if the initialization failed. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-database-new-with-path"></a><h3>xapian_database_new_with_path ()</h3>
+<pre class="programlisting"><a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="returnvalue">XapianDatabase</span></a> *
+xapian_database_new_with_path (<em class="parameter"><code>const <span class="type">char</span> *path</code></em>,
+                               <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Creates and initializes a new <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> at <em class="parameter"><code>path</code></em>
+.</p>
+<p>If the initialization was not successful, <em class="parameter"><code>error</code></em>
+ is set.</p>
+<div class="refsect3">
+<a name="xapian-database-new-with-path.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>path</p></td>
+<td class="parameter_description"><p>the path to the database</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>return location for a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-database-new-with-path.returns"></a><h4>Returns</h4>
+<p>the newly created <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> instance
+for the given <em class="parameter"><code>path</code></em>
+, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if the initialization failed. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-database-close"></a><h3>xapian_database_close ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_database_close (<em class="parameter"><code><a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> *db</code></em>);</pre>
+<p>Explicitly closes a database.</p>
+<p><a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> instances are implicitly closed when being
+finalized, so you'll rarely need to call this function.</p>
+<div class="refsect3">
+<a name="xapian-database-close.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>db</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-database-reopen"></a><h3>xapian_database_reopen ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_database_reopen (<em class="parameter"><code><a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> *db</code></em>);</pre>
+<p>Reopens a <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a>.</p>
+<div class="refsect3">
+<a name="xapian-database-reopen.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>db</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix02.html#api-index-1.2">1.2</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-database-get-description"></a><h3>xapian_database_get_description ()</h3>
+<pre class="programlisting"><span class="returnvalue">char</span> *
+xapian_database_get_description (<em class="parameter"><code><a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> *db</code></em>);</pre>
+<p>Retrieves a string describing the <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a>.</p>
+<p>Typically, this function is used when debugging.</p>
+<div class="refsect3">
+<a name="xapian-database-get-description.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>db</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-database-get-description.returns"></a><h4>Returns</h4>
+<p>a description of the database. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-database-get-uuid"></a><h3>xapian_database_get_uuid ()</h3>
+<pre class="programlisting"><span class="returnvalue">char</span> *
+xapian_database_get_uuid (<em class="parameter"><code><a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> *db</code></em>);</pre>
+<p>Retrieves a unique identifier for a <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a>.</p>
+<div class="refsect3">
+<a name="xapian-database-get-uuid.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>db</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-database-get-uuid.returns"></a><h4>Returns</h4>
+<p>a unique identifier for the database. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-database-get-metadata"></a><h3>xapian_database_get_metadata ()</h3>
+<pre class="programlisting"><span class="returnvalue">char</span> *
+xapian_database_get_metadata (<em class="parameter"><code><a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> *db</code></em>,
+                              <em class="parameter"><code>const <span class="type">char</span> *key</code></em>,
+                              <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Retrieves custom metadata associated to a key inside the
+<a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a>.</p>
+<p>In case of error, this function returns <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> and sets
+the <em class="parameter"><code>error</code></em>
+ argument.</p>
+<div class="refsect3">
+<a name="xapian-database-get-metadata.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>db</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>key</p></td>
+<td class="parameter_description"><p>a key to access in the database metadata</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>return location for a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-database-get-metadata.returns"></a><h4>Returns</h4>
+<p>the stored metadata. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-database-get-doc-count"></a><h3>xapian_database_get_doc_count ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">int</span>
+xapian_database_get_doc_count (<em class="parameter"><code><a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> *db</code></em>);</pre>
+<p>Retrieves the number of documents in the database.</p>
+<div class="refsect3">
+<a name="xapian-database-get-doc-count.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>db</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-database-get-doc-count.returns"></a><h4>Returns</h4>
+<p> the number of documents in the database</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-database-get-last-doc-id"></a><h3>xapian_database_get_last_doc_id ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">int</span>
+xapian_database_get_last_doc_id (<em class="parameter"><code><a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> *db</code></em>);</pre>
+<p>Retrieves the highest document id in use in the database</p>
+<div class="refsect3">
+<a name="xapian-database-get-last-doc-id.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>db</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-database-get-last-doc-id.returns"></a><h4>Returns</h4>
+<p> the highest document id in use</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-database-get-average-length"></a><h3>xapian_database_get_average_length ()</h3>
+<pre class="programlisting"><span class="returnvalue">double</span>
+xapian_database_get_average_length (<em class="parameter"><code><a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> *db</code></em>);</pre>
+<p>Retrieves the average document length in the database</p>
+<div class="refsect3">
+<a name="xapian-database-get-average-length.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>db</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-database-get-average-length.returns"></a><h4>Returns</h4>
+<p> the average document length in the database</p>
+</div>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-database-get-document"></a><h3>xapian_database_get_document ()</h3>
+<pre class="programlisting"><a class="link" href="XapianDocument.html" title="XapianDocument"><span class="returnvalue">XapianDocument</span></a> *
+xapian_database_get_document (<em class="parameter"><code><a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> *db</code></em>,
+                              <em class="parameter"><code>unsigned <span class="type">int</span> docid</code></em>,
+                              <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Retrieves the <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> with the given <em class="parameter"><code>docid</code></em>
+ inside
+the database.</p>
+<p>If the <em class="parameter"><code>docid</code></em>
+ was not found, <em class="parameter"><code>error</code></em>
+ is set and <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> is
+returned.</p>
+<div class="refsect3">
+<a name="xapian-database-get-document.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>db</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>docid</p></td>
+<td class="parameter_description"><p>the document id to retrieve</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>return location for a <a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a>, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-database-get-document.returns"></a><h4>Returns</h4>
+<p>a <a class="link" href="XapianDocument.html" title="XapianDocument"><span class="type">XapianDocument</span></a> instance. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-database-get-term-freq"></a><h3>xapian_database_get_term_freq ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">int</span>
+xapian_database_get_term_freq (<em class="parameter"><code><a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> *db</code></em>,
+                               <em class="parameter"><code>const <span class="type">char</span> *term</code></em>);</pre>
+<p>Retrieves the term frequency for <em class="parameter"><code>term</code></em>
+, i.e. the number of different
+documents that term indexes.</p>
+<div class="refsect3">
+<a name="xapian-database-get-term-freq.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>db</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>term</p></td>
+<td class="parameter_description"><p>the term</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-database-get-term-freq.returns"></a><h4>Returns</h4>
+<p> the term frequency for <em class="parameter"><code>term</code></em>
+</p>
+</div>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-database-get-collection-freq"></a><h3>xapian_database_get_collection_freq ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">int</span>
+xapian_database_get_collection_freq (<em class="parameter"><code><a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> *db</code></em>,
+                                     <em class="parameter"><code>const <span class="type">char</span> *term</code></em>);</pre>
+<p>Retrieves the collection frequency for <em class="parameter"><code>term</code></em>
+, i.e. the total number of
+times that the term occurs in all documents in the collection.</p>
+<div class="refsect3">
+<a name="xapian-database-get-collection-freq.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>db</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>term</p></td>
+<td class="parameter_description"><p>the term</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-database-get-collection-freq.returns"></a><h4>Returns</h4>
+<p> the collection frequency for <em class="parameter"><code>term</code></em>
+</p>
+</div>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-database-add-database"></a><h3>xapian_database_add_database ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_database_add_database (<em class="parameter"><code><a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> *db</code></em>,
+                              <em class="parameter"><code><a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> *new_db</code></em>);</pre>
+<p>Adds an existing database (or group of databases) to those
+accessed by <em class="parameter"><code>db</code></em>
+.</p>
+<div class="refsect3">
+<a name="xapian-database-add-database.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>db</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>new_db</p></td>
+<td class="parameter_description"><p>a <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-database-compact-to-path"></a><h3>xapian_database_compact_to_path ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_database_compact_to_path (<em class="parameter"><code><a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> *self</code></em>,
+                                 <em class="parameter"><code>const <span class="type">char</span> *path</code></em>,
+                                 <em class="parameter"><code><a class="link" href="XapianDatabase.html#XapianDatabaseCompactFlags" title="enum XapianDatabaseCompactFlags"><span class="type">XapianDatabaseCompactFlags</span></a> flags</code></em>);</pre>
+<p>Compacts the database, and writes the result to the given path.</p>
+<div class="refsect3">
+<a name="xapian-database-compact-to-path.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>A <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>path</p></td>
+<td class="parameter_description"><p>The path to write the compacted database to.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>flags</p></td>
+<td class="parameter_description"><p>Flags to compact the database with.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-database-compact-to-fd"></a><h3>xapian_database_compact_to_fd ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+xapian_database_compact_to_fd (<em class="parameter"><code><a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> *self</code></em>,
+                               <em class="parameter"><code><span class="type">int</span> fd</code></em>,
+                               <em class="parameter"><code><a class="link" href="XapianDatabase.html#XapianDatabaseCompactFlags" title="enum XapianDatabaseCompactFlags"><span class="type">XapianDatabaseCompactFlags</span></a> flags</code></em>);</pre>
+<p>Compacts the database, and writes the result to the given fd.</p>
+<div class="refsect3">
+<a name="xapian-database-compact-to-fd.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>A <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>fd</p></td>
+<td class="parameter_description"><p>The fd to write the compacted database.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>flags</p></td>
+<td class="parameter_description"><p>Flags to compact the database with.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="xapian-database-enumerate-all-terms"></a><h3>xapian_database_enumerate_all_terms ()</h3>
+<pre class="programlisting"><a class="link" href="XapianTermIterator.html" title="XapianTermIterator"><span class="returnvalue">XapianTermIterator</span></a> *
+xapian_database_enumerate_all_terms (<em class="parameter"><code><a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a> *self</code></em>,
+                                     <em class="parameter"><code>const <span class="type">char</span> *prefix</code></em>);</pre>
+<p>Start iterating over all terms in the database, optionally restricted to
+terms with the specified prefix.</p>
+<div class="refsect3">
+<a name="xapian-database-enumerate-all-terms.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>A <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>prefix</p></td>
+<td class="parameter_description"><p>Prefix to iterate over. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="xapian-database-enumerate-all-terms.returns"></a><h4>Returns</h4>
+<p>a <a class="link" href="XapianTermIterator.html" title="XapianTermIterator"><span class="type">XapianTermIterator</span></a> instance. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.4">1.4</a></p>
+</div>
+</div>
+<div class="refsect1">
+<a name="XapianDatabase.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="XapianDatabaseFlags"></a><h3>enum XapianDatabaseFlags</h3>
+<p>Flags used when opening a database</p>
+<div class="refsect3">
+<a name="XapianDatabaseFlags.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-DATABASE-FLAGS-NONE:CAPS"></a>XAPIAN_DATABASE_FLAGS_NONE</p></td>
+<td class="enum_member_description">
+<p>No flags</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-DATABASE-FLAGS-NO-SYNC:CAPS"></a>XAPIAN_DATABASE_FLAGS_NO_SYNC</p></td>
+<td class="enum_member_description">
+<p>Do not sync changes to disk</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-DATABASE-FLAGS-FULL-SYNC:CAPS"></a>XAPIAN_DATABASE_FLAGS_FULL_SYNC</p></td>
+<td class="enum_member_description">
+<p>Attempt to fully sync changes to disk</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-DATABASE-FLAGS-DANGEROUS:CAPS"></a>XAPIAN_DATABASE_FLAGS_DANGEROUS</p></td>
+<td class="enum_member_description">
+<p>Update the database in-place</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-DATABASE-FLAGS-NO-TERMLIST:CAPS"></a>XAPIAN_DATABASE_FLAGS_NO_TERMLIST</p></td>
+<td class="enum_member_description">
+<p>Do not create a termlist table</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-DATABASE-FLAGS-RETRY-LOCK:CAPS"></a>XAPIAN_DATABASE_FLAGS_RETRY_LOCK</p></td>
+<td class="enum_member_description">
+<p>Retry the lock</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="XapianDatabaseBackend"></a><h3>enum XapianDatabaseBackend</h3>
+<p>The Xapian database backend to use when opening a database.</p>
+<div class="refsect3">
+<a name="XapianDatabaseBackend.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-DATABASE-BACKEND-DEFAULT:CAPS"></a>XAPIAN_DATABASE_BACKEND_DEFAULT</p></td>
+<td class="enum_member_description">
+<p>Use the default backend</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-DATABASE-BACKEND-GLASS:CAPS"></a>XAPIAN_DATABASE_BACKEND_GLASS</p></td>
+<td class="enum_member_description">
+<p>Use the Glass backend</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-DATABASE-BACKEND-CHERT:CAPS"></a>XAPIAN_DATABASE_BACKEND_CHERT</p></td>
+<td class="enum_member_description">
+<p>Use the Chert backend</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-DATABASE-BACKEND-STUB:CAPS"></a>XAPIAN_DATABASE_BACKEND_STUB</p></td>
+<td class="enum_member_description">
+<p>Open a stub database</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-DATABASE-BACKEND-INMEMORY:CAPS"></a>XAPIAN_DATABASE_BACKEND_INMEMORY</p></td>
+<td class="enum_member_description">
+<p>Use the "in memory" backend</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="XapianDatabaseCompactFlags"></a><h3>enum XapianDatabaseCompactFlags</h3>
+<p>Compacting policies for <a class="link" href="XapianDatabase.html" title="XapianDatabase"><span class="type">XapianDatabase</span></a>.</p>
+<div class="refsect3">
+<a name="XapianDatabaseCompactFlags.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-DATABASE-COMPACT-FLAGS-NO-RENUMBER:CAPS"></a>XAPIAN_DATABASE_COMPACT_FLAGS_NO_RENUMBER</p></td>
+<td class="enum_member_description">
+<p>Use the same document ids</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-DATABASE-COMPACT-FLAGS-MULTIPASS:CAPS"></a>XAPIAN_DATABASE_COMPACT_FLAGS_MULTIPASS</p></td>
+<td class="enum_member_description">
+<p>Merge postlists in multiple passes</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="XAPIAN-DATABASE-COMPACT-FLAGS-SINGLE-FILE:CAPS"></a>XAPIAN_DATABASE_COMPACT_FLAGS_SINGLE_FILE</p></td>
+<td class="enum_member_description">
+<p>Create a single-file database</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.4">1.4</a></p>
+</div>
+</div>
+<div class="refsect1">
+<a name="XapianDatabase.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="XapianDatabase--backend"></a><h3>The <code class="literal">“backend”</code> property</h3>
+<pre class="programlisting">  “backend”                  <a class="link" href="XapianDatabase.html#XapianDatabaseBackend" title="enum XapianDatabaseBackend"><span class="type">XapianDatabaseBackend</span></a></pre>
+<p>The backend to use when opening the database.</p>
+<p>Flags: Read / Write / Construct Only</p>
+<p>Default value: XAPIAN_DATABASE_BACKEND_DEFAULT</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="XapianDatabase--flags"></a><h3>The <code class="literal">“flags”</code> property</h3>
+<pre class="programlisting">  “flags”                    <a class="link" href="XapianDatabase.html#XapianDatabaseFlags" title="enum XapianDatabaseFlags"><span class="type">XapianDatabaseFlags</span></a></pre>
+<p>The flags to use when opening the database.</p>
+<p>Flags: Read / Write / Construct Only</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="XapianDatabase--offset"></a><h3>The <code class="literal">“offset”</code> property</h3>
+<pre class="programlisting">  “offset”                   <a href="../glib/glib-Basic-Types.html#guint64"><span class="type">guint64</span></a></pre>
+<p>The offset inside the database file.</p>
+<p>Flags: Read / Write / Construct Only</p>
+<p>Default value: 0</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="XapianDatabase--path"></a><h3>The <code class="literal">“path”</code> property</h3>
+<pre class="programlisting">  “path”                     <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
+<p>The path to the database directory.</p>
+<p>Flags: Read / Write / Construct Only</p>
+<p>Default value: NULL</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>Generated by GTK-Doc V1.26</div>
+</body>
+</html>
