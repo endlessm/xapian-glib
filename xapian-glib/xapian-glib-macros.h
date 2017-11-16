@@ -36,16 +36,65 @@
 
 /* XXX: Each new cycle should add a new version symbol here */
 
+/**
+ * XAPIAN_GLIB_VERSION_1_0:
+ *
+ * A pre-processor macro that evaluates to the 1.0 version of Xapian-GLib,
+ * in a format that can be used by %XAPIAN_GLIB_VERSION_MIN_REQUIRED and
+ * %XAPIAN_GLIB_VERSION_MAX_ALLOWED.
+ *
+ * Since: 1.0
+ */
 #define XAPIAN_GLIB_VERSION_1_0 (G_ENCODE_VERSION (1, 0))
 
+/**
+ * XAPIAN_GLIB_VERSION_1_2:
+ *
+ * A pre-processor macro that evaluates to the 1.2 version of Xapian-GLib,
+ * in a format that can be used by %XAPIAN_GLIB_VERSION_MIN_REQUIRED and
+ * %XAPIAN_GLIB_VERSION_MAX_ALLOWED.
+ *
+ * Since: 1.2
+ */
 #define XAPIAN_GLIB_VERSION_1_2 (G_ENCODE_VERSION (1, 2))
 
+/**
+ * XAPIAN_GLIB_VERSION_1_4:
+ *
+ * A pre-processor macro that evaluates to the 1.4 version of Xapian-GLib,
+ * in a format that can be used by %XAPIAN_GLIB_VERSION_MIN_REQUIRED and
+ * %XAPIAN_GLIB_VERSION_MAX_ALLOWED.
+ *
+ * Since: 1.4
+ */
 #define XAPIAN_GLIB_VERSION_1_4 (G_ENCODE_VERSION (1, 4))
 
+/**
+ * XAPIAN_GLIB_VERSION_1_6:
+ *
+ * A pre-processor macro that evaluates to the 1.6 version of Xapian-GLib,
+ * in a format that can be used by %XAPIAN_GLIB_VERSION_MIN_REQUIRED and
+ * %XAPIAN_GLIB_VERSION_MAX_ALLOWED.
+ *
+ * Since: 1.6
+ */
 #define XAPIAN_GLIB_VERSION_1_6 (G_ENCODE_VERSION (1, 6))
 
+/**
+ * XAPIAN_GLIB_VERSION_1_8:
+ *
+ * A pre-processor macro that evaluates to the 1.6 version of Xapian-GLib,
+ * in a format that can be used by %XAPIAN_GLIB_VERSION_MIN_REQUIRED and
+ * %XAPIAN_GLIB_VERSION_MAX_ALLOWED.
+ *
+ * Since: 1.8
+ */
 #define XAPIAN_GLIB_VERSION_1_8 (G_ENCODE_VERSION (1, 8))
 
+/* Evaluates to the current stable version.
+ *
+ * For development cycles, this means the next stable cycle.
+ */
 #if (XAPIAN_GLIB_MINOR_VERSION == 99)
 #define XAPIAN_GLIB_VERSION_CUR_STABLE         (G_ENCODE_VERSION (XAPIAN_GLIB_MAJOR_VERSION + 1, 0))
 #elif (XAPIAN_GLIB_MINOR_VERSION % 2)
@@ -54,7 +103,7 @@
 #define XAPIAN_GLIB_VERSION_CUR_STABLE         (G_ENCODE_VERSION (XAPIAN_GLIB_MAJOR_VERSION, XAPIAN_GLIB_MINOR_VERSION))
 #endif
 
-/* evaluates to the previous stable version */
+/* Evaluates to the previous stable version */
 #if (XAPIAN_GLIB_MINOR_VERSION == 99)
 #define XAPIAN_GLIB_VERSION_PREV_STABLE        (G_ENCODE_VERSION (XAPIAN_GLIB_MAJOR_VERSION + 1, 0))
 #elif (XAPIAN_GLIB_MINOR_VERSION % 2)
@@ -63,10 +112,52 @@
 #define XAPIAN_GLIB_VERSION_PREV_STABLE        (G_ENCODE_VERSION (XAPIAN_GLIB_MAJOR_VERSION, XAPIAN_GLIB_MINOR_VERSION - 2))
 #endif
 
+/**
+ * XAPIAN_GLIB_VERSION_MIN_REQUIRED:
+ *
+ * A pre-processor symbol that should be defined by the user prior to including
+ * the `xapian-glib.h` header.
+ *
+ * The value should be one of the predefined Xapian-GLib version macros,
+ * for instance: %XAPIAN_GLIB_VERSION_1_0, %XAPIAN_GLIB_VERSION_1_2, ...
+ *
+ * This symbol defines the earliest version of Xapian-GLib that a project
+ * is required to be able to compile against.
+ *
+ * If the compiler is configured to warn about the use of deprecated symbols,
+ * then using symbols that were deprecated in version %XAPIAN_GLIB_VERSION_MIN_REQUIRED,
+ * or earlier versions, will emit a deprecation warning, but using functions
+ * deprecated in later versions will not.
+ *
+ * See also: %XAPIAN_GLIB_VERSION_MAX_ALLOWED
+ *
+ * Since: 1.0
+ */
 #ifndef XAPIAN_GLIB_VERSION_MIN_REQUIRED
 # define XAPIAN_GLIB_VERSION_MIN_REQUIRED      (XAPIAN_GLIB_VERSION_CUR_STABLE)
 #endif
 
+/**
+ * XAPIAN_GLIB_VERSION_MAX_ALLOWED:
+ *
+ * A pre-processor symbol that should be defined by the user prior to including
+ * the `xapian-glib.h` header.
+ *
+ * The value should be one of the predefined Xapian-GLib version macros,
+ * for instance: %XAPIAN_GLIB_VERSION_1_0, %XAPIAN_GLIB_VERSION_1_2, ...
+ *
+ * This symbol defines the earliest version of Xapian-GLib that a project
+ * is required to be able to compile against.
+ *
+ * If the compiler is configured to warn about the use of deprecated symbols,
+ * then using symbols that were deprecated in version %XAPIAN_GLIB_VERSION_MAX_ALLOWED,
+ * or later versions, will emit a deprecation warning, but using functions
+ * deprecated in later versions will not.
+ *
+ * See also: %XAPIAN_GLIB_VERSION_MIN_REQUIRED
+ *
+ * Since: 1.0
+ */
 #ifndef XAPIAN_GLIB_VERSION_MAX_ALLOWED
 # if XAPIAN_GLIB_VERSION_MIN_REQUIRED > XAPIAN_GLIB_VERSION_PREV_STABLE
 #  define XAPIAN_GLIB_VERSION_MAX_ALLOWED      (XAPIAN_GLIB_VERSION_MIN_REQUIRED)
