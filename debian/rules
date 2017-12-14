@@ -3,7 +3,7 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-CONFFLAGS=--prefix="/usr" --libdir="/usr/lib/$(DEB_HOST_MULTIARCH)" --libexecdir="/usr/bin" --mandir="/usr/share/man"
+CONFFLAGS=--prefix="/usr" --libdir="/usr/lib/$(DEB_HOST_MULTIARCH)" --libexecdir="/usr/bin" --mandir="/usr/share/man" -Dbuild_docs=true
 
 %:
 	dh $@ --builddirectory=_build --with gir --without autoreconf
