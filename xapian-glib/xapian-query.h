@@ -1,4 +1,4 @@
-/* Copyright 2014  Endless Mobile
+/* Copyright 2014, 2018  Endless Mobile
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -56,6 +56,13 @@ XAPIAN_GLIB_AVAILABLE_IN_1_0
 XapianQuery *   xapian_query_new_from_string    (const char    *data);
 XAPIAN_GLIB_AVAILABLE_IN_1_2
 XapianQuery *   xapian_query_new_from_posting_source (XapianPostingSource *posting_source);
+
+XAPIAN_GLIB_AVAILABLE_IN_1_8
+XapianQuery *   xapian_query_new_for_terms      (XapianQueryOp  op,
+                                                 const char   **terms);
+XAPIAN_GLIB_AVAILABLE_IN_1_8
+XapianQuery *   xapian_query_new_for_queries    (XapianQueryOp  op,
+                                                 GSList        *queries);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_2
 XapianQuery *   xapian_query_new_match_all      (void);
