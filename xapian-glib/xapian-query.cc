@@ -1,4 +1,4 @@
-/* Copyright 2014  Endless Mobile
+/* Copyright 2014, 2018  Endless Mobile
  * Copyright 2017  Olly Betts
  *
  * This program is free software; you can redistribute it and/or
@@ -28,6 +28,8 @@
  */
 
 #include "config.h"
+
+#include <vector>
 
 #include "xapian-query-private.h"
 
@@ -328,6 +330,63 @@ xapian_query_new_from_posting_source (XapianPostingSource *posting_source)
 
   Xapian::PostingSource *aPostingSource = xapian_posting_source_get_internal (posting_source);
   Xapian::Query query = Xapian::Query (aPostingSource);
+
+  return xapian_query_new_from_query (query);
+}
+
+/**
+ * xapian_query_new_for_terms:
+ * @op: a #XapianQueryOp value to combine the terms with
+ * @terms: (array zero-terminated=1): an array of term strings
+ *
+ * Construct a #XapianQuery object from a list of terms.
+ *
+ * Returns: (transfer full): the newly created #XapianQuery instance
+ *
+ * Since: 1.8
+ */
+XapianQuery *
+xapian_query_new_for_terms (XapianQueryOp op,
+                            const char **terms)
+{
+  g_return_val_if_fail (terms != NULL, NULL);
+
+  const char **end = terms;
+  while (*end != NULL)
+    end++;
+
+  Xapian::Query::op query_op = xapian_query_op_internal (op);
+  Xapian::Query query (query_op, terms, end);
+
+  return xapian_query_new_from_query (query);
+}
+
+/**
+ * xapian_query_new_for_queries:
+ * @op: a #XapianQueryOp to combine the queries with
+ * @queries: (element-type XapianQuery): an array of #XapianQuery sub-queries
+ *
+ * Construct a #XapianQuery object from a list of other #XapianQuery objects.
+ *
+ * Returns: (transfer full): the newly created #XapianQuery instance
+ *
+ * Since: 1.8
+ */
+XapianQuery *
+xapian_query_new_for_queries (XapianQueryOp op,
+                              GSList       *queries)
+{
+  g_return_val_if_fail (queries != NULL, NULL);
+
+  std::vector<Xapian::Query *> qlist;
+  for (GSList *iter = queries; iter != NULL; iter = g_slist_next (iter))
+    {
+      g_return_val_if_fail (XAPIAN_IS_QUERY (iter->data), NULL);
+      qlist.push_back (xapian_query_get_internal (XAPIAN_QUERY (iter->data)));
+    }
+
+  Xapian::Query::op query_op = xapian_query_op_internal (op);
+  Xapian::Query query (query_op, qlist.begin (), qlist.end ());
 
   return xapian_query_new_from_query (query);
 }

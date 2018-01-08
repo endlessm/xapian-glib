@@ -217,6 +217,8 @@ xapian_query_new_for_value
 xapian_query_new_for_terms_pair
 xapian_query_new_from_posting_source
 xapian_query_new_from_string
+xapian_query_new_for_terms
+xapian_query_new_for_queries
 xapian_query_new_match_all
 xapian_query_is_empty
 xapian_query_get_length
