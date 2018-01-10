@@ -31,6 +31,16 @@ query_new_for_queries (void)
   g_slist_free_full (queries, g_object_unref);
 }
 
+static void
+query_new_wildcard (void)
+{
+  g_autoptr(XapianQuery) q = xapian_query_new_wildcard ("darth");
+
+  g_assert_nonnull (q);
+  g_assert_cmpstr (xapian_query_get_description (q), ==,
+                   "Query(WILDCARD SYNONYM darth)");
+}
+
 int
 main (int   argc,
       char *argv[])
@@ -39,6 +49,7 @@ main (int   argc,
 
   g_test_add_func ("/query/new-for-terms", query_new_for_terms);
   g_test_add_func ("/query/new-for-queries", query_new_for_queries);
+  g_test_add_func ("/query/new-wildcard", query_new_wildcard);
 
   return g_test_run ();
 }

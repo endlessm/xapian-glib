@@ -64,6 +64,9 @@ XAPIAN_GLIB_AVAILABLE_IN_1_8
 XapianQuery *   xapian_query_new_for_queries    (XapianQueryOp  op,
                                                  GSList        *queries);
 
+XAPIAN_GLIB_AVAILABLE_IN_1_8
+XapianQuery *   xapian_query_new_wildcard       (const char    *pattern);
+
 XAPIAN_GLIB_AVAILABLE_IN_1_2
 XapianQuery *   xapian_query_new_match_all      (void);
 

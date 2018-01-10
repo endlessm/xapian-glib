@@ -392,6 +392,29 @@ xapian_query_new_for_queries (XapianQueryOp op,
 }
 
 /**
+ * xapian_query_new_wildcard:
+ * @pattern: the wildcard pattern — currently this is just a string and the
+ * wildcard expands to terms which start with exactly this string
+ *
+ * Construct a #XapianQuery object for a #XAPIAN_QUERY_OP_WILDCARD query.
+ * There is no limit on the number of terms to expand to, and the terms are
+ * combined with #XAPIAN_QUERY_OP_SYNONYM.
+ *
+ * Returns: (transfer full): the newly created #XapianQuery instance
+ *
+ * Since: 1.8
+ */
+XapianQuery *
+xapian_query_new_wildcard (const char *pattern)
+{
+  g_return_val_if_fail (pattern != NULL, NULL);
+
+  Xapian::Query query (Xapian::Query::OP_WILDCARD, pattern);
+
+  return xapian_query_new_from_query (query);
+}
+
+/**
  * xapian_query_new_match_all:
  *
  * Creates a new #XapianQuery that will match all documents
