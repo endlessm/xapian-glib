@@ -704,7 +704,6 @@ xapian_database_compact_to_path (XapianDatabase             *self,
                                  const char                 *path,
                                  XapianDatabaseCompactFlags  flags)
 {
-#if XAPIAN_CHECK_VERSION_INTERNAL (1, 3, 4)
   Xapian::Database *real_db = xapian_database_get_internal (self);
 
   int real_flags = 0;
@@ -727,12 +726,6 @@ xapian_database_compact_to_path (XapianDatabase             *self,
 
       g_critical ("%s", src_msg.c_str());
     }
-#else
-  g_warning ("Compaction not supported by this version of Xapian (current: %d.%d.%d).",
-             XAPIAN_MAJOR_VERSION,
-             XAPIAN_MINOR_VERSION,
-             XAPIAN_REVISION);
-#endif
 }
 
 /**
@@ -750,7 +743,6 @@ xapian_database_compact_to_fd (XapianDatabase             *self,
                                int                         fd,
                                XapianDatabaseCompactFlags  flags)
 {
-#if XAPIAN_CHECK_VERSION_INTERNAL (1, 3, 4)
   Xapian::Database *real_db = xapian_database_get_internal (self);
 
   int real_flags = 0;
@@ -772,12 +764,6 @@ xapian_database_compact_to_fd (XapianDatabase             *self,
 
       g_critical ("%s", src_msg.c_str());
     }
-#else
-  g_warning ("Compaction not supported by this version of Xapian (current: %d.%d.%d).",
-             XAPIAN_MAJOR_VERSION,
-             XAPIAN_MINOR_VERSION,
-             XAPIAN_REVISION);
-#endif
 }
 
 /*< private >
@@ -820,7 +806,7 @@ xapian_database_get_flags (XapianDatabase *self)
     g_warning ("Chert backend not supported by Xapian");
 #endif
   if (priv->backend == XAPIAN_DATABASE_BACKEND_INMEMORY)
-#if XAPIAN_CHECK_VERSION_INTERNAL (1, 3, 5) && defined(XAPIAN_HAS_INMEMORY_BACKEND)
+#ifdef XAPIAN_HAS_INMEMORY_BACKEND
     db_flags |= Xapian::DB_BACKEND_INMEMORY;
 #else
     g_warning ("In-memory backend not supported by Xapian");
