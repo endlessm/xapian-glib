@@ -83,13 +83,24 @@
 /**
  * XAPIAN_GLIB_VERSION_1_8:
  *
- * A pre-processor macro that evaluates to the 1.6 version of Xapian-GLib,
+ * A pre-processor macro that evaluates to the 1.8 version of Xapian-GLib,
  * in a format that can be used by %XAPIAN_GLIB_VERSION_MIN_REQUIRED and
  * %XAPIAN_GLIB_VERSION_MAX_ALLOWED.
  *
  * Since: 1.8
  */
 #define XAPIAN_GLIB_VERSION_1_8 (G_ENCODE_VERSION (1, 8))
+
+/**
+ * XAPIAN_GLIB_VERSION_2_0:
+ *
+ * A pre-processor macro that evaluates to the 2.0 version of Xapian-GLib,
+ * in a format that can be used by %XAPIAN_GLIB_VERSION_MIN_REQUIRED and
+ * %XAPIAN_GLIB_VERSION_MAX_ALLOWED.
+ *
+ * Since: 2.0
+ */
+#define XAPIAN_GLIB_VERSION_2_0 (G_ENCODE_VERSION (2, 0))
 
 /* Evaluates to the current stable version.
  *
@@ -241,6 +252,20 @@
 # define XAPIAN_GLIB_AVAILABLE_IN_1_8                 XAPIAN_GLIB_UNAVAILABLE(1, 8)
 #else
 # define XAPIAN_GLIB_AVAILABLE_IN_1_8                 _XAPIAN_GLIB_EXTERN
+#endif
+
+#if XAPIAN_GLIB_VERSION_MIN_REQUIRED >= XAPIAN_GLIB_VERSION_2_0
+# define XAPIAN_GLIB_DEPRECATED_IN_2_0                XAPIAN_GLIB_DEPRECATED
+# define XAPIAN_GLIB_DEPRECATED_IN_2_0_FOR(f)         XAPIAN_GLIB_DEPRECATED_FOR(f)
+#else
+# define XAPIAN_GLIB_DEPRECATED_IN_2_0                _XAPIAN_GLIB_EXTERN
+# define XAPIAN_GLIB_DEPRECATED_IN_2_0_FOR(f)         _XAPIAN_GLIB_EXTERN
+#endif
+
+#if XAPIAN_GLIB_VERSION_MAX_ALLOWED < XAPIAN_GLIB_VERSION_2_0
+# define XAPIAN_GLIB_AVAILABLE_IN_2_0                 XAPIAN_GLIB_UNAVAILABLE(2, 0)
+#else
+# define XAPIAN_GLIB_AVAILABLE_IN_2_0                 _XAPIAN_GLIB_EXTERN
 #endif
 
 #endif /* __XAPIAN_GLIB_MACROS_H__ */

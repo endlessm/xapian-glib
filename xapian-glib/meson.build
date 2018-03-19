@@ -89,7 +89,7 @@ if get_option('build_gir')
                                        ],
                                        install: true)
 else
-  xapian_glib_gir_dep = []
+  xapian_glib_gir = []
 endif
 
 xapian_glib_dep = declare_dependency(link_with: xapian_glib,

@@ -1,7 +1,7 @@
 project('xapian-glib', 'c', 'cpp',
-        version: '1.7.1',
+        version: '1.99.1',
         license: 'GPLv2.0+',
-        meson_version: '>= 0.43.0',
+        meson_version: '>= 0.44.1',
         default_options: [
           'warning_level=1',
           'buildtype=debugoptimized',
@@ -17,7 +17,12 @@ xapian_glib_major_version = version[0].to_int()
 xapian_glib_minor_version = version[1].to_int()
 xapian_glib_micro_version = version[2].to_int()
 
-xapian_glib_api_version = '@0@.0'.format(xapian_glib_major_version)
+if xapian_glib_minor_version >= 99
+  xapian_glib_api_version = '@0@.0'.format(xapian_glib_major_version + 1)
+else
+  xapian_glib_api_version = '@0@.0'.format(xapian_glib_major_version)
+endif
+
 xapian_glib_interface_age = xapian_glib_minor_version.is_even() ? xapian_glib_micro_version : 0
 xapian_glib_binary_age = 100 * xapian_glib_minor_version + xapian_glib_micro_version
 
@@ -98,19 +103,11 @@ if get_option('default_library') != 'static'
 endif
 
 # Check all compiler flags
-foreach cflag: test_cflags
-  if cpp.has_argument(cflag)
-    common_cflags += cflag
-  endif
-endforeach
+common_cflags += cpp.get_supported_arguments(test_cflags)
 
 # Linker flags
-if host_machine.system() == 'linux'
-  foreach ldflag: [ '-Wl,-Bsymbolic', '-Wl,-z,relro', '-Wl,-z,now', ]
-    if cpp.has_argument(ldflag)
-      common_ldflags += ldflag
-    endif
-  endforeach
+if host_machine.system() == 'linux' and cpp.get_id() == 'gcc'
+  common_ldflags += [ '-Wl,-Bsymbolic', '-Wl,-z,relro', '-Wl,-z,now', ]
 elif host_machine.system() == 'windows'
   common_ldflags += '-no-undefined'
 elif host_machine.system() == 'darwin'
@@ -130,16 +127,16 @@ endif
 
 # Dependencies
 glib_req_version = '>= 2.40.0'
-xapian_req_version = '>= 1.3.3'
+xapian_req_version = '>= 1.5.0'
 
 gobject_dep = dependency('gobject-2.0', version: glib_req_version)
 gio_dep = dependency('gio-2.0')
 xapian_dep = dependency('xapian-core', version: xapian_req_version, required: false)
 xapian_pc_dep = 'xapian-core'
 if not xapian_dep.found()
-  # Xapian 1.3 has a versioned xapian-core pkg-config file
-  xapian_dep = dependency('xapian-core-1.3', version: xapian_req_version)
-  xapian_pc_dep = 'xapian-core-1.3'
+  # Xapian 1.5 has a versioned xapian-core pkg-config file
+  xapian_dep = dependency('xapian-core-1.5', version: xapian_req_version)
+  xapian_pc_dep = 'xapian-core-1.5'
 endif
 
 # Modules
