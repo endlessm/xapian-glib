@@ -119,7 +119,7 @@ xapian_stopper_set_internal (XapianStopper   *self,
  * Returns a string describing this object.
  *
  * Returns: (transfer full): description of the stopper
- * Since: 1.2
+ * Since: 2.0
  */
 char *
 xapian_stopper_get_description (XapianStopper *self)
@@ -140,7 +140,7 @@ xapian_stopper_get_description (XapianStopper *self)
  *
  * Returns: %TRUE if @term is a stopper term
  *
- * Since: 1.2
+ * Since: 2.0
  */
 gboolean
 xapian_stopper_is_stop_term (XapianStopper *self,

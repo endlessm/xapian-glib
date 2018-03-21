@@ -336,7 +336,7 @@ xapian_database_class_init (XapianDatabaseClass *klass)
    *
    * The offset inside the database file.
    *
-   * Since: 1.4
+   * Since: 2.0
    */
   obj_props[PROP_OFFSET] =
     g_param_spec_uint64 ("offset", "", "", 0, G_MAXUINT64, 0,
@@ -349,7 +349,7 @@ xapian_database_class_init (XapianDatabaseClass *klass)
    *
    * The flags to use when opening the database.
    *
-   * Since: 1.4
+   * Since: 2.0
    */
   obj_props[PROP_FLAGS] =
     g_param_spec_flags ("flags", "", "",
@@ -364,7 +364,7 @@ xapian_database_class_init (XapianDatabaseClass *klass)
    *
    * The backend to use when opening the database.
    *
-   * Since: 1.4
+   * Since: 2.0
    */
   obj_props[PROP_BACKEND] =
     g_param_spec_enum ("backend", "", "",
@@ -449,7 +449,7 @@ xapian_database_close (XapianDatabase *db)
  *
  * Reopens a #XapianDatabase.
  *
- * Since: 1.2
+ * Since: 2.0
  */
 void
 xapian_database_reopen (XapianDatabase *db)
@@ -576,7 +576,7 @@ xapian_database_get_last_doc_id (XapianDatabase *db)
  *
  * Returns: the average document length in the database
  *
- * Since: 1.4
+ * Since: 2.0
  */
 double
 xapian_database_get_average_length (XapianDatabase *db)
@@ -635,7 +635,7 @@ xapian_database_get_document (XapianDatabase  *db,
  *
  * Returns: the term frequency for @term
  *
- * Since: 1.4
+ * Since: 2.0
  */
 unsigned int
 xapian_database_get_term_freq (XapianDatabase *db,
@@ -657,7 +657,7 @@ xapian_database_get_term_freq (XapianDatabase *db,
  *
  * Returns: the collection frequency for @term
  *
- * Since: 1.4
+ * Since: 2.0
  */
 unsigned int
 xapian_database_get_collection_freq (XapianDatabase  *db,
@@ -700,7 +700,7 @@ xapian_database_add_database (XapianDatabase *db,
  *
  * Returns: %TRUE if the database was successfully compacted
  *
- * Since: 1.4
+ * Since: 2.0
  */
 gboolean
 xapian_database_compact_to_path (XapianDatabase             *self,
@@ -751,7 +751,7 @@ xapian_database_compact_to_path (XapianDatabase             *self,
  *
  * Returns: %TRUE if the database was successfully compacted
  *
- * Since: 1.4
+ * Since: 2.0
  */
 gboolean
 xapian_database_compact_to_fd (XapianDatabase             *self,
@@ -849,7 +849,7 @@ xapian_database_get_flags (XapianDatabase *self)
  *
  * Returns: (transfer full): a #XapianTermIterator instance
  *
- * Since: 1.4
+ * Since: 2.0
  */
 XapianTermIterator *
 xapian_database_enumerate_all_terms (XapianDatabase *self,

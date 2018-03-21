@@ -127,7 +127,7 @@ xapian_document_get_internal (XapianDocument *self)
  *
  * Returns: the numeric value
  *
- * Since: 1.4
+ * Since: 2.0
  */
 double
 xapian_document_get_numeric_value (XapianDocument *document,
@@ -171,7 +171,7 @@ xapian_document_get_value (XapianDocument *document,
  *
  * The given @value will be serialised internally using xapian_sortable_serialise().
  *
- * Since: 1.4
+ * Since: 2.0
  */
 void
 xapian_document_add_numeric_value (XapianDocument *document,

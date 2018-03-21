@@ -208,7 +208,7 @@ xapian_term_generator_class_init (XapianTermGeneratorClass *klass)
    *
    * The stopper to be used when filtering stop-words.
    *
-   * Since: 1.4
+   * Since: 2.0
    */
   obj_props[PROP_STOPPER] =
     g_param_spec_object ("stopper",
@@ -371,7 +371,7 @@ xapian_term_generator_set_stemming_strategy (XapianTermGenerator *generator,
  *
  * Sets the stopper for @generator.
  *
- * Since: 1.4
+ * Since: 2.0
  */
 void
 xapian_term_generator_set_stopper (XapianTermGenerator *generator,
@@ -430,7 +430,7 @@ xapian_term_generator_set_database (XapianTermGenerator    *generator,
  *
  * Sets the generator's flags
  *
- * Since: 1.2
+ * Since: 2.0
  */
 void
 xapian_term_generator_set_flags (XapianTermGenerator        *generator,

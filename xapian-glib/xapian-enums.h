@@ -35,6 +35,8 @@ G_BEGIN_DECLS
  * @XAPIAN_DATABASE_ACTION_OPEN: Open a database
  *
  * Actions for #XapianWritableDatabase.
+ *
+ * Since: 2.0
  */
 typedef enum {
   XAPIAN_DATABASE_ACTION_CREATE_OR_OPEN,
@@ -78,6 +80,8 @@ GType xapian_database_action_get_type (void);
  * @XAPIAN_ERROR_RANGE: Out of bounds access
  *
  * Error codes for the %XAPIAN_ERROR error domain.
+ *
+ * Since: 2.0
  */
 typedef enum {
   XAPIAN_ERROR_ASSERTION,
@@ -138,10 +142,12 @@ GQuark xapian_error_quark (void);
  * @XAPIAN_QUERY_OP_VALUE_LE: filters a document value using a
  *   less than or equal test
  * @XAPIAN_QUERY_OP_SYNONYM: treats a set of sub-queries as synonyms
- * @XAPIAN_QUERY_OP_MAX: pick the maximum weight of any subquery (Since: 1.4.0)
- * @XAPIAN_QUERY_OP_WILDCARD: wildcard expansion (Since: 1.4.0)
+ * @XAPIAN_QUERY_OP_MAX: pick the maximum weight of any subquery
+ * @XAPIAN_QUERY_OP_WILDCARD: wildcard expansion
  *
  * Operators for #XapianQuery.
+ *
+ * Since: 2.0
  */
 typedef enum {
   XAPIAN_QUERY_OP_AND,
@@ -196,10 +202,12 @@ GType xapian_query_op_get_type (void);
  * @XAPIAN_QUERY_PARSER_FEATURE_AUTO_MULTIWORD_SYNONYMS: enable automatic
  *   use of synonyms for single terms and groups of terms
  * @XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM: enable generation of n-grams from
- *   CJK text (Since: 1.4.0)
+ *   CJK text
  * @XAPIAN_QUERY_PARSER_FEATURE_DEFAULT: default flags
  *
  * Flags for xapian_query_parser_parse_query_full().
+ *
+ * Since: 2.0
  */
 typedef enum {
   XAPIAN_QUERY_PARSER_FEATURE_BOOLEAN = 1 << 0,
@@ -219,12 +227,6 @@ typedef enum {
                                         XAPIAN_QUERY_PARSER_FEATURE_LOVEHATE
 } XapianQueryParserFeature;
 
-/* Allow #ifdef XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM to test for
- * more recently added enum value. */
-#ifndef __GTK_DOC_IGNORE__
-#define XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM
-#endif
-
 XAPIAN_GLIB_AVAILABLE_IN_2_0
 GType xapian_query_parser_feature_get_type (void);
 
@@ -238,6 +240,8 @@ GType xapian_query_parser_feature_get_type (void);
  * @XAPIAN_STEM_STRATEGY_STEM_ALL_Z: generate only stemmed terms, with the Z prefix
  *
  * Stemming strategies.
+ *
+ * Since: 2.0
  */
 typedef enum {
   XAPIAN_STEM_STRATEGY_STEM_NONE,
@@ -258,7 +262,7 @@ GType xapian_stem_strategy_get_type (void);
  *
  * TermGenerator flags
  *
- * Since: 1.2
+ * Since: 2.0
  */
 typedef enum {
   XAPIAN_TERM_GENERATOR_FEATURE_NONE,
@@ -278,7 +282,7 @@ GType xapian_term_generator_feature_get_type (void);
  *
  * Compacting policies for #XapianDatabase.
  *
- * Since: 1.4
+ * Since: 2.0
  */
 typedef enum {
   XAPIAN_DATABASE_COMPACT_FLAGS_NO_RENUMBER   = 1 << 2,
@@ -302,7 +306,7 @@ GType xapian_database_compact_flags_get_type (void);
  *
  * Flags used when opening a database
  *
- * Since: 1.4
+ * Since: 2.0
  */
 typedef enum {
   XAPIAN_DATABASE_FLAGS_NONE                    = 0,
@@ -328,7 +332,7 @@ GType xapian_database_flags_get_type (void);
  *
  * The Xapian database backend to use when opening a database.
  *
- * Since: 1.4
+ * Since: 2.0
  */
 typedef enum {
   XAPIAN_DATABASE_BACKEND_DEFAULT,

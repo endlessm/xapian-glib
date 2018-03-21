@@ -321,7 +321,7 @@ xapian_query_new_from_string (const char *data)
  *
  * Returns: (transfer full): the newly created #XapianQuery instance
  *
- * Since: 1.2
+ * Since: 2.0
  */
 XapianQuery *
 xapian_query_new_from_posting_source (XapianPostingSource *posting_source)
@@ -343,7 +343,7 @@ xapian_query_new_from_posting_source (XapianPostingSource *posting_source)
  *
  * Returns: (transfer full): the newly created #XapianQuery instance
  *
- * Since: 1.8
+ * Since: 2.0
  */
 XapianQuery *
 xapian_query_new_for_terms (XapianQueryOp op,
@@ -370,7 +370,7 @@ xapian_query_new_for_terms (XapianQueryOp op,
  *
  * Returns: (transfer full): the newly created #XapianQuery instance
  *
- * Since: 1.8
+ * Since: 2.0
  */
 XapianQuery *
 xapian_query_new_for_queries (XapianQueryOp op,
@@ -402,7 +402,7 @@ xapian_query_new_for_queries (XapianQueryOp op,
  *
  * Returns: (transfer full): the newly created #XapianQuery instance
  *
- * Since: 1.8
+ * Since: 2.0
  */
 XapianQuery *
 xapian_query_new_wildcard (const char *pattern)
@@ -422,7 +422,7 @@ xapian_query_new_wildcard (const char *pattern)
  *
  * Returns: (transfer full): the newly created #XapianQuery instance
  *
- * Since: 1.2
+ * Since: 2.0
  */
 XapianQuery *
 xapian_query_new_match_all (void)
