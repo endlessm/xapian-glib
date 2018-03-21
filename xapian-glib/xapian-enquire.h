@@ -30,7 +30,7 @@ G_BEGIN_DECLS
 
 #define XAPIAN_TYPE_ENQUIRE     (xapian_enquire_get_type())
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 G_DECLARE_DERIVABLE_TYPE (XapianEnquire, xapian_enquire, XAPIAN, ENQUIRE, GObject)
 
 struct _XapianEnquireClass
@@ -38,40 +38,40 @@ struct _XapianEnquireClass
   GObjectClass parent_instance;
 };
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianEnquire * xapian_enquire_new                    (XapianDatabase *db,
                                                        GError        **error);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 void            xapian_enquire_set_collapse_key       (XapianEnquire *enquire,
                                                        unsigned int   collapse_key);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 void            xapian_enquire_set_collapse_key_full  (XapianEnquire *enquire,
                                                        unsigned int   collapse_key,
                                                        unsigned int   collapse_max);
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 void            xapian_enquire_set_cutoff             (XapianEnquire *enquire,
                                                        gfloat         percent_cutoff);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 void            xapian_enquire_set_cutoff_full        (XapianEnquire *enquire,
                                                        gfloat         percent_cutoff,
                                                        unsigned int   weight_cutoff);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 void            xapian_enquire_set_sort_by_value      (XapianEnquire *enquire,
                                                        unsigned int   sort_key,
                                                        gboolean       reverse);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 void            xapian_enquire_set_query              (XapianEnquire *enquire,
                                                        XapianQuery   *query,
                                                        unsigned int   qlen);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianQuery *   xapian_enquire_get_query              (XapianEnquire *enquire);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianMSet *    xapian_enquire_get_mset               (XapianEnquire *enquire,
                                                        unsigned int   first,
                                                        unsigned int   max_items,

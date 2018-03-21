@@ -28,7 +28,7 @@ G_BEGIN_DECLS
 
 #define XAPIAN_TYPE_WRITABLE_DATABASE   (xapian_writable_database_get_type())
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 G_DECLARE_DERIVABLE_TYPE (XapianWritableDatabase, xapian_writable_database, XAPIAN, WRITABLE_DATABASE, XapianDatabase)
 
 struct _XapianWritableDatabaseClass
@@ -37,70 +37,70 @@ struct _XapianWritableDatabaseClass
   XapianDatabaseClass parent_class;
 };
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianWritableDatabase *        xapian_writable_database_new                    (const char            *path,
                                                                                  XapianDatabaseAction   action,
                                                                                  GError               **error);
-XAPIAN_GLIB_AVAILABLE_IN_1_4
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianWritableDatabase *        xapian_writable_database_new_with_backend       (const char             *path,
                                                                                  XapianDatabaseAction    action,
                                                                                  XapianDatabaseBackend   backend,
                                                                                  GError                **error);
-XAPIAN_GLIB_AVAILABLE_IN_1_4
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianWritableDatabase *        xapian_writable_database_new_full               (const char             *path,
                                                                                  XapianDatabaseAction    action,
                                                                                  XapianDatabaseBackend   backend,
                                                                                  XapianDatabaseFlags     flags,
                                                                                  GError                **error);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 gboolean                        xapian_writable_database_commit                 (XapianWritableDatabase *self,
                                                                                  GError **error);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 gboolean                        xapian_writable_database_begin_transaction      (XapianWritableDatabase *self,
                                                                                  gboolean                flushed,
                                                                                  GError                **error);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 gboolean                        xapian_writable_database_commit_transaction     (XapianWritableDatabase *self,
                                                                                  GError                **error);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 gboolean                        xapian_writable_database_cancel_transaction     (XapianWritableDatabase *self,
                                                                                  GError                **error);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 gboolean                        xapian_writable_database_add_document           (XapianWritableDatabase *self,
                                                                                  XapianDocument         *document,
                                                                                  unsigned int           *docid_out,
                                                                                  GError                **error);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 gboolean                        xapian_writable_database_delete_document        (XapianWritableDatabase *self,
                                                                                  unsigned int            docid,
                                                                                  GError                **error);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 gboolean                        xapian_writable_database_replace_document       (XapianWritableDatabase *self,
                                                                                  unsigned int            docid,
                                                                                  XapianDocument         *document,
                                                                                  GError                **error);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 void                            xapian_writable_database_add_spelling           (XapianWritableDatabase *self,
                                                                                  const char             *word);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 void                            xapian_writable_database_add_spelling_full      (XapianWritableDatabase *self,
                                                                                  const char             *word,
                                                                                  unsigned int            freqinc);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 void                            xapian_writable_database_remove_spelling        (XapianWritableDatabase *self,
                                                                                  const char             *word);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 void                            xapian_writable_database_remove_spelling_full   (XapianWritableDatabase *self,
                                                                                  const char             *word,
                                                                                  unsigned int            freqdec);
-XAPIAN_GLIB_AVAILABLE_IN_1_4
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 void                             xapian_writable_database_set_metadata          (XapianWritableDatabase *self,
                                                                                  const char             *key,
                                                                                  const char             *value);

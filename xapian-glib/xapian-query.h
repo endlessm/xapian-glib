@@ -28,7 +28,7 @@ G_BEGIN_DECLS
 
 #define XAPIAN_TYPE_QUERY       (xapian_query_get_type())
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 G_DECLARE_DERIVABLE_TYPE (XapianQuery, xapian_query, XAPIAN, QUERY, GObject)
 
 struct _XapianQueryClass
@@ -36,49 +36,49 @@ struct _XapianQueryClass
   GObjectClass parent_instance;
 };
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianQuery *   xapian_query_new                (void);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianQuery *   xapian_query_new_for_term       (const char    *term);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianQuery *   xapian_query_new_for_pair       (XapianQueryOp  op,
                                                  XapianQuery   *a,
                                                  XapianQuery   *b);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianQuery *   xapian_query_new_for_value      (XapianQueryOp  op,
                                                  unsigned int   slot,
                                                  const char    *value);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianQuery *   xapian_query_new_for_terms_pair (XapianQueryOp  op,
                                                  const char    *a,
                                                  const char    *b);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianQuery *   xapian_query_new_from_string    (const char    *data);
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianQuery *   xapian_query_new_from_posting_source (XapianPostingSource *posting_source);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_8
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianQuery *   xapian_query_new_for_terms      (XapianQueryOp  op,
                                                  const char   **terms);
-XAPIAN_GLIB_AVAILABLE_IN_1_8
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianQuery *   xapian_query_new_for_queries    (XapianQueryOp  op,
                                                  GSList        *queries);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_8
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianQuery *   xapian_query_new_wildcard       (const char    *pattern);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianQuery *   xapian_query_new_match_all      (void);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 gboolean        xapian_query_is_empty           (XapianQuery   *query);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 unsigned int    xapian_query_get_length         (XapianQuery   *query);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 char *          xapian_query_get_description    (XapianQuery   *query);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 char *          xapian_query_serialise          (XapianQuery   *query);
 
 G_END_DECLS

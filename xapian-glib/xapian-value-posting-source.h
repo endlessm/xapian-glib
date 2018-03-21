@@ -28,7 +28,7 @@ G_BEGIN_DECLS
 
 #define XAPIAN_TYPE_VALUE_POSTING_SOURCE        (xapian_value_posting_source_get_type())
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 G_DECLARE_DERIVABLE_TYPE (XapianValuePostingSource, xapian_value_posting_source, XAPIAN, VALUE_POSTING_SOURCE, XapianPostingSource)
 
 struct _XapianValuePostingSourceClass
@@ -36,11 +36,11 @@ struct _XapianValuePostingSourceClass
   XapianPostingSourceClass parent_instance;
 };
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianValuePostingSource * xapian_value_posting_source_new (unsigned int   slot,
                                                             GError       **error);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 guint xapian_value_posting_source_get_slot (XapianValuePostingSource *self);
 
 G_END_DECLS

@@ -27,7 +27,7 @@ G_BEGIN_DECLS
 
 #define XAPIAN_TYPE_TERM_ITERATOR               (xapian_term_iterator_get_type ())
 
-XAPIAN_GLIB_AVAILABLE_IN_1_6
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 G_DECLARE_DERIVABLE_TYPE (XapianTermIterator, xapian_term_iterator, XAPIAN, TERM_ITERATOR, GObject)
 
 struct _XapianTermIteratorClass
@@ -36,19 +36,19 @@ struct _XapianTermIteratorClass
   GObjectClass parent_instance;
 };
 
-XAPIAN_GLIB_AVAILABLE_IN_1_6
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 gboolean                xapian_term_iterator_next               (XapianTermIterator *iter);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_6
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 char *                  xapian_term_iterator_get_term_name      (XapianTermIterator *iter);
-XAPIAN_GLIB_AVAILABLE_IN_1_6
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 unsigned int            xapian_term_iterator_get_wdf            (XapianTermIterator *iter,
                                                                  GError            **error);
-XAPIAN_GLIB_AVAILABLE_IN_1_6
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 gboolean                xapian_term_iterator_get_term_freq      (XapianTermIterator *iter,
                                                                  unsigned int       *res,
                                                                  GError            **error);
-XAPIAN_GLIB_AVAILABLE_IN_1_6
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 char *                  xapian_term_iterator_get_description    (XapianTermIterator *iter);
 
 G_END_DECLS

@@ -22,27 +22,27 @@
 
 G_BEGIN_DECLS
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 const char *    xapian_glib_version_string      (void);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 int             xapian_glib_major_version       (void);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 int             xapian_glib_minor_version       (void);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 int             xapian_glib_micro_version       (void);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 const char *    xapian_version_string           (void);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 int             xapian_major_version            (void);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 int             xapian_minor_version            (void);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 int             xapian_revision                 (void);
-XAPIAN_GLIB_AVAILABLE_IN_1_4
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 guchar *        xapian_sortable_serialise       (double  value,
                                                  gsize  *len);
-XAPIAN_GLIB_AVAILABLE_IN_1_4
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 double          xapian_sortable_unserialise     (const guchar *value,
                                                  gsize         len);
 

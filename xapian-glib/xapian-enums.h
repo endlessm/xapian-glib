@@ -43,7 +43,7 @@ typedef enum {
   XAPIAN_DATABASE_ACTION_OPEN
 } XapianDatabaseAction;
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 GType xapian_database_action_get_type (void);
 
 #define XAPIAN_TYPE_ERROR                       (xapian_error_get_type ())
@@ -104,9 +104,9 @@ typedef enum {
   XAPIAN_ERROR_LAST
 } XapianError;
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 GType xapian_error_get_type (void);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 GQuark xapian_error_quark (void);
 
 #define XAPIAN_TYPE_QUERY_OP            (xapian_query_op_get_type ())
@@ -171,7 +171,7 @@ typedef enum {
 #define XAPIAN_QUERY_OP_WILDCARD XAPIAN_QUERY_OP_WILDCARD
 #endif
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 GType xapian_query_op_get_type (void);
 
 #define XAPIAN_TYPE_QUERY_PARSER_FEATURE        (xapian_query_parser_feature_get_type ())
@@ -225,7 +225,7 @@ typedef enum {
 #define XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM
 #endif
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 GType xapian_query_parser_feature_get_type (void);
 
 #define XAPIAN_TYPE_STEM_STRATEGY                (xapian_stem_strategy_get_type ())
@@ -246,7 +246,7 @@ typedef enum {
   XAPIAN_STEM_STRATEGY_STEM_ALL_Z
 } XapianStemStrategy;
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 GType xapian_stem_strategy_get_type (void);
 
 #define XAPIAN_TYPE_TERM_GENERATOR_FEATURE         (xapian_term_generator_feature_get_type ())
@@ -265,7 +265,7 @@ typedef enum {
   XAPIAN_TERM_GENERATOR_FEATURE_SPELLING = 1
 } XapianTermGeneratorFeature;
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 GType xapian_term_generator_feature_get_type (void);
 
 #define XAPIAN_TYPE_DATABASE_COMPACT            (xapian_database_compact_get_type ())
@@ -286,7 +286,7 @@ typedef enum {
   XAPIAN_DATABASE_COMPACT_FLAGS_SINGLE_FILE   = 1 << 4
 } XapianDatabaseCompactFlags;
 
-XAPIAN_GLIB_AVAILABLE_IN_1_4
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 GType xapian_database_compact_flags_get_type (void);
 
 #define XAPIAN_TYPE_DATABASE_FLAGS             (xapian_database_flags_get_type ())
@@ -313,7 +313,7 @@ typedef enum {
   XAPIAN_DATABASE_FLAGS_RETRY_LOCK              = 1 << 4
 } XapianDatabaseFlags;
 
-XAPIAN_GLIB_AVAILABLE_IN_1_4
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 GType xapian_database_flags_get_type (void);
 
 #define XAPIAN_TYPE_DATABASE_BACKEND            (xapian_database_backend_get_type ())
@@ -338,7 +338,7 @@ typedef enum {
   XAPIAN_DATABASE_BACKEND_INMEMORY
 } XapianDatabaseBackend;
 
-XAPIAN_GLIB_AVAILABLE_IN_1_4
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 GType xapian_database_backend_get_type (void);
 
 G_END_DECLS

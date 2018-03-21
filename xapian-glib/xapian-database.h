@@ -30,7 +30,7 @@ G_BEGIN_DECLS
 
 #define XAPIAN_TYPE_DATABASE    (xapian_database_get_type())
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 G_DECLARE_DERIVABLE_TYPE (XapianDatabase, xapian_database, XAPIAN, DATABASE, GObject)
 
 struct _XapianDatabaseClass
@@ -39,62 +39,62 @@ struct _XapianDatabaseClass
   GObjectClass parent_class;
 };
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianDatabase *        xapian_database_new             (GError        **error);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianDatabase *        xapian_database_new_with_path   (const char     *path,
                                                          GError        **error);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 void                    xapian_database_close           (XapianDatabase *db);
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 void                    xapian_database_reopen          (XapianDatabase *db);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 char *                  xapian_database_get_description (XapianDatabase *db);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 char *                  xapian_database_get_uuid        (XapianDatabase *db);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 char *                  xapian_database_get_metadata    (XapianDatabase *db,
                                                          const char     *key,
                                                          GError        **error);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 unsigned int            xapian_database_get_doc_count   (XapianDatabase *db);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 unsigned int            xapian_database_get_last_doc_id (XapianDatabase *db);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_4
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 double                  xapian_database_get_average_length (XapianDatabase *db);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianDocument *        xapian_database_get_document    (XapianDatabase *db,
                                                          unsigned int    docid,
                                                          GError        **error);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_4
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 unsigned int            xapian_database_get_term_freq   (XapianDatabase *db,
                                                          const char     *term);
-XAPIAN_GLIB_AVAILABLE_IN_1_4
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 unsigned int            xapian_database_get_collection_freq (XapianDatabase *db,
                                                              const char     *term);
 
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 void                    xapian_database_add_database    (XapianDatabase *db,
                                                          XapianDatabase *new_db);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_4
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 gboolean                xapian_database_compact_to_path (XapianDatabase             *self,
                                                          const char                 *path,
                                                          XapianDatabaseCompactFlags  flags,
                                                          GError                    **error);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_4
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 gboolean                xapian_database_compact_to_fd   (XapianDatabase             *self,
                                                          int                         fd,
                                                          XapianDatabaseCompactFlags  flags,
                                                          GError                    **error);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_4
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianTermIterator *    xapian_database_enumerate_all_terms (XapianDatabase *self,
                                                              const char     *prefix);
 

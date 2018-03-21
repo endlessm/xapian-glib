@@ -31,7 +31,7 @@ G_BEGIN_DECLS
 
 #define XAPIAN_TYPE_QUERY_PARSER        (xapian_query_parser_get_type())
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 G_DECLARE_DERIVABLE_TYPE (XapianQueryParser, xapian_query_parser, XAPIAN, QUERY_PARSER, GObject)
 
 struct _XapianQueryParserClass
@@ -39,50 +39,50 @@ struct _XapianQueryParserClass
   GObjectClass parent_instance;
 };
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianQueryParser *     xapian_query_parser_new                         (void);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 void                    xapian_query_parser_set_stemmer                 (XapianQueryParser        *parser,
                                                                          XapianStem               *stemmer);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 void                    xapian_query_parser_set_stemming_strategy       (XapianQueryParser        *parser,
                                                                          XapianStemStrategy        strategy);
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 void                    xapian_query_parser_set_stopper                 (XapianQueryParser        *parser,
                                                                          XapianStopper            *stopper);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 void                    xapian_query_parser_set_database                (XapianQueryParser        *parser,
                                                                          XapianDatabase           *database);
-XAPIAN_GLIB_AVAILABLE_IN_1_4
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 void                    xapian_query_parser_set_default_op              (XapianQueryParser        *parser,
                                                                          XapianQueryOp             op);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 void                    xapian_query_parser_add_prefix                  (XapianQueryParser        *parser,
                                                                          const char               *field,
                                                                          const char               *prefix);
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 void                    xapian_query_parser_add_boolean_prefix          (XapianQueryParser        *parser,
                                                                          const char               *field,
                                                                          const char               *prefix,
                                                                          gboolean                  exclusive);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianQuery *           xapian_query_parser_parse_query                 (XapianQueryParser        *parser,
                                                                          const char               *query_string,
                                                                          GError                  **error);
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianStopper *           xapian_query_parser_get_stopper               (XapianQueryParser        *parser);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_0
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianQuery *           xapian_query_parser_parse_query_full            (XapianQueryParser        *parser,
                                                                          const char               *query_string,
                                                                          XapianQueryParserFeature  flags,
                                                                          const char               *default_prefix,
                                                                          GError                  **error);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 char *                  xapian_query_parser_get_corrected_query_string  (XapianQueryParser        *parser);
 
 G_END_DECLS
