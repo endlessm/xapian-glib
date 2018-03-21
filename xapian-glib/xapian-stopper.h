@@ -39,7 +39,7 @@ G_DECLARE_DERIVABLE_TYPE (XapianStopper, xapian_stopper, XAPIAN, STOPPER, GObjec
  *
  * The `XapianStopperClass` structure contains only private data.
  *
- * Since: 1.2
+ * Since: 2.0
  */
 struct _XapianStopperClass
 {

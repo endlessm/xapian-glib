@@ -214,7 +214,7 @@ xapian_query_parser_class_init (XapianQueryParserClass *klass)
    * XapianQueryParser:stopper:
    *
    * The #XapianStopper to be used for dropping stop words
-   * Since: 1.2
+   * Since: 2.0
    */
   obj_props[PROP_STOPPER] =
     g_param_spec_object ("stopper",
@@ -229,7 +229,7 @@ xapian_query_parser_class_init (XapianQueryParserClass *klass)
    *
    * The #XapianQueryOp used to combine non-filter query items when no
    * explicit operator is used.
-   * Since: 1.4
+   * Since: 2.0
    */
   obj_props[PROP_DEFAULT_OP] =
     g_param_spec_enum ("default-op",
@@ -380,7 +380,7 @@ xapian_query_parser_set_database (XapianQueryParser *parser,
  * @stopper: a #XapianStopper
  *
  * Sets the @stopper used by @parser stop word elimination.
- * Since: 1.2
+ * Since: 2.0
  */
 void
 xapian_query_parser_set_stopper (XapianQueryParser *parser,
@@ -409,7 +409,7 @@ xapian_query_parser_set_stopper (XapianQueryParser *parser,
  *
  * Set the operator to use to combine non-filter query items when no explicit
  * operator is used.
- * Since: 1.4
+ * Since: 2.0
  */
 void
 xapian_query_parser_set_default_op (XapianQueryParser *parser,
@@ -611,7 +611,7 @@ xapian_query_parser_parse_query_full (XapianQueryParser        *parser,
  *
  * Returns: (transfer none): the #XapianStopper used by @parser
  *
- * Since: 1.2
+ * Since: 2.0
  */
 XapianStopper *
 xapian_query_parser_get_stopper (XapianQueryParser *parser)
@@ -636,7 +636,7 @@ xapian_query_parser_get_stopper (XapianQueryParser *parser)
  *
  * Returns: (transfer full): the corrected query string
  *
- * Since: 1.2
+ * Since: 2.0
  */
 char *
 xapian_query_parser_get_corrected_query_string (XapianQueryParser *parser)

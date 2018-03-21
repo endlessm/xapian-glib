@@ -149,7 +149,7 @@ xapian_revision (void)
  *
  * Returns: (transfer full) (array length=len): the serialised value
  *
- * Since: 1.4
+ * Since: 2.0
  */
 guchar *
 xapian_sortable_serialise (double  value,
@@ -182,7 +182,7 @@ xapian_sortable_serialise (double  value,
  *
  * Returns: the unserialised numeric value
  *
- * Since: 1.4
+ * Since: 2.0
  */
 double
 xapian_sortable_unserialise (const guchar *value,

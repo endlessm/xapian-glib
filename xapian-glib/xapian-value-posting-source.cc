@@ -171,7 +171,7 @@ xapian_value_posting_source_class_init (XapianValuePostingSourceClass *klass)
  *
  * Returns: (transfer full): the newly created #XapianValuePostingSource instance
  *
- * Since: 1.2
+ * Since: 2.0
  */
 XapianValuePostingSource *
 xapian_value_posting_source_new (unsigned int slot,
@@ -191,7 +191,7 @@ xapian_value_posting_source_new (unsigned int slot,
  *
  * Returns: the value of the #XapianValuePostingSource:slot property
  *
- * Since: 1.2
+ * Since: 2.0
  */
 guint
 xapian_value_posting_source_get_slot (XapianValuePostingSource *self)

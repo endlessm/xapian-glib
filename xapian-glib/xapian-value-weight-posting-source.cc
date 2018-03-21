@@ -93,7 +93,7 @@ xapian_value_weight_posting_source_class_init (XapianValueWeightPostingSourceCla
  *
  * Returns: (transfer full): the newly created #XapianValueWeightPostingSource instance
  *
- * Since: 1.2
+ * Since: 2.0
  */
 XapianValueWeightPostingSource *
 xapian_value_weight_posting_source_new (unsigned int slot,

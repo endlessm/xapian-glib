@@ -90,7 +90,7 @@ class GenericPostingSource : public Xapian::PostingSource {
  *
  * Returns: (transfer none): a pointer to the internal posting source instance
  *
- * Since: 1.2
+ * Since: 2.0
  */
 Xapian::PostingSource*
 xapian_posting_source_get_internal (XapianPostingSource *self) 
@@ -128,7 +128,7 @@ xapian_posting_source_set_internal (XapianPostingSource   *self,
  * Typically, this function is used when debugging.
  *
  * Returns: (transfer full): a description of the posting source
- * Since: 1.2
+ * Since: 2.0
  */
 char *
 xapian_posting_source_get_description (XapianPostingSource *self)
