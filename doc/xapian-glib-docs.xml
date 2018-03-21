@@ -18,7 +18,7 @@
     </releaseinfo>
 
     <copyright>
-      <year>2014, 2015, 2016, 2017</year>
+      <year>2014, 2015, 2016, 2017, 2018</year>
       <holder>Endless Mobile</holder>
     </copyright>
 
@@ -65,17 +65,9 @@
     <title>API Index</title>
     <xi:include href="xml/api-index-full.xml"><xi:fallback /></xi:include>
   </index>
-  <index role="1.2">
-    <title>Index of new symbols in 1.2</title>
-    <xi:include href="xml/api-index-1.2.xml"><xi:fallback /></xi:include>
-  </index>
-  <index role="1.4">
-    <title>Index of new symbols in 1.4</title>
-    <xi:include href="xml/api-index-1.4.xml"><xi:fallback /></xi:include>
-  </index>
-  <index role="1.6">
-    <title>Index of new symbols in 1.6</title>
-    <xi:include href="xml/api-index-1.6.xml"><xi:fallback /></xi:include>
+  <index role="2.0">
+    <title>Index of new symbols in 2.0</title>
+    <xi:include href="xml/api-index-2.0.xml"><xi:fallback /></xi:include>
   </index>
   <index id="deprecated-api-index" role="deprecated">
     <title>Index of deprecated API</title>
