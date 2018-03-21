@@ -282,27 +282,6 @@ xapian_mset_iterator_new (XapianMSet *mset)
 }
 
 /**
- * xapian_mset_iterator_is_valid:
- * @iter: a #XapianMSetIterator
- *
- * Prior to 1.6, this function would check whether @iter was valid.  However
- * #XapianMSetIterator objects are now always valid, and this function always
- * returns %TRUE.
- *
- * Returns: %TRUE
- *
- * Deprecated: 1.6: The iterator is now always valid, so checks using this
- * function can be eliminated.
- */
-gboolean
-xapian_mset_iterator_is_valid (XapianMSetIterator *iter)
-{
-  g_return_val_if_fail (XAPIAN_IS_MSET_ITERATOR (iter), FALSE);
-
-  return TRUE;
-}
-
-/**
  * xapian_mset_iterator_is_begin:
  * @iter: a #XapianMSetIterator
  *
