@@ -28,7 +28,7 @@ G_BEGIN_DECLS
 
 #define XAPIAN_TYPE_SIMPLE_STOPPER      (xapian_simple_stopper_get_type())
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 G_DECLARE_DERIVABLE_TYPE (XapianSimpleStopper, xapian_simple_stopper, XAPIAN, SIMPLE_STOPPER, XapianStopper)
 
 struct _XapianSimpleStopperClass
@@ -36,11 +36,11 @@ struct _XapianSimpleStopperClass
   XapianStopperClass parent_instance;
 };
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianSimpleStopper * xapian_simple_stopper_new (void);
 
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 void xapian_simple_stopper_add (XapianSimpleStopper *stopper,
                                 const gchar *word);
 

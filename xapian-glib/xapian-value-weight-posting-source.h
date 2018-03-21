@@ -28,7 +28,7 @@ G_BEGIN_DECLS
 
 #define XAPIAN_TYPE_VALUE_WEIGHT_POSTING_SOURCE (xapian_value_weight_posting_source_get_type())
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 G_DECLARE_DERIVABLE_TYPE (XapianValueWeightPostingSource, xapian_value_weight_posting_source,
                           XAPIAN, VALUE_WEIGHT_POSTING_SOURCE,
                           XapianValuePostingSource)
@@ -38,7 +38,7 @@ struct _XapianValueWeightPostingSourceClass
   XapianValuePostingSourceClass parent_instance;
 };
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 XapianValueWeightPostingSource * xapian_value_weight_posting_source_new (unsigned int slot,
                                                                          GError **error);
 

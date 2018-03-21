@@ -27,7 +27,7 @@ G_BEGIN_DECLS
 
 #define XAPIAN_TYPE_STOPPER     (xapian_stopper_get_type())
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 G_DECLARE_DERIVABLE_TYPE (XapianStopper, xapian_stopper, XAPIAN, STOPPER, GObject)
 
 /**
@@ -55,10 +55,10 @@ struct _XapianStopperClass
   gpointer _padding[8];
 };
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 gchar *         xapian_stopper_get_description  (XapianStopper *self);
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 gboolean        xapian_stopper_is_stop_term     (XapianStopper *self,
                                                  const char    *term);
 

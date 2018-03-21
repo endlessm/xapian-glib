@@ -27,7 +27,7 @@ G_BEGIN_DECLS
 
 #define XAPIAN_TYPE_POSTING_SOURCE      (xapian_posting_source_get_type())
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 G_DECLARE_DERIVABLE_TYPE (XapianPostingSource, xapian_posting_source, XAPIAN, POSTING_SOURCE, GObject)
 
 struct _XapianPostingSourceClass
@@ -35,7 +35,7 @@ struct _XapianPostingSourceClass
   GObjectClass parent_instance;
 };
 
-XAPIAN_GLIB_AVAILABLE_IN_1_2
+XAPIAN_GLIB_AVAILABLE_IN_2_0
 char *xapian_posting_source_get_description (XapianPostingSource *self);
 
 G_END_DECLS
