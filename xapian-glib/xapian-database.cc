@@ -692,18 +692,25 @@ xapian_database_add_database (XapianDatabase *db,
 /**
  * xapian_database_compact_to_path:
  * @self: A #XapianDatabase
- * @path: The path to write the compacted database to.
- * @flags: Flags to compact the database with.
+ * @path: The path to write the compacted database to
+ * @flags: Flags to compact the database with
+ * @error: return location for a #GError
  *
  * Compacts the database, and writes the result to the given path.
  *
+ * Returns: %TRUE if the database was successfully compacted
+ *
  * Since: 1.4
  */
-void
+gboolean
 xapian_database_compact_to_path (XapianDatabase             *self,
                                  const char                 *path,
-                                 XapianDatabaseCompactFlags  flags)
+                                 XapianDatabaseCompactFlags  flags,
+                                 GError                    **error)
 {
+  g_return_val_if_fail (XAPIAN_IS_DATABASE (self), FALSE);
+  g_return_val_if_fail (path != NULL, FALSE);
+
   Xapian::Database *real_db = xapian_database_get_internal (self);
 
   int real_flags = 0;
@@ -719,30 +726,42 @@ xapian_database_compact_to_path (XapianDatabase             *self,
     {
       const std::string output (path);
       real_db->compact (output, real_flags);
+
+      return TRUE;
     }
   catch (const Xapian::Error &err)
     {
-      const std::string src_msg = err.get_msg();
+      GError *internal_error = NULL;
 
-      g_critical ("%s", src_msg.c_str());
+      xapian_error_to_gerror (err, &internal_error);
+      g_propagate_error (error, internal_error);
+
+      return FALSE;
     }
 }
 
 /**
  * xapian_database_compact_to_fd:
  * @self: A #XapianDatabase
- * @fd: The fd to write the compacted database.
- * @flags: Flags to compact the database with.
+ * @fd: The fd to write the compacted database
+ * @flags: Flags to compact the database with
+ * @error: return location for a #GError
  *
  * Compacts the database, and writes the result to the given fd.
  *
+ * Returns: %TRUE if the database was successfully compacted
+ *
  * Since: 1.4
  */
-void
+gboolean
 xapian_database_compact_to_fd (XapianDatabase             *self,
                                int                         fd,
-                               XapianDatabaseCompactFlags  flags)
+                               XapianDatabaseCompactFlags  flags,
+                               GError                    **error)
 {
+  g_return_val_if_fail (XAPIAN_IS_DATABASE (self), FALSE);
+  g_return_val_if_fail (fd >= 0, FALSE);
+
   Xapian::Database *real_db = xapian_database_get_internal (self);
 
   int real_flags = 0;
@@ -757,12 +776,17 @@ xapian_database_compact_to_fd (XapianDatabase             *self,
   try
     {
       real_db->compact (fd, real_flags);
+
+      return TRUE;
     }
   catch (const Xapian::Error &err)
     {
-      const std::string src_msg = err.get_msg();
+      GError *internal_error = NULL;
 
-      g_critical ("%s", src_msg.c_str());
+      xapian_error_to_gerror (err, &internal_error);
+      g_propagate_error (error, internal_error);
+
+      return FALSE;
     }
 }
 
