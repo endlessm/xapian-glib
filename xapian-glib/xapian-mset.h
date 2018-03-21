@@ -91,8 +91,6 @@ XAPIAN_GLIB_AVAILABLE_IN_1_0
 gboolean                xapian_mset_iterator_next               (XapianMSetIterator *iter);
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 gboolean                xapian_mset_iterator_prev               (XapianMSetIterator *iter);
-XAPIAN_GLIB_DEPRECATED_IN_1_6
-gboolean                xapian_mset_iterator_is_valid           (XapianMSetIterator *iter);
 XAPIAN_GLIB_AVAILABLE_IN_1_0
 gboolean                xapian_mset_iterator_is_begin           (XapianMSetIterator *iter);
 XAPIAN_GLIB_AVAILABLE_IN_1_0
