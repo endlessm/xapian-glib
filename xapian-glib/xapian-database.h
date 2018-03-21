@@ -83,14 +83,16 @@ void                    xapian_database_add_database    (XapianDatabase *db,
                                                          XapianDatabase *new_db);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_4
-void                    xapian_database_compact_to_path (XapianDatabase             *self,
+gboolean                xapian_database_compact_to_path (XapianDatabase             *self,
                                                          const char                 *path,
-                                                         XapianDatabaseCompactFlags  flags);
+                                                         XapianDatabaseCompactFlags  flags,
+                                                         GError                    **error);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_4
-void                    xapian_database_compact_to_fd   (XapianDatabase             *self,
+gboolean                xapian_database_compact_to_fd   (XapianDatabase             *self,
                                                          int                         fd,
-                                                         XapianDatabaseCompactFlags  flags);
+                                                         XapianDatabaseCompactFlags  flags,
+                                                         GError                    **error);
 
 XAPIAN_GLIB_AVAILABLE_IN_1_4
 XapianTermIterator *    xapian_database_enumerate_all_terms (XapianDatabase *self,
