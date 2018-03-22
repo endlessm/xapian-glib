@@ -835,6 +835,12 @@ xapian_database_get_flags (XapianDatabase *self)
 #else
     g_warning ("In-memory backend not supported by Xapian");
 #endif
+  if (priv->backend == XAPIAN_DATABASE_BACKEND_HONEY)
+#ifdef XAPIAN_HAS_HONEY_BACKEND
+    db_flags |= Xapian::DB_BACKEND_HONEY;
+#else
+    g_warning ("Honey backend not supported by Xapian");
+#endif
 
   return db_flags;
 }
