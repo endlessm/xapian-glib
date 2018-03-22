@@ -329,6 +329,7 @@ GType xapian_database_flags_get_type (void);
  * @XAPIAN_DATABASE_BACKEND_CHERT: Use the Chert backend
  * @XAPIAN_DATABASE_BACKEND_STUB: Open a stub database
  * @XAPIAN_DATABASE_BACKEND_INMEMORY: Use the "in memory" backend
+ * @XAPIAN_DATABASE_BACKEND_HONEY: Use the Honey backend 
  *
  * The Xapian database backend to use when opening a database.
  *
@@ -339,7 +340,8 @@ typedef enum {
   XAPIAN_DATABASE_BACKEND_GLASS,
   XAPIAN_DATABASE_BACKEND_CHERT,
   XAPIAN_DATABASE_BACKEND_STUB,
-  XAPIAN_DATABASE_BACKEND_INMEMORY
+  XAPIAN_DATABASE_BACKEND_INMEMORY,
+  XAPIAN_DATABASE_BACKEND_HONEY
 } XapianDatabaseBackend;
 
 XAPIAN_GLIB_AVAILABLE_IN_2_0
