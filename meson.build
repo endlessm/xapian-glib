@@ -1,7 +1,7 @@
 project('xapian-glib', 'c', 'cpp',
         version: '1.99.1',
         license: 'GPLv2.0+',
-        meson_version: '>= 0.44.1',
+        meson_version: '>= 0.44.0',
         default_options: [
           'warning_level=1',
           'buildtype=debugoptimized',
