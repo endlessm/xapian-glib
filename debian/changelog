@@ -1,3 +1,9 @@
+xapian-glib (2.0) unstable; urgency=medium
+
+  * Initial release of the 2.0 API series
+
+ -- Emmanuele Bassi <emmanuele@endlessm.com>  Mon, 26 Mar 2018 14:05:38 +0100
+
 xapian-glib (1.0) unstable; urgency=medium
 
   * Initial release.
