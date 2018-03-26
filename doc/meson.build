@@ -32,13 +32,13 @@ glib_docpath = join_paths(glib_prefix, 'share', 'gtk-doc', 'html')
 docpath = join_paths(xapian_glib_datadir, 'gtk-doc', 'html')
 
 gnome.gtkdoc(
-  'xapian-glib',
-  main_xml: 'xapian-glib-docs.xml',
+  'xapian-glib2',
+  main_xml: 'xapian-glib2-docs.xml',
   src_dir: [
     'xapian-glib',
   ],
   dependencies: xapian_glib_dep,
-  gobject_typesfile: 'xapian-glib.types',
+  gobject_typesfile: 'xapian-glib2.types',
   scan_args: [
     '--rebuild-types',
     '--ignore-decorators=_XAPIAN_GLIB_EXTERN',
