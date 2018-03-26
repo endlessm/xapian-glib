@@ -23,4 +23,4 @@ override_dh_auto_build:
 	ninja -C_build -v
 
 override_dh_strip:
-	dh_strip --dbg-package=libxapian-glib-1.0-dbg
+	dh_strip --dbg-package=libxapian-glib-2.0-dbg
