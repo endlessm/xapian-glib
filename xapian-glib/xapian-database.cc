@@ -78,6 +78,90 @@ G_DEFINE_TYPE_WITH_CODE (XapianDatabase, xapian_database, G_TYPE_OBJECT,
                          G_ADD_PRIVATE (XapianDatabase)
                          G_IMPLEMENT_INTERFACE (G_TYPE_INITABLE, initable_iface_init))
 
+static int
+xapian_database_backend_to_internal (XapianDatabaseBackend backend)
+{
+  if (backend == XAPIAN_DATABASE_BACKEND_STUB)
+    return Xapian::DB_BACKEND_STUB;
+  if (backend == XAPIAN_DATABASE_BACKEND_GLASS)
+#ifdef XAPIAN_HAS_GLASS_BACKEND
+    return Xapian::DB_BACKEND_GLASS;
+#else
+    g_warning ("Glass backend not supported by Xapian");
+    return 0;
+#endif
+  if (backend == XAPIAN_DATABASE_BACKEND_CHERT)
+#ifdef XAPIAN_HAS_CHERT_BACKEND
+    return Xapian::DB_BACKEND_CHERT;
+#else
+    g_warning ("Chert backend not supported by Xapian");
+    return 0;
+#endif
+  if (backend == XAPIAN_DATABASE_BACKEND_INMEMORY)
+#ifdef XAPIAN_HAS_INMEMORY_BACKEND
+    return Xapian::DB_BACKEND_INMEMORY;
+#else
+    g_warning ("In-memory backend not supported by Xapian");
+    return 0;
+#endif
+  if (backend == XAPIAN_DATABASE_BACKEND_HONEY)
+#ifdef XAPIAN_HAS_HONEY_BACKEND
+    return Xapian::DB_BACKEND_HONEY;
+#else
+    g_warning ("Honey backend not supported by Xapian");
+    return 0;
+#endif
+
+  return 0;
+}
+
+static int
+xapian_database_flags_to_internal (XapianDatabaseFlags flags)
+{
+  int db_flags = 0;
+
+  if ((flags & XAPIAN_DATABASE_FLAGS_NO_SYNC) != 0)
+    db_flags |= Xapian::DB_NO_SYNC;
+  if ((flags & XAPIAN_DATABASE_FLAGS_FULL_SYNC) != 0)
+    db_flags |= Xapian::DB_FULL_SYNC;
+  if ((flags & XAPIAN_DATABASE_FLAGS_DANGEROUS) != 0)
+    db_flags |= Xapian::DB_DANGEROUS;
+  if ((flags & XAPIAN_DATABASE_FLAGS_NO_TERMLIST) != 0)
+    db_flags |= Xapian::DB_NO_TERMLIST;
+  if ((flags & XAPIAN_DATABASE_FLAGS_RETRY_LOCK) != 0)
+    db_flags |= Xapian::DB_RETRY_LOCK;
+
+  return db_flags;
+}
+
+static int
+xapian_database_compact_flags_to_internal (XapianDatabaseCompactFlags flags)
+{
+  int real_flags = 0;
+
+  if ((flags & XAPIAN_DATABASE_COMPACT_FLAGS_NO_RENUMBER) != 0)
+    real_flags |= Xapian::DBCOMPACT_NO_RENUMBER;
+  if ((flags & XAPIAN_DATABASE_COMPACT_FLAGS_MULTIPASS) != 0)
+    real_flags |= Xapian::DBCOMPACT_MULTIPASS;
+  if ((flags & XAPIAN_DATABASE_COMPACT_FLAGS_SINGLE_FILE) != 0)
+    real_flags |= Xapian::DBCOMPACT_SINGLE_FILE;
+
+  return real_flags;
+}
+
+static int
+xapian_database_compact_level_to_internal (XapianDatabaseCompactLevel level)
+{
+  if (level == XAPIAN_DATABASE_COMPACT_LEVEL_STANDARD)
+    return Xapian::Compactor::STANDARD;
+  if (level == XAPIAN_DATABASE_COMPACT_LEVEL_FULL)
+    return Xapian::Compactor::FULL;
+  if (level == XAPIAN_DATABASE_COMPACT_LEVEL_FULLER)
+    return Xapian::Compactor::FULLER;
+
+  return 0;
+}
+
 /*< private >
  * xapian_database_get_internal:
  * @self: a #XapianDatabase
@@ -706,6 +790,8 @@ gboolean
 xapian_database_compact_to_path (XapianDatabase             *self,
                                  const char                 *path,
                                  XapianDatabaseCompactFlags  flags,
+                                 XapianDatabaseBackend       backend,
+                                 XapianDatabaseCompactLevel  level,
                                  GError                    **error)
 {
   g_return_val_if_fail (XAPIAN_IS_DATABASE (self), FALSE);
@@ -713,14 +799,9 @@ xapian_database_compact_to_path (XapianDatabase             *self,
 
   Xapian::Database *real_db = xapian_database_get_internal (self);
 
-  int real_flags = 0;
-
-  if ((flags & XAPIAN_DATABASE_COMPACT_FLAGS_NO_RENUMBER) != 0)
-    real_flags |= Xapian::DBCOMPACT_NO_RENUMBER;
-  if ((flags & XAPIAN_DATABASE_COMPACT_FLAGS_MULTIPASS) != 0)
-    real_flags |= Xapian::DBCOMPACT_MULTIPASS;
-  if ((flags & XAPIAN_DATABASE_COMPACT_FLAGS_SINGLE_FILE) != 0)
-    real_flags |= Xapian::DBCOMPACT_SINGLE_FILE;
+  int real_flags = xapian_database_compact_flags_to_internal (flags) |
+    xapian_database_backend_to_internal (backend) |
+    xapian_database_compact_level_to_internal (level);
 
   try
     {
@@ -757,6 +838,8 @@ gboolean
 xapian_database_compact_to_fd (XapianDatabase             *self,
                                int                         fd,
                                XapianDatabaseCompactFlags  flags,
+                               XapianDatabaseBackend       backend,
+                               XapianDatabaseCompactLevel  level,
                                GError                    **error)
 {
   g_return_val_if_fail (XAPIAN_IS_DATABASE (self), FALSE);
@@ -764,14 +847,9 @@ xapian_database_compact_to_fd (XapianDatabase             *self,
 
   Xapian::Database *real_db = xapian_database_get_internal (self);
 
-  int real_flags = 0;
-
-  if ((flags & XAPIAN_DATABASE_COMPACT_FLAGS_NO_RENUMBER) != 0)
-    real_flags |= Xapian::DBCOMPACT_NO_RENUMBER;
-  if ((flags & XAPIAN_DATABASE_COMPACT_FLAGS_MULTIPASS) != 0)
-    real_flags |= Xapian::DBCOMPACT_MULTIPASS;
-  if ((flags & XAPIAN_DATABASE_COMPACT_FLAGS_SINGLE_FILE) != 0)
-    real_flags |= Xapian::DBCOMPACT_SINGLE_FILE;
+  int real_flags = xapian_database_compact_flags_to_internal (flags) |
+    xapian_database_backend_to_internal (backend) |
+    xapian_database_compact_level_to_internal (level);
 
   try
     {
@@ -802,47 +880,9 @@ int
 xapian_database_get_flags (XapianDatabase *self)
 {
   XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
-  int db_flags = 0;
 
-  if ((priv->flags & XAPIAN_DATABASE_FLAGS_NO_SYNC) != 0)
-    db_flags |= Xapian::DB_NO_SYNC;
-  if ((priv->flags & XAPIAN_DATABASE_FLAGS_FULL_SYNC) != 0)
-    db_flags |= Xapian::DB_FULL_SYNC;
-  if ((priv->flags & XAPIAN_DATABASE_FLAGS_DANGEROUS) != 0)
-    db_flags |= Xapian::DB_DANGEROUS;
-  if ((priv->flags & XAPIAN_DATABASE_FLAGS_NO_TERMLIST) != 0)
-    db_flags |= Xapian::DB_NO_TERMLIST;
-  if ((priv->flags & XAPIAN_DATABASE_FLAGS_RETRY_LOCK) != 0)
-    db_flags |= Xapian::DB_RETRY_LOCK;
-
-  if (priv->backend == XAPIAN_DATABASE_BACKEND_STUB)
-    db_flags |= Xapian::DB_BACKEND_STUB;
-  if (priv->backend == XAPIAN_DATABASE_BACKEND_GLASS)
-#ifdef XAPIAN_HAS_GLASS_BACKEND
-    db_flags |= Xapian::DB_BACKEND_GLASS;
-#else
-    g_warning ("Glass backend not supported by Xapian");
-#endif
-  if (priv->backend == XAPIAN_DATABASE_BACKEND_CHERT)
-#ifdef XAPIAN_HAS_CHERT_BACKEND
-    db_flags |= Xapian::DB_BACKEND_CHERT;
-#else
-    g_warning ("Chert backend not supported by Xapian");
-#endif
-  if (priv->backend == XAPIAN_DATABASE_BACKEND_INMEMORY)
-#ifdef XAPIAN_HAS_INMEMORY_BACKEND
-    db_flags |= Xapian::DB_BACKEND_INMEMORY;
-#else
-    g_warning ("In-memory backend not supported by Xapian");
-#endif
-  if (priv->backend == XAPIAN_DATABASE_BACKEND_HONEY)
-#ifdef XAPIAN_HAS_HONEY_BACKEND
-    db_flags |= Xapian::DB_BACKEND_HONEY;
-#else
-    g_warning ("Honey backend not supported by Xapian");
-#endif
-
-  return db_flags;
+  return xapian_database_flags_to_internal (priv->flags) |
+         xapian_database_backend_to_internal (priv->backend);
 }
 
 /**
