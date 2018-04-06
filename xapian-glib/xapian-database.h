@@ -86,12 +86,16 @@ XAPIAN_GLIB_AVAILABLE_IN_2_0
 gboolean                xapian_database_compact_to_path (XapianDatabase             *self,
                                                          const char                 *path,
                                                          XapianDatabaseCompactFlags  flags,
+                                                         XapianDatabaseBackend       backend,
+                                                         XapianDatabaseCompactLevel  level,
                                                          GError                    **error);
 
 XAPIAN_GLIB_AVAILABLE_IN_2_0
 gboolean                xapian_database_compact_to_fd   (XapianDatabase             *self,
                                                          int                         fd,
                                                          XapianDatabaseCompactFlags  flags,
+                                                         XapianDatabaseBackend       backend,
+                                                         XapianDatabaseCompactLevel  level,
                                                          GError                    **error);
 
 XAPIAN_GLIB_AVAILABLE_IN_2_0

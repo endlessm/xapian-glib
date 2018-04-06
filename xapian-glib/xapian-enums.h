@@ -347,6 +347,15 @@ typedef enum {
 XAPIAN_GLIB_AVAILABLE_IN_2_0
 GType xapian_database_backend_get_type (void);
 
+typedef enum {
+  XAPIAN_DATABASE_COMPACT_LEVEL_STANDARD,
+  XAPIAN_DATABASE_COMPACT_LEVEL_FULL,
+  XAPIAN_DATABASE_COMPACT_LEVEL_FULLER
+} XapianDatabaseCompactLevel;
+
+XAPIAN_GLIB_AVAILABLE_IN_2_0
+GType xapian_database_compact_level_get_type (void);
+
 G_END_DECLS
 
 #endif /* __XAPIAN_ENUMS_H__ */
