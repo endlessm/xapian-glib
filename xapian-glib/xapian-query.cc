@@ -1,5 +1,5 @@
 /* Copyright 2014, 2018  Endless Mobile
- * Copyright 2017  Olly Betts
+ * Copyright 2017, 2025  Olly Betts
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
 /**
@@ -60,79 +60,70 @@ xapian_query_get_internal (XapianQuery *self)
 Xapian::Query::op
 xapian_query_op_internal (XapianQueryOp op)
 {
-  Xapian::Query::op query_op = Xapian::Query::OP_AND;
-
+  // The numeric values of XAPIAN_QUERY_OP_* should match those of
+  // Xapian::Query::OP_* so the compiler should be able to optimise this to a
+  // simple integer range check.
   switch (op)
     {
     case XAPIAN_QUERY_OP_AND:
-      query_op = Xapian::Query::OP_AND;
-      break;
+      return Xapian::Query::OP_AND;
 
     case XAPIAN_QUERY_OP_OR:
-      query_op = Xapian::Query::OP_OR;
-      break;
+      return Xapian::Query::OP_OR;
 
     case XAPIAN_QUERY_OP_AND_NOT:
-      query_op = Xapian::Query::OP_AND_NOT;
-      break;
+      return Xapian::Query::OP_AND_NOT;
 
     case XAPIAN_QUERY_OP_XOR:
-      query_op = Xapian::Query::OP_XOR;
-      break;
+      return Xapian::Query::OP_XOR;
 
     case XAPIAN_QUERY_OP_AND_MAYBE:
-      query_op = Xapian::Query::OP_AND_MAYBE;
-      break;
+      return Xapian::Query::OP_AND_MAYBE;
 
     case XAPIAN_QUERY_OP_FILTER:
-      query_op = Xapian::Query::OP_FILTER;
-      break;
+      return Xapian::Query::OP_FILTER;
 
     case XAPIAN_QUERY_OP_NEAR:
-      query_op = Xapian::Query::OP_NEAR;
-      break;
+      return Xapian::Query::OP_NEAR;
 
     case XAPIAN_QUERY_OP_PHRASE:
-      query_op = Xapian::Query::OP_PHRASE;
-      break;
+      return Xapian::Query::OP_PHRASE;
 
     case XAPIAN_QUERY_OP_VALUE_RANGE:
-      query_op = Xapian::Query::OP_VALUE_RANGE;
-      break;
+      return Xapian::Query::OP_VALUE_RANGE;
 
     case XAPIAN_QUERY_OP_SCALE_WEIGHT:
-      query_op = Xapian::Query::OP_SCALE_WEIGHT;
-      break;
+      return Xapian::Query::OP_SCALE_WEIGHT;
 
     case XAPIAN_QUERY_OP_ELITE_SET:
-      query_op = Xapian::Query::OP_ELITE_SET;
-      break;
+      return Xapian::Query::OP_ELITE_SET;
 
     case XAPIAN_QUERY_OP_VALUE_GE:
-      query_op = Xapian::Query::OP_VALUE_GE;
-      break;
+      return Xapian::Query::OP_VALUE_GE;
 
     case XAPIAN_QUERY_OP_VALUE_LE:
-      query_op = Xapian::Query::OP_VALUE_LE;
-      break;
+      return Xapian::Query::OP_VALUE_LE;
 
     case XAPIAN_QUERY_OP_SYNONYM:
-      query_op = Xapian::Query::OP_SYNONYM;
-      break;
+      return Xapian::Query::OP_SYNONYM;
 
     case XAPIAN_QUERY_OP_MAX:
-      query_op = Xapian::Query::OP_MAX;
-      break;
+      return Xapian::Query::OP_MAX;
 
     case XAPIAN_QUERY_OP_WILDCARD:
-      query_op = Xapian::Query::OP_WILDCARD;
-      break;
+      return Xapian::Query::OP_WILDCARD;
+
+    case XAPIAN_QUERY_OP_EDIT_DISTANCE:
+      return Xapian::Query::OP_EDIT_DISTANCE;
+
+    case XAPIAN_QUERY_OP_INVALID:
+      return Xapian::Query::OP_INVALID;
 
     default:
       g_assert_not_reached ();
     }
 
-  return query_op;
+  return Xapian::Query::OP_INVALID;
 }
 
 static void
@@ -202,7 +193,7 @@ xapian_query_new_for_term (const char *term)
 {
   g_return_val_if_fail (term != NULL, NULL);
 
-  Xapian::Query q = Xapian::Query (std::string (term));
+  Xapian::Query q = Xapian::Query (term);
 
   return xapian_query_new_from_query (q);
 }
@@ -265,7 +256,7 @@ xapian_query_new_for_value (XapianQueryOp  op,
   else
     g_assert_not_reached ();
 
-  Xapian::Query query = Xapian::Query (query_op, slot, std::string (value));
+  Xapian::Query query = Xapian::Query (query_op, slot, value);
 
   return xapian_query_new_from_query (query);
 }
@@ -289,7 +280,7 @@ xapian_query_new_for_terms_pair (XapianQueryOp  op,
   g_return_val_if_fail (a != NULL && b != NULL, NULL);
 
   Xapian::Query::op query_op = xapian_query_op_internal (op);
-  Xapian::Query query = Xapian::Query (query_op, std::string (a), std::string (b));
+  Xapian::Query query = Xapian::Query (query_op, std::string_view (a), std::string_view (b));
 
   return xapian_query_new_from_query (query);
 }
@@ -308,7 +299,7 @@ xapian_query_new_from_string (const char *data)
 {
   g_return_val_if_fail (data != NULL, NULL);
 
-  Xapian::Query query = Xapian::Query (std::string (data));
+  Xapian::Query query = Xapian::Query (data);
 
   return xapian_query_new_from_query (query);
 }

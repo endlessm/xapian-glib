@@ -3,7 +3,7 @@
 ### GObject/C bindings for the Xapian API
 
 Xapian-GLib is a wrapper library that offers a C API and GObject types for
-the [Xapian](http://xapian.org) database.
+the [Xapian](https://xapian.org) database.
 
 Xapian-GLib allows accessing the Xapian API in various languages, through
 the GObject Introspection API.
@@ -12,10 +12,10 @@ the GObject Introspection API.
 
 Xapian-GLib, unsurprisingly, requires:
 
- * Xapian ≥ 1.3.4
+ * Xapian ≥ 2.0.0
  * GObject ≥ 2.40
 
-You will also need [Meson](http://mesonbuild.com) in order to build
+You will also need [Meson](https://mesonbuild.com) in order to build
 Xapian-GLib.
 
 ## Building
@@ -30,7 +30,7 @@ $ cd xapian-glib
 Then run:
 
 ```sh
-$ meson _build .
+$ meson setup _build .
 $ ninja -C _build
 $ meson test -C _build		# Run the test suite
 ```
@@ -50,7 +50,7 @@ additional configuration options.
 ## Documentation
 
 The API reference for the latest version of Xapian-GLib is available
-[online](http://endlessm.github.io/xapian-glib/docs/).
+[online](https://endlessm.github.io/xapian-glib/docs/).
 
 ## License
 

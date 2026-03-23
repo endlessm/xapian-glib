@@ -3,14 +3,9 @@
 
 #include <xapian.h>
 
-#define _XAPIAN_VERSION_ENCODE_INTERNAL(maj,min,rev) \
-  ((maj * 10000) + (min * 100) + rev)
-
-#define _XAPIAN_CUR_VERSION \
-  _XAPIAN_VERSION_ENCODE_INTERNAL(XAPIAN_MAJOR_VERSION,XAPIAN_MINOR_VERSION,XAPIAN_REVISION)
-
-/* This is an internal version check macro for the Xapian version */
-#define XAPIAN_CHECK_VERSION_INTERNAL(maj,min,rev) \
-   (_XAPIAN_CUR_VERSION >= _XAPIAN_VERSION_ENCODE_INTERNAL(maj,min,rev))
+/* The old XAPIAN_CHECK_VERSION_INTERNAL(maj,min,rev) macro which was defined
+ * here has been removed.  Use Xapian's own XAPIAN_AT_LEAST(maj,min,rev)
+ * macro instead (added in Xapian 1.4.2).
+ */
 
 #endif

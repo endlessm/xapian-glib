@@ -12,7 +12,7 @@ const POSTING_SOURCE_SLOT_NUMBER = 1;
 
 let db = new Xapian.Database({
     'path': path
-}); 
+});
 db.init(null);
 let pageRank = new Xapian.ValueWeightPostingSource({slot: POSTING_SOURCE_SLOT_NUMBER});
 pageRank.init(null);

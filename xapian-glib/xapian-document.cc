@@ -1,4 +1,5 @@
 /* Copyright 2014  Endless Mobile
+ * Copyright 2025  Olly Betts
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -11,7 +12,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
 /**
@@ -133,7 +134,7 @@ double
 xapian_document_get_numeric_value (XapianDocument *document,
                                    unsigned int    slot)
 {
-  g_return_val_if_fail (XAPIAN_IS_DOCUMENT (document), Xapian::sortable_unserialise (NULL));
+  g_return_val_if_fail (XAPIAN_IS_DOCUMENT (document), 0.0);
 
   std::string value = xapian_document_get_internal (document)->get_value (slot);
 
@@ -201,7 +202,7 @@ xapian_document_add_value (XapianDocument *document,
 {
   g_return_if_fail (XAPIAN_IS_DOCUMENT (document));
 
-  xapian_document_get_internal (document)->add_value (slot, std::string (value));
+  xapian_document_get_internal (document)->add_value (slot, value);
 }
 
 /**
@@ -271,7 +272,7 @@ xapian_document_set_data (XapianDocument *document,
 {
   g_return_if_fail (XAPIAN_IS_DOCUMENT (document));
 
-  xapian_document_get_internal (document)->set_data (std::string (data));
+  xapian_document_get_internal (document)->set_data (data);
 }
 
 /**
@@ -345,7 +346,7 @@ xapian_document_add_posting (XapianDocument *document,
   g_return_if_fail (XAPIAN_IS_DOCUMENT (document));
   g_return_if_fail (tname != NULL);
 
-  xapian_document_get_internal (document)->add_posting (std::string (tname),
+  xapian_document_get_internal (document)->add_posting (tname,
                                                         term_pos,
                                                         wdf_increment);
 }
@@ -366,7 +367,7 @@ xapian_document_add_term_full (XapianDocument *document,
   g_return_if_fail (XAPIAN_IS_DOCUMENT (document));
   g_return_if_fail (tname != NULL);
 
-  xapian_document_get_internal (document)->add_term (std::string (tname), wdf_increment);
+  xapian_document_get_internal (document)->add_term (tname, wdf_increment);
 }
 
 /**
@@ -384,7 +385,7 @@ xapian_document_add_term (XapianDocument *document,
   g_return_if_fail (XAPIAN_IS_DOCUMENT (document));
   g_return_if_fail (tname != NULL);
 
-  xapian_document_get_internal (document)->add_term (std::string (tname));
+  xapian_document_get_internal (document)->add_term (tname);
 }
 
 /**
@@ -404,7 +405,7 @@ xapian_document_add_boolean_term (XapianDocument *document,
   g_return_if_fail (XAPIAN_IS_DOCUMENT (document));
   g_return_if_fail (tname != NULL);
 
-  xapian_document_get_internal (document)->add_boolean_term (std::string (tname));
+  xapian_document_get_internal (document)->add_boolean_term (tname);
 }
 
 /**
@@ -417,9 +418,10 @@ xapian_document_add_boolean_term (XapianDocument *document,
  *
  * Removes a posting of a term inside @document.
  *
- * Note that the term will still index the document, even if all the
- * occurrences have been removed. To completely remove @tname from
- * the @document, use xapian_document_remove_term() instead.
+ * If the final position is removed and the wdf becomes zero then the term will
+ * be removed from the document. If you just want to completely remove @tname
+ * from the @document, it is simpler to use xapian_document_remove_term()
+ * instead.
  */
 void
 xapian_document_remove_posting (XapianDocument *document,
@@ -430,7 +432,7 @@ xapian_document_remove_posting (XapianDocument *document,
   g_return_if_fail (XAPIAN_IS_DOCUMENT (document));
   g_return_if_fail (tname != NULL);
 
-  xapian_document_get_internal (document)->remove_posting (std::string (tname),
+  xapian_document_get_internal (document)->remove_posting (tname,
                                                            term_pos,
                                                            wdf_decrement);
 }
@@ -449,7 +451,7 @@ xapian_document_remove_term (XapianDocument *document,
   g_return_if_fail (XAPIAN_IS_DOCUMENT (document));
   g_return_if_fail (tname != NULL);
 
-  xapian_document_get_internal (document)->remove_term (std::string (tname));
+  xapian_document_get_internal (document)->remove_term (tname);
 }
 
 /**

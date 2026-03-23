@@ -1,5 +1,5 @@
 /* Copyright 2014  Endless Mobile
- * Copyright 2017  Olly Betts
+ * Copyright 2017, 2025  Olly Betts
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
 #include "config.h"
@@ -26,34 +26,34 @@
 GType \
 type_name ## _get_type (void) \
 { \
-  static volatile gsize g_define_id__volatile = 0; \
-  if (g_once_init_enter (&g_define_id__volatile)) \
+  static gsize g_define_id = 0; \
+  if (g_once_init_enter (&g_define_id)) \
     { \
       static const GEnumValue v[] = { \
         values \
         { 0, NULL, NULL }, \
       }; \
-      GType g_define_id = g_enum_register_static (g_intern_static_string (#TypeName), v); \
-      g_once_init_leave (&g_define_id__volatile, g_define_id); \
+      g_once_init_leave (&g_define_id, \
+                         g_enum_register_static (g_intern_static_string (#TypeName), v)); \
     } \
-  return g_define_id__volatile; \
+  return g_define_id; \
 }
 
 #define XAPIAN_GLIB_DEFINE_FLAGS_TYPE(TypeName,type_name,values) \
 GType \
 type_name ## _get_type (void) \
 { \
-  static volatile gsize g_define_id__volatile = 0; \
-  if (g_once_init_enter (&g_define_id__volatile)) \
+  static gsize g_define_id = 0; \
+  if (g_once_init_enter (&g_define_id)) \
     { \
       static const GFlagsValue v[] = { \
         values \
-	{ 0, NULL, NULL }, \
+        { 0, NULL, NULL }, \
       }; \
-      GType g_define_id = g_flags_register_static (g_intern_static_string (#TypeName), v); \
-      g_once_init_leave (&g_define_id__volatile, g_define_id); \
+      g_once_init_leave (&g_define_id, \
+                         g_flags_register_static (g_intern_static_string (#TypeName), v)); \
     } \
-  return g_define_id__volatile; \
+  return g_define_id; \
 }
 
 XAPIAN_GLIB_DEFINE_ENUM_TYPE (XapianDatabaseAction, xapian_database_action,
@@ -82,6 +82,9 @@ XAPIAN_GLIB_DEFINE_ENUM_TYPE (XapianError, xapian_error,
   XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_ERROR_QUERY_PARSER, "query-parser")
   XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_ERROR_SERIALISATION, "serialisation")
   XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_ERROR_RANGE, "range")
+  XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_ERROR_WILDCARD, "wildcard")
+  XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_ERROR_DATABASE_NOT_FOUND, "database-not-found")
+  XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_ERROR_DATABASE_CLOSED, "database-closed")
   XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_ERROR_LAST, "type-last"))
 
 XAPIAN_GLIB_DEFINE_ENUM_TYPE (XapianQueryOp, xapian_query_op,
@@ -101,11 +104,15 @@ XAPIAN_GLIB_DEFINE_ENUM_TYPE (XapianQueryOp, xapian_query_op,
   XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_QUERY_OP_SYNONYM, "synonym")
   XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_QUERY_OP_MAX, "max")
   XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_QUERY_OP_WILDCARD, "wildcard")
+  XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_QUERY_OP_EDIT_DISTANCE, "edit-distance")
+  XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_QUERY_OP_INVALID, "invalid")
   XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_QUERY_OP_LAST, "op-last"))
 
 XAPIAN_GLIB_DEFINE_FLAGS_TYPE (XapianTermGeneratorFeature, xapian_term_generator_feature,
   XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_TERM_GENERATOR_FEATURE_NONE, "none")
-  XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_TERM_GENERATOR_FEATURE_SPELLING, "spelling"))
+  XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_TERM_GENERATOR_FEATURE_SPELLING, "spelling")
+  XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_TERM_GENERATOR_FEATURE_NGRAMS, "ngrams")
+  XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_TERM_GENERATOR_FEATURE_WORD_BREAKS, "word-breaks"))
 
 XAPIAN_GLIB_DEFINE_FLAGS_TYPE (XapianQueryParserFeature, xapian_query_parser_feature,
   XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_QUERY_PARSER_FEATURE_BOOLEAN, "boolean")
@@ -119,14 +126,23 @@ XAPIAN_GLIB_DEFINE_FLAGS_TYPE (XapianQueryParserFeature, xapian_query_parser_fea
   XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_QUERY_PARSER_FEATURE_SYNONYM, "synonym")
   XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_QUERY_PARSER_FEATURE_AUTO_SYNONYMS, "auto-synonyms")
   XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_QUERY_PARSER_FEATURE_AUTO_MULTIWORD_SYNONYMS, "auto-multiword-synonyms")
+  XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_QUERY_PARSER_FEATURE_NGRAMS, "ngrams")
   XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM, "cjk-ngram")
+  XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_QUERY_PARSER_FEATURE_WORD_BREAKS, "word-breaks")
+  XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_QUERY_PARSER_FEATURE_WILDCARD_MULTI, "wildcard-multi")
+  XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_QUERY_PARSER_FEATURE_WILDCARD_SINGLE, "wildcard-single")
+  XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_QUERY_PARSER_FEATURE_FUZZY, "fuzzy")
+  XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_QUERY_PARSER_FEATURE_ACCUMULATE, "accumulate")
+  XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_QUERY_PARSER_FEATURE_NO_POSITIONS, "no-positions")
+  XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_QUERY_PARSER_FEATURE_NO_PROPER_NOUN_HEURISTIC, "no-proper-noun-heuristic")
   XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_QUERY_PARSER_FEATURE_DEFAULT, "default"))
 
 XAPIAN_GLIB_DEFINE_ENUM_TYPE (XapianStemStrategy, xapian_stem_strategy,
   XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_STEM_STRATEGY_STEM_NONE, "stem-none")
   XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_STEM_STRATEGY_STEM_SOME, "stem-some")
   XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_STEM_STRATEGY_STEM_ALL, "stem-all")
-  XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_STEM_STRATEGY_STEM_ALL_Z, "stem-all-z"))
+  XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_STEM_STRATEGY_STEM_ALL_Z, "stem-all-z")
+  XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_STEM_STRATEGY_STEM_SOME_FULL_POS, "stem-some-full-pos"))
 
 XAPIAN_GLIB_DEFINE_FLAGS_TYPE (XapianDatabaseFlags, xapian_database_flags,
   XAPIAN_GLIB_DEFINE_ENUM_VALUE (XAPIAN_DATABASE_FLAGS_NO_SYNC, "no-sync")

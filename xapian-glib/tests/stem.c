@@ -42,7 +42,7 @@ stem_get_available_languages (void)
 
       if (g_test_verbose ())
         g_test_message ("creating stemmer for language '%s'", lang);
-      
+
       stem = xapian_stem_new_for_language (lang, &error);
       g_assert_no_error (error);
       g_assert_nonnull (stem);

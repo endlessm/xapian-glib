@@ -11,7 +11,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
 /**
@@ -386,14 +386,14 @@ xapian_enquire_set_sort_by_value (XapianEnquire *enquire,
  * xapian_enquire_set_query:
  * @enquire: a #XapianEnquire
  * @query: a #XapianQuery
- * @qlen: the length of the @query
+ * @qlen: the length of the @query (or 0 to use @query's natural length).
  *
  * Sets the #XapianQuery for the #XapianEnquire instance.
  */
 void
 xapian_enquire_set_query (XapianEnquire *enquire,
-			  XapianQuery   *query,
-			  unsigned int   qlen)
+                          XapianQuery   *query,
+                          unsigned int   qlen)
 {
   g_return_if_fail (XAPIAN_IS_ENQUIRE (enquire));
   g_return_if_fail (XAPIAN_IS_QUERY (query));
@@ -409,11 +409,11 @@ xapian_enquire_set_query (XapianEnquire *enquire,
     }
 #endif
 
-  if (priv->query == query)
-    return;
-
-  g_clear_object (&priv->query);
-  priv->query = static_cast<XapianQuery *> (g_object_ref (query));
+  if (priv->query != query)
+    {
+      g_clear_object (&priv->query);
+      priv->query = static_cast<XapianQuery *> (g_object_ref (query));
+    }
 
   priv->mEnquire->set_query (*xapian_query_get_internal (query), qlen);
 }

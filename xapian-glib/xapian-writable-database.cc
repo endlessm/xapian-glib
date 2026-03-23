@@ -1,4 +1,5 @@
 /* Copyright 2014  Endless Mobile
+ * Copyright 2025  Olly Betts
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -11,7 +12,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
 /**
@@ -77,7 +78,7 @@ xapian_writable_database_init_internal (GInitable    *initable,
 {
   XapianDatabase *database = XAPIAN_DATABASE (initable);
   XapianWritableDatabasePrivate *priv;
-  
+
   priv = XAPIAN_WRITABLE_DATABASE_GET_PRIVATE (initable);
 
   const char *path = xapian_database_get_path (database);
@@ -92,8 +93,6 @@ xapian_writable_database_init_internal (GInitable    *initable,
 
   try
     {
-      std::string file (path);
-
       /* Xapian >= 1.3 changed the values of these enumeration; in order to work
        * with Xapian 1.2 and Xapian 1.4 we need to do a manual translation
        * of every value into the equivalent Xapian constant
@@ -109,7 +108,7 @@ xapian_writable_database_init_internal (GInitable    *initable,
       if (priv->action == XAPIAN_DATABASE_ACTION_OPEN)
         db_flags |= Xapian::DB_OPEN;
 
-      db = new Xapian::WritableDatabase (file, db_flags | xapian_database_get_flags (database));
+      db = new Xapian::WritableDatabase (path, db_flags | xapian_database_get_flags (database));
 
       xapian_database_set_internal (database, db);
       xapian_database_set_is_writable (database, TRUE);
@@ -645,7 +644,7 @@ xapian_writable_database_add_spelling_full (XapianWritableDatabase *self,
  * @word: The word to remove
  *
  * Remove a word from the spelling dictionary.
- * 
+ *
  * The word's frequency is decreased by 1, and if would become zero or less then
  * the word is removed completely.
  *
@@ -666,7 +665,7 @@ xapian_writable_database_remove_spelling (XapianWritableDatabase *self,
  * @self: a #XapianWritableDatabase
  * @word: The word to remove
  * @freqdec: How much to decrease its frequency by
- * 
+ *
  * Remove a word from the spelling dictionary.
  *
  * The word's frequency is decreased, and if would become zero or less then the
@@ -690,7 +689,7 @@ xapian_writable_database_remove_spelling_full (XapianWritableDatabase *self,
  * @self: a #XapianWritableDatabase
  * @key: A key in the database's metadata
  * @value: The value to set for @key
- * 
+ *
  * Set the user-specified metadata associated with a given key.
  *
  * This method sets the metadata value associated with a given key. If there is

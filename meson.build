@@ -1,12 +1,12 @@
 project('xapian-glib', 'c', 'cpp',
         version: '1.99.1',
         license: 'GPLv2.0+',
-        meson_version: '>= 0.44.0',
+        meson_version: '>= 0.50.0',
         default_options: [
           'warning_level=1',
           'buildtype=debugoptimized',
           'c_std=c99',
-          'cpp_std=c++11',
+          'cpp_std=c++17',
         ])
 
 cpp = meson.get_compiler('cpp')
@@ -57,11 +57,10 @@ if cpp.get_id() == 'gcc' or cpp.get_id() == 'clang'
     '-Wmissing-format-attribute',
     '-Wmissing-include-dirs',
     '-Wlogical-op',
-    '-Wno-uninitialized',
-    '-Wno-shadow',
+    '-Wuninitialized',
+    '-Wshadow',
     '-Werror=format=2',
     '-Werror=redundant-decls',
-    '-Werror=implicit',
     '-Werror=nonnull',
     '-Werror=init-self',
     '-Werror=main',
@@ -73,9 +72,7 @@ if cpp.get_id() == 'gcc' or cpp.get_id() == 'clang'
     '-Werror=write-strings',
     '-Werror=address',
     '-Werror=int-to-pointer-cast',
-    '-Werror=pointer-to-int-cast',
     '-Werror=empty-body',
-    '-Werror=write-strings',
     '-Werror=undef',
   ]
 
@@ -127,17 +124,12 @@ endif
 
 # Dependencies
 glib_req_version = '>= 2.40.0'
-xapian_req_version = '>= 1.5.0'
+xapian_req_version = '>= 2.0.0'
 
 gobject_dep = dependency('gobject-2.0', version: glib_req_version)
 gio_dep = dependency('gio-2.0')
 xapian_dep = dependency('xapian-core', version: xapian_req_version, required: false)
 xapian_pc_dep = 'xapian-core'
-if not xapian_dep.found()
-  # Xapian 1.5 has a versioned xapian-core pkg-config file
-  xapian_dep = dependency('xapian-core-1.5', version: xapian_req_version)
-  xapian_pc_dep = 'xapian-core-1.5'
-endif
 
 # Modules
 gnome = import('gnome')

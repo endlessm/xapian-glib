@@ -11,7 +11,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
 #include <config.h>
@@ -87,7 +87,7 @@ class IteratorData {
       if (!mCurrentInitialized)
         return false;
 
-      return mCurrent == xapian_mset_get_internal (mMSet)->begin ();
+      return Xapian::iterator_rewound (mCurrent);
     }
 
     bool isEnd () {
@@ -124,28 +124,17 @@ class IteratorData {
            * constructor, so we just need to add on the size to point it
            * to just after the end.
            */
-#if XAPIAN_MAJOR_VERSION == 1 && XAPIAN_MINOR_VERSION <= 3
-          // MSet::operator+= was added in xapian-core 1.3.7 - to support older
-          // versions we just loop and call operator++.  At least with g++ -O2
-          // this won't be O(n) as the operator++ code inlines to ++index and
-          // the compiler unrolls the loop and squashes this down to
-          // effectively: if (size) index += size;
-          Xapian::doccount size = xapian_mset_get_internal (mMSet)->size ();
-          while (size--)
-            ++mCurrent;
-#else
           mCurrent += xapian_mset_get_internal (mMSet)->size ();
-#endif
           mCurrentInitialized = true;
         }
-      else
-        {
-          g_clear_object (&mDocument);
 
-          --mCurrent;
-        }
+      g_clear_object (&mDocument);
 
-      return mCurrent != xapian_mset_get_internal (mMSet)->begin ();
+      if (Xapian::iterator_rewound (mCurrent))
+        return FALSE;
+
+      mCurrent--;
+      return TRUE;
     }
 
     unsigned int getRank () {
@@ -504,7 +493,7 @@ xapian_mset_iterator_get_doc_id (XapianMSetIterator *iter,
  *
  * Retrieves the #XapianMSet that created the @iter.
  *
- * Returns: (transfer none): a #XapianMSetIterator
+ * Returns: (transfer none): a #XapianMSet
  */
 XapianMSet *
 xapian_mset_iterator_get_mset (XapianMSetIterator *iter)

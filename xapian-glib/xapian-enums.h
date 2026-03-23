@@ -1,5 +1,5 @@
 /* Copyright 2014  Endless Mobile
- * Copyright 2017  Olly Betts
+ * Copyright 2017, 2025  Olly Betts
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
 #ifndef __XAPIAN_ENUMS_H__
@@ -29,10 +29,12 @@ G_BEGIN_DECLS
  * XapianDatabaseAction:
  * @XAPIAN_DATABASE_ACTION_CREATE_OR_OPEN: Create a database or open if it
  *   already exists
- * @XAPIAN_DATABASE_ACTION_CREATE: Create a database
+ * @XAPIAN_DATABASE_ACTION_CREATE: Create a database, failing if it already
+ *   exists
  * @XAPIAN_DATABASE_ACTION_CREATE_OR_OVERWRITE: Create a database and overwrite
  *   it if one already exists
- * @XAPIAN_DATABASE_ACTION_OPEN: Open a database
+ * @XAPIAN_DATABASE_ACTION_OPEN: Open a database, failing if it doesn't already
+ *   exist
  *
  * Actions for #XapianWritableDatabase.
  *
@@ -60,24 +62,27 @@ GType xapian_database_action_get_type (void);
 /**
  * XapianError:
  * @XAPIAN_ERROR_ASSERTION: Assertion failure
- * @XAPIAN_ERROR_INVALID_ARGUMENT: Invalid argument
- * @XAPIAN_ERROR_INVALID_OPERATION: Invalid operation
- * @XAPIAN_ERROR_UNIMPLEMENTED: Operation not implemented
- * @XAPIAN_ERROR_DATABASE: Database error
+ * @XAPIAN_ERROR_DATABASE_CLOSED: close() was called on the Database
  * @XAPIAN_ERROR_DATABASE_CORRUPT: Database is corrupt
  * @XAPIAN_ERROR_DATABASE_CREATE: Failed to create a database
+ * @XAPIAN_ERROR_DATABASE: Database error
  * @XAPIAN_ERROR_DATABASE_LOCK: Failed to acquire the lock on a database
  * @XAPIAN_ERROR_DATABASE_MODIFIED: Database modified after opening
+ * @XAPIAN_ERROR_DATABASE_NOT_FOUND: Database not found during opening
  * @XAPIAN_ERROR_DATABASE_OPENING: Unable to open the database
  * @XAPIAN_ERROR_DATABASE_VERSION: Version mismatch when opening the database
  * @XAPIAN_ERROR_DOC_NOT_FOUND: Document not found
  * @XAPIAN_ERROR_FEATURE_UNAVAILABLE: Feature not available with the current backend
  * @XAPIAN_ERROR_INTERNAL: Internal state error
+ * @XAPIAN_ERROR_INVALID_ARGUMENT: Invalid argument
+ * @XAPIAN_ERROR_INVALID_OPERATION: Invalid operation
  * @XAPIAN_ERROR_NETWORK: Network error
  * @XAPIAN_ERROR_NETWORK_TIMEOUT: Network timeout error
  * @XAPIAN_ERROR_QUERY_PARSER: Error when parsing a query string
- * @XAPIAN_ERROR_SERIALISATION: Error when serialising or deserialising data
  * @XAPIAN_ERROR_RANGE: Out of bounds access
+ * @XAPIAN_ERROR_SERIALISATION: Error when serialising or deserialising data
+ * @XAPIAN_ERROR_UNIMPLEMENTED: Operation not implemented
+ * @XAPIAN_ERROR_WILDCARD: Error expanding a wildcarded query
  *
  * Error codes for the %XAPIAN_ERROR error domain.
  *
@@ -103,10 +108,20 @@ typedef enum {
   XAPIAN_ERROR_QUERY_PARSER,
   XAPIAN_ERROR_SERIALISATION,
   XAPIAN_ERROR_RANGE,
+  XAPIAN_ERROR_WILDCARD,
+  XAPIAN_ERROR_DATABASE_NOT_FOUND,
+  XAPIAN_ERROR_DATABASE_CLOSED,
 
   /*< private >*/
   XAPIAN_ERROR_LAST
 } XapianError;
+
+/* Allow #ifdef checks for more recently added enum values. */
+#ifndef __GTK_DOC_IGNORE__
+#define XAPIAN_ERROR_WILDCARD XAPIAN_ERROR_WILDCARD
+#define XAPIAN_ERROR_DATABASE_NOT_FOUND XAPIAN_ERROR_DATABASE_NOT_FOUND
+#define XAPIAN_ERROR_DATABASE_CLOSED XAPIAN_ERROR_DATABASE_CLOSED
+#endif
 
 XAPIAN_GLIB_AVAILABLE_IN_2_0
 GType xapian_error_get_type (void);
@@ -144,6 +159,9 @@ GQuark xapian_error_quark (void);
  * @XAPIAN_QUERY_OP_SYNONYM: treats a set of sub-queries as synonyms
  * @XAPIAN_QUERY_OP_MAX: pick the maximum weight of any subquery
  * @XAPIAN_QUERY_OP_WILDCARD: wildcard expansion
+ * @XAPIAN_QUERY_OP_EDIT_DISTANCE: edit distance expansion
+ * @XAPIAN_QUERY_OP_INVALID: construct an invalid query (this can be useful as
+ *   a placeholder)
  *
  * Operators for #XapianQuery.
  *
@@ -166,6 +184,8 @@ typedef enum {
   XAPIAN_QUERY_OP_SYNONYM,
   XAPIAN_QUERY_OP_MAX,
   XAPIAN_QUERY_OP_WILDCARD,
+  XAPIAN_QUERY_OP_EDIT_DISTANCE,
+  XAPIAN_QUERY_OP_INVALID,
 
   /*< private >*/
   XAPIAN_QUERY_OP_LAST
@@ -175,6 +195,8 @@ typedef enum {
 #ifndef __GTK_DOC_IGNORE__
 #define XAPIAN_QUERY_OP_MAX XAPIAN_QUERY_OP_MAX
 #define XAPIAN_QUERY_OP_WILDCARD XAPIAN_QUERY_OP_WILDCARD
+#define XAPIAN_QUERY_OP_EDIT_DISTANCE XAPIAN_QUERY_OP_EDIT_DISTANCE
+#define XAPIAN_QUERY_OP_INVALID XAPIAN_QUERY_OP_INVALID
 #endif
 
 XAPIAN_GLIB_AVAILABLE_IN_2_0
@@ -201,8 +223,33 @@ GType xapian_query_op_get_type (void);
  *   synonyms for single terms
  * @XAPIAN_QUERY_PARSER_FEATURE_AUTO_MULTIWORD_SYNONYMS: enable automatic
  *   use of synonyms for single terms and groups of terms
- * @XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM: enable generation of n-grams from
- *   CJK text
+ * @XAPIAN_QUERY_PARSER_FEATURE_NGRAMS: generate n-gram terms for text in
+ *   scripts written without explicit word breaks
+ * @XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM: older name for
+ *  XAPIAN_QUERY_PARSER_FEATURE_NGRAMS
+ * @XAPIAN_QUERY_PARSER_FEATURE_WORD_BREAKS: try to determine word breaks
+ *   for text in scripts written without explicit word breaks (requires
+ *   Xapian to be built to use ICU)
+ * @XAPIAN_QUERY_PARSER_FEATURE_WILDCARD_MULTI: support extended wildcard
+ *   `*` which matches zero or more characters, and may be used anwhere in
+ *   a word
+ * @XAPIAN_QUERY_PARSER_FEATURE_WILDCARD_SINGLE: support extended wildcard
+ *   `?` which matches exactly one character, and may be used anwhere in
+ *   a word
+ * @XAPIAN_QUERY_PARSER_FEATURE_WILDCARD_GLOB: Enables both
+ *   XAPIAN_QUERY_PARSER_FEATURE_WILDCARD_MULTI and
+ *   XAPIAN_QUERY_PARSER_FEATURE_WILDCARD_SINGLE
+ * @XAPIAN_QUERY_PARSER_FEATURE_FUZZY: Support fuzzy matching.  E.g.
+ *   `unserten~3` would expand to `uncertain` (and likely other terms).
+ *   `foo~` uses edit distance of 2.  `since~0.2` uses edit distance of
+ *   length("since") * 0.2 = 5 * 0.2 = 1
+ * @XAPIAN_QUERY_PARSER_FEATURE_ACCUMULATE: Accumulate unstem and stoplist
+ *   results.  By default this data is reset for each query parsed.
+ * @XAPIAN_QUERY_PARSER_FEATURE_NO_POSITIONS: Produce a query which doesn't
+ *   use positional information.  Phrase searches, `NEAR` and `ADJ` will
+ *   result in `XAPIAN_QUERY_OP_AND`.
+ * @XAPIAN_QUERY_PARSER_FEATURE_NO_PROPER_NOUN_HEURISTIC: Turn off special
+ *   handling of capitalised words.
  * @XAPIAN_QUERY_PARSER_FEATURE_DEFAULT: default flags
  *
  * Flags for xapian_query_parser_parse_query_full().
@@ -221,11 +268,34 @@ typedef enum {
   XAPIAN_QUERY_PARSER_FEATURE_SYNONYM = 1 << 8,
   XAPIAN_QUERY_PARSER_FEATURE_AUTO_SYNONYMS = 1 << 9,
   XAPIAN_QUERY_PARSER_FEATURE_AUTO_MULTIWORD_SYNONYMS = 1 << 10 | XAPIAN_QUERY_PARSER_FEATURE_AUTO_SYNONYMS,
-  XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM = 1 << 11,
+  XAPIAN_QUERY_PARSER_FEATURE_NGRAMS = 1 << 11,
+  XAPIAN_QUERY_PARSER_FEATURE_WORD_BREAKS = 1 << 12,
+  XAPIAN_QUERY_PARSER_FEATURE_WILDCARD_MULTI = 1 << 13,
+  XAPIAN_QUERY_PARSER_FEATURE_WILDCARD_SINGLE = 1 << 14,
+  XAPIAN_QUERY_PARSER_FEATURE_WILDCARD_GLOB = XAPIAN_QUERY_PARSER_FEATURE_WILDCARD_MULTI |
+                                              XAPIAN_QUERY_PARSER_FEATURE_WILDCARD_SINGLE,
+  XAPIAN_QUERY_PARSER_FEATURE_FUZZY = 1 << 15,
+  XAPIAN_QUERY_PARSER_FEATURE_ACCUMULATE = 1 << 16,
+  XAPIAN_QUERY_PARSER_FEATURE_NO_POSITIONS = 1 << 17,
+  XAPIAN_QUERY_PARSER_FEATURE_NO_PROPER_NOUN_HEURISTIC = 1 << 18,
+  XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM = XAPIAN_QUERY_PARSER_FEATURE_NGRAMS,
   XAPIAN_QUERY_PARSER_FEATURE_DEFAULT = XAPIAN_QUERY_PARSER_FEATURE_BOOLEAN |
                                         XAPIAN_QUERY_PARSER_FEATURE_PHRASE |
                                         XAPIAN_QUERY_PARSER_FEATURE_LOVEHATE
 } XapianQueryParserFeature;
+
+/* Allow #ifdef checks for more recently added enum values. */
+#ifndef __GTK_DOC_IGNORE__
+#define XAPIAN_QUERY_PARSER_FEATURE_NGRAMS XAPIAN_QUERY_PARSER_FEATURE_NGRAMS
+#define XAPIAN_QUERY_PARSER_FEATURE_WORD_BREAKS XAPIAN_QUERY_PARSER_FEATURE_WORD_BREAKS
+#define XAPIAN_QUERY_PARSER_FEATURE_WILDCARD_MULTI XAPIAN_QUERY_PARSER_FEATURE_WILDCARD_MULTI
+#define XAPIAN_QUERY_PARSER_FEATURE_WILDCARD_SINGLE XAPIAN_QUERY_PARSER_FEATURE_WILDCARD_SINGLE
+#define XAPIAN_QUERY_PARSER_FEATURE_WILDCARD_GLOB XAPIAN_QUERY_PARSER_FEATURE_WILDCARD_GLOB
+#define XAPIAN_QUERY_PARSER_FEATURE_FUZZY XAPIAN_QUERY_PARSER_FEATURE_FUZZY
+#define XAPIAN_QUERY_PARSER_FEATURE_ACCUMULATE XAPIAN_QUERY_PARSER_FEATURE_ACCUMULATE
+#define XAPIAN_QUERY_PARSER_FEATURE_NO_POSITIONS XAPIAN_QUERY_PARSER_FEATURE_NO_POSITIONS
+#define XAPIAN_QUERY_PARSER_FEATURE_NO_PROPER_NOUN_HEURISTIC XAPIAN_QUERY_PARSER_FEATURE_NO_PROPER_NOUN_HEURISTIC
+#endif
 
 XAPIAN_GLIB_AVAILABLE_IN_2_0
 GType xapian_query_parser_feature_get_type (void);
@@ -238,6 +308,8 @@ GType xapian_query_parser_feature_get_type (void);
  * @XAPIAN_STEM_STRATEGY_STEM_SOME: generate both stemmed and unstemmed terms
  * @XAPIAN_STEM_STRATEGY_STEM_ALL: generate only stemmed terms, without the Z prefix
  * @XAPIAN_STEM_STRATEGY_STEM_ALL_Z: generate only stemmed terms, with the Z prefix
+ * @XAPIAN_STEM_STRATEGY_STEM_SOME_FULL_POS: like
+ *   XAPIAN_STEM_STRATEGY_STEM_SOME but also stores positions for stemmed terms
  *
  * Stemming strategies.
  *
@@ -247,8 +319,14 @@ typedef enum {
   XAPIAN_STEM_STRATEGY_STEM_NONE,
   XAPIAN_STEM_STRATEGY_STEM_SOME,
   XAPIAN_STEM_STRATEGY_STEM_ALL,
-  XAPIAN_STEM_STRATEGY_STEM_ALL_Z
+  XAPIAN_STEM_STRATEGY_STEM_ALL_Z,
+  XAPIAN_STEM_STRATEGY_STEM_SOME_FULL_POS
 } XapianStemStrategy;
+
+/* Allow #ifdef checks for more recently added enum values. */
+#ifndef __GTK_DOC_IGNORE__
+#define XAPIAN_STEM_STRATEGY_STEM_SOME_FULL_POS XAPIAN_STEM_STRATEGY_STEM_SOME_FULL_POS
+#endif
 
 XAPIAN_GLIB_AVAILABLE_IN_2_0
 GType xapian_stem_strategy_get_type (void);
@@ -259,6 +337,11 @@ GType xapian_stem_strategy_get_type (void);
  * XapianTermGeneratorFeature:
  * @XAPIAN_TERM_GENERATOR_FEATURE_NONE: No features
  * @XAPIAN_TERM_GENERATOR_FEATURE_SPELLING: Index data required for spelling correction
+ * @XAPIAN_TERM_GENERATOR_FEATURE_NGRAMS: generate n-gram terms for text in
+ *   scripts written without explicit word breaks
+ * @XAPIAN_TERM_GENERATOR_FEATURE_WORD_BREAKS: try to determine word breaks
+ *   for text in scripts written without explicit word breaks (requires
+ *   Xapian to be built to use ICU)
  *
  * TermGenerator flags
  *
@@ -266,7 +349,9 @@ GType xapian_stem_strategy_get_type (void);
  */
 typedef enum {
   XAPIAN_TERM_GENERATOR_FEATURE_NONE,
-  XAPIAN_TERM_GENERATOR_FEATURE_SPELLING = 1
+  XAPIAN_TERM_GENERATOR_FEATURE_SPELLING = 1,
+  XAPIAN_TERM_GENERATOR_FEATURE_NGRAMS = 2,
+  XAPIAN_TERM_GENERATOR_FEATURE_WORD_BREAKS = 3
 } XapianTermGeneratorFeature;
 
 XAPIAN_GLIB_AVAILABLE_IN_2_0
@@ -329,7 +414,7 @@ GType xapian_database_flags_get_type (void);
  * @XAPIAN_DATABASE_BACKEND_CHERT: Use the Chert backend
  * @XAPIAN_DATABASE_BACKEND_STUB: Open a stub database
  * @XAPIAN_DATABASE_BACKEND_INMEMORY: Use the "in memory" backend
- * @XAPIAN_DATABASE_BACKEND_HONEY: Use the Honey backend 
+ * @XAPIAN_DATABASE_BACKEND_HONEY: Use the Honey backend
  *
  * The Xapian database backend to use when opening a database.
  *

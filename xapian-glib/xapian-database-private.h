@@ -11,7 +11,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
 #ifndef __XAPIAN_GLIB_DATABASE_PRIVATE_H__
@@ -22,10 +22,10 @@
 #include "xapian-database.h"
 
 Xapian::Database *      xapian_database_get_internal    (XapianDatabase   *self);
-void			xapian_database_set_internal    (XapianDatabase   *self,
-							 Xapian::Database *aDB);
-void			xapian_database_set_is_writable	(XapianDatabase   *self,
-							 gboolean          is_writable);
+void                    xapian_database_set_internal    (XapianDatabase   *self,
+                                                         Xapian::Database *aDB);
+void                    xapian_database_set_is_writable (XapianDatabase   *self,
+                                                         gboolean          is_writable);
 gboolean                xapian_database_get_is_writable (XapianDatabase   *self);
 const char *            xapian_database_get_path        (XapianDatabase   *self);
 int                     xapian_database_get_flags       (XapianDatabase   *self);

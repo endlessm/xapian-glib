@@ -11,7 +11,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
 #ifndef __XAPIAN_GLIB_STOPPER_PRIVATE_H__
@@ -22,7 +22,7 @@
 #include "xapian-stopper.h"
 
 Xapian::Stopper *      xapian_stopper_get_internal    (XapianStopper   *self);
-void			xapian_stopper_set_internal    (XapianStopper   *self,
-							 Xapian::Stopper *aStopper);
+void                   xapian_stopper_set_internal    (XapianStopper   *self,
+                                                       Xapian::Stopper *aStopper);
 
 #endif /* __XAPIAN_GLIB_STOPPER_PRIVATE_H__ */

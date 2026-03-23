@@ -55,7 +55,7 @@ database_new_nonexistent (void)
   XapianDatabase *db = xapian_database_new_with_path ("doesnotexist", &error);
 
   g_assert_null (db);
-  g_assert_error (error, XAPIAN_ERROR, XAPIAN_ERROR_DATABASE_OPENING);
+  g_assert_error (error, XAPIAN_ERROR, XAPIAN_ERROR_DATABASE_NOT_FOUND);
 
   g_error_free (error);
 }
@@ -66,7 +66,7 @@ database_writable_new (void)
   GError *error = NULL;
   XapianWritableDatabase *db =
     xapian_writable_database_new ("doesexist",
-                                  XAPIAN_DATABASE_ACTION_CREATE,
+                                  XAPIAN_DATABASE_ACTION_CREATE_OR_OVERWRITE,
                                   &error);
 
   g_assert_nonnull (db);
@@ -90,7 +90,7 @@ database_writable_backend_glass (void)
   GError *error = NULL;
   XapianWritableDatabase *db =
     xapian_writable_database_new_with_backend ("glass-db",
-                                               XAPIAN_DATABASE_ACTION_CREATE,
+                                               XAPIAN_DATABASE_ACTION_CREATE_OR_OVERWRITE,
                                                XAPIAN_DATABASE_BACKEND_GLASS,
                                                &error);
 
@@ -116,7 +116,7 @@ database_writable_flags_no_termlist (void)
   GError *error = NULL;
   XapianWritableDatabase *db =
     xapian_writable_database_new_full ("glass-db",
-                                       XAPIAN_DATABASE_ACTION_CREATE,
+                                       XAPIAN_DATABASE_ACTION_CREATE_OR_OVERWRITE,
                                        XAPIAN_DATABASE_BACKEND_GLASS,
                                        XAPIAN_DATABASE_FLAGS_NO_TERMLIST,
                                        &error);
@@ -144,7 +144,7 @@ database_writable_all_terms (void)
   char *term;
   XapianWritableDatabase *wdb =
     xapian_writable_database_new_full ("glass-db",
-                                       XAPIAN_DATABASE_ACTION_CREATE,
+                                       XAPIAN_DATABASE_ACTION_CREATE_OR_OVERWRITE,
                                        XAPIAN_DATABASE_BACKEND_GLASS,
                                        0,
                                        &error);
@@ -218,6 +218,92 @@ database_writable_all_terms (void)
   delete_database ("glass-db");
 }
 
+static void
+database_writable_freqs (void)
+{
+  GError *error = NULL;
+  XapianWritableDatabase *wdb =
+    xapian_writable_database_new_full ("glass-db",
+                                       XAPIAN_DATABASE_ACTION_CREATE_OR_OVERWRITE,
+                                       XAPIAN_DATABASE_BACKEND_GLASS,
+                                       0,
+                                       &error);
+
+  g_assert_nonnull (wdb);
+
+  g_object_add_weak_pointer (G_OBJECT (wdb), (gpointer *) &wdb);
+
+  XapianDocument *doc = xapian_document_new ();
+
+  g_object_add_weak_pointer (G_OBJECT (doc), (gpointer *) &doc);
+
+  xapian_document_add_term (doc, "two");
+
+  xapian_writable_database_add_document (wdb, doc, NULL, &error);
+
+  xapian_document_add_term (doc, "one");
+
+  xapian_writable_database_add_document (wdb, doc, NULL, &error);
+
+  g_object_unref (wdb);
+  g_assert_null (wdb);
+
+  g_object_unref (doc);
+  g_assert_null (doc);
+
+  XapianDatabase *db =
+    xapian_database_new_with_path ("glass-db", &error);
+
+  g_object_add_weak_pointer (G_OBJECT (db), (gpointer *) &db);
+
+  // Regression test: pre-condition checks for term not being NULL were inverted.
+  g_assert_cmpint (xapian_database_get_term_freq (db, "one"), ==, 1);
+  g_assert_cmpint (xapian_database_get_term_freq (db, "two"), ==, 2);
+  g_assert_cmpint (xapian_database_get_collection_freq (db, "two"), ==, 2);
+  g_assert_cmpint (xapian_database_get_collection_freq (db, "one"), ==, 1);
+
+  g_object_unref (db);
+  g_assert_null (db);
+
+  delete_database ("glass-db");
+}
+
+static void
+database_writable_closed (void)
+{
+  GError *error = NULL;
+  XapianWritableDatabase *wdb =
+    xapian_writable_database_new_full ("glass-db",
+                                       XAPIAN_DATABASE_ACTION_CREATE_OR_OVERWRITE,
+                                       XAPIAN_DATABASE_BACKEND_GLASS,
+                                       0,
+                                       &error);
+
+  g_assert_nonnull (wdb);
+
+  g_object_add_weak_pointer (G_OBJECT (wdb), (gpointer *) &wdb);
+
+  xapian_database_close (XAPIAN_DATABASE (wdb));
+
+  XapianDocument *doc = xapian_document_new ();
+
+  g_object_add_weak_pointer (G_OBJECT (doc), (gpointer *) &doc);
+
+  xapian_document_add_term (doc, "term");
+
+  g_assert_false (xapian_writable_database_add_document (wdb, doc, NULL, &error));
+
+  g_assert_error (error, XAPIAN_ERROR, XAPIAN_ERROR_DATABASE_CLOSED);
+
+  g_object_unref (doc);
+  g_assert_null (doc);
+
+  g_object_unref (wdb);
+  g_assert_null (wdb);
+
+  delete_database ("glass-db");
+}
+
 int
 main (int   argc,
       char *argv[])
@@ -230,6 +316,8 @@ main (int   argc,
   g_test_add_func ("/database/writable/backend/glass", database_writable_backend_glass);
   g_test_add_func ("/database/writable/flags/no-termlist", database_writable_flags_no_termlist);
   g_test_add_func ("/database/writable/all_terms", database_writable_all_terms);
+  g_test_add_func ("/database/writable/freqs", database_writable_freqs);
+  g_test_add_func ("/database/writable/closed", database_writable_closed);
 
   return g_test_run ();
 }

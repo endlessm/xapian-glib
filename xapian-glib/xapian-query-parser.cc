@@ -1,5 +1,5 @@
 /* Copyright 2014  Endless Mobile
- * Copyright 2017  Olly Betts
+ * Copyright 2017, 2025  Olly Betts
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
 /**
@@ -338,6 +338,10 @@ xapian_query_parser_set_stemming_strategy (XapianQueryParser  *parser,
       stem_strategy = Xapian::QueryParser::STEM_ALL_Z;
       break;
 
+    case XAPIAN_STEM_STRATEGY_STEM_SOME_FULL_POS:
+      stem_strategy = Xapian::QueryParser::STEM_SOME_FULL_POS;
+      break;
+
     default:
       g_assert_not_reached ();
     }
@@ -465,7 +469,7 @@ xapian_query_parser_add_prefix (XapianQueryParser *parser,
   try
     {
       XapianQueryParserPrivate *priv = XAPIAN_QUERY_PARSER_GET_PRIVATE (parser);
-      priv->mQueryParser->add_prefix (std::string (field), std::string (prefix));
+      priv->mQueryParser->add_prefix (field, prefix);
     }
   catch (const Xapian::InvalidOperationError &err)
     {
@@ -498,9 +502,7 @@ xapian_query_parser_add_boolean_prefix (XapianQueryParser *parser,
     {
       XapianQueryParserPrivate *priv = XAPIAN_QUERY_PARSER_GET_PRIVATE (parser);
 
-      priv->mQueryParser->add_boolean_prefix (std::string (field),
-                                              std::string (prefix),
-                                              exclusive);
+      priv->mQueryParser->add_boolean_prefix (field, prefix, exclusive);
     }
   catch (const Xapian::InvalidOperationError &err)
     {
@@ -583,12 +585,26 @@ xapian_query_parser_parse_query_full (XapianQueryParser        *parser,
         real_flags |= Xapian::QueryParser::FLAG_AUTO_SYNONYMS;
       if (flags & XAPIAN_QUERY_PARSER_FEATURE_AUTO_MULTIWORD_SYNONYMS)
         real_flags |= Xapian::QueryParser::FLAG_AUTO_MULTIWORD_SYNONYMS;
-      if (flags & XAPIAN_QUERY_PARSER_FEATURE_CJK_NGRAM)
-        real_flags |= Xapian::QueryParser::FLAG_CJK_NGRAM;
+      if (flags & XAPIAN_QUERY_PARSER_FEATURE_NGRAMS)
+        real_flags |= Xapian::QueryParser::FLAG_NGRAMS;
+      if (flags & XAPIAN_QUERY_PARSER_FEATURE_WORD_BREAKS)
+        real_flags |= Xapian::QueryParser::FLAG_WORD_BREAKS;
+      if (flags & XAPIAN_QUERY_PARSER_FEATURE_WILDCARD_MULTI)
+        real_flags |= Xapian::QueryParser::FLAG_WILDCARD_MULTI;
+      if (flags & XAPIAN_QUERY_PARSER_FEATURE_WILDCARD_SINGLE)
+        real_flags |= Xapian::QueryParser::FLAG_WILDCARD_SINGLE;
+      if (flags & XAPIAN_QUERY_PARSER_FEATURE_FUZZY)
+        real_flags |= Xapian::QueryParser::FLAG_FUZZY;
+      if (flags & XAPIAN_QUERY_PARSER_FEATURE_ACCUMULATE)
+        real_flags |= Xapian::QueryParser::FLAG_ACCUMULATE;
+      if (flags & XAPIAN_QUERY_PARSER_FEATURE_NO_POSITIONS)
+        real_flags |= Xapian::QueryParser::FLAG_NO_POSITIONS;
+      if (flags & XAPIAN_QUERY_PARSER_FEATURE_NO_PROPER_NOUN_HEURISTIC)
+        real_flags |= Xapian::QueryParser::FLAG_NO_PROPER_NOUN_HEURISTIC;
 
-      Xapian::Query query = priv->mQueryParser->parse_query (std::string (query_string),
+      Xapian::Query query = priv->mQueryParser->parse_query (query_string,
                                                              real_flags,
-                                                             std::string (default_prefix));
+                                                             default_prefix);
 
       return xapian_query_new_from_query (query);
     }
@@ -644,7 +660,7 @@ xapian_query_parser_get_corrected_query_string (XapianQueryParser *parser)
   g_return_val_if_fail (XAPIAN_IS_QUERY_PARSER (parser), NULL);
 
   XapianQueryParserPrivate *priv = XAPIAN_QUERY_PARSER_GET_PRIVATE (parser);
-  
+
   std::string corrected = priv->mQueryParser->get_corrected_query_string ();
   return g_strdup (corrected.c_str ());
 }

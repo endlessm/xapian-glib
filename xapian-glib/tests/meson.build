@@ -1,6 +1,7 @@
 tests = [
   'database',
   'document',
+  'mset',
   'query',
   'query-parser',
   'sortable-serialise',

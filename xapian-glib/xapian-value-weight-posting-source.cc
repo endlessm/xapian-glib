@@ -11,7 +11,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
 /**
@@ -22,7 +22,7 @@
  * #XapianValueWeightPostingSource is a posting source  which reads weights
  * from a value slot.
  *
- * This returns entries for all documents in the given database which have a 
+ * This returns entries for all documents in the given database which have a
  * non empty values in the specified slot. It returns a weight calculated
  * by applying sortable_unserialise to the value stored in the slot
  * (so the values stored should probably have been calculated by applying

@@ -1,4 +1,5 @@
 /* Copyright 2014  Endless Mobile
+ * Copyright 2025  Olly Betts
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -11,7 +12,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
 /**
@@ -355,6 +356,10 @@ xapian_term_generator_set_stemming_strategy (XapianTermGenerator *generator,
       stem_strategy = Xapian::TermGenerator::STEM_ALL_Z;
       break;
 
+    case XAPIAN_STEM_STRATEGY_STEM_SOME_FULL_POS:
+      stem_strategy = Xapian::TermGenerator::STEM_SOME_FULL_POS;
+      break;
+
     default:
       g_assert_not_reached ();
     }
@@ -442,6 +447,10 @@ xapian_term_generator_set_flags (XapianTermGenerator        *generator,
 
   if ((flags & XAPIAN_TERM_GENERATOR_FEATURE_SPELLING) != 0)
     real_flags |= Xapian::TermGenerator::FLAG_SPELLING;
+  if ((flags & XAPIAN_TERM_GENERATOR_FEATURE_NGRAMS) != 0)
+    real_flags |= Xapian::TermGenerator::FLAG_NGRAMS;
+  if ((flags & XAPIAN_TERM_GENERATOR_FEATURE_WORD_BREAKS) != 0)
+    real_flags |= Xapian::TermGenerator::FLAG_WORD_BREAKS;
 
   priv->mGenerator->set_flags(static_cast<Xapian::TermGenerator::flags>(real_flags));
 }
@@ -514,10 +523,10 @@ xapian_term_generator_index_text_full (XapianTermGenerator *generator,
   g_return_if_fail (XAPIAN_IS_TERM_GENERATOR (generator));
   g_return_if_fail (data != NULL);
 
-  if (prefix == NULL)
-    prefix = "";
-
   XapianTermGeneratorPrivate *priv = XAPIAN_TERM_GENERATOR_GET_PRIVATE (generator);
 
-  priv->mGenerator->index_text (std::string (data), wdf_inc, std::string (prefix));
+  if (prefix != NULL)
+    priv->mGenerator->index_text (data, wdf_inc, prefix);
+  else
+    priv->mGenerator->index_text (data, wdf_inc, std::string_view ());
 }

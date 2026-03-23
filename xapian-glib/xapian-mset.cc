@@ -1,4 +1,5 @@
 /* Copyright 2014  Endless Mobile
+ * Copyright 2025  Olly Betts
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -11,7 +12,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
 #include <config.h>
@@ -120,7 +121,7 @@ xapian_mset_get_termfreq (XapianMSet *mset,
 
   try
     {
-      return xapian_mset_get_internal (mset)->get_termfreq (std::string (term));
+      return xapian_mset_get_internal (mset)->get_termfreq (term);
     }
   catch (const Xapian::InvalidOperationError &err)
     {
@@ -146,7 +147,7 @@ xapian_mset_get_termweight (XapianMSet *mset,
 
   try
     {
-      return xapian_mset_get_internal (mset)->get_termweight (std::string (term));
+      return xapian_mset_get_internal (mset)->get_termweight (term);
     }
   catch (const Xapian::Error &err)
     {

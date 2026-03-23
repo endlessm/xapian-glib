@@ -1,5 +1,5 @@
 /* Copyright 2014  Endless Mobile
- * Copyright 2017  Olly Betts
+ * Copyright 2017, 2025  Olly Betts
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
 /**
@@ -83,34 +83,38 @@ xapian_database_backend_to_internal (XapianDatabaseBackend backend)
 {
   if (backend == XAPIAN_DATABASE_BACKEND_STUB)
     return Xapian::DB_BACKEND_STUB;
-  if (backend == XAPIAN_DATABASE_BACKEND_GLASS)
+  if (backend == XAPIAN_DATABASE_BACKEND_GLASS) {
 #ifdef XAPIAN_HAS_GLASS_BACKEND
     return Xapian::DB_BACKEND_GLASS;
 #else
     g_warning ("Glass backend not supported by Xapian");
     return 0;
 #endif
-  if (backend == XAPIAN_DATABASE_BACKEND_CHERT)
+  }
+  if (backend == XAPIAN_DATABASE_BACKEND_CHERT) {
 #ifdef XAPIAN_HAS_CHERT_BACKEND
     return Xapian::DB_BACKEND_CHERT;
 #else
     g_warning ("Chert backend not supported by Xapian");
     return 0;
 #endif
-  if (backend == XAPIAN_DATABASE_BACKEND_INMEMORY)
+  }
+  if (backend == XAPIAN_DATABASE_BACKEND_INMEMORY) {
 #ifdef XAPIAN_HAS_INMEMORY_BACKEND
     return Xapian::DB_BACKEND_INMEMORY;
 #else
     g_warning ("In-memory backend not supported by Xapian");
     return 0;
 #endif
-  if (backend == XAPIAN_DATABASE_BACKEND_HONEY)
+  }
+  if (backend == XAPIAN_DATABASE_BACKEND_HONEY) {
 #ifdef XAPIAN_HAS_HONEY_BACKEND
     return Xapian::DB_BACKEND_HONEY;
 #else
     g_warning ("Honey backend not supported by Xapian");
     return 0;
 #endif
+  }
 
   return 0;
 }
@@ -211,7 +215,7 @@ xapian_database_set_internal (XapianDatabase   *self,
  */
 void
 xapian_database_set_is_writable (XapianDatabase *self,
-				 gboolean        is_writable)
+                                 gboolean        is_writable)
 {
   XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
 
@@ -605,7 +609,7 @@ xapian_database_get_metadata (XapianDatabase  *db,
 
   try
     {
-      std::string str = xapian_database_get_internal (db)->get_metadata (std::string (key));
+      std::string str = xapian_database_get_internal (db)->get_metadata (key);
 
       return g_strdup (str.c_str ());
     }
@@ -726,7 +730,7 @@ xapian_database_get_term_freq (XapianDatabase *db,
                                const char     *term)
 {
   g_return_val_if_fail (XAPIAN_IS_DATABASE (db), 0);
-  g_return_val_if_fail (term == NULL, 0);
+  g_return_val_if_fail (term != NULL, 0);
 
   return xapian_database_get_internal (db)->get_termfreq (term);
 }
@@ -748,7 +752,7 @@ xapian_database_get_collection_freq (XapianDatabase  *db,
                                      const char      *term)
 {
   g_return_val_if_fail (XAPIAN_IS_DATABASE (db), 0);
-  g_return_val_if_fail (term == NULL, 0);
+  g_return_val_if_fail (term != NULL, 0);
 
   return xapian_database_get_internal (db)->get_collection_freq (term);
 }
@@ -805,8 +809,7 @@ xapian_database_compact_to_path (XapianDatabase             *self,
 
   try
     {
-      const std::string output (path);
-      real_db->compact (output, real_flags);
+      real_db->compact (path, real_flags);
 
       return TRUE;
     }
@@ -903,6 +906,8 @@ xapian_database_enumerate_all_terms (XapianDatabase *self,
 {
   XapianDatabasePrivate *priv = XAPIAN_DATABASE_GET_PRIVATE (self);
 
-  std::string string_prefix (prefix ? prefix : "");
-  return xapian_term_iterator_new (priv->mDB->allterms_begin (string_prefix));
+  if (prefix != NULL)
+    return xapian_term_iterator_new (priv->mDB->allterms_begin (prefix));
+  else
+    return xapian_term_iterator_new (priv->mDB->allterms_begin (std::string_view ()));
 }
